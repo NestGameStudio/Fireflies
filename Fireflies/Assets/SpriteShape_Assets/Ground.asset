@@ -10,14 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af7181f404f1447c0a7a17b3070b952b, type: 3}
-  m_Name: FlatPlatform
+  m_Name: Ground
   m_EditorClassIdentifier: 
   m_Angles:
-  - m_Start: -180
-    m_End: 180
-    m_Order: 0
-    m_Sprites:
-    - {fileID: 21300000, guid: dca6029b2791f794f8fb9535a40675eb, type: 3}
+  - m_Start: -45
+    m_End: 45
+    m_Order: 4
+    m_Sprites: []
+  - m_Start: -135
+    m_End: -45
+    m_Order: 3
+    m_Sprites: []
+  - m_Start: 135
+    m_End: 225
+    m_Order: 2
+    m_Sprites: []
+  - m_Start: 45
+    m_End: 135
+    m_Order: 1
+    m_Sprites: []
   m_FillTexture: {fileID: 0}
   m_CornerSprites:
   - m_CornerType: 0
