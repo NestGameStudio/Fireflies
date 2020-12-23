@@ -260,7 +260,7 @@ SpriteShapeRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -885,7 +885,7 @@ SpriteShapeRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1050,7 +1050,7 @@ SpriteShapeRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1318,9 +1318,13 @@ SpriteShapeRenderer:
   m_ShapeTexture: {fileID: 2800000, guid: 698b7f143b297694ba121d65312b58b2, type: 3}
   m_Sprites:
   - {fileID: 21300000, guid: 698b7f143b297694ba121d65312b58b2, type: 3}
+  - {fileID: 21300000, guid: 355e0af333ec4fe48b05fbcdf5e02c0d, type: 3}
   - {fileID: 21300000, guid: 698b7f143b297694ba121d65312b58b2, type: 3}
+  - {fileID: 21300000, guid: 355e0af333ec4fe48b05fbcdf5e02c0d, type: 3}
   - {fileID: 21300000, guid: 698b7f143b297694ba121d65312b58b2, type: 3}
+  - {fileID: 21300000, guid: 355e0af333ec4fe48b05fbcdf5e02c0d, type: 3}
   - {fileID: 21300000, guid: 698b7f143b297694ba121d65312b58b2, type: 3}
+  - {fileID: 21300000, guid: 355e0af333ec4fe48b05fbcdf5e02c0d, type: 3}
   - {fileID: 21300000, guid: e9dcdd4376764374f84c46bbcb90c17b, type: 3}
   - {fileID: 21300000, guid: 70e98e10e33a2d645bba66ee0b2bcbcf, type: 3}
   - {fileID: 21300000, guid: 58198c0d4e9bf3044b6b943bf4347cc1, type: 3}
@@ -1330,8 +1334,8 @@ SpriteShapeRenderer:
   - {fileID: 21300000, guid: 698b7f143b297694ba121d65312b58b2, type: 3}
   - {fileID: 21300000, guid: 698b7f143b297694ba121d65312b58b2, type: 3}
   m_LocalAABB:
-    m_Center: {x: -0.055039883, y: -0.26192474, z: -0.00060004997}
-    m_Extent: {x: 4.6481113, y: 2.8692746, z: 0.00060004997}
+    m_Center: {x: -0.055039883, y: -0.26192474, z: -0.0006001}
+    m_Extent: {x: 4.6481113, y: 2.8692746, z: 0.0006001}
 --- !u!68 &1454834824
 EdgeCollider2D:
   m_ObjectHideFlags: 0
