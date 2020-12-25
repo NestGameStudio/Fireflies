@@ -1,32 +1,41 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
-    public PlayerInput controls;
+    private PlayerControls controls;
 
     private InputAction slowMotion;
-    private InputAction SlingshotMovementDirection;
+    private InputAction slingshotMovementDirection;
+
+    private Vector2 direction;
 
     private void Awake() {
 
-        //slowMotion = controls
+        controls = new PlayerControls();
 
-        //con
+        slowMotion = controls.Gameplay.SlingshotSlowMotion;
+        slingshotMovementDirection = controls.Gameplay.SlingshotMovementDirection;
 
-        //controls.
+        slowMotion.performed += EnterSlowMotionMode;
+        slowMotion.canceled += ExitSlowMotionMode;
 
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    private void Update() {
+
+        direction = slingshotMovementDirection.ReadValue<Vector2>();
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void EnterSlowMotionMode(InputAction.CallbackContext context) {
+
     }
+
+    private void ExitSlowMotionMode(InputAction.CallbackContext context) {
+
+    }
+
 }
