@@ -476,3 +476,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeSlow: 0.02
+  LineMaterial: {fileID: 2100000, guid: c73722574cd8f1841a7da85c615ae552, type: 2}
+  LineWidth: 0.02
+  ClickReferenceInPlayer: 0
+  ReferenceFollowPlayer: 0
+  canJump: 0
