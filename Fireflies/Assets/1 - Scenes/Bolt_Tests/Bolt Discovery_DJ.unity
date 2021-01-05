@@ -465,11 +465,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bleeper_Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 3783430493388078546, guid: 24f81ec6ade7a43448057c07a2f280e0,
-        type: 3}
-      propertyPath: m_TagString
-      value: Bleeper_Vulneravel
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24f81ec6ade7a43448057c07a2f280e0, type: 3}
 --- !u!1001 &5610297957907203869
