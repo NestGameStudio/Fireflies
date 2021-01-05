@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Perigo
+  - Inimigo
+  - Bleeper_Vulneravel
+  - Bleeper_Invulneravel
   layers:
   - Default
   - TransparentFX
@@ -41,4 +44,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Inimigos
+    uniqueID: 280797445
+    locked: 0
+  - name: Debug
+    uniqueID: 2690618069
     locked: 0

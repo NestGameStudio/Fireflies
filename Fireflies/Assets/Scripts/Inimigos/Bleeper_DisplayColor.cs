@@ -5,9 +5,13 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class Bleeper_DisplayColor : MonoBehaviour
 {
+    //Esse script faz algumas alteracoes em editor, sao elas: a visualizacao de debug, de efeito e de mudanca de cor
+
     public BleeperBehaviour behaviourScript;
 
     public GameObject debugObject;
+
+    public GameObject effectObject;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,8 +21,10 @@ public class Bleeper_DisplayColor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //visualizacao de mudanca de cor
         behaviourScript.mudarCor();
 
+        //visualizacao de debug
         if (behaviourScript.Debug)
         {
             debugObject.SetActive(true);
@@ -26,6 +32,16 @@ public class Bleeper_DisplayColor : MonoBehaviour
         else
         {
             debugObject.SetActive(false);
+        }
+        
+        //visualizacao de efeito
+        if (behaviourScript.Effect)
+        {
+            effectObject.SetActive(true);
+        }
+        else
+        {
+            effectObject.SetActive(false);
         }
     }
 }
