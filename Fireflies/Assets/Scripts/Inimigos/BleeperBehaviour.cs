@@ -33,6 +33,7 @@ public class BleeperBehaviour : MonoBehaviour
 
     public Color[] baseColors;
     public SpriteRenderer[] baseRenderer;
+    public GameObject angy;
 
     [Header("Tempo(s) ate mudar de estado")]
     public float changeTime = 1;
@@ -52,6 +53,15 @@ public class BleeperBehaviour : MonoBehaviour
     void Start()
     {
         timeBackup = changeTime;
+
+        if (Estado == estado.inatingivel)
+        {
+            gameObject.tag = "Bleeper_Invulneravel";
+        }
+        else
+        {
+            gameObject.tag = "Bleeper_Vulneravel";
+        }
     }
 
     // Update is called once per frame
@@ -83,6 +93,9 @@ public class BleeperBehaviour : MonoBehaviour
 
         mudarCor();
 
+        //colocar tag correspondente ao estado
+        mudarTag();
+
         //alternar estado
         if (Estado == estado.inatingivel)
         {
@@ -102,16 +115,24 @@ public class BleeperBehaviour : MonoBehaviour
             baseRenderer[x].color = baseColors[(int)Estado];
         }
 
-        //colocar tag correspondente ao estado
-        mudarTag();
+        if (Estado == estado.inatingivel)
+        {
+            angy.SetActive(true);
+        }
+        else
+        {
+            angy.SetActive(false);
+        }
+
+        
 
     }
     public void mudarTag()
     {
-        if (gameObject.tag == "Bleeper_Invulneravel") {
 
+        if (Estado == estado.inatingivel)
+        {
             gameObject.tag = "Bleeper_Vulneravel";
-
         }
         else
         {

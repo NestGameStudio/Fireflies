@@ -187,6 +187,7 @@ MonoBehaviour:
   baseRenderer:
   - {fileID: 3772105110501119292}
   - {fileID: 2414950381358209739}
+  angy: {fileID: 2414950381358209737}
   changeTime: 2
   Estado: 0
 --- !u!114 &7050684960040369926
@@ -438,6 +439,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1039117042206833852}
     m_Modifications:
+    - target: {fileID: 511554900827192160, guid: 566f66e3fee146245a67a9f8002de85e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 511554900827192162, guid: 566f66e3fee146245a67a9f8002de85e,
         type: 3}
       propertyPath: m_Color.b
@@ -600,6 +606,12 @@ Transform:
 --- !u!212 &3772105110501119292 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 1352203003691283605, guid: 566f66e3fee146245a67a9f8002de85e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2781756633609855401}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2414950381358209737 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 511554900827192160, guid: 566f66e3fee146245a67a9f8002de85e,
     type: 3}
   m_PrefabInstance: {fileID: 2781756633609855401}
   m_PrefabAsset: {fileID: 0}
