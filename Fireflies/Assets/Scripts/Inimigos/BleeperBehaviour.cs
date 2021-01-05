@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BleeperBehaviour : MonoBehaviour
 {
@@ -9,6 +10,12 @@ public class BleeperBehaviour : MonoBehaviour
     No caso da Cali acertar o inimigo enquanto ele está Verde, ele é derrotado.
     Caso Cali acerte ele enquanto ele está Vermelho, Cali perde Vida.
     */
+
+    [Header("Debug Vars")]
+    public Text timeDisplay;
+
+    [Header("Ativa visualizacao de debug")]
+    public bool Debug = false;
 
     public Color[] baseColors;
     public SpriteRenderer[] baseRenderer;
@@ -45,6 +52,9 @@ public class BleeperBehaviour : MonoBehaviour
             changeState();
 
         }
+
+        //mostrar tempo faltante em display
+        timeDisplay.text = (Mathf.Round(changeTime*10)/10).ToString();
     }
     void changeState()
     {
