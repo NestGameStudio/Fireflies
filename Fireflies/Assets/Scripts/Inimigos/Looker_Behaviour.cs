@@ -13,6 +13,8 @@ public class Looker_Behaviour : MonoBehaviour
     [Header("Debug Vars")]
     public Text timeDisplay;
 
+    public GameObject lookerGraphics;
+
     //tempo ate olhar para o player novamente
     public float changeTime = 2;
 
@@ -32,11 +34,24 @@ public class Looker_Behaviour : MonoBehaviour
 
     public ArcCollider2D vulnerableCollider;
 
+    private Transform player;
+
     //variavel que guarda o changeTime logo no inicio do jogo
     private float timeBackup;
     void Start()
     {
         timeBackup = changeTime;
+        
+        //procurar player por tag PLAYER - SEM ISSO O INIMIGO NAO VAI OLHAR PARA O JOGADOR
+        if (GameObject.FindGameObjectWithTag("Player") != null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        }
+        else
+        {
+            UnityEngine.Debug.LogWarning("Looker nao achou player", gameObject);
+        }
     }
 
     // Update is called once per frame
@@ -67,5 +82,15 @@ public class Looker_Behaviour : MonoBehaviour
     {
         //resetar timer
         changeTime = timeBackup;
+
+
+        //olhar para o jogador
+        Vector3 dir = player.position - transform.position;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        lookerGraphics.transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+
+
+
+        UnityEngine.Debug.Log("Looker olhou pro player",gameObject);
     }
 }

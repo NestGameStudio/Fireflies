@@ -8,6 +8,7 @@ TagManager:
   - Inimigo
   - Bleeper_Vulneravel
   - Bleeper_Invulneravel
+  - Looker_Vulneravel
   layers:
   - Default
   - TransparentFX
