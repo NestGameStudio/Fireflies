@@ -89,6 +89,8 @@ GameObject:
   - component: {fileID: 4766767566103291034}
   - component: {fileID: 4938120493088734272}
   - component: {fileID: 1727927927891371797}
+  - component: {fileID: 5420628098902122180}
+  - component: {fileID: 5808199290941051329}
   m_Layer: 0
   m_Name: Looker_Enemy
   m_TagString: Inimigo
@@ -126,11 +128,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeDisplay: {fileID: 6509478306694069755}
   changeTime: 2
-  angle: 150
+  angle: 140
   parteVulneravel: {fileID: 676378332416876056}
   Effect: 1
   effectObject: {fileID: 6738118354930735318}
   Debug: 1
+  vulnerableCollider: {fileID: 2079360742835542837}
 --- !u!114 &1727927927891371797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,6 +149,43 @@ MonoBehaviour:
   behaviourScript: {fileID: 4938120493088734272}
   debugObject: {fileID: 1255893953290734561}
   effectObject: {fileID: 6738118354930735318}
+--- !u!50 &5420628098902122180
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835920935328775831}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &5808199290941051329
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835920935328775831}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.6
 --- !u!1 &1255893953290734561
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,10 +406,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3310430181871460464}
-  - component: {fileID: 7861059787723902604}
+  - component: {fileID: 9216032805738404265}
+  - component: {fileID: 2079360742835542837}
   m_Layer: 0
   m_Name: VulnerableArea_Collider
-  m_TagString: Untagged
+  m_TagString: Looker_Vulneravel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -383,32 +424,65 @@ Transform:
   m_GameObject: {fileID: 6694221689821177762}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.65, y: 0.65, z: 0.65}
   m_Children: []
   m_Father: {fileID: 4766767566103291034}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &7861059787723902604
-Rigidbody2D:
-  serializedVersion: 4
+--- !u!68 &9216032805738404265
+EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6694221689821177762}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 0, y: 0}
+  - {x: -1.0269386, y: -0.3942047}
+  - {x: -0.964143, y: -0.52955496}
+  - {x: -0.88360775, y: -0.65516204}
+  - {x: -0.78681517, y: -0.76871455}
+  - {x: -0.6755458, y: -0.86812323}
+  - {x: -0.55184674, y: -0.95155936}
+  - {x: -0.41799408, y: -1.0174875}
+  - {x: -0.27645084, y: -1.0646948}
+  - {x: -0.12982097, y: -1.0923125}
+  - {x: 0.01919736, y: -1.0998325}
+  - {x: 0.1678626, y: -1.0871165}
+  - {x: 0.31343916, y: -1.0543984}
+  - {x: 0.45324874, y: -1.0022802}
+  - {x: 0.58471894, y: -0.93172085}
+  - {x: 0.7054308, y: -0.84401864}
+  - {x: 0.8131633, y: -0.7407871}
+  - {x: 0.90593415, y: -0.62392575}
+  - {x: 0.98203665, y: -0.4955846}
+  - {x: 1.0400704, y: -0.3581251}
+  - {x: 0, y: 0}
+--- !u!114 &2079360742835542837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6694221689821177762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fea2fe856bf45da499efe7882694f1dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 1.1
+  smoothness: 18
+  totalAngle: 140
+  offsetRotation: -159
+  pizzaSlice: 1
 --- !u!1 &6738118354930735318
 GameObject:
   m_ObjectHideFlags: 0

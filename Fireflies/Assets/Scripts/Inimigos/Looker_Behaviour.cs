@@ -30,6 +30,8 @@ public class Looker_Behaviour : MonoBehaviour
     [Header("Ativa visualizacao de debug")]
     public bool Debug = false;
 
+    public ArcCollider2D vulnerableCollider;
+
     //variavel que guarda o changeTime logo no inicio do jogo
     private float timeBackup;
     void Start()
