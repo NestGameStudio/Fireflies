@@ -6,7 +6,11 @@ using UnityEngine;
 public class Looker_Display : MonoBehaviour
 {
     public Looker_Behaviour behaviourScript;
-    
+
+    public GameObject debugObject;
+
+    public GameObject effectObject;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,5 +24,25 @@ public class Looker_Display : MonoBehaviour
 
         behaviourScript.parteVulneravel.sharedMaterial.SetFloat("_Arc1", newAngle);
         behaviourScript.parteVulneravel.sharedMaterial.SetFloat("_Arc2", newAngle);
+
+        //visualizacao de debug
+        if (behaviourScript.Debug)
+        {
+            debugObject.SetActive(true);
+        }
+        else
+        {
+            debugObject.SetActive(false);
+        }
+
+        //visualizacao de efeito
+        if (behaviourScript.Effect)
+        {
+            effectObject.SetActive(true);
+        }
+        else
+        {
+            effectObject.SetActive(false);
+        }
     }
 }
