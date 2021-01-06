@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4766767566103291034}
+  - component: {fileID: 4938120493088734272}
+  - component: {fileID: 1727927927891371797}
   m_Layer: 0
   m_Name: Looker_Enemy
   m_TagString: Inimigo
@@ -31,6 +33,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4938120493088734272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835920935328775831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53400b4df21e21043bd695d440d19786, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeTime: 2
+  angle: 150
+  parteVulneravel: {fileID: 676378332416876056}
+--- !u!114 &1727927927891371797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835920935328775831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c61c31a9e79efe44ea70eb1ffbb6d731, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  behaviourScript: {fileID: 4938120493088734272}
 --- !u!1001 &1510849373669299531
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38,6 +68,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4766767566103291034}
     m_Modifications:
+    - target: {fileID: 2131723258525158227, guid: ba1f57e824a9fc847acdea84df6a66ed,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8738201899271152300, guid: ba1f57e824a9fc847acdea84df6a66ed,
         type: 3}
       propertyPath: m_Name
@@ -103,6 +138,12 @@ PrefabInstance:
 --- !u!4 &7904883686407763942 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8738201899271152301, guid: ba1f57e824a9fc847acdea84df6a66ed,
+    type: 3}
+  m_PrefabInstance: {fileID: 1510849373669299531}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &676378332416876056 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2131723258525158227, guid: ba1f57e824a9fc847acdea84df6a66ed,
     type: 3}
   m_PrefabInstance: {fileID: 1510849373669299531}
   m_PrefabAsset: {fileID: 0}
