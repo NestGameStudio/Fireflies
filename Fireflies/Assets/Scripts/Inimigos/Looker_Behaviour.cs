@@ -105,10 +105,11 @@ public class Looker_Behaviour : MonoBehaviour
         
         
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        lookerGraphics.transform.rotation = Quaternion.Lerp(lookerGraphics.transform.rotation, Quaternion.AngleAxis(angle - 90, Vector3.forward),t);
+        //lookerGraphics.transform.rotation = Quaternion.Lerp(lookerGraphics.transform.rotation, Quaternion.AngleAxis(angle - 90, Vector3.forward),t);
 
-        
-        if(t > 1)
+        lookerGraphics.transform.rotation = Damp(lookerGraphics.transform.rotation, Quaternion.AngleAxis(angle - 90, Vector3.forward), 0.1f, t);
+
+        if (t > 1)
         {
             oneCheck = true;
             isChangingRot = false;
@@ -126,5 +127,9 @@ public class Looker_Behaviour : MonoBehaviour
         {
             Gizmos.DrawLine(lookerGraphics.transform.position, player.position);
         }
+    }
+    public static Quaternion Damp(Quaternion source, Quaternion target, float smoothing, float dt)
+    {
+        return Quaternion.Lerp(source, target, 1 - Mathf.Pow(smoothing, dt));
     }
 }
