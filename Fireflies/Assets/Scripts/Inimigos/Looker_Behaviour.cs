@@ -42,6 +42,8 @@ public class Looker_Behaviour : MonoBehaviour
     //variavel que guarda o changeTime logo no inicio do jogo
     private float timeBackup;
     private bool oneCheck = true;
+
+    Vector3 dir;
     void Start()
     {
         timeBackup = changeTime;
@@ -72,6 +74,9 @@ public class Looker_Behaviour : MonoBehaviour
             {
                 oneCheck = false;
                 t = 0;
+
+                //registrar posicao do player uma vez
+                dir = player.position - transform.position;
             }
 
             lookAtPlayer();
@@ -98,7 +103,7 @@ public class Looker_Behaviour : MonoBehaviour
         //acionando variavel de mudanca de rotacao
         isChangingRot = true;
         
-        Vector3 dir = player.position - transform.position;
+        
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         lookerGraphics.transform.rotation = Quaternion.Lerp(lookerGraphics.transform.rotation, Quaternion.AngleAxis(angle - 90, Vector3.forward),t);
 
@@ -114,6 +119,7 @@ public class Looker_Behaviour : MonoBehaviour
         }
         UnityEngine.Debug.Log("Looker olhou pro player",gameObject);
     }
+    //desenhar linha ate o player registrado
     private void OnDrawGizmos()
     {
         if (player != null)
