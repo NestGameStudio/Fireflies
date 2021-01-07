@@ -128,6 +128,7 @@ public class Looker_Behaviour : MonoBehaviour
             Gizmos.DrawLine(lookerGraphics.transform.position, player.position);
         }
     }
+    //correcao do lerp - https://gamedevbeginner.com/the-right-way-to-lerp-in-unity-with-examples/
     public static Quaternion Damp(Quaternion source, Quaternion target, float smoothing, float dt)
     {
         return Quaternion.Lerp(source, target, 1 - Mathf.Pow(smoothing, dt));
