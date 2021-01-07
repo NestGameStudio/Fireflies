@@ -36,8 +36,12 @@ public class Looker_Behaviour : MonoBehaviour
 
     private Transform player;
 
+    private bool isChangingRot = false;
+
+    float t = 0;
     //variavel que guarda o changeTime logo no inicio do jogo
     private float timeBackup;
+    private bool oneCheck = true;
     void Start()
     {
         timeBackup = changeTime;
@@ -58,14 +62,19 @@ public class Looker_Behaviour : MonoBehaviour
     void Update()
     {
 
-        if (changeTime > 0)
+        if (changeTime > 0 && isChangingRot == false)
         {
             changeTime -= Time.deltaTime;
         }
-        else
+        else if(changeTime <= 0 || isChangingRot)
         {
-            lookAtPlayer();
+            if (oneCheck)
+            {
+                oneCheck = false;
+                t = 0;
+            }
 
+            lookAtPlayer();
         }
 
         //mostrar tempo faltante em display
@@ -85,12 +94,31 @@ public class Looker_Behaviour : MonoBehaviour
 
 
         //olhar para o jogador
+        
+        //acionando variavel de mudanca de rotacao
+        isChangingRot = true;
+        
         Vector3 dir = player.position - transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        lookerGraphics.transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+        lookerGraphics.transform.rotation = Quaternion.Lerp(lookerGraphics.transform.rotation, Quaternion.AngleAxis(angle - 90, Vector3.forward),t);
 
-
-
+        
+        if(t > 1)
+        {
+            oneCheck = true;
+            isChangingRot = false;
+        }
+        else
+        {
+            t += Time.deltaTime * 2;
+        }
         UnityEngine.Debug.Log("Looker olhou pro player",gameObject);
+    }
+    private void OnDrawGizmos()
+    {
+        if (player != null)
+        {
+            Gizmos.DrawLine(lookerGraphics.transform.position, player.position);
+        }
     }
 }
