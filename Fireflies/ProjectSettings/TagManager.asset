@@ -9,6 +9,8 @@ TagManager:
   - Bleeper_Vulneravel
   - Bleeper_Invulneravel
   - Looker_Vulneravel
+  - Plataforma_Recarregavel
+  - Plataforma_NaoRecarregavel
   layers:
   - Default
   - TransparentFX
