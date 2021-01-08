@@ -49,19 +49,19 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""41b1569f-cabf-4620-a73b-a88860b11bb9"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""id"": ""764ca119-fbf2-48ee-997d-51a881b460aa"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Mouse"",
+                    ""groups"": ""Keyboard and Mouse"",
                     ""action"": ""Slingshot Slow Motion"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""764ca119-fbf2-48ee-997d-51a881b460aa"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""id"": ""8ccf60a7-35c1-4176-9f97-4b328f6b51b9"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
@@ -126,21 +126,10 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8d6c110d-1c4b-404c-a7a3-254afa931197"",
-                    ""path"": ""<Mouse>/position"",
-                    ""interactions"": """",
-                    ""processors"": ""NormalizeVector2"",
-                    ""groups"": ""Mouse"",
-                    ""action"": ""Slingshot Movement Direction"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""a2a1c3f2-861d-4d79-81da-270edff4281e"",
                     ""path"": ""<Pointer>/position"",
                     ""interactions"": """",
-                    ""processors"": ""NormalizeVector2"",
+                    ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
                     ""action"": ""Slingshot Movement Direction"",
                     ""isComposite"": false,
@@ -170,17 +159,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""isOptional"": false,
                     ""isOR"": false
                 },
-                {
-                    ""devicePath"": ""<Mouse>"",
-                    ""isOptional"": false,
-                    ""isOR"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""Mouse"",
-            ""bindingGroup"": ""Mouse"",
-            ""devices"": [
                 {
                     ""devicePath"": ""<Mouse>"",
                     ""isOptional"": false,
@@ -296,15 +274,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         {
             if (m_KeyboardandMouseSchemeIndex == -1) m_KeyboardandMouseSchemeIndex = asset.FindControlSchemeIndex("Keyboard and Mouse");
             return asset.controlSchemes[m_KeyboardandMouseSchemeIndex];
-        }
-    }
-    private int m_MouseSchemeIndex = -1;
-    public InputControlScheme MouseScheme
-    {
-        get
-        {
-            if (m_MouseSchemeIndex == -1) m_MouseSchemeIndex = asset.FindControlSchemeIndex("Mouse");
-            return asset.controlSchemes[m_MouseSchemeIndex];
         }
     }
     public interface IGameplayActions

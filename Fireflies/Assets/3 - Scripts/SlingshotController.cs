@@ -10,15 +10,18 @@ public class SlingshotController : MonoBehaviour {
     [Space(0.3f)]
 
     [Range(0.0f, 1.0f)] public float TimeSlow = 0.02f;
-
+    public float ImpulseForce = 1.0f;
 
     [Header("Configuração da linha do slingshot")]
     [Space(0.3f)]
 
-    public Material LineMaterial;
+    // Linha que indica a direção e intensidade que vai sair a movimentação da Cali 
+    public LineRenderer line;
     public float LineWidth = 0.2f;
+    [Tooltip("O tamanho máximo afeta o impulso final da Cali")]
+    public float LineMaxRadius = 3.0f;
 
-    [Header("Teste e Debug")]
+    [Header("Teste & Debug - Referência de Giro")]
     [Space(0.3f)]
 
     [Tooltip ("(Mouse/Keyboard & Mouse) Define a ponto de centro para que aconteça a rotação da linha de slingshot da Cali, ele está indicado como um Gizmo no editor." +
@@ -28,14 +31,27 @@ public class SlingshotController : MonoBehaviour {
     [Tooltip("(Mouse/Keyboard & Mouse/Gamepad) Valido apenas para quando o ponto de referencia está no player. Se true, o ponto de referência segue a posição da Cali que se move mesmo em slow motion." +
              "Se falso, ele usa como ponto de referência a posição original da Cali quando clicou com o mouse.")]
     public bool ReferenceFollowPlayer = true;
+    [Tooltip("Mostra a circunferencia.")]
+    public bool showCincunference = true;
+    [Tooltip("Mostra a circunferencia no player. Caso contrário a circunferência aparecerá no local de referência.")]
+    public bool cincunferenceInPlayer = true;
+    public LineRenderer circle;
 
+    [Tooltip("Icone que reprensenta referência de giro na scene")]
+    public GameObject centerReference;
+
+    [Header("Teste & Debug - Linha do Slingshot")]
+    [Space(0.3f)]
+
+    public bool TransversalArrow = true;
+    public bool InvertedSlingshot = true;
 
     // -> Controles
 
-    private enum ControlScheme { Gamepad, Mouse, KeyboardMouse }
+    private enum ControlScheme { Gamepad, KeyboardMouse }
 
     private PlayerControls controls;
-    private ControlScheme currentControlScheme = ControlScheme.Gamepad;
+    private ControlScheme currentControlScheme = ControlScheme.KeyboardMouse;
 
     private InputAction slowMotion;
     private InputAction slingshotMovementDirection;
@@ -49,10 +65,15 @@ public class SlingshotController : MonoBehaviour {
     // Está com o pulo carregado
     private bool canJump = true;
     
-    // Linha que indica a direção e intensidade que vai sair a movimentação da Cali 
-    private LineRenderer line;
     // Direção atualizada conforme pega os valores do analógico/mouse
     private Vector2 direction;
+    // o centro da linha
+    private Vector2 lineCenterPos;
+    private GameObject currentReference;
+
+    [Tooltip ("Numero maximo de segmentos para a circunferência.")]
+    private int numSegments = 50;
+
 
     // -> Controles
     private void Awake() {
@@ -92,6 +113,18 @@ public class SlingshotController : MonoBehaviour {
 
         // Se está apertando o slowMotion, ajeita a posição do slingshot de acordo com a movimentação do analógico/mouse
         if (isOnSlowMotion) {
+
+            if (ClickReferenceInPlayer & ReferenceFollowPlayer) {
+                CenterReference();
+            }
+
+            if (cincunferenceInPlayer) {
+
+                //for (int i = 0; i < circle.positionCount; i++) {
+                //circle.SetPosition(i, circle.GetPosition(i) + this.transform.position);
+                //}
+            }
+
             adjustSlingshot();
         }
     }
@@ -100,15 +133,16 @@ public class SlingshotController : MonoBehaviour {
 
         if (change == InputUserChange.ControlSchemeChanged) {
 
+            print(user.controlScheme.Value.name);
+
             switch (user.controlScheme.Value.name) {
-                case "Mouse":
-                    print("mouse");
-                    break;
                 case "Keyboard and Mouse":
                     print("keyboard");
+                    currentControlScheme = ControlScheme.KeyboardMouse;
                     break;
                 default:
                     print("gamepad");
+                    currentControlScheme = ControlScheme.Gamepad;
                     break;
             }
         }
@@ -122,9 +156,15 @@ public class SlingshotController : MonoBehaviour {
 
             print("Time Slow");
             Time.timeScale = TimeSlow;
-            //Time.fixedDeltaTime = TimeSlow * Time.deltaTime;
+            Time.fixedDeltaTime = TimeSlow * Time.deltaTime;    // faz com que o slowmotion não fique travado
+
+            CenterReference();
+            if (showCincunference) {
+                //MaxRadiusReference();
+            }
 
             isOnSlowMotion = true;
+            line.enabled = true;
         }
     }
 
@@ -134,10 +174,12 @@ public class SlingshotController : MonoBehaviour {
 
             print("Time Normal");
             Time.timeScale = 1f;
-            //Time.fixedDeltaTime = 1f * Time.deltaTime;
+
+            Destroy(currentReference);
 
             isOnSlowMotion = false;
             canJump = false;
+            line.enabled = false;
         }
     }
 
@@ -146,35 +188,140 @@ public class SlingshotController : MonoBehaviour {
     // Define as propriedades da seta que vai indicar a movimentação da Cali
     private void lineSetup() {
 
-        line.material = LineMaterial;
         line.widthMultiplier = LineWidth;
         line.positionCount = 2;
-
     }
 
     // Pega a referência do centro da rotação da linha do slingshot conforme o padrão de controles
-    private Vector3 InitialReference() {
+    private void CenterReference() {
 
-        Vector3 position = Vector3.zero;
+        if (ClickReferenceInPlayer || currentControlScheme == ControlScheme.Gamepad) {
 
+            lineCenterPos = this.gameObject.transform.position;
 
-        /* if (ClickReferenceInPlayer || controls. == controls.GamepadScheme) {
+        } else if (!ClickReferenceInPlayer) {
 
+            lineCenterPos = Camera.main.ScreenToWorldPoint(direction);
+        }
 
+        //if (!ReferenceFollowPlayer) {
 
-        } else {
+            // Indica aonde ocorreu o clique
+            currentReference = Instantiate(centerReference, lineCenterPos, centerReference.transform.rotation);           
+        //}
 
-            position = Camera.main.ScreenToWorldPoint()
+    }
 
-        }*/
+    private void MaxRadiusReference() {
 
-        return position;
+        circle.positionCount = numSegments + 2;
+        circle.startWidth = 0.2f;
+        circle.endWidth = 0.2f;
+        //circle.useWorldSpace = false;
+
+        float x;
+        float y;
+        float z;
+
+        float angle = 20f;
+
+        for (int i=0; i < (numSegments + 2); i++) {
+            x = Mathf.Sin(Mathf.Deg2Rad * angle) * LineMaxRadius;
+            y = Mathf.Cos(Mathf.Deg2Rad * angle) * LineMaxRadius;
+
+            if (cincunferenceInPlayer)
+                circle.SetPosition(i, new Vector2(x, y));
+
+            angle += (360f / numSegments);
+
+        }
+
     }
 
     // Ajusta a posição da linha do slingshot quando movimenta o analógico/mouse
     private void adjustSlingshot() {
 
+        // Posição atual do Mouse ou Analógico
+        Vector2 lineFinalPos = Camera.main.ScreenToWorldPoint(direction);
 
+        // Dois pontos da reta
+        Vector2 PointA = Vector2.zero;  // Final (ponta do cursor/analógico)
+        Vector2 PointB = Vector2.zero;  // o Inverso ou no centro da Cali
+
+        // Impulso do pulo da Cali
+        Vector2 impulseVector = Vector2.zero;
+        Vector2 impulse = new Vector2(lineCenterPos.x - lineFinalPos.x, lineCenterPos.y - lineFinalPos.y) * ImpulseForce;
+
+        // Calcula o raio máximo que a linha pode chegar (equivale ao impulso máximo) a partir do ponto de centro do giro
+
+        // Ponto A (posição do mouse)
+        if (!InvertedSlingshot) {
+            PointA = new Vector2(this.transform.position.x + lineFinalPos.x - lineCenterPos.x,
+                                 this.transform.position.y + lineFinalPos.y - lineCenterPos.y);
+        } else {
+            PointA = new Vector2(this.transform.position.x - lineFinalPos.x + lineCenterPos.x,
+                                 this.transform.position.y - lineFinalPos.y + lineCenterPos.y);
+        }
+
+        if (TransversalArrow) {
+
+            if (!InvertedSlingshot) {
+                PointB = new Vector2(this.transform.position.x - lineFinalPos.x + lineCenterPos.x,
+                                     this.transform.position.y - lineFinalPos.y + lineCenterPos.y);
+            } else {
+                PointB = new Vector2(this.transform.position.x + lineFinalPos.x - lineCenterPos.x,
+                                     this.transform.position.y + lineFinalPos.y - lineCenterPos.y);
+            }
+
+        } else {
+            PointB = this.transform.position;
+        }
+
+        // O cursor está dentro do limite máximo    
+        if (Vector2.Distance(lineCenterPos, lineFinalPos) <= LineMaxRadius) {
+
+            // Desenha a linha com a Cali como centro
+            line.SetPosition(0, PointA);
+            line.SetPosition(1, PointB);
+
+            impulseVector = lineCenterPos - lineFinalPos;
+        
+        // Clicou alem do raio máximo da Cali (seta no máximo e move a direção)
+        } else {
+
+            float dist = Mathf.Clamp(Vector3.Distance(lineCenterPos, lineFinalPos), 0, LineMaxRadius);
+
+            if (InvertedSlingshot) {
+
+                Vector2 dir = lineCenterPos - lineFinalPos;
+                PointA = (Vector2) this.transform.position + (dir.normalized * dist);
+
+            } else {
+                
+                Vector2 dir = lineFinalPos - lineCenterPos;
+                PointA = (dir.normalized * dist) + (Vector2) this.transform.position;
+            }
+
+            if (TransversalArrow) {
+
+                if (InvertedSlingshot) {
+
+                    Vector2 dir = lineFinalPos - lineCenterPos;
+                    PointB = (dir.normalized * dist) + (Vector2) this.transform.position;
+
+                } else {
+                    Vector2 dir = lineCenterPos - lineFinalPos;
+                    PointB = (Vector2) this.transform.position + (dir.normalized * dist);
+                }
+
+            }
+
+            line.SetPosition(0, PointA);
+            line.SetPosition(1, PointB);
+
+            impulseVector = PointA;
+
+        }
 
     }
 
