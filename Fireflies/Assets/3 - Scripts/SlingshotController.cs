@@ -4,15 +4,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
 
-public static class ExtensionMethods
-{
-
-    public static float Remap(this float value, float from1, float to1, float from2, float to2)
-    {
-        return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
-    }
-
-}
 public class SlingshotController : MonoBehaviour {
 
     [Header("Controle da Movimentação")]
@@ -46,6 +37,10 @@ public class SlingshotController : MonoBehaviour {
     public bool ReferenceFollowPlayer = true;
     [Tooltip("Mostra a circunferencia.")]
     public bool showCincunference = true;
+
+    //bool para animacao de entrada do efeito de circulo
+    private bool oneCheckEffect = true;
+
     [Tooltip("Mostra a circunferencia no player. Caso contrário a circunferência aparecerá no local de referência.")]
     public bool cincunferenceInPlayer = true;
 
@@ -141,7 +136,14 @@ public class SlingshotController : MonoBehaviour {
                 circleEffect.SetActive(true);
 
                 //ajustar tamanho baseado no maximo de forca que se pode aplicar
+
                 circleEffect.transform.localScale = new Vector2(LineMaxRadius/2, LineMaxRadius/2);
+
+                if (oneCheckEffect)
+                {
+                    oneCheckEffect = false;
+                    circleEffect.GetComponentInChildren<Animator>().SetTrigger("Shoot");
+                }
             }
             else
             {
@@ -156,7 +158,14 @@ public class SlingshotController : MonoBehaviour {
 
             //resetar bool de ponto de ancoragem no player
             oneCheckPlayerRef = true;
+
+            //resetar bool para animacao de entrada do efeito de circulo
+            oneCheckEffect = true;
         }
+    }
+    public static float Damp(float source, float target, float smoothing, float dt)
+    {
+        return Mathf.Lerp(source, target, 1 - Mathf.Pow(smoothing, dt));
     }
 
     private void onInputDeviceChange(InputUser user, InputUserChange change, InputDevice device) {

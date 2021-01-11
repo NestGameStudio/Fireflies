@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 898718208}
   - component: {fileID: 898718209}
+  - component: {fileID: 898718210}
   m_Layer: 0
   m_Name: Circle_Effect
   m_TagString: Untagged
@@ -112,6 +113,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &898718210
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898718207}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3c84726d5131ef24298703983a58f4f6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &984644816365584561
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,7 +513,7 @@ MonoBehaviour:
   line: {fileID: 1986088843813828934}
   LineWidth: 0.15
   LineMaxRadius: 2
-  ClickReferenceInPlayer: 0
+  ClickReferenceInPlayer: 1
   ReferenceFollowPlayer: 1
   showCincunference: 1
   cincunferenceInPlayer: 1
