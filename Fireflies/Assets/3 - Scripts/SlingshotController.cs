@@ -10,7 +10,7 @@ public class SlingshotController : MonoBehaviour {
     [Space(0.3f)]
 
     [Range(0.0f, 1.0f)] public float TimeSlow = 0.02f;
-    public float ImpulseForce = 1.0f;
+    public float ImpulseForce = 330f;
 
     [Header("Configuração da linha do slingshot")]
     [Space(0.3f)]
