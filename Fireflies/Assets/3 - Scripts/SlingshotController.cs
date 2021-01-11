@@ -16,6 +16,7 @@ public class SlingshotController : MonoBehaviour {
     [Space(0.3f)]
 
     // Linha que indica a direção e intensidade que vai sair a movimentação da Cali 
+    public GameObject arrow;
     public LineRenderer line;
     public float LineWidth = 0.2f;
     [Tooltip("O tamanho máximo afeta o impulso final da Cali")]
@@ -151,7 +152,8 @@ public class SlingshotController : MonoBehaviour {
             }
             else
             {
-                circleEffect.SetActive(false);
+                circleEffect.transform.position = currentReference.transform.position;
+                circleEffect.SetActive(true);
             }
 
             adjustSlingshot();
@@ -220,6 +222,7 @@ public class SlingshotController : MonoBehaviour {
 
             Jump();
             Destroy(currentReference);
+            arrow.SetActive(false);
 
             isOnSlowMotion = false;
             //canJump = false;
@@ -389,6 +392,26 @@ public class SlingshotController : MonoBehaviour {
 
         }
 
+        // Ajeita a ponta da seta 
+        if (impulseVector.magnitude > LineMinRadius) {
+
+            // Desenha a linha do impulso
+            line.enabled = true;
+
+            // Ajeita a ponta da seta
+            arrow.SetActive(true);
+            arrow.transform.position = line.GetPosition(0);
+
+            Vector3 dir = line.GetPosition(0) - this.transform.position;
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            arrow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        } else {
+            // apaga a linha
+            line.enabled = false;
+            arrow.SetActive(false);
+        }
+
     }
 
     private void Jump() {
@@ -400,13 +423,9 @@ public class SlingshotController : MonoBehaviour {
             Rigidbody2D rb = this.GetComponent<Rigidbody2D>();
             rb.velocity = Vector3.zero;
 
-            print(impulseVector + "vector");
-
             // Calcula o impulso
             Vector2 impulse = new Vector2(impulseVector.x, impulseVector.y) * ImpulseForce;
             rb.AddForce(impulse);
-
-            print(impulse + "impulso");
         }
 
         impulseVector = Vector2.zero;
