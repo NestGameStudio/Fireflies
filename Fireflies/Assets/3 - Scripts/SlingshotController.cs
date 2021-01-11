@@ -4,6 +4,15 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
 
+public static class ExtensionMethods
+{
+
+    public static float Remap(this float value, float from1, float to1, float from2, float to2)
+    {
+        return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
+    }
+
+}
 public class SlingshotController : MonoBehaviour {
 
     [Header("Controle da Movimentação")]
@@ -28,6 +37,10 @@ public class SlingshotController : MonoBehaviour {
               "Caso seja true, o ponto de referência deste centro está acompenhando a movimentação da Cali. Caso seja false, o ponto de referência está aonde foi clicado com o mouse." +
               "Caso esteja usando Gamepad o ponto de referência é sempre o jogador.")]
     public bool ClickReferenceInPlayer = true;
+
+    //bool para criar ponto de referencia no player apenas uma vez
+    private bool oneCheckPlayerRef = true;
+
     [Tooltip("(Mouse/Keyboard & Mouse/Gamepad) Valido apenas para quando o ponto de referencia está no player. Se true, o ponto de referência segue a posição da Cali que se move mesmo em slow motion." +
              "Se falso, ele usa como ponto de referência a posição original da Cali quando clicou com o mouse.")]
     public bool ReferenceFollowPlayer = true;
@@ -35,7 +48,8 @@ public class SlingshotController : MonoBehaviour {
     public bool showCincunference = true;
     [Tooltip("Mostra a circunferencia no player. Caso contrário a circunferência aparecerá no local de referência.")]
     public bool cincunferenceInPlayer = true;
-    public LineRenderer circle;
+
+    public GameObject circleEffect;
 
     [Tooltip("Icone que reprensenta referência de giro na scene")]
     public GameObject centerReference;
@@ -123,9 +137,25 @@ public class SlingshotController : MonoBehaviour {
                 //for (int i = 0; i < circle.positionCount; i++) {
                 //circle.SetPosition(i, circle.GetPosition(i) + this.transform.position);
                 //}
+
+                circleEffect.SetActive(true);
+
+                //ajustar tamanho baseado no maximo de forca que se pode aplicar
+                circleEffect.transform.localScale = new Vector2(LineMaxRadius/2, LineMaxRadius/2);
+            }
+            else
+            {
+                circleEffect.SetActive(false);
             }
 
             adjustSlingshot();
+        }
+        else
+        {
+            circleEffect.SetActive(false);
+
+            //resetar bool de ponto de ancoragem no player
+            oneCheckPlayerRef = true;
         }
     }
 
@@ -199,19 +229,42 @@ public class SlingshotController : MonoBehaviour {
 
             lineCenterPos = this.gameObject.transform.position;
 
+            //criar referencia apenas uma vez
+            if (oneCheckPlayerRef)
+            {
+                // Indica aonde ocorreu o clique
+                currentReference = Instantiate(centerReference, lineCenterPos, centerReference.transform.rotation);
+
+                currentReference.transform.parent = gameObject.transform;
+
+                oneCheckPlayerRef = false;
+            }
+
         } else if (!ClickReferenceInPlayer) {
 
             lineCenterPos = Camera.main.ScreenToWorldPoint(direction);
+
+            //criar referencia apenas uma vez
+            if (oneCheckPlayerRef)
+            {
+                // Indica aonde ocorreu o clique
+                currentReference = Instantiate(centerReference, lineCenterPos, centerReference.transform.rotation);
+
+                //currentReference.transform.parent = gameObject.transform;
+
+                oneCheckPlayerRef = false;
+            }
         }
 
         //if (!ReferenceFollowPlayer) {
 
-            // Indica aonde ocorreu o clique
-            currentReference = Instantiate(centerReference, lineCenterPos, centerReference.transform.rotation);           
+
+        
         //}
 
-    }
 
+    }
+    /*
     private void MaxRadiusReference() {
 
         circle.positionCount = numSegments + 2;
@@ -237,7 +290,7 @@ public class SlingshotController : MonoBehaviour {
         }
 
     }
-
+    */
     // Ajusta a posição da linha do slingshot quando movimenta o analógico/mouse
     private void adjustSlingshot() {
 
