@@ -20,6 +20,8 @@ public class SlingshotController : MonoBehaviour {
     public float LineWidth = 0.2f;
     [Tooltip("O tamanho máximo afeta o impulso final da Cali")]
     public float LineMaxRadius = 3.0f;
+    [Tooltip("O tamanho mínimo afeta o impulso final da Cali")]
+    public float LineMinRadius = 1.5f;
 
     [Header("Teste & Debug - Referência de Giro")]
     [Space(0.3f)]
@@ -82,6 +84,8 @@ public class SlingshotController : MonoBehaviour {
 
     [Tooltip ("Numero maximo de segmentos para a circunferência.")]
     private int numSegments = 50;
+
+    private Vector2 impulseVector = Vector2.zero;
 
 
     // -> Controles
@@ -214,10 +218,11 @@ public class SlingshotController : MonoBehaviour {
             print("Time Normal");
             Time.timeScale = 1f;
 
+            Jump();
             Destroy(currentReference);
 
             isOnSlowMotion = false;
-            canJump = false;
+            //canJump = false;
             line.enabled = false;
         }
     }
@@ -311,7 +316,6 @@ public class SlingshotController : MonoBehaviour {
         Vector2 PointB = Vector2.zero;  // o Inverso ou no centro da Cali
 
         // Impulso do pulo da Cali
-        Vector2 impulseVector = Vector2.zero;
         Vector2 impulse = new Vector2(lineCenterPos.x - lineFinalPos.x, lineCenterPos.y - lineFinalPos.y) * ImpulseForce;
 
         // Calcula o raio máximo que a linha pode chegar (equivale ao impulso máximo) a partir do ponto de centro do giro
@@ -384,6 +388,28 @@ public class SlingshotController : MonoBehaviour {
             impulseVector = PointA;
 
         }
+
+    }
+
+    private void Jump() {
+
+        //evita pulos de força zero (game breaking)
+        if (impulseVector.magnitude > LineMinRadius) {
+
+            // Zera a velocidade do player antes de dar um novo impulso para não ter soma de vetores
+            Rigidbody2D rb = this.GetComponent<Rigidbody2D>();
+            rb.velocity = Vector3.zero;
+
+            print(impulseVector + "vector");
+
+            // Calcula o impulso
+            Vector2 impulse = new Vector2(impulseVector.x, impulseVector.y) * ImpulseForce;
+            rb.AddForce(impulse);
+
+            print(impulse + "impulso");
+        }
+
+        impulseVector = Vector2.zero;
 
     }
 

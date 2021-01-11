@@ -347,11 +347,11 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 773dd6cfc423f864493ee2b110bbc449, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &1986088843813828933
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -509,12 +509,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeSlow: 0.1
-  ImpulseForce: 1
+  ImpulseForce: 330
   line: {fileID: 1986088843813828934}
   LineWidth: 0.15
   LineMaxRadius: 2
-  ClickReferenceInPlayer: 1
-  ReferenceFollowPlayer: 1
+  LineMinRadius: 1.5
+  ClickReferenceInPlayer: 0
+  ReferenceFollowPlayer: 0
   showCincunference: 1
   cincunferenceInPlayer: 1
   circleEffect: {fileID: 563005848}
