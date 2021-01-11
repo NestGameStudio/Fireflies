@@ -314,6 +314,8 @@ public class SlingshotController : MonoBehaviour {
         Vector2 impulseVector = Vector2.zero;
         Vector2 impulse = new Vector2(lineCenterPos.x - lineFinalPos.x, lineCenterPos.y - lineFinalPos.y) * ImpulseForce;
 
+        
+
         // Calcula o raio máximo que a linha pode chegar (equivale ao impulso máximo) a partir do ponto de centro do giro
 
         // Ponto A (posição do mouse)
@@ -383,8 +385,29 @@ public class SlingshotController : MonoBehaviour {
 
             impulseVector = PointA;
 
+
+            //mostra predicao do pulo em arco
+
+            //GetComponentInChildren<TrajetoriaPredicao>().angle = Vector2.Angle(PointB, PointA);
+
+            //TA AQUI
+            //GetComponentInChildren<TrajetoriaPredicao>().angle = Angle();
+
+            GetComponentInChildren<TrajetoriaPredicao>().velocity = ImpulseForce*10;
+            GetComponentInChildren<TrajetoriaPredicao>().RenderArc();
         }
 
+    }
+    public static float Angle(Vector2 p_vector2)
+    {
+        if (p_vector2.x < 0)
+        {
+            return 360 - (Mathf.Atan2(p_vector2.x, p_vector2.y) * Mathf.Rad2Deg * -1);
+        }
+        else
+        {
+            return Mathf.Atan2(p_vector2.x, p_vector2.y) * Mathf.Rad2Deg;
+        }
     }
 
 }
