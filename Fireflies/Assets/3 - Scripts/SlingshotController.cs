@@ -83,9 +83,6 @@ public class SlingshotController : MonoBehaviour {
     private Vector2 lineCenterPos;
     private GameObject currentReference;
 
-    [Tooltip ("Numero maximo de segmentos para a circunferência.")]
-    private int numSegments = 50;
-
     private Vector2 impulseVector = Vector2.zero;
 
 
@@ -272,42 +269,8 @@ public class SlingshotController : MonoBehaviour {
                 oneCheckPlayerRef = false;
             }
         }
-
-        //if (!ReferenceFollowPlayer) {
-
-
-        
-        //}
-
-
     }
-    /*
-    private void MaxRadiusReference() {
-
-        circle.positionCount = numSegments + 2;
-        circle.startWidth = 0.2f;
-        circle.endWidth = 0.2f;
-        //circle.useWorldSpace = false;
-
-        float x;
-        float y;
-        float z;
-
-        float angle = 20f;
-
-        for (int i=0; i < (numSegments + 2); i++) {
-            x = Mathf.Sin(Mathf.Deg2Rad * angle) * LineMaxRadius;
-            y = Mathf.Cos(Mathf.Deg2Rad * angle) * LineMaxRadius;
-
-            if (cincunferenceInPlayer)
-                circle.SetPosition(i, new Vector2(x, y));
-
-            angle += (360f / numSegments);
-
-        }
-
-    }
-    */
+    
     // Ajusta a posição da linha do slingshot quando movimenta o analógico/mouse
     private void adjustSlingshot() {
 
@@ -320,8 +283,6 @@ public class SlingshotController : MonoBehaviour {
 
         // Impulso do pulo da Cali
         Vector2 impulse = new Vector2(lineCenterPos.x - lineFinalPos.x, lineCenterPos.y - lineFinalPos.y) * ImpulseForce;
-
-        
 
         // Calcula o raio máximo que a linha pode chegar (equivale ao impulso máximo) a partir do ponto de centro do giro
 
@@ -418,23 +379,18 @@ public class SlingshotController : MonoBehaviour {
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             arrow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
+            // desenha a trajetória
+            this.GetComponentInChildren<TrajetoriaPredicao>().angle = angle;
+            this.GetComponentInChildren<TrajetoriaPredicao>().RenderArc();
+
         } else {
             // apaga a linha
             line.enabled = false;
             arrow.SetActive(false);
         }
 
-    }
-    public static float Angle(Vector2 p_vector2)
-    {
-        if (p_vector2.x < 0)
-        {
-            return 360 - (Mathf.Atan2(p_vector2.x, p_vector2.y) * Mathf.Rad2Deg * -1);
-        }
-        else
-        {
-            return Mathf.Atan2(p_vector2.x, p_vector2.y) * Mathf.Rad2Deg;
-        }
+        
+
     }
 
     private void Jump() {
