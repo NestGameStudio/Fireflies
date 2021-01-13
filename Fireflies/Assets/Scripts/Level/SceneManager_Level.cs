@@ -45,12 +45,12 @@ public class SceneManager_Level : MonoBehaviour
             for (int x = 0; x < sceneNames.Length; x++)
             {
                 //checar se existe cena com o nome certo e se ja n foi ativada
-                if (SceneManager.GetSceneByName(sceneNames[x]) == null )
+                if (SceneManager.GetSceneByName(sceneNames[x]) == null)
                 {
                     SceneManager.LoadScene(sceneNames[x], LoadSceneMode.Additive);
                 }
                 
-                if (x != startingLevel - 1)
+                if (x != startingLevel - 1 && SceneManager.GetSceneByName(sceneNames[x]) != null)
                 {
                     SceneManager.UnloadSceneAsync(sceneNames[x],UnloadSceneOptions.None);
                 }
