@@ -17,31 +17,33 @@ public class SceneManager_Display : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        if (sceneManager == null)
+        if (Application.isPlaying == false)
         {
-            sceneManager = GetComponent<SceneManager_Level>();
-        }
-
-        if (sceneManager != null)
-        {
-
-            for (int x = 0; x < sceneManager.sceneNames.Length; x++)
+            if (sceneManager == null)
             {
-                //checa se a cena existe
-                if (EditorSceneManager.GetSceneByPath("Assets/1 - Scenes/Levels/" + sceneManager.sceneNames[x] + ".unity") != null)
-                {
-                    //carrega a cena caso ela exista
-                    EditorSceneManager.OpenScene("Assets/1 - Scenes/Levels/" + sceneManager.sceneNames[x] + ".unity", OpenSceneMode.Additive);
-                }
+                sceneManager = GetComponent<SceneManager_Level>();
+            }
 
-                //Fazer a cena em referência a unica a estar ativada
-                if (x != sceneManager.startingLevel - 1)
+            if (sceneManager != null)
+            {
+
+                for (int x = 0; x < sceneManager.sceneNames.Length; x++)
                 {
-                    EditorSceneManager.CloseScene(EditorSceneManager.GetSceneByPath("Assets/1 - Scenes/Levels/" + sceneManager.sceneNames[x] + ".unity"), false);
+                    //checa se a cena existe
+                    if (EditorSceneManager.GetSceneByPath("Assets/1 - Scenes/Levels/" + sceneManager.sceneNames[x] + ".unity") != null)
+                    {
+                        //carrega a cena caso ela exista
+                        EditorSceneManager.OpenScene("Assets/1 - Scenes/Levels/" + sceneManager.sceneNames[x] + ".unity", OpenSceneMode.Additive);
+                    }
+
+                    //Fazer a cena em referência a unica a estar ativada
+                    if (x != sceneManager.startingLevel - 1)
+                    {
+                        EditorSceneManager.CloseScene(EditorSceneManager.GetSceneByPath("Assets/1 - Scenes/Levels/" + sceneManager.sceneNames[x] + ".unity"), false);
+                    }
                 }
             }
-        }
 
-       
+        }
     }
 }

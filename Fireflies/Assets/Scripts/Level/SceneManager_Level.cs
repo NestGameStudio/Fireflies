@@ -12,10 +12,16 @@ public class SceneManager_Level : MonoBehaviour
 
     public KeyCode nextLevelKey;
     public KeyCode previousLevelKey;
+
+    Scene masterScene;
     // Start is called before the first frame update
     void Start()
     {
+        masterScene = SceneManager.GetActiveScene();
+
         loadActiveLevel();
+
+        
     }
 
     // Update is called once per frame
@@ -39,17 +45,22 @@ public class SceneManager_Level : MonoBehaviour
             for (int x = 0; x < sceneNames.Length; x++)
             {
                 //checar se existe cena com o nome certo e se ja n foi ativada
-                if (SceneManager.GetSceneByName(sceneNames[x]) != null)
+                if (SceneManager.GetSceneByName(sceneNames[x]) == null )
                 {
                     SceneManager.LoadScene(sceneNames[x], LoadSceneMode.Additive);
                 }
-                if (x != startingLevel)
+                
+                if (x != startingLevel - 1)
                 {
-                    SceneManager.UnloadScene(sceneNames[x]);
+                    SceneManager.UnloadSceneAsync(sceneNames[x],UnloadSceneOptions.None);
                 }
+                
             }
         }
+
+        SceneManager.SetActiveScene(masterScene);
     }
+
 
     public void nextLevel()
     {
