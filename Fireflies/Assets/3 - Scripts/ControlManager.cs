@@ -67,7 +67,7 @@ public class ControlManager : MonoBehaviour {
     void Update() {
 
         SlingshotController.direction = slingshotMovementDirection.ReadValue<Vector2>();
-        print(SlingshotController.direction);
+        // print(SlingshotController.direction);
     }
 
     // ------------- Funções das actions ------------------
