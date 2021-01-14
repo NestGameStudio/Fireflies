@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1940904278290871780}
   m_Layer: 0
-  m_Name: Plataforma_OpenShape
+  m_Name: Plat_OpenShape
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
