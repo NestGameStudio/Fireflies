@@ -4,25 +4,41 @@ using UnityEngine;
 using UnityEditor.SceneManagement;
 using UnityEditor;
 
-[ExecuteInEditMode]
-public class SceneManager_Display : MonoBehaviour
+[CustomEditor(typeof(SceneManager_Level))]
+public class SceneManager_Display : Editor
 {
-    SceneManager_Level sceneManager;
-    // Start is called before the first frame update
-    void Start()
+    
+    public override void OnInspectorGUI()
     {
-        
-    }
+        base.OnInspectorGUI();
+        SceneManager_Level sceneManager = (SceneManager_Level)target;
 
-    // Update is called once per frame
-    public void Update()
+        GUILayout.BeginHorizontal();
+
+            if (GUILayout.Button("PreviousLevel") && sceneManager.startingLevel > 1)
+            {
+                sceneManager.startingLevel -= 1;
+                atualizar(sceneManager);
+
+                //sceneManager.previousLevel();
+            }
+
+            if (GUILayout.Button("NextLevel") && sceneManager.startingLevel < sceneManager.sceneNames.Length)
+            {
+                sceneManager.startingLevel += 1;
+                atualizar(sceneManager);
+
+                //sceneManager.nextLevel();
+            }
+
+        GUILayout.EndHorizontal();
+    }
+    
+
+    public void atualizar(SceneManager_Level sceneManager)
     {
         if (Application.isPlaying == false)
         {
-            if (sceneManager == null)
-            {
-                sceneManager = GetComponent<SceneManager_Level>();
-            }
 
             if (sceneManager != null)
             {
@@ -46,4 +62,5 @@ public class SceneManager_Display : MonoBehaviour
 
         }
     }
+    
 }

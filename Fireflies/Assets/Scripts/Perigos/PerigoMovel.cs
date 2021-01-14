@@ -64,6 +64,7 @@ public class PerigoMovel : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
+        Gizmos.color = Color.yellow;
         Gizmos.DrawLine(pointA.position,pointB.position);
     }
 }

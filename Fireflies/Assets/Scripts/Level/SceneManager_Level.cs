@@ -8,7 +8,7 @@ public class SceneManager_Level : MonoBehaviour
     //fazer mudar a cena em referencia no editor
 
     public string[] sceneNames;
-    public int startingLevel = 1;
+    public int startingLevel;
 
     public KeyCode nextLevelKey;
     public KeyCode previousLevelKey;
@@ -19,19 +19,32 @@ public class SceneManager_Level : MonoBehaviour
     {
         masterScene = SceneManager.GetActiveScene();
 
-        loadActiveLevel();
+        /*
+        if (sceneNames != null)
+        {
+            //load active and unactive levels
+            for (int x = 0; x < sceneNames.Length; x++)
+            {
+                
+                    SceneManager.UnloadSceneAsync(sceneNames[x], UnloadSceneOptions.None);
+                
 
+            }
+        }
+        */
+        loadActiveLevel();
+        
         
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetKeyDown(nextLevelKey))
+        if (Input.GetKeyDown(nextLevelKey) && startingLevel < sceneNames.Length)
         {
             nextLevel();
         }
-        if (Input.GetKeyDown(previousLevelKey))
+        if (Input.GetKeyDown(previousLevelKey) && startingLevel > 1)
         {
             previousLevel();
         }
@@ -44,6 +57,7 @@ public class SceneManager_Level : MonoBehaviour
             //load active and unactive levels
             for (int x = 0; x < sceneNames.Length; x++)
             {
+                /*
                 //checar se existe cena com o nome certo e se ja n foi ativada
                 if (SceneManager.GetSceneByName(sceneNames[x]) == null)
                 {
@@ -54,7 +68,17 @@ public class SceneManager_Level : MonoBehaviour
                 {
                     SceneManager.UnloadSceneAsync(sceneNames[x],UnloadSceneOptions.None);
                 }
+                */
                 
+                if (x == startingLevel - 1)
+                {
+                    SceneManager.LoadScene(sceneNames[x], LoadSceneMode.Additive);
+                }
+                else if(SceneManager.GetSceneByName(sceneNames[x]) != null)
+                {
+                    SceneManager.UnloadSceneAsync(sceneNames[x], UnloadSceneOptions.None);
+                }
+                   
             }
         }
 

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2642393475750933367}
   - component: {fileID: 7968825811647189476}
-  - component: {fileID: 2104714832596701223}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -51,17 +50,5 @@ MonoBehaviour:
   - Level4
   - Level5
   startingLevel: 1
-  nextLevelKey: 104
-  previousLevelKey: 106
---- !u!114 &2104714832596701223
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 759779665677274601}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da0c971574b0fd244a19c6724c38a2e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  nextLevelKey: 106
+  previousLevelKey: 104
