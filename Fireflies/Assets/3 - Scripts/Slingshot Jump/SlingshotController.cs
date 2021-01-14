@@ -12,6 +12,7 @@ public class SlingshotController : MonoBehaviour {
 
     [Range(0.0f, 1.0f)] public float TimeSlow = 0.02f;
     public float ImpulseForce = 330f;
+    public SlingshotVisual slingshotVisual;
 
     // ------------------- Ponto de referência -------------------------
     [Header("Teste & Debug - Referência de Giro")]
@@ -28,7 +29,7 @@ public class SlingshotController : MonoBehaviour {
 
     // ------------- Variáveis privadas ------------------
 
-    private SlingshotVisual slingshotVisual;
+    private JumpRecovery JumpControl; 
 
     // Variáveis da movimentação
     private bool isOnSlowMotion = false;    // Entrou no slowMotion com um clique
@@ -43,7 +44,7 @@ public class SlingshotController : MonoBehaviour {
 
     // ------------- Setup e checagens ------------------
     private void Start() {
-        slingshotVisual = this.GetComponentInChildren<SlingshotVisual>();
+        JumpControl = this.GetComponent<JumpRecovery>();
     }
 
     // Verifica se usa recursos de seguir o player -> atualiza a posição das coisas visuais
@@ -65,7 +66,7 @@ public class SlingshotController : MonoBehaviour {
     // -> Slow Motion 
     public void EnterSlowMotionMode() {
 
-        if (canJump) {
+        if (JumpControl.CanJump()) {
 
             Time.timeScale = TimeSlow;
             Time.fixedDeltaTime = TimeSlow * Time.deltaTime;    // faz com que o slowmotion não fique travado
@@ -79,7 +80,7 @@ public class SlingshotController : MonoBehaviour {
 
     public void ExitSlowMotionMode() {
 
-        if (canJump) {
+        if (JumpControl.CanJump()) {
 
             Time.timeScale = 1f;
 
@@ -88,7 +89,7 @@ public class SlingshotController : MonoBehaviour {
             Jump();
 
             isOnSlowMotion = false;
-            canJump = false;
+            JumpControl.setJump(false);
         }
     }
 
@@ -113,12 +114,23 @@ public class SlingshotController : MonoBehaviour {
         // Posição atual do Mouse ou Analógico
         Vector2 lineFinalPos = Camera.main.ScreenToWorldPoint(direction);
 
-        if (slingshotVisual.InvertedSlingshot) {
-            impulseVector = lineCenterPos - lineFinalPos;
+        if ((lineCenterPos - lineFinalPos).magnitude <= slingshotVisual.GetMaxLine()) {
+
+            if (slingshotVisual.InvertedSlingshot) {
+                impulseVector = lineCenterPos - lineFinalPos;
+            } else {
+                impulseVector = lineFinalPos - lineCenterPos;
+            }
+
+        // Passou da linha limite
         } else {
-            impulseVector = lineFinalPos - lineCenterPos;
-        }
-        
+
+            if (slingshotVisual.InvertedSlingshot) {
+                impulseVector = (lineCenterPos - lineFinalPos).normalized * slingshotVisual.GetMaxLine();
+            } else {
+                impulseVector = (lineFinalPos - lineCenterPos).normalized * slingshotVisual.GetMaxLine();
+            }
+        }        
     }
 
     private void Jump() {
@@ -127,7 +139,7 @@ public class SlingshotController : MonoBehaviour {
         if (impulseVector.magnitude > slingshotVisual.GetMinLine()) {
 
             // Zera a velocidade do player antes de dar um novo impulso para não ter soma de vetores
-            Rigidbody2D rb = this.GetComponent<Rigidbody2D>();
+            Rigidbody2D rb = this.GetComponentInParent<Rigidbody2D>();
             rb.velocity = Vector3.zero;
 
             // Calcula o impulso

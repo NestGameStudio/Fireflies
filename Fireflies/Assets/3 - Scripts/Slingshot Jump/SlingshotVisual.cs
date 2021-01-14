@@ -46,6 +46,8 @@ public class SlingshotVisual : MonoBehaviour
     [Tooltip("Mostra ou não visualmente o ponto de referência na scene")]
     public bool showReference = true;
 
+    public SlingshotController slingshotControl;
+
     // ------------- Variáveis privadas ------------------
 
     // Linha
@@ -94,7 +96,7 @@ public class SlingshotVisual : MonoBehaviour
 
         if (isActive) {
 
-            if (this.GetComponentInParent<SlingshotController>().ClickReferenceInPlayer && this.GetComponentInParent<SlingshotController>().ReferenceFollowPlayer) {
+            if (slingshotControl.ClickReferenceInPlayer && slingshotControl.ReferenceFollowPlayer) {
                 lineCenterPosition = this.transform.position;
             } else if (cincunferenceInPlayer) {
                 adjustCenterReference();
@@ -102,8 +104,6 @@ public class SlingshotVisual : MonoBehaviour
                 adjustCircunference();
                 adjustCenterReference();
             }
-
-            if (!cincunferenceInPlayer && !this.GetComponentInParent<SlingshotController>().ReferenceFollowPlayer) { adjustCircunference();}
             
             adjustSlingshotLine();
             adjustArrowPointer();
@@ -251,7 +251,7 @@ public class SlingshotVisual : MonoBehaviour
     }
 
     public float GetMaxLine() {
-        return LineMinRadius;
+        return LineMaxRadius;
     }
 
     public void SetFinalLinePosition(Vector2 position) {

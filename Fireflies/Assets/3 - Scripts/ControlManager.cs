@@ -72,13 +72,13 @@ public class ControlManager : MonoBehaviour {
 
             //print((Vector2) SlingshotController.gameObject.transform.position + "A");
             //print(slingshotMovementDirection.ReadValue<Vector2>() + "B");
-            print((Vector2)SlingshotController.gameObject.transform.position + (slingshotMovementDirection.ReadValue<Vector2>() * 2) + "C");
+            //print((Vector2)SlingshotController.gameObject.transform.position + (slingshotMovementDirection.ReadValue<Vector2>() * 2) + "C");
 
             directions = (Vector2) SlingshotController.gameObject.transform.position + (slingshotMovementDirection.ReadValue<Vector2>() * 2);
 
         } else {
             directions = slingshotMovementDirection.ReadValue<Vector2>();
-            print(Camera.main.ScreenToWorldPoint(slingshotMovementDirection.ReadValue<Vector2>()) + "A");
+            //print(Camera.main.ScreenToWorldPoint(slingshotMovementDirection.ReadValue<Vector2>()) + "A");
 
             // Isso aqui é a posição da tela
             // a direção é a posição do mouse na tela
