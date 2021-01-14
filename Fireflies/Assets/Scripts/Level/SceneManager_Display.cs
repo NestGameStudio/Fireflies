@@ -22,7 +22,8 @@ public class SceneManager_Display : Editor
             if (GUILayout.Button("PreviousLevel") && sceneManager.startingLevel > 1)
             {
                 sceneManager.startingLevel -= 1;
-                DrawDefaultInspector();
+
+                EditorUtility.SetDirty(sceneManager);
 
                 atualizar(sceneManager);
 
@@ -33,7 +34,7 @@ public class SceneManager_Display : Editor
             {
                 sceneManager.startingLevel += 1;
 
-                DrawDefaultInspector();
+                EditorUtility.SetDirty(sceneManager);
 
                 atualizar(sceneManager);
 
