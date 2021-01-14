@@ -333,7 +333,22 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1986088842798969980, guid: b2cb1b6921a06724a82b6476946a00ad,
         type: 3}
+      propertyPath: showReference
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1986088842798969980, guid: b2cb1b6921a06724a82b6476946a00ad,
+        type: 3}
       propertyPath: InvertedSlingshot
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1986088842798969980, guid: b2cb1b6921a06724a82b6476946a00ad,
+        type: 3}
+      propertyPath: showCincunference
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1986088842798969980, guid: b2cb1b6921a06724a82b6476946a00ad,
+        type: 3}
+      propertyPath: cincunferenceInPlayer
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1986088843813828928, guid: b2cb1b6921a06724a82b6476946a00ad,
@@ -401,10 +416,36 @@ PrefabInstance:
       propertyPath: ImpulseForce
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1986088843813828932, guid: b2cb1b6921a06724a82b6476946a00ad,
+        type: 3}
+      propertyPath: ReferenceFollowPlayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1986088843813828932, guid: b2cb1b6921a06724a82b6476946a00ad,
+        type: 3}
+      propertyPath: ClickReferenceInPlayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1986088843813828935, guid: b2cb1b6921a06724a82b6476946a00ad,
+        type: 3}
+      propertyPath: m_Actions
+      value: 
+      objectReference: {fileID: -944628639613478452, guid: d051c9d441ff1524ea769e98e3a12aaa,
+        type: 3}
+    - target: {fileID: 1986088843813828935, guid: b2cb1b6921a06724a82b6476946a00ad,
+        type: 3}
+      propertyPath: m_DefaultActionMap
+      value: Gameplay
+      objectReference: {fileID: 0}
+    - target: {fileID: 1986088843813828935, guid: b2cb1b6921a06724a82b6476946a00ad,
+        type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: Gamepad
+      objectReference: {fileID: 0}
     - target: {fileID: 1986088843813828935, guid: b2cb1b6921a06724a82b6476946a00ad,
         type: 3}
       propertyPath: m_NeverAutoSwitchControlSchemes
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2cb1b6921a06724a82b6476946a00ad, type: 3}

@@ -93,8 +93,18 @@ public class SlingshotVisual : MonoBehaviour
     void Update() {
 
         if (isActive) {
+
+            if (this.GetComponentInParent<SlingshotController>().ClickReferenceInPlayer && this.GetComponentInParent<SlingshotController>().ReferenceFollowPlayer) {
+                lineCenterPosition = this.transform.position;
+            } else if (cincunferenceInPlayer) {
+                adjustCenterReference();
+            } else {
+                adjustCircunference();
+                adjustCenterReference();
+            }
+
             if (!cincunferenceInPlayer && !this.GetComponentInParent<SlingshotController>().ReferenceFollowPlayer) { adjustCircunference();}
-            if (!this.GetComponentInParent<SlingshotController>().ReferenceFollowPlayer) { adjustCenterReference();}
+            
             adjustSlingshotLine();
             adjustArrowPointer();
         }
@@ -229,8 +239,8 @@ public class SlingshotVisual : MonoBehaviour
         arrow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         // desenha a trajetória
-        this.GetComponentInChildren<TrajetoriaPredicao>().angle = angle;
-        this.GetComponentInChildren<TrajetoriaPredicao>().RenderArc();
+        //this.GetComponentInChildren<TrajetoriaPredicao>().angle = angle;
+        //this.GetComponentInChildren<TrajetoriaPredicao>().RenderArc();
 
     }
 

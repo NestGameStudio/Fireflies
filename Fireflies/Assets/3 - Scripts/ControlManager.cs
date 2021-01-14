@@ -16,11 +16,13 @@ public class ControlManager : MonoBehaviour {
     // Referência ao setting de controle da Cali
     private PlayerControls controls;
 
-    private ControlScheme currentControlScheme = ControlScheme.KeyboardMouse;
+    private ControlScheme currentControlScheme = ControlScheme.Gamepad;
 
     // Actions possíveis 
     private InputAction slowMotion;
     private InputAction slingshotMovementDirection;
+
+    private Vector2 directions;
 
     // ------------- Ativa e coleta inputs ------------------
     private void OnEnable() {
@@ -66,8 +68,23 @@ public class ControlManager : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
-        SlingshotController.direction = slingshotMovementDirection.ReadValue<Vector2>();
-        // print(SlingshotController.direction);
+        if (currentControlScheme == ControlScheme.Gamepad) {
+
+            //print((Vector2) SlingshotController.gameObject.transform.position + "A");
+            //print(slingshotMovementDirection.ReadValue<Vector2>() + "B");
+            print((Vector2)SlingshotController.gameObject.transform.position + (slingshotMovementDirection.ReadValue<Vector2>() * 2) + "C");
+
+            directions = (Vector2) SlingshotController.gameObject.transform.position + (slingshotMovementDirection.ReadValue<Vector2>() * 2);
+
+        } else {
+            directions = slingshotMovementDirection.ReadValue<Vector2>();
+            print(Camera.main.ScreenToWorldPoint(slingshotMovementDirection.ReadValue<Vector2>()) + "A");
+
+            // Isso aqui é a posição da tela
+            // a direção é a posição do mouse na tela
+        }
+
+        SlingshotController.direction = directions;
     }
 
     // ------------- Funções das actions ------------------
@@ -83,6 +100,8 @@ public class ControlManager : MonoBehaviour {
     private void onInputDeviceChange(InputUser user, InputUserChange change, InputDevice device) {
 
         if (change == InputUserChange.ControlSchemeChanged) {
+
+            print(user.controlScheme.Value.name);
 
             switch (user.controlScheme.Value.name) {
                 case "Keyboard and Mouse":
