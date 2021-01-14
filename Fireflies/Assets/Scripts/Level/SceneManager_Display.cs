@@ -7,7 +7,11 @@ using UnityEditor;
 [CustomEditor(typeof(SceneManager_Level))]
 public class SceneManager_Display : Editor
 {
-    
+    void onEnable()
+    {
+        SceneManager_Level sceneManager = (SceneManager_Level)target;
+        atualizar(sceneManager);
+    }
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
@@ -18,6 +22,8 @@ public class SceneManager_Display : Editor
             if (GUILayout.Button("PreviousLevel") && sceneManager.startingLevel > 1)
             {
                 sceneManager.startingLevel -= 1;
+                DrawDefaultInspector();
+
                 atualizar(sceneManager);
 
                 //sceneManager.previousLevel();
@@ -26,12 +32,16 @@ public class SceneManager_Display : Editor
             if (GUILayout.Button("NextLevel") && sceneManager.startingLevel < sceneManager.sceneNames.Length)
             {
                 sceneManager.startingLevel += 1;
+
+                DrawDefaultInspector();
+
                 atualizar(sceneManager);
 
                 //sceneManager.nextLevel();
             }
 
         GUILayout.EndHorizontal();
+
     }
     
 
