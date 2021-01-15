@@ -11,6 +11,7 @@ TagManager:
   - Looker_Vulneravel
   - Plataforma_Recarregavel
   - Plataforma_NaoRecarregavel
+  - Level_Final
   layers:
   - Default
   - TransparentFX
