@@ -19,7 +19,7 @@ public class SceneManager_Display : Editor
 
         GUILayout.BeginHorizontal();
 
-            if (GUILayout.Button("PreviousLevel") && sceneManager.startingLevel > 1)
+            if (GUILayout.Button("Previous Level") && sceneManager.startingLevel > 1)
             {
                 
                 //if application is playing 
@@ -40,7 +40,7 @@ public class SceneManager_Display : Editor
                 //sceneManager.previousLevel();
             }
 
-            if (GUILayout.Button("NextLevel") && sceneManager.startingLevel < sceneManager.sceneNames.Length)
+            if (GUILayout.Button("Next Level") && sceneManager.startingLevel < sceneManager.sceneNames.Length)
             {
 
                 //if application is playing 
