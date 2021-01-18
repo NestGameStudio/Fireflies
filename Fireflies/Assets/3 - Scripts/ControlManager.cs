@@ -19,9 +19,6 @@ public class ControlManager : MonoBehaviour {
 
     private ControlScheme currentControlScheme = ControlScheme.Gamepad;
 
-    // Debug
-    private InputActionMap debugMap;
-
     // Actions possíveis 
     private InputAction slowMotion;
     private InputAction slingshotMovementDirection;
@@ -31,8 +28,7 @@ public class ControlManager : MonoBehaviour {
     // ------------- Ativa e coleta inputs ------------------
     private void OnEnable() {
 
-        // Ativa o debug Map
-        debugMap.Enable();
+        controls.Debug.Enable();
 
         // Ativa as actions individualmente
         slowMotion.Enable();
@@ -44,8 +40,7 @@ public class ControlManager : MonoBehaviour {
 
     private void OnDisable() {
 
-        // Desativa o debug Map
-        debugMap.Enable();
+        controls.Debug.Disable();
 
         // Desativa as actions
         slowMotion.Disable();
@@ -67,10 +62,8 @@ public class ControlManager : MonoBehaviour {
         controls = new PlayerControls();
 
         // Debug
-        debugMap = controls.asset.FindActionMap("Debug");
-
-        debugMap.FindAction("Previous Scene").performed += GoToPreviousScene;
-        debugMap.FindAction("Next Scene").performed += GoToNextScene;
+        controls.Debug.NextScene.performed += GoToNextScene;
+        controls.Debug.PreviousScene.performed += GoToPreviousScene;
 
         // Define os controles do input system (Keyboard & mouse, mouse e gamepad)
         slowMotion = controls.Gameplay.SlingshotSlowMotion;
