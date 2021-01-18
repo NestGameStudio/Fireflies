@@ -13,13 +13,26 @@ public class SceneManager_Level : MonoBehaviour
     //Scene masterScene;
 
     public Transform startingPoint;
+
+    private GameObject Player;
     // Start is called before the first frame update
     void Start()
     {
         //masterScene = SceneManager.GetActiveScene();
 
         loadActiveLevel();
+
+        if (GameObject.FindGameObjectWithTag("Player") != null)
+        {
+            Player = GameObject.FindGameObjectWithTag("Player");
+        }
+        else
+        {
+            Debug.Log("Cali nao encontrada");
+        }
+
         
+        desabilitarCali();
         
     }
 
@@ -31,30 +44,7 @@ public class SceneManager_Level : MonoBehaviour
             //load active and unactive levels
             for (int x = 0; x < sceneNames.Length; x++)
             {
-                /*
-                //checar se existe cena com o nome certo e se ja n foi ativada
-                if (SceneManager.GetSceneByName(sceneNames[x]) == null)
-                {
-                    SceneManager.LoadScene(sceneNames[x], LoadSceneMode.Additive);
-                }
-                
-                if (x != startingLevel - 1 && SceneManager.GetSceneByName(sceneNames[x]) != null)
-                {
-                    SceneManager.UnloadSceneAsync(sceneNames[x],UnloadSceneOptions.None);
-                }
-                */
 
-                /*
-                if (x == startingLevel - 1 && SceneManager.GetSceneByName(sceneNames[startingLevel - 1]) == null)
-                {
-                    SceneManager.LoadScene(sceneNames[startingLevel - 1], LoadSceneMode.Additive);
-
-                }
-                else 
-                {
-                    SceneManager.UnloadSceneAsync(sceneNames[x], UnloadSceneOptions.None);
-                }
-                */
                 if (x == startingLevel - 1 && SceneManager.GetSceneByName(sceneNames[startingLevel - 1]).isLoaded == false)
                 {
                     SceneManager.LoadSceneAsync(sceneNames[startingLevel - 1], LoadSceneMode.Additive);
@@ -71,6 +61,8 @@ public class SceneManager_Level : MonoBehaviour
             }
         }
 
+        //disable player
+        desabilitarCali();
 
         StartCoroutine(getRespawn());
         
@@ -106,7 +98,26 @@ public class SceneManager_Level : MonoBehaviour
         //get starting point
         if (GameObject.FindGameObjectWithTag("Respawn") != null) startingPoint = GameObject.FindGameObjectWithTag("Respawn").transform;
 
-        //COLOCAR TRIGGER DE SPAWNAR O JOGADOR AQUI
+        //JOGADOR COLOCADO NO LUGAR CERTO E ATIVADO
+        posicionarCali();
+
+    }
+    void desabilitarCali()
+    {
+        if (Player != null)
+        {
+            //disable player
+            Player.SetActive(false);
+        }
+    }
+    void posicionarCali()
+    {
+        if (Player != null)
+        {
+            //enable player
+            Player.SetActive(true);
+            Player.transform.position = startingPoint.position;
+        }
     }
 
 }
