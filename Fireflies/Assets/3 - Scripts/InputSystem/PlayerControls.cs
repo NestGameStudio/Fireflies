@@ -136,6 +136,52 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Debug"",
+            ""id"": ""0ccc477b-c2e6-4b93-9cb6-645bcf013cbb"",
+            ""actions"": [
+                {
+                    ""name"": ""Next Scene"",
+                    ""type"": ""Button"",
+                    ""id"": ""e03ccde1-d7ad-4c7a-a9b1-1ea5e7736930"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Previous Scene"",
+                    ""type"": ""Button"",
+                    ""id"": ""7b6eaad8-d389-4378-b7d8-afa71b94b1bb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""f5c9d30c-382c-420e-be4c-7da7b8dc41bc"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Next Scene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""43be77c6-0955-42d4-8e13-35ebb07763a4"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Previous Scene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -172,6 +218,10 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_SlingshotSlowMotion = m_Gameplay.FindAction("Slingshot Slow Motion", throwIfNotFound: true);
         m_Gameplay_SlingshotMovementDirection = m_Gameplay.FindAction("Slingshot Movement Direction", throwIfNotFound: true);
+        // Debug
+        m_Debug = asset.FindActionMap("Debug", throwIfNotFound: true);
+        m_Debug_NextScene = m_Debug.FindAction("Next Scene", throwIfNotFound: true);
+        m_Debug_PreviousScene = m_Debug.FindAction("Previous Scene", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -258,6 +308,47 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         }
     }
     public GameplayActions @Gameplay => new GameplayActions(this);
+
+    // Debug
+    private readonly InputActionMap m_Debug;
+    private IDebugActions m_DebugActionsCallbackInterface;
+    private readonly InputAction m_Debug_NextScene;
+    private readonly InputAction m_Debug_PreviousScene;
+    public struct DebugActions
+    {
+        private @PlayerControls m_Wrapper;
+        public DebugActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @NextScene => m_Wrapper.m_Debug_NextScene;
+        public InputAction @PreviousScene => m_Wrapper.m_Debug_PreviousScene;
+        public InputActionMap Get() { return m_Wrapper.m_Debug; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DebugActions set) { return set.Get(); }
+        public void SetCallbacks(IDebugActions instance)
+        {
+            if (m_Wrapper.m_DebugActionsCallbackInterface != null)
+            {
+                @NextScene.started -= m_Wrapper.m_DebugActionsCallbackInterface.OnNextScene;
+                @NextScene.performed -= m_Wrapper.m_DebugActionsCallbackInterface.OnNextScene;
+                @NextScene.canceled -= m_Wrapper.m_DebugActionsCallbackInterface.OnNextScene;
+                @PreviousScene.started -= m_Wrapper.m_DebugActionsCallbackInterface.OnPreviousScene;
+                @PreviousScene.performed -= m_Wrapper.m_DebugActionsCallbackInterface.OnPreviousScene;
+                @PreviousScene.canceled -= m_Wrapper.m_DebugActionsCallbackInterface.OnPreviousScene;
+            }
+            m_Wrapper.m_DebugActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @NextScene.started += instance.OnNextScene;
+                @NextScene.performed += instance.OnNextScene;
+                @NextScene.canceled += instance.OnNextScene;
+                @PreviousScene.started += instance.OnPreviousScene;
+                @PreviousScene.performed += instance.OnPreviousScene;
+                @PreviousScene.canceled += instance.OnPreviousScene;
+            }
+        }
+    }
+    public DebugActions @Debug => new DebugActions(this);
     private int m_GamepadSchemeIndex = -1;
     public InputControlScheme GamepadScheme
     {
@@ -280,5 +371,10 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     {
         void OnSlingshotSlowMotion(InputAction.CallbackContext context);
         void OnSlingshotMovementDirection(InputAction.CallbackContext context);
+    }
+    public interface IDebugActions
+    {
+        void OnNextScene(InputAction.CallbackContext context);
+        void OnPreviousScene(InputAction.CallbackContext context);
     }
 }
