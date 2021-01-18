@@ -19,27 +19,46 @@ public class SceneManager_Display : Editor
 
         GUILayout.BeginHorizontal();
 
-            if (GUILayout.Button("PreviousLevel") && sceneManager.startingLevel > 1)
+            if (GUILayout.Button("Previous Level") && sceneManager.startingLevel > 1)
             {
-                sceneManager.startingLevel -= 1;
+                
+                //if application is playing 
+                if (Application.isPlaying)
+                {
+                    sceneManager.previousLevel();
+                }
+                //if is in editor
+                else
+                {
+                    sceneManager.startingLevel -= 1;
 
-                EditorUtility.SetDirty(sceneManager);
+                    EditorUtility.SetDirty(sceneManager);
 
-                atualizar(sceneManager);
+                    atualizar(sceneManager);
+            }
 
                 //sceneManager.previousLevel();
             }
 
-            if (GUILayout.Button("NextLevel") && sceneManager.startingLevel < sceneManager.sceneNames.Length)
+            if (GUILayout.Button("Next Level") && sceneManager.startingLevel < sceneManager.sceneNames.Length)
             {
-                sceneManager.startingLevel += 1;
 
-                EditorUtility.SetDirty(sceneManager);
+                //if application is playing 
+                if (Application.isPlaying)
+                {
+                    sceneManager.nextLevel();
+                }
+                //if is in editor
+                else
+                {
+                    sceneManager.startingLevel += 1;
 
-                atualizar(sceneManager);
+                    EditorUtility.SetDirty(sceneManager);
 
-                //sceneManager.nextLevel();
-            }
+                    atualizar(sceneManager);
+                }
+            //sceneManager.nextLevel();
+        }
 
         GUILayout.EndHorizontal();
 

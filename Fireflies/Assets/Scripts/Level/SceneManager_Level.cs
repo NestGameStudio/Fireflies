@@ -14,24 +14,13 @@ public class SceneManager_Level : MonoBehaviour
     public KeyCode previousLevelKey;
 
     Scene masterScene;
+
+    public Transform startingPoint;
     // Start is called before the first frame update
     void Start()
     {
         masterScene = SceneManager.GetActiveScene();
 
-        /*
-        if (sceneNames != null)
-        {
-            //load active and unactive levels
-            for (int x = 0; x < sceneNames.Length; x++)
-            {
-                
-                    SceneManager.UnloadSceneAsync(sceneNames[x], UnloadSceneOptions.None);
-                
-
-            }
-        }
-        */
         loadActiveLevel();
         
         
@@ -73,6 +62,9 @@ public class SceneManager_Level : MonoBehaviour
                 if (x == startingLevel - 1)
                 {
                     SceneManager.LoadScene(sceneNames[x], LoadSceneMode.Additive);
+
+                    if(GameObject.FindGameObjectWithTag("Respawn") != null) startingPoint = GameObject.FindGameObjectWithTag("Respawn").transform;
+
                 }
                 else if(SceneManager.GetSceneByName(sceneNames[x]) != null)
                 {
