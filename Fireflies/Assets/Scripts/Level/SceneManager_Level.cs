@@ -13,13 +13,13 @@ public class SceneManager_Level : MonoBehaviour
     public KeyCode nextLevelKey;
     public KeyCode previousLevelKey;
 
-    Scene masterScene;
+    //Scene masterScene;
 
     public Transform startingPoint;
     // Start is called before the first frame update
     void Start()
     {
-        masterScene = SceneManager.GetActiveScene();
+        //masterScene = SceneManager.GetActiveScene();
 
         loadActiveLevel();
         
@@ -37,6 +37,9 @@ public class SceneManager_Level : MonoBehaviour
         {
             previousLevel();
         }
+
+        
+        
     }
 
     void loadActiveLevel()
@@ -72,22 +75,25 @@ public class SceneManager_Level : MonoBehaviour
                 */
                 if (x == startingLevel - 1 && SceneManager.GetSceneByName(sceneNames[startingLevel - 1]).isLoaded == false)
                 {
-                    SceneManager.LoadScene(sceneNames[startingLevel - 1], LoadSceneMode.Additive);
+                    SceneManager.LoadSceneAsync(sceneNames[startingLevel - 1], LoadSceneMode.Additive);
+                    
+                    //SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneNames[startingLevel - 1]));
 
                 }                
                 else if(x != startingLevel - 1 && SceneManager.GetSceneByName(sceneNames[x]).isLoaded == true)
                 {
                     SceneManager.UnloadSceneAsync(sceneNames[x], UnloadSceneOptions.None);
                 }
-                
 
+                
             }
         }
 
-        //get starting point
-        if (GameObject.FindGameObjectWithTag("Respawn") != null) startingPoint = GameObject.FindGameObjectWithTag("Respawn").transform;
 
-        SceneManager.SetActiveScene(masterScene);
+        StartCoroutine(getRespawn());
+        
+
+        //SceneManager.SetActiveScene(masterScene);
     }
 
 
@@ -103,4 +109,16 @@ public class SceneManager_Level : MonoBehaviour
 
         loadActiveLevel();
     }
+
+    //espera um tempo ate a cena ser carregada para pegar o objeto de spawn dentro dela - meio gambiarra
+    IEnumerator getRespawn()
+    {
+        yield return new WaitForSeconds(1);
+        
+        //get starting point
+        if (GameObject.FindGameObjectWithTag("Respawn") != null) startingPoint = GameObject.FindGameObjectWithTag("Respawn").transform;
+
+        //COLOCAR TRIGGER DE SPAWNAR O JOGADOR AQUI
+    }
+
 }
