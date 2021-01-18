@@ -58,21 +58,34 @@ public class SceneManager_Level : MonoBehaviour
                     SceneManager.UnloadSceneAsync(sceneNames[x],UnloadSceneOptions.None);
                 }
                 */
-                
-                if (x == startingLevel - 1)
-                {
-                    SceneManager.LoadScene(sceneNames[x], LoadSceneMode.Additive);
 
-                    if(GameObject.FindGameObjectWithTag("Respawn") != null) startingPoint = GameObject.FindGameObjectWithTag("Respawn").transform;
+                /*
+                if (x == startingLevel - 1 && SceneManager.GetSceneByName(sceneNames[startingLevel - 1]) == null)
+                {
+                    SceneManager.LoadScene(sceneNames[startingLevel - 1], LoadSceneMode.Additive);
 
                 }
-                else if(SceneManager.GetSceneByName(sceneNames[x]) != null)
+                else 
                 {
                     SceneManager.UnloadSceneAsync(sceneNames[x], UnloadSceneOptions.None);
                 }
-                   
+                */
+                if (x == startingLevel - 1 && SceneManager.GetSceneByName(sceneNames[startingLevel - 1]).isLoaded == false)
+                {
+                    SceneManager.LoadScene(sceneNames[startingLevel - 1], LoadSceneMode.Additive);
+
+                }                
+                else if(x != startingLevel - 1 && SceneManager.GetSceneByName(sceneNames[x]).isLoaded == true)
+                {
+                    SceneManager.UnloadSceneAsync(sceneNames[x], UnloadSceneOptions.None);
+                }
+                
+
             }
         }
+
+        //get starting point
+        if (GameObject.FindGameObjectWithTag("Respawn") != null) startingPoint = GameObject.FindGameObjectWithTag("Respawn").transform;
 
         SceneManager.SetActiveScene(masterScene);
     }
