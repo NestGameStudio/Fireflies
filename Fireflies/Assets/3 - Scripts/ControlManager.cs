@@ -12,6 +12,7 @@ public class ControlManager : MonoBehaviour {
 
     // Referência as classes de acesso
     public SlingshotController SlingshotController;
+    public SceneManager_Level SceneManager;
 
     // Referência ao setting de controle da Cali
     private PlayerControls controls;
@@ -27,6 +28,8 @@ public class ControlManager : MonoBehaviour {
     // ------------- Ativa e coleta inputs ------------------
     private void OnEnable() {
 
+        controls.Debug.Enable();
+
         // Ativa as actions individualmente
         slowMotion.Enable();
         slingshotMovementDirection.Enable();
@@ -36,6 +39,8 @@ public class ControlManager : MonoBehaviour {
     }
 
     private void OnDisable() {
+
+        controls.Debug.Disable();
 
         // Desativa as actions
         slowMotion.Disable();
@@ -55,6 +60,10 @@ public class ControlManager : MonoBehaviour {
         }
 
         controls = new PlayerControls();
+
+        // Debug
+        controls.Debug.NextScene.performed += GoToNextScene;
+        controls.Debug.PreviousScene.performed += GoToPreviousScene;
 
         // Define os controles do input system (Keyboard & mouse, mouse e gamepad)
         slowMotion = controls.Gameplay.SlingshotSlowMotion;
@@ -94,6 +103,15 @@ public class ControlManager : MonoBehaviour {
 
     private void ExitSlowMotionMode(InputAction.CallbackContext context) {
         SlingshotController.ExitSlowMotionMode();
+    }
+
+    // ---------------- Funções de debug ---------------------
+    private void GoToNextScene(InputAction.CallbackContext context) {
+        SceneManager.nextLevel();
+    }
+
+    private void GoToPreviousScene(InputAction.CallbackContext context) {
+        SceneManager.previousLevel();
     }
 
     // ------------- Cuida da troca de devices ------------------

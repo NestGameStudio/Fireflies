@@ -10,9 +10,6 @@ public class SceneManager_Level : MonoBehaviour
     public string[] sceneNames;
     public int startingLevel;
 
-    public KeyCode nextLevelKey;
-    public KeyCode previousLevelKey;
-
     //Scene masterScene;
 
     public Transform startingPoint;
@@ -26,21 +23,6 @@ public class SceneManager_Level : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        if (Input.GetKeyDown(nextLevelKey) && startingLevel < sceneNames.Length)
-        {
-            nextLevel();
-        }
-        if (Input.GetKeyDown(previousLevelKey) && startingLevel > 1)
-        {
-            previousLevel();
-        }
-
-        
-        
-    }
 
     void loadActiveLevel()
     {
@@ -99,15 +81,21 @@ public class SceneManager_Level : MonoBehaviour
 
     public void nextLevel()
     {
-        startingLevel += 1;
+        if (startingLevel < sceneNames.Length) {
+            startingLevel += 1;
 
-        loadActiveLevel();
+            loadActiveLevel();
+        }
+      
     }
     public void previousLevel()
     {
-        startingLevel -= 1;
+        if (startingLevel > 1) {
+            startingLevel -= 1;
 
-        loadActiveLevel();
+            loadActiveLevel();
+        }
+        
     }
 
     //espera um tempo ate a cena ser carregada para pegar o objeto de spawn dentro dela - meio gambiarra
