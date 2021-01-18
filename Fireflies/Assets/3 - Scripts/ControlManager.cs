@@ -12,11 +12,15 @@ public class ControlManager : MonoBehaviour {
 
     // Referência as classes de acesso
     public SlingshotController SlingshotController;
+    public SceneManager_Level SceneManager;
 
     // Referência ao setting de controle da Cali
     private PlayerControls controls;
 
     private ControlScheme currentControlScheme = ControlScheme.Gamepad;
+
+    // Debug
+    private InputActionMap debugMap;
 
     // Actions possíveis 
     private InputAction slowMotion;
@@ -27,6 +31,9 @@ public class ControlManager : MonoBehaviour {
     // ------------- Ativa e coleta inputs ------------------
     private void OnEnable() {
 
+        // Ativa o debug Map
+        debugMap.Enable();
+
         // Ativa as actions individualmente
         slowMotion.Enable();
         slingshotMovementDirection.Enable();
@@ -36,6 +43,9 @@ public class ControlManager : MonoBehaviour {
     }
 
     private void OnDisable() {
+
+        // Desativa o debug Map
+        debugMap.Enable();
 
         // Desativa as actions
         slowMotion.Disable();
@@ -55,6 +65,12 @@ public class ControlManager : MonoBehaviour {
         }
 
         controls = new PlayerControls();
+
+        // Debug
+        debugMap = controls.asset.FindActionMap("Debug");
+
+        debugMap.FindAction("Previous Scene").performed += GoToPreviousScene;
+        debugMap.FindAction("Next Scene").performed += GoToNextScene;
 
         // Define os controles do input system (Keyboard & mouse, mouse e gamepad)
         slowMotion = controls.Gameplay.SlingshotSlowMotion;
@@ -94,6 +110,15 @@ public class ControlManager : MonoBehaviour {
 
     private void ExitSlowMotionMode(InputAction.CallbackContext context) {
         SlingshotController.ExitSlowMotionMode();
+    }
+
+    // ---------------- Funções de debug ---------------------
+    private void GoToNextScene(InputAction.CallbackContext context) {
+        SceneManager.nextLevel();
+    }
+
+    private void GoToPreviousScene(InputAction.CallbackContext context) {
+        SceneManager.previousLevel();
     }
 
     // ------------- Cuida da troca de devices ------------------

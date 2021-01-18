@@ -123,6 +123,52 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Debug",
+            "id": "86544034-626a-4dd7-ab01-eb45dd5a104c",
+            "actions": [
+                {
+                    "name": "Next Scene",
+                    "type": "Button",
+                    "id": "f77ea19c-bed2-4861-bb2e-5e95fb782101",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Previous Scene",
+                    "type": "Button",
+                    "id": "9516cb41-69c7-4213-9911-34c69a5ef15d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "0e8e4bbc-b2b8-487a-a645-e68963dc8409",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Next Scene",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "689f84ec-fa90-4441-8235-4e3263fc0466",
+                    "path": "<Keyboard>/h",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Previous Scene",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
