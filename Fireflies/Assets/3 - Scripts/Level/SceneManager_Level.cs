@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneManager_Level : MonoBehaviour
 {
-    //fazer mudar a cena em referencia no editor
+    public static SceneManager_Level sceneManagerInstance { get; private set; }
 
     public string[] sceneNames;
     public int startingLevel;
@@ -13,13 +13,31 @@ public class SceneManager_Level : MonoBehaviour
     //Scene masterScene;
 
     public Transform startingPoint;
+
+    private GameObject Player;
+
+    private void Awake()
+    {
+        sceneManagerInstance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
         //masterScene = SceneManager.GetActiveScene();
 
         loadActiveLevel();
+
+        if (GameObject.FindGameObjectWithTag("Player") != null)
+        {
+            Player = GameObject.FindGameObjectWithTag("Player");
+        }
+        else
+        {
+            Debug.Log("Cali nao encontrada");
+        }
+
         
+        desabilitarCali();
         
     }
 
@@ -31,30 +49,7 @@ public class SceneManager_Level : MonoBehaviour
             //load active and unactive levels
             for (int x = 0; x < sceneNames.Length; x++)
             {
-                /*
-                //checar se existe cena com o nome certo e se ja n foi ativada
-                if (SceneManager.GetSceneByName(sceneNames[x]) == null)
-                {
-                    SceneManager.LoadScene(sceneNames[x], LoadSceneMode.Additive);
-                }
-                
-                if (x != startingLevel - 1 && SceneManager.GetSceneByName(sceneNames[x]) != null)
-                {
-                    SceneManager.UnloadSceneAsync(sceneNames[x],UnloadSceneOptions.None);
-                }
-                */
 
-                /*
-                if (x == startingLevel - 1 && SceneManager.GetSceneByName(sceneNames[startingLevel - 1]) == null)
-                {
-                    SceneManager.LoadScene(sceneNames[startingLevel - 1], LoadSceneMode.Additive);
-
-                }
-                else 
-                {
-                    SceneManager.UnloadSceneAsync(sceneNames[x], UnloadSceneOptions.None);
-                }
-                */
                 if (x == startingLevel - 1 && SceneManager.GetSceneByName(sceneNames[startingLevel - 1]).isLoaded == false)
                 {
                     SceneManager.LoadSceneAsync(sceneNames[startingLevel - 1], LoadSceneMode.Additive);
@@ -71,6 +66,8 @@ public class SceneManager_Level : MonoBehaviour
             }
         }
 
+        //disable player
+        desabilitarCali();
 
         StartCoroutine(getRespawn());
         
@@ -86,6 +83,11 @@ public class SceneManager_Level : MonoBehaviour
 
             loadActiveLevel();
         }
+        else
+        {
+            //acabando as fases, vai pro menu
+            loadFinalScene();
+        }
       
     }
     public void previousLevel()
@@ -97,6 +99,16 @@ public class SceneManager_Level : MonoBehaviour
         }
         
     }
+    //carregar cena de menu
+    public void loadMenu()
+    {
+        SceneManager.LoadScene("MenuScene");
+    }
+    //carregar cena final
+    public void loadFinalScene()
+    {
+        SceneManager.LoadScene("EndScene");
+    }
 
     //espera um tempo ate a cena ser carregada para pegar o objeto de spawn dentro dela - meio gambiarra
     IEnumerator getRespawn()
@@ -106,7 +118,29 @@ public class SceneManager_Level : MonoBehaviour
         //get starting point
         if (GameObject.FindGameObjectWithTag("Respawn") != null) startingPoint = GameObject.FindGameObjectWithTag("Respawn").transform;
 
-        //COLOCAR TRIGGER DE SPAWNAR O JOGADOR AQUI
+        //JOGADOR COLOCADO NO LUGAR CERTO E ATIVADO
+        posicionarCali();
+
+    }
+    public void desabilitarCali()
+    {
+        if (Player != null)
+        {
+            //disable player
+            Player.SetActive(false);
+        }
+    }
+    public void posicionarCali()
+    {
+        if (Player != null)
+        {
+            //enable player
+            Player.SetActive(true);
+            Player.transform.position = startingPoint.position;
+            
+            //resetar cali a um estado estacionario
+            Player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        }
     }
 
 }

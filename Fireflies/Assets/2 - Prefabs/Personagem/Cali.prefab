@@ -499,6 +499,8 @@ GameObject:
   - component: {fileID: 2064471806}
   - component: {fileID: 2064471805}
   - component: {fileID: 2064471807}
+  - component: {fileID: 8190063747414582911}
+  - component: {fileID: 6793745811267743888}
   m_Layer: 0
   m_Name: Movement
   m_TagString: Untagged
@@ -580,7 +582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeSlow: 0.1
-  ImpulseForce: 2
+  ImpulseForce: 0.78
   slingshotVisual: {fileID: 1986088842798969980}
   ClickReferenceInPlayer: 1
   ReferenceFollowPlayer: 1
@@ -595,6 +597,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6abafba8bd396114c8d9df9cd90f20c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8190063747414582911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064471803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf38917bcc4dc0445b8dd3562b5a4893, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6793745811267743888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064471803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 051426297cdf98343a5aa9fa3552e719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &687087516620271667
@@ -695,11 +721,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -2121253527
+  m_SortingLayer: 3
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: e4f422bb764948642bbd91dfe4aa9799, type: 3}
-  m_Color: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -776,11 +802,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -2121253527
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d32e1ba5bc556704ca3b200f6f6877b7, type: 3}
-  m_Color: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
+  m_Color: {r: 1, g: 0.3354582, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -837,7 +863,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.30190706
+  m_Mass: 0.2
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -929,11 +955,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -2121253527
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: e134dc98e1807674bb77d2feacf4db5a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.93333334, g: 0.56685483, b: 0.17254901, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -952,6 +978,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3420814119877028533}
+  - component: {fileID: 5513884309652652494}
   m_Layer: 0
   m_Name: Graphics_Personagem
   m_TagString: Untagged
@@ -974,6 +1001,31 @@ Transform:
   m_Father: {fileID: 1986088843813828929}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5513884309652652494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4606824961517490387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 315a643f57e33c04582f2a5c034ebb92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Base: {fileID: 4132227193763402883}
+  Eyes: {fileID: 7900747973329607814}
+  Ears: {fileID: 8709566858388286560}
+  baseColor:
+  - {r: 0.93333334, g: 0.56685483, b: 0.17254901, a: 1}
+  - {r: 0.3962264, g: 0.1827044, b: 0, a: 1}
+  eyesColor:
+  - {r: 0, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0, b: 0, a: 1}
+  earsColor:
+  - {r: 1, g: 0.3354582, b: 0, a: 1}
+  - {r: 0.5754717, g: 0.31032243, b: 0.12215203, a: 1}
+  Modo: 0
 --- !u!1 &6302679784296975499
 GameObject:
   m_ObjectHideFlags: 0
