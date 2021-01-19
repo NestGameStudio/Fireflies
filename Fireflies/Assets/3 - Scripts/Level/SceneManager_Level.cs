@@ -83,6 +83,11 @@ public class SceneManager_Level : MonoBehaviour
 
             loadActiveLevel();
         }
+        else
+        {
+            //acabando as fases, vai pro menu
+            loadFinalScene();
+        }
       
     }
     public void previousLevel()
@@ -93,6 +98,16 @@ public class SceneManager_Level : MonoBehaviour
             loadActiveLevel();
         }
         
+    }
+    //carregar cena de menu
+    public void loadMenu()
+    {
+        SceneManager.LoadScene("MenuScene");
+    }
+    //carregar cena final
+    public void loadFinalScene()
+    {
+        SceneManager.LoadScene("EndScene");
     }
 
     //espera um tempo ate a cena ser carregada para pegar o objeto de spawn dentro dela - meio gambiarra
