@@ -580,7 +580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeSlow: 0.1
-  ImpulseForce: 2
+  ImpulseForce: 0.78
   slingshotVisual: {fileID: 1986088842798969980}
   ClickReferenceInPlayer: 1
   ReferenceFollowPlayer: 1
@@ -837,7 +837,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.30190706
+  m_Mass: 0.2
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
