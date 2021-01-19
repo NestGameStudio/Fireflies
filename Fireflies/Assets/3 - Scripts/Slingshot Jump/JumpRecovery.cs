@@ -14,12 +14,4 @@ public class JumpRecovery : MonoBehaviour
         canJump = value;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) {
-
-        if (collision.gameObject.CompareTag("Plataforma_Recarregavel")) {
-            canJump = true;
-        }
-
-    }
-
 }
