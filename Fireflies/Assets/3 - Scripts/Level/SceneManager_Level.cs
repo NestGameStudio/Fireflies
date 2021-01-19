@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneManager_Level : MonoBehaviour
 {
-    //fazer mudar a cena em referencia no editor
+    public static SceneManager_Level sceneManagerInstance { get; private set; }
 
     public string[] sceneNames;
     public int startingLevel;
@@ -15,6 +15,11 @@ public class SceneManager_Level : MonoBehaviour
     public Transform startingPoint;
 
     private GameObject Player;
+
+    private void Awake()
+    {
+        sceneManagerInstance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -102,7 +107,7 @@ public class SceneManager_Level : MonoBehaviour
         posicionarCali();
 
     }
-    void desabilitarCali()
+    public void desabilitarCali()
     {
         if (Player != null)
         {
@@ -110,13 +115,16 @@ public class SceneManager_Level : MonoBehaviour
             Player.SetActive(false);
         }
     }
-    void posicionarCali()
+    public void posicionarCali()
     {
         if (Player != null)
         {
             //enable player
             Player.SetActive(true);
             Player.transform.position = startingPoint.position;
+            
+            //resetar cali a um estado estacionario
+            Player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
     }
 
