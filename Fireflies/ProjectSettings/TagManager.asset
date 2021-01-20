@@ -12,6 +12,8 @@ TagManager:
   - Plataforma_Recarregavel
   - Plataforma_NaoRecarregavel
   - Level_Final
+  - Spawn
+  - Checkpoint
   layers:
   - Default
   - TransparentFX

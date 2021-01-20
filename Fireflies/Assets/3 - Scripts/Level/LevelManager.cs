@@ -2,43 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class LevelManager : MonoBehaviour
 {
-    public static LevelManager Instance { get; private set; }
+    public static LevelManager Instance { get { return instance; } }
+    private static LevelManager instance;
 
     public string[] sceneNames;
     public int startingLevel;
 
-    //Scene masterScene;
+    private AsyncOperation loadingSceneStatus; 
 
-    public Transform startingPoint;
-
-    private GameObject Player;
+    // O evento escuta se a scene já foi loaded
+    [HideInInspector] public UnityEvent SceneLoaded = new UnityEvent();
 
     private void Awake()
     {
-        Instance = this;
+        // Singleton
+        if (instance != null && instance != this) {
+            Destroy(this.gameObject);
+        } else {
+            instance = this;
+        }
     }
+
     // Start is called before the first frame update
-    void Start()
-    {
-        //masterScene = SceneManager.GetActiveScene();
+    void Start() {
 
         loadActiveLevel();
-
-        if (GameObject.FindGameObjectWithTag("Player") != null)
-        {
-            Player = GameObject.FindGameObjectWithTag("Player");
-        }
-        else
-        {
-            Debug.Log("Cali nao encontrada");
-        }
-
-        
-        desabilitarCali();
-        
     }
 
 
@@ -52,27 +44,18 @@ public class LevelManager : MonoBehaviour
 
                 if (x == startingLevel - 1 && SceneManager.GetSceneByName(sceneNames[startingLevel - 1]).isLoaded == false)
                 {
-                    SceneManager.LoadSceneAsync(sceneNames[startingLevel - 1], LoadSceneMode.Additive);
-                    
-                    //SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneNames[startingLevel - 1]));
+                    loadingSceneStatus = SceneManager.LoadSceneAsync(sceneNames[startingLevel - 1], LoadSceneMode.Additive);
 
+                    StartCoroutine(UpdateSceneStatus());
                 }                
                 else if(x != startingLevel - 1 && SceneManager.GetSceneByName(sceneNames[x]).isLoaded == true)
                 {
-                    SceneManager.UnloadSceneAsync(sceneNames[x], UnloadSceneOptions.None);
+                    loadingSceneStatus = SceneManager.UnloadSceneAsync(sceneNames[x], UnloadSceneOptions.None);
                 }
 
                 
             }
         }
-
-        //disable player
-        desabilitarCali();
-
-        StartCoroutine(getRespawn());
-        
-
-        //SceneManager.SetActiveScene(masterScene);
     }
 
 
@@ -110,37 +93,14 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene("EndScene");
     }
 
-    //espera um tempo ate a cena ser carregada para pegar o objeto de spawn dentro dela - meio gambiarra
-    IEnumerator getRespawn()
-    {
-        yield return new WaitForSeconds(1);
-        
-        //get starting point
-        if (GameObject.FindGameObjectWithTag("Respawn") != null) startingPoint = GameObject.FindGameObjectWithTag("Respawn").transform;
+    IEnumerator UpdateSceneStatus() {
 
-        //JOGADOR COLOCADO NO LUGAR CERTO E ATIVADO
-        posicionarCali();
+        while (!LevelManager.Instance.loadingSceneStatus.isDone) {
+            yield return null;
+        }
 
-    }
-    public void desabilitarCali()
-    {
-        if (Player != null)
-        {
-            //disable player
-            Player.SetActive(false);
-        }
-    }
-    public void posicionarCali()
-    {
-        if (Player != null)
-        {
-            //enable player
-            Player.SetActive(true);
-            Player.transform.position = startingPoint.position;
-            
-            //resetar cali a um estado estacionario
-            Player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        }
+        // Invoca todas as ações que estavam escutando a scene ser loaded
+        SceneLoaded.Invoke();
     }
 
 }

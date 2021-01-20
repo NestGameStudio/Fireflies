@@ -5,12 +5,11 @@ using UnityEngine;
 public class ChangeLevel : MonoBehaviour
 {
 
-
     private void OnTriggerEnter2D(Collider2D collision) {
 
         if(collision.gameObject.tag == "Player") {
 
-            SceneManager_Level.sceneManagerInstance.nextLevel();
+            LevelManager.Instance.nextLevel();
         }
     }
 

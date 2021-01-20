@@ -10,7 +10,7 @@ public class detectEndLevel : MonoBehaviour
         if (collision.gameObject.CompareTag("Level_Final"))
         {
             //quando cali encostar no objeto de fim de fase ir pra proxima fase
-            SceneManager_Level.sceneManagerInstance.nextLevel();
+            LevelManager.Instance.nextLevel();
         }
 
     }

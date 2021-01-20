@@ -5,6 +5,7 @@ using UnityEngine;
 public class CollisionCheck : MonoBehaviour
 {
     public JumpRecovery Jump;
+    public Respawn Respawn;
 
     // Faz todos os checks que precisam de colisão
     private void OnCollisionEnter2D(Collision2D collision) {
@@ -14,13 +15,13 @@ public class CollisionCheck : MonoBehaviour
                 Jump.setJump(true);
                 break;
             case "Bleeper_Invulneravel":
-                LevelManager.Instance.posicionarCali();
+                Respawn.RepositionPlayer();
                 break;
             case "Inimigo":
-                LevelManager.Instance.posicionarCali();
+                Respawn.RepositionPlayer();
                 break;
             case "Perigo":
-                LevelManager.Instance.posicionarCali();
+                Respawn.RepositionPlayer();
                 break;
             default:
                 break;

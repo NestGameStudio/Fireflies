@@ -16,7 +16,7 @@ public class detectDanger : MonoBehaviour
         if (collision.gameObject.CompareTag("Bleeper_Invulneravel") || collision.gameObject.CompareTag("Inimigo") || collision.gameObject.CompareTag("Perigo"))
         {
             //colocar a cali de volta ao starting point depois dela ser atingida por algum perigo, inimigo etc
-            SceneManager_Level.sceneManagerInstance.posicionarCali();
+            //LevelManager.Instance.posicionarCali();
         }
 
     }

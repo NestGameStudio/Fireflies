@@ -12,7 +12,6 @@ public class ControlManager : MonoBehaviour {
 
     // Referência as classes de acesso
     public SlingshotController SlingshotController;
-    public SceneManager_Level SceneManager;
 
     // Referência ao setting de controle da Cali
     private PlayerControls controls;
@@ -107,11 +106,11 @@ public class ControlManager : MonoBehaviour {
 
     // ---------------- Funções de debug ---------------------
     private void GoToNextScene(InputAction.CallbackContext context) {
-        SceneManager.nextLevel();
+        LevelManager.Instance.nextLevel();
     }
 
     private void GoToPreviousScene(InputAction.CallbackContext context) {
-        SceneManager.previousLevel();
+        LevelManager.Instance.previousLevel();
     }
 
     // ------------- Cuida da troca de devices ------------------
