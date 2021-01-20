@@ -1393,6 +1393,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelExit
       objectReference: {fileID: 0}
+    - target: {fileID: 5649561758195453739, guid: c5e3f88d90f557a408c517bbe756adeb,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9020921837264155701, guid: c5e3f88d90f557a408c517bbe756adeb,
         type: 3}
       propertyPath: m_Color.b

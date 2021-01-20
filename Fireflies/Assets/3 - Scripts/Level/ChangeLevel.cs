@@ -6,17 +6,12 @@ public class ChangeLevel : MonoBehaviour
 {
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag == "Player")
-        {
-            //troca de level
-            trocaDeLevel();
+    private void OnTriggerEnter2D(Collider2D collision) {
+
+        if(collision.gameObject.tag == "Player") {
+
+            SceneManager_Level.sceneManagerInstance.nextLevel();
         }
     }
 
-    void trocaDeLevel()
-    {
-
-    }
 }

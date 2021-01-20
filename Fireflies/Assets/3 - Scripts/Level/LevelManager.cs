@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneManager_Level : MonoBehaviour
+public class LevelManager : MonoBehaviour
 {
-    public static SceneManager_Level sceneManagerInstance { get; private set; }
+    public static LevelManager Instance { get; private set; }
 
     public string[] sceneNames;
     public int startingLevel;
@@ -18,7 +18,7 @@ public class SceneManager_Level : MonoBehaviour
 
     private void Awake()
     {
-        sceneManagerInstance = this;
+        Instance = this;
     }
     // Start is called before the first frame update
     void Start()

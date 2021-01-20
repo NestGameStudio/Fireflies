@@ -4,18 +4,18 @@ using UnityEngine;
 using UnityEditor.SceneManagement;
 using UnityEditor;
 
-[CustomEditor(typeof(SceneManager_Level))]
-public class SceneManager_Display : Editor
+[CustomEditor(typeof(LevelManager))]
+public class LevelManager_Display : Editor
 {
     void onEnable()
     {
-        SceneManager_Level sceneManager = (SceneManager_Level)target;
+        LevelManager sceneManager = (LevelManager) target;
         atualizar(sceneManager);
     }
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-        SceneManager_Level sceneManager = (SceneManager_Level)target;
+        LevelManager sceneManager = (LevelManager) target;
 
         GUILayout.BeginHorizontal();
 
@@ -65,7 +65,7 @@ public class SceneManager_Display : Editor
     }
     
 
-    public void atualizar(SceneManager_Level sceneManager)
+    public void atualizar(LevelManager sceneManager)
     {
         if (Application.isPlaying == false)
         {

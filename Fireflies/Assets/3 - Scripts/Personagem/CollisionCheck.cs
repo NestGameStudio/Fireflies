@@ -14,16 +14,13 @@ public class CollisionCheck : MonoBehaviour
                 Jump.setJump(true);
                 break;
             case "Bleeper_Invulneravel":
-                SceneManager_Level.sceneManagerInstance.posicionarCali();
+                LevelManager.Instance.posicionarCali();
                 break;
             case "Inimigo":
-                SceneManager_Level.sceneManagerInstance.posicionarCali();
+                LevelManager.Instance.posicionarCali();
                 break;
             case "Perigo":
-                SceneManager_Level.sceneManagerInstance.posicionarCali();
-                break;
-            case "Level_Final":
-                SceneManager_Level.sceneManagerInstance.nextLevel();
+                LevelManager.Instance.posicionarCali();
                 break;
             default:
                 break;
