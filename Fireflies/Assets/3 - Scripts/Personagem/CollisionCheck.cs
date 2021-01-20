@@ -13,6 +13,18 @@ public class CollisionCheck : MonoBehaviour
             case "Plataforma_Recarregavel":
                 Jump.setJump(true);
                 break;
+            case "Bleeper_Invulneravel":
+                SceneManager_Level.sceneManagerInstance.posicionarCali();
+                break;
+            case "Inimigo":
+                SceneManager_Level.sceneManagerInstance.posicionarCali();
+                break;
+            case "Perigo":
+                SceneManager_Level.sceneManagerInstance.posicionarCali();
+                break;
+            case "Level_Final":
+                SceneManager_Level.sceneManagerInstance.nextLevel();
+                break;
             default:
                 break;
         }

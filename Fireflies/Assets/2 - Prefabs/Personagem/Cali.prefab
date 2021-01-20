@@ -495,12 +495,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2064471804}
-  - component: {fileID: 3834665296597927889}
   - component: {fileID: 2064471806}
   - component: {fileID: 2064471805}
-  - component: {fileID: 2064471807}
-  - component: {fileID: 8190063747414582911}
-  - component: {fileID: 6793745811267743888}
+  - component: {fileID: 1171408052}
   m_Layer: 0
   m_Name: Movement
   m_TagString: Untagged
@@ -522,22 +519,6 @@ Transform:
   m_Father: {fileID: 8345164636255189210}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &3834665296597927889
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2064471803}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.31
 --- !u!114 &2064471806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -584,10 +565,10 @@ MonoBehaviour:
   TimeSlow: 0.1
   ImpulseForce: 0.78
   slingshotVisual: {fileID: 1986088842798969980}
-  ClickReferenceInPlayer: 1
-  ReferenceFollowPlayer: 1
+  ClickReferenceInPlayer: 0
+  ReferenceFollowPlayer: 0
   direction: {x: 0, y: 0}
---- !u!114 &2064471807
+--- !u!114 &1171408052
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -597,30 +578,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6abafba8bd396114c8d9df9cd90f20c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8190063747414582911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2064471803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf38917bcc4dc0445b8dd3562b5a4893, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6793745811267743888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2064471803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 051426297cdf98343a5aa9fa3552e719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &687087516620271667
@@ -901,7 +858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4ddbf0aa2929c14988df8dc1cad1c29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Jump: {fileID: 2064471807}
+  Jump: {fileID: 1171408052}
 --- !u!1 &3303763762343284749
 GameObject:
   m_ObjectHideFlags: 0
@@ -1125,7 +1082,7 @@ MonoBehaviour:
   LineWidth: 0.15
   LineMaxRadius: 2
   LineMinRadius: 0.1
-  TransversalArrow: 1
+  TransversalArrow: 0
   InvertedSlingshot: 0
   circunference: {fileID: 563005848}
   showCincunference: 1
@@ -1207,15 +1164,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23d3fe8cc203a52429c85cb6768481c3, type: 3}
---- !u!1 &5214924101378468204 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6039081430542794185, guid: 23d3fe8cc203a52429c85cb6768481c3,
-    type: 3}
-  m_PrefabInstance: {fileID: 1986088843016688805}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7391620816714739819 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9008411740295816398, guid: 23d3fe8cc203a52429c85cb6768481c3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1986088843016688805}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5214924101378468204 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6039081430542794185, guid: 23d3fe8cc203a52429c85cb6768481c3,
     type: 3}
   m_PrefabInstance: {fileID: 1986088843016688805}
   m_PrefabAsset: {fileID: 0}
