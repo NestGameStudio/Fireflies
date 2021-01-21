@@ -4,10 +4,24 @@ using UnityEngine;
 
 public class Respawn : MonoBehaviour
 {
+    public static Respawn instance { get; private set; }
+
     public GameObject Player;
 
-    private Vector2 currentCheckpoint;                              
+    private Vector2 currentCheckpoint;
 
+    private void Awake()
+    {
+        // Singleton
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
     // Start is called before the first frame update
     void Start() {
 
