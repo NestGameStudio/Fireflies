@@ -45,6 +45,9 @@ public class Respawn : MonoBehaviour
         //resetar cali a um estado estacionario
         Player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
+        //resetar timer
+        TimerController.Instance.ResetTimer();
+
     }
 
     public void UpdateCheckpoint(Vector2 position) {

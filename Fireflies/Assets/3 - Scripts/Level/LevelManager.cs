@@ -65,6 +65,9 @@ public class LevelManager : MonoBehaviour
             startingLevel += 1;
 
             loadActiveLevel();
+
+            //resetar timer quando passar de fase
+            TimerController.Instance.ResetTimer();
         }
         else
         {

@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class TimerController : MonoBehaviour
 {
+    public static TimerController Instance { get; private set;  }
+
     [SerializeField]
+
     public GameObject timerObj;
     private TimerUI timerUI;
     private float time;
@@ -12,6 +15,19 @@ public class TimerController : MonoBehaviour
     public bool isPaused = true;
     public int state; // controlador da máquina de estados
     public bool isOver = false;    // true quando timer atinge ZERO no método AddTimer
+
+    private void Awake()
+    {
+        // Singleton
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
 
     public void Start(){
         if(timerObj != null) {
