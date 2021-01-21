@@ -64,6 +64,12 @@ public class TimerController : MonoBehaviour
     public void TimerOver(){
         PauseTimer(true); //para o tempo
         isOver = true; 
+
+        //reposicionar o player na fase
+        if(Respawn.instance != null)
+        {
+            Respawn.instance.RepositionPlayer();
+        }
     }
 
     public void ResetTimer(){
