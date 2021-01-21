@@ -62,6 +62,7 @@ public class LevelManager_Display : Editor
 
         GUILayout.EndHorizontal();
 
+        /*
         GUILayout.BeginHorizontal();
 
         if (GUILayout.Button("Close Scenes"))
@@ -69,6 +70,7 @@ public class LevelManager_Display : Editor
             descarregar(sceneManager);
         }
             GUILayout.EndHorizontal();
+        */
     }
     
 
@@ -112,6 +114,12 @@ public class LevelManager_Display : Editor
             }
         }
     }
-
-
+    /*
+    [RuntimeInitializeOnLoadMethod]
+    void unload()
+    {
+        LevelManager sceneManager = (LevelManager)target;
+        descarregar(sceneManager);
+    }
+    */
 }

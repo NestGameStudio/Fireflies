@@ -19,6 +19,8 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
+        unloadScenes();
+
         // Singleton
         if (instance != null && instance != this) {
             Destroy(this.gameObject);
@@ -57,7 +59,19 @@ public class LevelManager : MonoBehaviour
             }
         }
     }
+    void unloadScenes()
+    {
+        if (sceneNames != null)
+        {
+            //load active and unactive levels
+            for (int x = 0; x < sceneNames.Length; x++)
+            {
 
+                loadingSceneStatus = SceneManager.UnloadSceneAsync(sceneNames[x], UnloadSceneOptions.None);
+                
+            }
+        }
+    }
 
     public void nextLevel()
     {
