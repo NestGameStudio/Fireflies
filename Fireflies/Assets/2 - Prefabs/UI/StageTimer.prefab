@@ -312,7 +312,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 0.6666667
+  m_FillAmount: 0.5416667
   m_FillClockwise: 0
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
@@ -419,7 +419,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 120
   m_WholeNumbers: 0
-  m_Value: 80
+  m_Value: 65
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -436,6 +436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 457512437612808102}
+  slider: {fileID: 0}
 --- !u!1 &4448010880348678639
 GameObject:
   m_ObjectHideFlags: 0

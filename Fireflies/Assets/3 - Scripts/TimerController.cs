@@ -5,17 +5,18 @@ using UnityEngine;
 public class TimerController : MonoBehaviour
 {
     [SerializeField]
-    private float time;
-    public float timeStart = 30f;
     public GameObject timerObj;
     private TimerUI timerUI;
-    public bool isPaused;
+    private float time;
+    public float timeStart = 30f;
+    public bool isPaused = true;
+    public int state; // controlador da máquina de estados
     public bool isOver = false;    // true quando timer atinge ZERO no método AddTimer
 
     public void Start(){
         if(timerObj != null) {
             timerUI = timerObj.GetComponent<TimerUI>();
-            timerUI.SetupUI(time);
+            timerUI.SetupUI(timeStart);
             ResetTimer();
         }
         else {
