@@ -312,7 +312,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 0.6666667
+  m_FillAmount: 0.5416667
   m_FillClockwise: 0
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
@@ -342,6 +342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4092202475665689791}
   - component: {fileID: 3551255770032723789}
+  - component: {fileID: 179028951}
   m_Layer: 5
   m_Name: StageTimer
   m_TagString: Untagged
@@ -385,7 +386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -418,21 +419,24 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 120
   m_WholeNumbers: 0
-  m_Value: 80
+  m_Value: 65
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7597508763959803111}
-        m_MethodName: UpdateText
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &179028951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4092202475665689788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35c29b81ebc6544c8f4d55d40c585ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 457512437612808102}
+  slider: {fileID: 0}
 --- !u!1 &4448010880348678639
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,7 +448,6 @@ GameObject:
   - component: {fileID: 8744304551588000135}
   - component: {fileID: 7276262658557307191}
   - component: {fileID: 457512437612808102}
-  - component: {fileID: 7597508763959803111}
   m_Layer: 5
   m_Name: TimerText
   m_TagString: Untagged
@@ -590,15 +593,3 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &7597508763959803111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4448010880348678639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c35c29b81ebc6544c8f4d55d40c585ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
