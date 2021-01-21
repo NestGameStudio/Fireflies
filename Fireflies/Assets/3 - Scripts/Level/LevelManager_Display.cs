@@ -62,6 +62,13 @@ public class LevelManager_Display : Editor
 
         GUILayout.EndHorizontal();
 
+        GUILayout.BeginHorizontal();
+
+        if (GUILayout.Button("Close Scenes"))
+        {
+            descarregar(sceneManager);
+        }
+            GUILayout.EndHorizontal();
     }
     
 
@@ -92,5 +99,19 @@ public class LevelManager_Display : Editor
 
         }
     }
-    
+    void descarregar(LevelManager sceneManager)
+    {
+        if (sceneManager != null)
+        {
+
+            for (int x = 0; x < sceneManager.sceneNames.Length; x++)
+            {
+                
+                    EditorSceneManager.CloseScene(EditorSceneManager.GetSceneByPath("Assets/1 - Scenes/Levels/" + sceneManager.sceneNames[x] + ".unity"), false);
+                
+            }
+        }
+    }
+
+
 }
