@@ -563,7 +563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeSlow: 0.1
-  ImpulseForce: 1
+  ImpulseForce: 0.78
   slingshotVisual: {fileID: 1986088842798969980}
   ClickReferenceInPlayer: 0
   ReferenceFollowPlayer: 0
