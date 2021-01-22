@@ -6,8 +6,8 @@ using UnityEngine.Events;
 
 public class LevelManager : MonoBehaviour
 {
-    public static LevelManager Instance { get { return instance; } }
-    private static LevelManager instance;
+    public static LevelManager Instance { get; private set; }
+    //private static LevelManager instance;
 
     public string[] sceneNames;
     public int startingLevel;
@@ -19,14 +19,17 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
-        unloadScenes();
+
+        //unloadScenes();
 
         // Singleton
-        if (instance != null && instance != this) {
+        if (Instance != null && Instance != this) {
             Destroy(this.gameObject);
         } else {
-            instance = this;
+            Instance = this;
         }
+
+        
     }
 
     // Start is called before the first frame update
@@ -66,9 +69,10 @@ public class LevelManager : MonoBehaviour
             //load active and unactive levels
             for (int x = 0; x < sceneNames.Length; x++)
             {
-
-                loadingSceneStatus = SceneManager.UnloadSceneAsync(sceneNames[x], UnloadSceneOptions.None);
-                
+                if (SceneManager.GetSceneByName(sceneNames[x]).isLoaded == true)
+                {
+                    loadingSceneStatus = SceneManager.UnloadSceneAsync(sceneNames[x], UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
+                }
             }
         }
     }
