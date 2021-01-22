@@ -54,7 +54,10 @@ public class Respawn : MonoBehaviour
 
         //enable player
         Player.SetActive(true);
+        
         Player.transform.position = currentCheckpoint;
+
+        Player.GetComponent<CircleCollider2D>().enabled = true;
 
         //resetar cali a um estado estacionario
         Player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
