@@ -71,7 +71,7 @@ public class LevelManager : MonoBehaviour
             {
                 if (SceneManager.GetSceneByName(sceneNames[x]).isLoaded == true)
                 {
-                    loadingSceneStatus = SceneManager.UnloadSceneAsync(sceneNames[x], UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
+                    loadingSceneStatus = SceneManager.UnloadSceneAsync(sceneNames[x]);
                 }
             }
         }

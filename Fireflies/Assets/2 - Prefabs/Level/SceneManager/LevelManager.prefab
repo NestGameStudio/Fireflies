@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9026755330497502013}
   m_Layer: 0
   m_Name: LevelManager
-  m_TagString: Untagged
+  m_TagString: LevelManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,7 +51,7 @@ MonoBehaviour:
   - Level3
   - Level4
   - Level5
-  startingLevel: 2
+  startingLevel: 1
   SceneLoaded:
     m_PersistentCalls:
       m_Calls: []

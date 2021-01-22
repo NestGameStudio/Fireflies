@@ -25,6 +25,7 @@ public class Respawn : MonoBehaviour
     // Start is called before the first frame update
     void Start() {
 
+
         // Level Manager tá na Scene
         if (LevelManager.Instance != null) {
 
@@ -32,19 +33,22 @@ public class Respawn : MonoBehaviour
             LevelManager.Instance.SceneLoaded.AddListener(GetInitialSpawn);
 
         } else {
-            GetInitialSpawn();
+            //GetInitialSpawn();
         }
     }
 
     private void GetInitialSpawn() {
 
         Player.SetActive(false);
+        Player.GetComponent<CircleCollider2D>().enabled = false;
 
         //get starting point
         if (GameObject.FindGameObjectWithTag("Spawn") != null) {
             currentCheckpoint = GameObject.FindGameObjectWithTag("Spawn").transform.position;
         } else {
             currentCheckpoint = this.transform.position;
+
+            Debug.Log("nao achou local de respawn");
         }
 
         RepositionPlayer();
