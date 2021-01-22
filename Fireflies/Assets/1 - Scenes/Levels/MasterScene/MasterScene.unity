@@ -121,18 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &231818304 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1760967649323635988, guid: 196f5403eb9fd20469d1ca9c77c53a79,
-    type: 3}
-  m_PrefabInstance: {fileID: 2247198619217625793}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ba1b5cbda1cbfe42bfc582daa3046ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &458051484
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -209,10 +197,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2064471805, guid: b2cb1b6921a06724a82b6476946a00ad, type: 3}
-      propertyPath: ImpulseForce
-      value: 0.78
-      objectReference: {fileID: 0}
     - target: {fileID: 1986088843813828928, guid: b2cb1b6921a06724a82b6476946a00ad,
         type: 3}
       propertyPath: m_Name
@@ -522,16 +506,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelManager
       objectReference: {fileID: 0}
-    - target: {fileID: 4359816666750097156, guid: 196f5403eb9fd20469d1ca9c77c53a79,
-        type: 3}
-      propertyPath: startingLevel
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4359816666750097156, guid: 196f5403eb9fd20469d1ca9c77c53a79,
-        type: 3}
-      propertyPath: timerController
-      value: 
-      objectReference: {fileID: 231818304}
     - target: {fileID: 6303802480410583092, guid: 196f5403eb9fd20469d1ca9c77c53a79,
         type: 3}
       propertyPath: m_AnchorMax.x
