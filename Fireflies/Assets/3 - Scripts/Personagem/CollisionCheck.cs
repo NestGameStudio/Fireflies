@@ -6,6 +6,7 @@ public class CollisionCheck : MonoBehaviour
 {
     public JumpRecovery Jump;
     public Respawn Respawn;
+    public GameObject paredeParticle;
 
     // Faz todos os checks que precisam de colisão
     private void OnCollisionEnter2D(Collision2D collision) {
@@ -13,6 +14,16 @@ public class CollisionCheck : MonoBehaviour
         switch (collision.transform.tag) {
             case "Plataforma_Recarregavel":
                 Jump.setJump(true);
+
+                //funcao para camerashake ----------------------------> shakecam(intensidade,frequencia,tempo)
+                if(CameraShake.instance != null) { CameraShake.instance.shakeCam(gameObject.GetComponent<Rigidbody2D>().velocity.magnitude/6,1, 0.13f); }
+
+                //instanciar particula de colisao com a parede
+                GameObject particula = Instantiate(paredeParticle,transform.position,Quaternion.identity);
+                if (GetComponent<Rigidbody2D>().velocity.magnitude > 10000f)
+                {
+                    particula.GetComponent<ParticleSystem>().startSpeed = gameObject.GetComponent<Rigidbody2D>().velocity.magnitude * 1.2f;
+                }
                 break;
             case "Bleeper_Invulneravel":
                 Respawn.RepositionPlayer();

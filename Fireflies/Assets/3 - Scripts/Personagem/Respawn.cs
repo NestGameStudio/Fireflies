@@ -58,6 +58,8 @@ public class Respawn : MonoBehaviour
 
         //enable player
         Player.SetActive(true);
+
+        StartCoroutine(fixTrail());
         
         Player.transform.position = currentCheckpoint;
 
@@ -69,10 +71,18 @@ public class Respawn : MonoBehaviour
         //resetar timer
         TimerController.Instance.ResetTimer();
 
+        //Player.GetComponentInChildren<TrailRenderer>().enabled = true;
+
     }
 
     public void UpdateCheckpoint(Vector2 position) {
         currentCheckpoint = position;
     }
 
+    IEnumerator fixTrail()
+    {
+        Player.GetComponentInChildren<TrailRenderer>().widthMultiplier = 0;
+        yield return new WaitForSeconds(0.5f);
+        Player.GetComponentInChildren<TrailRenderer>().widthMultiplier = 1;
+    }
 }
