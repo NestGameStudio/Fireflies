@@ -56,6 +56,13 @@ public class SlingshotVisual : MonoBehaviour
 
     private bool isActive = false;
 
+    // ------------- inicio ------------------
+
+    private void Start()
+    {
+        line.enabled = false;
+    }
+
     // ------------- Faz o setup visual do slingshot ------------------
 
     public void SlingshotVisualSetup(Vector2 centerReferencePosition) {
