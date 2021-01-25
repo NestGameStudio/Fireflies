@@ -546,7 +546,7 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Gamepad
+  m_DefaultControlScheme: Keyboard and Mouse
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -861,6 +861,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Jump: {fileID: 1171408052}
   Respawn: {fileID: 471169049221529524}
+  paredeParticle: {fileID: 1196370577524665508, guid: ef4b4fab5214c524f962b1f019016b49,
+    type: 3}
 --- !u!1 &3303763762343284749
 GameObject:
   m_ObjectHideFlags: 0
