@@ -955,6 +955,8 @@ GameObject:
   - component: {fileID: 3420814119877028533}
   - component: {fileID: 5513884309652652494}
   - component: {fileID: 780262553}
+  - component: {fileID: 780262554}
+  - component: {fileID: 780262556}
   m_Layer: 0
   m_Name: Graphics_Personagem
   m_TagString: Untagged
@@ -1108,6 +1110,36 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &780262554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4606824961517490387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f65933bd277b9484488eeb20822b3a09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bias: 1.15
+  strength: 0.05
+  axis: 1
+  rigidbody: {fileID: 1986088843813828922}
+--- !u!114 &780262556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4606824961517490387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fa8c540ba98b324d97f547df863dd5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minVelocity: 2
+  rigidbody: {fileID: 1986088843813828922}
 --- !u!1 &6302679784296975499
 GameObject:
   m_ObjectHideFlags: 0

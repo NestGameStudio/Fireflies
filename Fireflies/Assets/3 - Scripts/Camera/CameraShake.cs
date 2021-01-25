@@ -40,7 +40,7 @@ public class CameraShake : MonoBehaviour
     {
         if(shakeTimer > 0)
         {
-            shakeTimer -= Time.deltaTime;
+            shakeTimer -= Time.unscaledDeltaTime;
             if(shakeTimer <= 0)
             {
                 //acabou tempo de shake

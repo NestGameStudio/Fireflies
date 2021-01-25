@@ -16,12 +16,14 @@ public class CollisionCheck : MonoBehaviour
                 Jump.setJump(true);
 
                 //funcao para camerashake ----------------------------> shakecam(intensidade,frequencia,tempo)
-                if(CameraShake.instance != null) { CameraShake.instance.shakeCam(gameObject.GetComponent<Rigidbody2D>().velocity.magnitude/6,1, 0.2f); }
+                if(CameraShake.instance != null) { CameraShake.instance.shakeCam(gameObject.GetComponent<Rigidbody2D>().velocity.magnitude/6,1, 0.13f); }
 
                 //instanciar particula de colisao com a parede
                 GameObject particula = Instantiate(paredeParticle,transform.position,Quaternion.identity);
-                particula.GetComponent<ParticleSystem>().startSpeed = gameObject.GetComponent<Rigidbody2D>().velocity.magnitude * 1.2f;
-
+                if (GetComponent<Rigidbody2D>().velocity.magnitude > 10000f)
+                {
+                    particula.GetComponent<ParticleSystem>().startSpeed = gameObject.GetComponent<Rigidbody2D>().velocity.magnitude * 1.2f;
+                }
                 break;
             case "Bleeper_Invulneravel":
                 Respawn.RepositionPlayer();
