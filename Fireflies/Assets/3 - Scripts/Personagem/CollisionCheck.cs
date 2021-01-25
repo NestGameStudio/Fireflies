@@ -6,6 +6,7 @@ public class CollisionCheck : MonoBehaviour
 {
     public JumpRecovery Jump;
     public Respawn Respawn;
+    public GameObject paredeParticle;
 
     // Faz todos os checks que precisam de colisão
     private void OnCollisionEnter2D(Collision2D collision) {
@@ -15,7 +16,10 @@ public class CollisionCheck : MonoBehaviour
                 Jump.setJump(true);
 
                 //funcao para camerashake ----------------------------> shakecam(intensidade,frequencia,tempo)
-                if(CameraShake.instance != null) { CameraShake.instance.shakeCam(gameObject.GetComponent<Rigidbody2D>().velocity.magnitude/6,1, 0.2f); }  
+                if(CameraShake.instance != null) { CameraShake.instance.shakeCam(gameObject.GetComponent<Rigidbody2D>().velocity.magnitude/6,1, 0.2f); }
+
+                //instanciar particula de colisao com a parede
+                Instantiate(paredeParticle,transform.position,Quaternion.identity);
                 
                 break;
             case "Bleeper_Invulneravel":
