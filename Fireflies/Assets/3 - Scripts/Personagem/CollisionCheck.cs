@@ -13,6 +13,7 @@ public class CollisionCheck : MonoBehaviour
         switch (collision.transform.tag) {
             case "Plataforma_Recarregavel":
                 Jump.setJump(true);
+                if(CameraShake.instance != null) { CameraShake.instance.shakeCam(1,1, 0.2f); }               
                 break;
             case "Bleeper_Invulneravel":
                 Respawn.RepositionPlayer();
