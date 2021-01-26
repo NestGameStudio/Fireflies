@@ -31,9 +31,6 @@ public class CameraShake : MonoBehaviour
         shakeTimer = time;
         shakeTimerTotal = time;
         
-
-
-        Debug.Log("shake");
     }
 
     private void Update()

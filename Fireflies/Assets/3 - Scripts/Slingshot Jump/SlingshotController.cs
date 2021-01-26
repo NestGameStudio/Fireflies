@@ -53,7 +53,7 @@ public class SlingshotController : MonoBehaviour {
         // Se está apertando o slowMotion, ajeita a posição do slingshot de acordo com a movimentação do analógico/mouse
         if (isOnSlowMotion) {
 
-            if (ClickReferenceInPlayer & ReferenceFollowPlayer) {
+            if (ClickReferenceInPlayer & ReferenceFollowPlayer || ControlManager.Instance.getCurrentControlScheme() == ControlScheme.Gamepad) {
                 CenterReference();
             }
 
@@ -99,7 +99,6 @@ public class SlingshotController : MonoBehaviour {
     private void CenterReference() {
 
         if (ClickReferenceInPlayer || ControlManager.Instance.getCurrentControlScheme() == ControlScheme.Gamepad) {
-
             lineCenterPos = this.gameObject.transform.position;
 
         } else if (!ClickReferenceInPlayer) {

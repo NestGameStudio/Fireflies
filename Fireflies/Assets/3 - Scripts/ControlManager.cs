@@ -20,9 +20,12 @@ public class ControlManager : MonoBehaviour {
 
     // Actions possíveis 
     private InputAction slowMotion;
-    private InputAction slingshotMovementDirection;
+    private InputAction slingshotMovementDirectionMouse;
+    private InputAction slingshotMovementDirectionGamepad;
 
     private Vector2 directions;
+
+    private bool isOnSlowMotion = false;
 
     // ------------- Ativa e coleta inputs ------------------
     private void OnEnable() {
@@ -31,7 +34,8 @@ public class ControlManager : MonoBehaviour {
 
         // Ativa as actions individualmente
         slowMotion.Enable();
-        slingshotMovementDirection.Enable();
+        slingshotMovementDirectionMouse.Enable();
+        slingshotMovementDirectionGamepad.Enable();
 
         // Verifica se houve alguma troca de controles (keyboard para gamepad viceversa)
         InputUser.onChange += onInputDeviceChange;
@@ -43,7 +47,8 @@ public class ControlManager : MonoBehaviour {
 
         // Desativa as actions
         slowMotion.Disable();
-        slingshotMovementDirection.Disable();
+        slingshotMovementDirectionMouse.Disable();
+        slingshotMovementDirectionGamepad.Disable();
 
         // Verifica se houve alguma troca de controles
         InputUser.onChange += onInputDeviceChange;
@@ -66,7 +71,8 @@ public class ControlManager : MonoBehaviour {
 
         // Define os controles do input system (Keyboard & mouse, mouse e gamepad)
         slowMotion = controls.Gameplay.SlingshotSlowMotion;
-        slingshotMovementDirection = controls.Gameplay.SlingshotMovementDirection;
+        slingshotMovementDirectionMouse = controls.Gameplay.SlingshotMovementDirectionMouse;
+        slingshotMovementDirectionGamepad = controls.Gameplay.SlingshotMovementDirectionGamepad;
 
         slowMotion.performed += EnterSlowMotionMode;
         slowMotion.canceled += ExitSlowMotionMode;
@@ -84,23 +90,17 @@ public class ControlManager : MonoBehaviour {
 
             
 
-            Vector2 maxVector = (Vector2) Camera.main.WorldToScreenPoint(SlingshotController.transform.position) + slingshotMovementDirection.ReadValue<Vector2>() * 300;
+            Vector2 maxVector = (Vector2) Camera.main.WorldToScreenPoint(SlingshotController.transform.position) + slingshotMovementDirectionGamepad.ReadValue<Vector2>() * 300;
             directions = maxVector;
-
-            print(directions + "controle");
-
 
             //directions = (Vector2) SlingshotController.gameObject.transform.position + (slingshotMovementDirection.ReadValue<Vector2>() * 2);
 
         } else {
-            directions = slingshotMovementDirection.ReadValue<Vector2>();
+            directions = slingshotMovementDirectionMouse.ReadValue<Vector2>();
             //print(Camera.main.ScreenToWorldPoint(slingshotMovementDirection.ReadValue<Vector2>()) + "A");
 
             // Isso aqui é a posição da tela
             // a direção é a posição do mouse na tela
-
-            print(directions + "mouse");
-
         }
 
 
@@ -109,11 +109,15 @@ public class ControlManager : MonoBehaviour {
 
     // ------------- Funções das actions ------------------
     private void EnterSlowMotionMode(InputAction.CallbackContext context) {
+        //print(Gamepad.current.buttonSouth.wasPressedThisFrame);
+        isOnSlowMotion = true;
         SlingshotController.EnterSlowMotionMode();
+              
     }
 
     private void ExitSlowMotionMode(InputAction.CallbackContext context) {
         SlingshotController.ExitSlowMotionMode();
+        isOnSlowMotion = false;
     }
 
     // ---------------- Funções de debug ---------------------
@@ -128,7 +132,7 @@ public class ControlManager : MonoBehaviour {
     // ------------- Cuida da troca de devices ------------------
     private void onInputDeviceChange(InputUser user, InputUserChange change, InputDevice device) {
 
-        if (change == InputUserChange.ControlSchemeChanged) {
+        if (change == InputUserChange.ControlSchemeChanged && !isOnSlowMotion) {
 
             print(user.controlScheme.Value.name);
 

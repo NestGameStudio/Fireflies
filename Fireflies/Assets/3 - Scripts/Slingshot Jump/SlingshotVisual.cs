@@ -103,13 +103,20 @@ public class SlingshotVisual : MonoBehaviour
 
         if (isActive) {
 
-            if (slingshotControl.ClickReferenceInPlayer && slingshotControl.ReferenceFollowPlayer) {
-                lineCenterPosition = this.transform.position;
-            } else if (cincunferenceInPlayer) {
-                adjustCenterReference();
+            if (ControlManager.Instance.getCurrentControlScheme() == ControlScheme.KeyboardMouse) {
+
+                if (slingshotControl.ClickReferenceInPlayer && slingshotControl.ReferenceFollowPlayer) {
+                    lineCenterPosition = this.transform.position;
+                } else if (cincunferenceInPlayer) {
+                    adjustCenterReference();
+                } else {
+                    adjustCircunference();
+                    adjustCenterReference();
+                }
+
+            // Está no controle -> referencia sempre na Cali
             } else {
-                adjustCircunference();
-                adjustCenterReference();
+                lineCenterPosition = this.transform.position;
             }
             
             adjustSlingshotLine();

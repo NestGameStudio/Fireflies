@@ -14,9 +14,17 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Slingshot Movement Direction",
+                    "name": "Slingshot Movement Direction Gamepad",
                     "type": "Value",
                     "id": "e4051e2c-10b4-4d29-b3eb-d40bb5ebd129",
+                    "expectedControlType": "Analog",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Slingshot Movement Direction Mouse",
+                    "type": "Value",
+                    "id": "131f0c4b-b208-4359-9d91-9550ef65394c",
                     "expectedControlType": "Analog",
                     "processors": "",
                     "interactions": ""
@@ -63,7 +71,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Slingshot Movement Direction",
+                    "action": "Slingshot Movement Direction Gamepad",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -74,7 +82,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Slingshot Movement Direction",
+                    "action": "Slingshot Movement Direction Gamepad",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -85,7 +93,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Slingshot Movement Direction",
+                    "action": "Slingshot Movement Direction Gamepad",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -96,7 +104,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Slingshot Movement Direction",
+                    "action": "Slingshot Movement Direction Gamepad",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -107,18 +115,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Slingshot Movement Direction",
+                    "action": "Slingshot Movement Direction Gamepad",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "",
-                    "id": "a2a1c3f2-861d-4d79-81da-270edff4281e",
+                    "id": "fb477f0c-9b48-4b77-b866-9ed869bee644",
                     "path": "<Pointer>/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
-                    "action": "Slingshot Movement Direction",
+                    "action": "Slingshot Movement Direction Mouse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
