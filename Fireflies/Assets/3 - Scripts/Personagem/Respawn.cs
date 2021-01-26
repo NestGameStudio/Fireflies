@@ -56,29 +56,31 @@ public class Respawn : MonoBehaviour
 
     public void RepositionPlayer() {
 
-        
-        if(GameObject.FindGameObjectWithTag("Spawn") != null)
+
+        if (GameObject.FindGameObjectWithTag("Spawn") != null && currentCheckpoint != new Vector2(GameObject.FindGameObjectWithTag("Spawn").transform.position.x, GameObject.FindGameObjectWithTag("Spawn").transform.position.y))
         {
             currentCheckpoint = GameObject.FindGameObjectWithTag("Spawn").transform.position;
         }
-        
-        //enable player
-        Player.SetActive(true);
+        else
+        {
 
-        StartCoroutine(fixTrail());
-        
-        Player.transform.position = currentCheckpoint;
+            //enable player
+            Player.SetActive(true);
 
-        Player.GetComponent<CircleCollider2D>().enabled = true;
+            StartCoroutine(fixTrail());
 
-        //resetar cali a um estado estacionario
-        Player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            Player.transform.position = currentCheckpoint;
 
-        //resetar timer
-        TimerController.Instance.ResetTimer();
+            Player.GetComponent<CircleCollider2D>().enabled = true;
 
-        //Player.GetComponentInChildren<TrailRenderer>().enabled = true;
+            //resetar cali a um estado estacionario
+            Player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
+            //resetar timer
+            TimerController.Instance.ResetTimer();
+
+            //Player.GetComponentInChildren<TrailRenderer>().enabled = true;
+        }
     }
 
     public void UpdateCheckpoint(Vector2 position) {

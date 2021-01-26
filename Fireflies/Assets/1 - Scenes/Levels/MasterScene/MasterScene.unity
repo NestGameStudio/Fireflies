@@ -217,7 +217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2064471806, guid: b2cb1b6921a06724a82b6476946a00ad, type: 3}
       propertyPath: m_DefaultControlScheme
-      value: Gamepad
+      value: Keyboard and Mouse
       objectReference: {fileID: 0}
     - target: {fileID: 1986088843813828928, guid: b2cb1b6921a06724a82b6476946a00ad,
         type: 3}
@@ -527,6 +527,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LevelManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4359816666750097156, guid: 196f5403eb9fd20469d1ca9c77c53a79,
+        type: 3}
+      propertyPath: startingLevel
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6303802480410583092, guid: 196f5403eb9fd20469d1ca9c77c53a79,
         type: 3}

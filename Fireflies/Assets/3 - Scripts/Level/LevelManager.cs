@@ -91,8 +91,8 @@ public class LevelManager : MonoBehaviour
 
         StartCoroutine(UpdateSceneStatus());
 
-        Respawn.instance.GetInitialSpawn();
-        Respawn.instance.RepositionPlayer();
+        //Respawn.instance.GetInitialSpawn();
+        //Respawn.instance.RepositionPlayer();
 
         //fade out
         LeanTween.alpha(transitionPanel,0,fadeOutTime);
