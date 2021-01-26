@@ -8,7 +8,7 @@ public class Respawn : MonoBehaviour
 
     public GameObject Player;
 
-    private Vector2 currentCheckpoint;
+    public Vector2 currentCheckpoint;
 
     private void Awake()
     {
@@ -37,7 +37,7 @@ public class Respawn : MonoBehaviour
         }
     }
 
-    private void GetInitialSpawn() {
+    public void GetInitialSpawn() {
 
         Player.SetActive(false);
         Player.GetComponent<CircleCollider2D>().enabled = false;
@@ -56,6 +56,12 @@ public class Respawn : MonoBehaviour
 
     public void RepositionPlayer() {
 
+        
+        if(GameObject.FindGameObjectWithTag("Spawn") != null)
+        {
+            currentCheckpoint = GameObject.FindGameObjectWithTag("Spawn").transform.position;
+        }
+        
         //enable player
         Player.SetActive(true);
 
