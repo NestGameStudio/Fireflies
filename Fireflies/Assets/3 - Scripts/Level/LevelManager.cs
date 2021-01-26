@@ -21,6 +21,9 @@ public class LevelManager : MonoBehaviour
     private bool isStart = true;
     public RectTransform transitionPanel;
 
+    public float fadeInTime = 0.4f;
+    public float fadeOutTime = 0.3f;
+
     private void Awake()
     {
 
@@ -61,7 +64,8 @@ public class LevelManager : MonoBehaviour
                     }
                     else
                     {
-                        LeanTween.alpha(transitionPanel, 1, 0.4f).setOnComplete(() => changeScene());
+                        //fade in + funcao de trocar cena
+                        LeanTween.alpha(transitionPanel, 1, fadeInTime).setOnComplete(() => changeScene());
                         
                         //changeScene();
 
@@ -84,12 +88,14 @@ public class LevelManager : MonoBehaviour
         Debug.Log("changedScene");
 
         loadingSceneStatus = SceneManager.LoadSceneAsync(sceneNames[startingLevel - 1], LoadSceneMode.Additive);
+
         StartCoroutine(UpdateSceneStatus());
 
         Respawn.instance.GetInitialSpawn();
         Respawn.instance.RepositionPlayer();
 
-        LeanTween.alpha(transitionPanel,0,0.2f);
+        //fade out
+        LeanTween.alpha(transitionPanel,0,fadeOutTime);
     }
     void unloadScenes()
     {
