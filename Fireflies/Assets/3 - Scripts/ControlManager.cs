@@ -13,6 +13,9 @@ public class ControlManager : MonoBehaviour {
     // Referência as classes de acesso
     public SlingshotController SlingshotController;
 
+    // Inicia o timer depois que solta o botão de pulo
+    public bool StartTimerAfterJump = true;
+
     // Referência ao setting de controle da Cali
     private PlayerControls controls;
 
@@ -109,13 +112,22 @@ public class ControlManager : MonoBehaviour {
 
     // ------------- Funções das actions ------------------
     private void EnterSlowMotionMode(InputAction.CallbackContext context) {
-        //print(Gamepad.current.buttonSouth.wasPressedThisFrame);
+
+        if (!StartTimerAfterJump) {
+            StartTimer();
+        }
+
         isOnSlowMotion = true;
         SlingshotController.EnterSlowMotionMode();
               
     }
 
     private void ExitSlowMotionMode(InputAction.CallbackContext context) {
+
+        if (StartTimerAfterJump) {
+            StartTimer();
+        }
+
         SlingshotController.ExitSlowMotionMode();
         isOnSlowMotion = false;
     }
@@ -150,5 +162,13 @@ public class ControlManager : MonoBehaviour {
     // Permite outras classes saberem qual o tipo de controle atual
     public ControlScheme getCurrentControlScheme() {
         return currentControlScheme;
+    }
+
+    public void StartTimer() {
+
+        if (!TimerController.Instance.hasStarted) {
+            TimerController.Instance.hasStarted = false;
+            TimerController.Instance.PauseTimer(false);
+        }
     }
 }

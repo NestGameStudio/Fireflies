@@ -12,9 +12,10 @@ public class TimerController : MonoBehaviour
     private TimerUI timerUI;
     private float time;
     public float timeStart = 30f;
-    public bool isPaused = true;
+    [HideInInspector] public bool isPaused = true;
     public int state; // controlador da máquina de estados
     public bool isOver = false;    // true quando timer atinge ZERO no método AddTimer
+    [HideInInspector] public bool hasStarted = false;
 
     private void Awake()
     {
@@ -29,7 +30,7 @@ public class TimerController : MonoBehaviour
         }
     }
 
-    public void Start(){
+    public void Start() {
         if(timerObj != null) {
             timerUI = timerObj.GetComponent<TimerUI>();
             timerUI.SetupUI(timeStart);
@@ -40,19 +41,19 @@ public class TimerController : MonoBehaviour
             Debug.Log("Timer UI Object is not referenced in TimeController");
         }
     }
-    void Update(){
+    void Update() {
         if(!isPaused){
             AddTimer(-Time.unscaledDeltaTime); //UnscaledDeltaTime o torna independente de variações em Time Scale
         }
     }
 
     //Pause/Unpause timer
-    public void PauseTimer(bool state){
+    public void PauseTimer(bool state) {
         isPaused = state;
     }
 
     //Adiciona tempo ao timer, identifica se tempo esgotou
-    public void AddTimer(float value){
+    public void AddTimer(float value) {
         time = Mathf.Clamp(time + value, 0, timeStart);
         timerUI.UpdateUI(time);
 
@@ -61,7 +62,7 @@ public class TimerController : MonoBehaviour
         }
     }
 
-    public void TimerOver(){
+    public void TimerOver() {
         PauseTimer(true); //para o tempo
         isOver = true; 
 
@@ -72,10 +73,10 @@ public class TimerController : MonoBehaviour
         }
     }
 
-    public void ResetTimer(){
+    public void ResetTimer() {
         time = timeStart;
         timerUI.UpdateUI(time);
         isOver = false;
-        PauseTimer(false);
     }
 }
+
