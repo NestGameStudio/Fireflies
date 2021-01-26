@@ -7,6 +7,7 @@ public class CollisionCheck : MonoBehaviour
     public JumpRecovery Jump;
     public Respawn Respawn;
     public GameObject paredeParticle;
+    public GameObject deathParticle;
 
     // Faz todos os checks que precisam de colisão
     private void OnCollisionEnter2D(Collision2D collision) {
@@ -29,11 +30,17 @@ public class CollisionCheck : MonoBehaviour
 
                 if (CameraShake.instance != null) { CameraShake.instance.shakeCam(2, 1, 0.5f); }
 
+                //particula de morte
+                deathParticleTrigger();
+
                 Respawn.RepositionPlayer();
                 break;
             case "Inimigo":
 
                 if (CameraShake.instance != null) { CameraShake.instance.shakeCam(2, 1, 0.5f); }
+
+                //particula de morte
+                deathParticleTrigger();
 
                 Respawn.RepositionPlayer();
                 break;
@@ -41,12 +48,20 @@ public class CollisionCheck : MonoBehaviour
 
                 if (CameraShake.instance != null) { CameraShake.instance.shakeCam(2, 1, 0.5f); }
 
+                //particula de morte
+                deathParticleTrigger();
+
                 Respawn.RepositionPlayer();
                 break;
             default:
                 break;
         }
         
+    }
+
+    void deathParticleTrigger()
+    {
+        Instantiate(deathParticle,gameObject.transform.position,Quaternion.identity);
     }
 
     private void OnCollisionStay2D(Collision2D collision) {
