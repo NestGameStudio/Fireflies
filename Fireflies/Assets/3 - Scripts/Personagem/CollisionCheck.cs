@@ -26,12 +26,21 @@ public class CollisionCheck : MonoBehaviour
                 }
                 break;
             case "Bleeper_Invulneravel":
+
+                if (CameraShake.instance != null) { CameraShake.instance.shakeCam(2, 1, 0.5f); }
+
                 Respawn.RepositionPlayer();
                 break;
             case "Inimigo":
+
+                if (CameraShake.instance != null) { CameraShake.instance.shakeCam(2, 1, 0.5f); }
+
                 Respawn.RepositionPlayer();
                 break;
             case "Perigo":
+
+                if (CameraShake.instance != null) { CameraShake.instance.shakeCam(2, 1, 0.5f); }
+
                 Respawn.RepositionPlayer();
                 break;
             default:
