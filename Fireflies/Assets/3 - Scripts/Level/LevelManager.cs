@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
@@ -16,6 +17,12 @@ public class LevelManager : MonoBehaviour
 
     // O evento escuta se a scene já foi loaded
     [HideInInspector] public UnityEvent SceneLoaded = new UnityEvent();
+
+    private bool isStart = true;
+    public RectTransform transitionPanel;
+
+    public float fadeInTime = 0.4f;
+    public float fadeOutTime = 0.3f;
 
     private void Awake()
     {
@@ -49,9 +56,23 @@ public class LevelManager : MonoBehaviour
 
                 if (x == startingLevel - 1 && SceneManager.GetSceneByName(sceneNames[startingLevel - 1]).isLoaded == false)
                 {
-                    loadingSceneStatus = SceneManager.LoadSceneAsync(sceneNames[startingLevel - 1], LoadSceneMode.Additive);
+                    if (isStart)
+                    {
+                        isStart = false;
+                        //loadingSceneStatus = SceneManager.LoadSceneAsync(sceneNames[startingLevel - 1], LoadSceneMode.Additive);
+                        changeScene();
+                    }
+                    else
+                    {
+                        //fade in + funcao de trocar cena
+                        LeanTween.alpha(transitionPanel, 1, fadeInTime).setOnComplete(() => changeScene());
+                        
+                        //changeScene();
 
-                    StartCoroutine(UpdateSceneStatus());
+                    }
+
+
+                    
                 }                
                 else if(x != startingLevel - 1 && SceneManager.GetSceneByName(sceneNames[x]).isLoaded == true)
                 {
@@ -61,6 +82,20 @@ public class LevelManager : MonoBehaviour
                 
             }
         }
+    }
+    void changeScene()
+    {
+        Debug.Log("changedScene");
+
+        loadingSceneStatus = SceneManager.LoadSceneAsync(sceneNames[startingLevel - 1], LoadSceneMode.Additive);
+
+        StartCoroutine(UpdateSceneStatus());
+
+        //Respawn.instance.GetInitialSpawn();
+        //Respawn.instance.RepositionPlayer();
+
+        //fade out
+        LeanTween.alpha(transitionPanel,0,fadeOutTime);
     }
     void unloadScenes()
     {

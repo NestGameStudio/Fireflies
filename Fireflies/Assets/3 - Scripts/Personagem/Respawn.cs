@@ -8,7 +8,7 @@ public class Respawn : MonoBehaviour
 
     public GameObject Player;
 
-    private Vector2 currentCheckpoint;
+    public Vector2 currentCheckpoint;
 
     private void Awake()
     {
@@ -37,7 +37,7 @@ public class Respawn : MonoBehaviour
         }
     }
 
-    private void GetInitialSpawn() {
+    public void GetInitialSpawn() {
 
         Player.SetActive(false);
         Player.GetComponent<CircleCollider2D>().enabled = false;
@@ -56,23 +56,31 @@ public class Respawn : MonoBehaviour
 
     public void RepositionPlayer() {
 
-        //enable player
-        Player.SetActive(true);
 
-        StartCoroutine(fixTrail());
-        
-        Player.transform.position = currentCheckpoint;
+        if (GameObject.FindGameObjectWithTag("Spawn") != null && currentCheckpoint != new Vector2(GameObject.FindGameObjectWithTag("Spawn").transform.position.x, GameObject.FindGameObjectWithTag("Spawn").transform.position.y))
+        {
+            currentCheckpoint = GameObject.FindGameObjectWithTag("Spawn").transform.position;
+        }
+        else
+        {
 
-        Player.GetComponent<CircleCollider2D>().enabled = true;
+            //enable player
+            Player.SetActive(true);
 
-        //resetar cali a um estado estacionario
-        Player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            StartCoroutine(fixTrail());
 
-        //resetar timer
-        TimerController.Instance.ResetTimer();
+            Player.transform.position = currentCheckpoint;
 
-        //Player.GetComponentInChildren<TrailRenderer>().enabled = true;
+            Player.GetComponent<CircleCollider2D>().enabled = true;
 
+            //resetar cali a um estado estacionario
+            Player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
+            //resetar timer
+            TimerController.Instance.ResetTimer();
+
+            //Player.GetComponentInChildren<TrailRenderer>().enabled = true;
+        }
     }
 
     public void UpdateCheckpoint(Vector2 position) {
