@@ -29,6 +29,8 @@ public class CollisionCheck : MonoBehaviour
 
             case "Plataforma_Quebravel":
 
+                Jump.setJump(true);
+
                 //funcao para camerashake ----------------------------> shakecam(intensidade,frequencia,tempo)
                 if (CameraShake.instance != null) { CameraShake.instance.shakeCam(gameObject.GetComponent<Rigidbody2D>().velocity.magnitude / 6, 1, 0.13f); }
 
@@ -43,9 +45,31 @@ public class CollisionCheck : MonoBehaviour
                 LevelManager.Instance.getLevelBreakPlats();
 
                 //fazer com que a plataforma desapareca
-                collision.transform.parent.gameObject.SetActive(false);
+                //collision.transform.parent.gameObject.SetActive(false);
+                collision.gameObject.GetComponentInParent<Animator>().SetBool("Break",true);
 
                     break;
+
+            case "Plataforma_Quebravel_Fake":
+
+                //funcao para camerashake ----------------------------> shakecam(intensidade,frequencia,tempo)
+                if (CameraShake.instance != null) { CameraShake.instance.shakeCam(gameObject.GetComponent<Rigidbody2D>().velocity.magnitude / 6, 1, 0.13f); }
+
+                //instanciar particula de colisao com a parede
+                GameObject particula3 = Instantiate(paredeParticle, transform.position, Quaternion.identity);
+                if (GetComponent<Rigidbody2D>().velocity.magnitude > 10000f)
+                {
+                    particula3.GetComponent<ParticleSystem>().startSpeed = gameObject.GetComponent<Rigidbody2D>().velocity.magnitude * 1.2f;
+
+                }
+
+                LevelManager.Instance.getLevelBreakPlats();
+
+                //fazer com que a plataforma desapareca
+                //collision.transform.parent.gameObject.SetActive(false);
+                collision.gameObject.GetComponentInParent<Animator>().SetBool("Break", true);
+
+                break;
             case "Bleeper_Invulneravel":
 
                 if (CameraShake.instance != null) { CameraShake.instance.shakeCam(2, 1, 0.5f); }

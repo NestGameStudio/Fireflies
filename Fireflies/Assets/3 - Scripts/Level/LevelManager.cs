@@ -184,6 +184,21 @@ public class LevelManager : MonoBehaviour
                 }
             }
         }
+
+        if (GameObject.FindGameObjectsWithTag("Plataforma_Quebravel_Fake").Length > 0)
+        {
+            Debug.Log("got break plats from level");
+
+            //pegar as plataformas quebraveis do level e colocar todas numa lista
+            for (int x = 0; x < GameObject.FindGameObjectsWithTag("Plataforma_Quebravel_Fake").Length; x++)
+            {
+                //checar se o objeto ja nao esta na lista para prevenir duplicatas
+                if (breakPlats.Contains(GameObject.FindGameObjectsWithTag("Plataforma_Quebravel_Fake")[x].transform.parent.gameObject) == false)
+                {
+                    breakPlats.Add(GameObject.FindGameObjectsWithTag("Plataforma_Quebravel_Fake")[x].transform.parent.gameObject);
+                }
+            }
+        }
     }
 
     public void resetPlats()
@@ -196,7 +211,8 @@ public class LevelManager : MonoBehaviour
             {
                 if (breakPlats[x] != null)
                 {
-                    breakPlats[x].SetActive(true);
+                    breakPlats[x].transform.GetChild(0).gameObject.SetActive(true);
+                    breakPlats[x].GetComponentInParent<Animator>().SetBool("Break", false);
                 }
             }
         }

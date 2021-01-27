@@ -16,6 +16,7 @@ TagManager:
   - Checkpoint
   - LevelManager
   - Plataforma_Quebravel
+  - Plataforma_Quebravel_Fake
   layers:
   - Default
   - TransparentFX
