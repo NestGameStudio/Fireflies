@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ChangeLevel : MonoBehaviour
 {
+    
 
     private void OnTriggerEnter2D(Collider2D collision) {
 
@@ -11,6 +12,9 @@ public class ChangeLevel : MonoBehaviour
 
             collision.gameObject.GetComponent<CircleCollider2D>().enabled = false;
             LevelManager.Instance.nextLevel();
+
+            //nextLevel.PlayOneShot(nextLevel.clip,nextLevel.volume);
+            //nextLevel.Play();
         }
     }
 
