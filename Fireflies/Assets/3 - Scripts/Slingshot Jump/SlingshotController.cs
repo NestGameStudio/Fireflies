@@ -44,12 +44,20 @@ public class SlingshotController : MonoBehaviour {
 
     public AudioSource jumpAudio;
     private float startPitch;
+    private AudioLowPassFilter audioMusic; 
 
     // ------------- Setup e checagens ------------------
     private void Start() {
         JumpControl = this.GetComponent<JumpRecovery>();
 
         startPitch = jumpAudio.pitch;
+        
+
+        if(audioMusic == null)
+        {
+            audioMusic = GameObject.FindGameObjectWithTag("Music").GetComponent<AudioLowPassFilter>();
+            audioMusic.enabled = false;
+        }
     }
 
     // Verifica se usa recursos de seguir o player -> atualiza a posição das coisas visuais
@@ -80,6 +88,8 @@ public class SlingshotController : MonoBehaviour {
             slingshotVisual.SlingshotVisualSetup(lineCenterPos);
 
             isOnSlowMotion = true;
+
+            audioMusic.enabled = true;
         }
     }
 
@@ -95,6 +105,8 @@ public class SlingshotController : MonoBehaviour {
 
             isOnSlowMotion = false;
             JumpControl.setJump(false);
+
+            audioMusic.enabled = false;
         }
     }
 
