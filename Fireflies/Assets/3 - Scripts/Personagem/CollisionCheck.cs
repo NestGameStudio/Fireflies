@@ -10,7 +10,12 @@ public class CollisionCheck : MonoBehaviour
     public GameObject deathParticle;
     public AudioSource colisao;
     public AudioSource Lose;
+    private float startPitch;
 
+    private void Start()
+    {
+        startPitch = colisao.pitch;
+    }
     // Faz todos os checks que precisam de colisão
     private void OnCollisionEnter2D(Collision2D collision) {
 
@@ -147,7 +152,7 @@ public class CollisionCheck : MonoBehaviour
     void playAudioColisao()
     {
         //play audio
-        colisao.pitch = Random.Range(0.9f,1.1f);
+        colisao.pitch = Random.Range(startPitch - 0.1f, startPitch + 0.1f);
         colisao.PlayOneShot(colisao.clip, colisao.volume.Remap(0,1,0, GetComponent<Rigidbody2D>().velocity.magnitude/2));
     }
     void playAudioLose()
