@@ -9,6 +9,7 @@ public class CollisionCheck : MonoBehaviour
     public GameObject paredeParticle;
     public GameObject deathParticle;
     public AudioSource colisao;
+    public AudioSource Lose;
 
     // Faz todos os checks que precisam de colisão
     private void OnCollisionEnter2D(Collision2D collision) {
@@ -79,6 +80,7 @@ public class CollisionCheck : MonoBehaviour
 
                 if (CameraShake.instance != null) { CameraShake.instance.shakeCam(2, 1, 0.5f); }
 
+                playAudioLose();
 
                 //particula de morte
                 deathParticleTrigger();
@@ -89,6 +91,8 @@ public class CollisionCheck : MonoBehaviour
 
                 if (CameraShake.instance != null) { CameraShake.instance.shakeCam(2, 1, 0.5f); }
 
+                playAudioLose();
+
                 //particula de morte
                 deathParticleTrigger();
 
@@ -97,6 +101,8 @@ public class CollisionCheck : MonoBehaviour
             case "Perigo":
 
                 if (CameraShake.instance != null) { CameraShake.instance.shakeCam(2, 1, 0.5f); }
+
+                playAudioLose();
 
                 //particula de morte
                 deathParticleTrigger();
@@ -126,6 +132,12 @@ public class CollisionCheck : MonoBehaviour
         //play audio
         colisao.pitch = Random.Range(0.9f,1.1f);
         colisao.PlayOneShot(colisao.clip, colisao.volume.Remap(0,1,0, GetComponent<Rigidbody2D>().velocity.magnitude/2));
+    }
+    void playAudioLose()
+    {
+        //play audio
+        Lose.pitch = Random.Range(0.9f, 1.1f);
+        Lose.PlayOneShot(Lose.clip, Lose.volume);
     }
 
 }
