@@ -8,6 +8,7 @@ public class CollisionCheck : MonoBehaviour
     public Respawn Respawn;
     public GameObject paredeParticle;
     public GameObject deathParticle;
+    public AudioSource colisao;
 
     // Faz todos os checks que precisam de colisão
     private void OnCollisionEnter2D(Collision2D collision) {
@@ -16,8 +17,10 @@ public class CollisionCheck : MonoBehaviour
             case "Plataforma_Recarregavel":
                 Jump.setJump(true);
 
+                playAudioColisao();
+
                 //funcao para camerashake ----------------------------> shakecam(intensidade,frequencia,tempo)
-                if(CameraShake.instance != null) { CameraShake.instance.shakeCam(gameObject.GetComponent<Rigidbody2D>().velocity.magnitude/6,1, 0.13f); }
+                if (CameraShake.instance != null) { CameraShake.instance.shakeCam(gameObject.GetComponent<Rigidbody2D>().velocity.magnitude/6,1, 0.13f); }
 
                 //instanciar particula de colisao com a parede
                 GameObject particula = Instantiate(paredeParticle,transform.position,Quaternion.identity);
@@ -30,6 +33,8 @@ public class CollisionCheck : MonoBehaviour
             case "Plataforma_Quebravel":
 
                 Jump.setJump(true);
+
+                playAudioColisao();
 
                 //funcao para camerashake ----------------------------> shakecam(intensidade,frequencia,tempo)
                 if (CameraShake.instance != null) { CameraShake.instance.shakeCam(gameObject.GetComponent<Rigidbody2D>().velocity.magnitude / 6, 1, 0.13f); }
@@ -74,6 +79,7 @@ public class CollisionCheck : MonoBehaviour
 
                 if (CameraShake.instance != null) { CameraShake.instance.shakeCam(2, 1, 0.5f); }
 
+
                 //particula de morte
                 deathParticleTrigger();
 
@@ -115,6 +121,11 @@ public class CollisionCheck : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision) {
         
     }
-
+    void playAudioColisao()
+    {
+        //play audio
+        colisao.pitch = Random.Range(0.9f,1.1f);
+        colisao.PlayOneShot(colisao.clip, colisao.volume.Remap(0,1,0, GetComponent<Rigidbody2D>().velocity.magnitude/2));
+    }
 
 }
