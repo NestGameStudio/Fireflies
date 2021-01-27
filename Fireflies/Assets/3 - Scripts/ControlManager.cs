@@ -12,6 +12,7 @@ public class ControlManager : MonoBehaviour {
 
     // Referência as classes de acesso
     public SlingshotController SlingshotController;
+    public JumpTimeController JumpTimeController;
 
     // Inicia o timer depois que solta o botão de pulo
     public bool StartTimerAfterJump = true;
@@ -22,7 +23,7 @@ public class ControlManager : MonoBehaviour {
     private ControlScheme currentControlScheme = ControlScheme.Gamepad;
 
     // Actions possíveis 
-    private InputAction slowMotion;
+    [HideInInspector] public InputAction slowMotion;
     private InputAction slingshotMovementDirectionMouse;
     private InputAction slingshotMovementDirectionGamepad;
 
@@ -119,7 +120,8 @@ public class ControlManager : MonoBehaviour {
 
         isOnSlowMotion = true;
         SlingshotController.EnterSlowMotionMode();
-              
+        JumpTimeController.StartJumpTimer();
+
     }
 
     private void ExitSlowMotionMode(InputAction.CallbackContext context) {
@@ -129,6 +131,7 @@ public class ControlManager : MonoBehaviour {
         }
 
         SlingshotController.ExitSlowMotionMode();
+        JumpTimeController.StopJumpTimer();
         isOnSlowMotion = false;
     }
 

@@ -31,7 +31,8 @@ public class CollisionCheck : MonoBehaviour
                 if (CameraShake.instance != null) { CameraShake.instance.shakeCam(2, 1, 0.5f); }
 
                 //particula de morte
-                deathParticleTrigger();
+                if (deathParticle != null)
+                    deathParticleTrigger();
 
                 Respawn.RepositionPlayer();
                 break;
@@ -40,7 +41,8 @@ public class CollisionCheck : MonoBehaviour
                 if (CameraShake.instance != null) { CameraShake.instance.shakeCam(2, 1, 0.5f); }
 
                 //particula de morte
-                deathParticleTrigger();
+                if (deathParticle != null)
+                    deathParticleTrigger();
 
                 Respawn.RepositionPlayer();
                 break;
@@ -49,7 +51,8 @@ public class CollisionCheck : MonoBehaviour
                 if (CameraShake.instance != null) { CameraShake.instance.shakeCam(2, 1, 0.5f); }
 
                 //particula de morte
-                deathParticleTrigger();
+                if (deathParticle != null)
+                    deathParticleTrigger();
 
                 Respawn.RepositionPlayer();
                 break;

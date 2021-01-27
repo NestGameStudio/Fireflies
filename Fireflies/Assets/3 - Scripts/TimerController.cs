@@ -47,6 +47,8 @@ public class TimerController : MonoBehaviour
         }
     }
 
+    // ------------- Game Timer ------------------
+
     //Pause/Unpause timer
     public void PauseTimer(bool state) {
         isPaused = state;
@@ -78,5 +80,8 @@ public class TimerController : MonoBehaviour
         timerUI.UpdateUI(time);
         isOver = false;
     }
+
+    // ------------- Jump Timer ------------------
+
 }
 

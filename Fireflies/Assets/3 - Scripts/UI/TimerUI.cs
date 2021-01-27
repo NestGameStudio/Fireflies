@@ -7,7 +7,7 @@ using TMPro;
 public class TimerUI : MonoBehaviour
 {
     public TextMeshProUGUI text;
-    public Slider slider;
+    [HideInInspector] public Slider slider;
 
     public void SetupUI(float value)
     {

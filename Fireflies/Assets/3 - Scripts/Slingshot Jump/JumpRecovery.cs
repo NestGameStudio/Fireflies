@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class JumpRecovery : MonoBehaviour
 {
+    public JumpTimeController JumpTimeController;
+
     private bool canJump = true;     // Consegue executar o pulo
 
     public bool CanJump() {
@@ -11,6 +13,11 @@ public class JumpRecovery : MonoBehaviour
     }
 
     public void setJump(bool value) {
+
+        if(value == true) {
+            JumpTimeController.ResetJumpTimer();
+        }
+
         canJump = value;
     }
 
