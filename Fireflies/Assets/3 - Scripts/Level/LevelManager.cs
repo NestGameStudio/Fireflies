@@ -27,6 +27,8 @@ public class LevelManager : MonoBehaviour
     //[HideInInspector]
     public List<GameObject> breakPlats = new List<GameObject>();
 
+    public AudioSource nextLevelAudio;
+
     private void Awake()
     {
 
@@ -123,6 +125,8 @@ public class LevelManager : MonoBehaviour
 
     public void nextLevel()
     {
+        NextLevelAudio();
+
         if (startingLevel < sceneNames.Length) {
             startingLevel += 1;
 
@@ -225,5 +229,10 @@ public class LevelManager : MonoBehaviour
             breakPlats.Clear();
         }
         
+    }
+
+    void NextLevelAudio()
+    {
+        nextLevelAudio.PlayOneShot(nextLevelAudio.clip, nextLevelAudio.volume);
     }
 }
