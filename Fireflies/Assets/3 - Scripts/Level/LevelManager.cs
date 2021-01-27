@@ -24,6 +24,9 @@ public class LevelManager : MonoBehaviour
     public float fadeInTime = 0.4f;
     public float fadeOutTime = 0.3f;
 
+    //[HideInInspector]
+    public List<GameObject> breakPlats = new List<GameObject>();
+
     private void Awake()
     {
 
@@ -90,6 +93,12 @@ public class LevelManager : MonoBehaviour
         loadingSceneStatus = SceneManager.LoadSceneAsync(sceneNames[startingLevel - 1], LoadSceneMode.Additive);
 
         StartCoroutine(UpdateSceneStatus());
+
+        //resetar a lista com as plataformas quebraveis do level
+        ClearBreakPlatList();
+
+        //pegar as plataformas quebraveis do level numa lista
+        getLevelBreakPlats();
 
         //Respawn.instance.GetInitialSpawn();
         //Respawn.instance.RepositionPlayer();
@@ -158,5 +167,47 @@ public class LevelManager : MonoBehaviour
         // Invoca todas as ações que estavam escutando a scene ser loaded
         SceneLoaded.Invoke();
     }
+    public void getLevelBreakPlats()
+    {
+        
 
+        if(GameObject.FindGameObjectsWithTag("Plataforma_Quebravel").Length > 0)
+        {
+            Debug.Log("got break plats from level");
+
+            //pegar as plataformas quebraveis do level e colocar todas numa lista
+            for (int x = 0; x < GameObject.FindGameObjectsWithTag("Plataforma_Quebravel").Length; x++)
+            {
+                //checar se o objeto ja nao esta na lista para prevenir duplicatas
+                if (breakPlats.Contains(GameObject.FindGameObjectsWithTag("Plataforma_Quebravel")[x].transform.parent.gameObject) == false) {
+                    breakPlats.Add(GameObject.FindGameObjectsWithTag("Plataforma_Quebravel")[x].transform.parent.gameObject);
+                }
+            }
+        }
+    }
+
+    public void resetPlats()
+    {
+        Debug.Log("reseted breakplats");
+
+        if (breakPlats.Count > 0)
+        {
+            for (int x = 0; x < breakPlats.Count; x++)
+            {
+                if (breakPlats[x] != null)
+                {
+                    breakPlats[x].SetActive(true);
+                }
+            }
+        }
+    }
+
+    public void ClearBreakPlatList()
+    {
+        if(breakPlats.Count > 0)
+        {
+            breakPlats.Clear();
+        }
+        
+    }
 }
