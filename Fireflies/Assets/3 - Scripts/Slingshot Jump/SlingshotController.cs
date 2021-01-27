@@ -42,9 +42,14 @@ public class SlingshotController : MonoBehaviour {
 
     private Vector2 impulseVector = Vector2.zero;
 
+    public AudioSource jumpAudio;
+    private float startPitch;
+
     // ------------- Setup e checagens ------------------
     private void Start() {
         JumpControl = this.GetComponent<JumpRecovery>();
+
+        startPitch = jumpAudio.pitch;
     }
 
     // Verifica se usa recursos de seguir o player -> atualiza a posição das coisas visuais
@@ -144,10 +149,17 @@ public class SlingshotController : MonoBehaviour {
             // Calcula o impulso
             Vector2 impulse = new Vector2(impulseVector.x, impulseVector.y) * ImpulseForce;
             rb.AddForce(impulse, ForceMode2D.Impulse);
+
+            jumpAudioEvent();
         }
 
         impulseVector = Vector2.zero;
 
     }
 
+    void jumpAudioEvent()
+    {
+        jumpAudio.pitch = Random.Range(startPitch - 0.13f, startPitch + 0.13f);
+        jumpAudio.PlayOneShot(jumpAudio.clip,jumpAudio.volume);
+    }
 }
