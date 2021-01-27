@@ -121,7 +121,24 @@ public class CollisionCheck : MonoBehaviour
     }
 
     private void OnCollisionStay2D(Collision2D collision) {
-        
+
+        if (Jump.CanJump() == false) {
+
+            switch (collision.transform.tag) {
+                case "Plataforma_Recarregavel":
+                    Jump.setJump(true);
+                    break;
+                case "Plataforma_Quebravel":
+                    Jump.setJump(true);
+                    break;
+                case "Plataforma_Quebravel_Fake":
+                    Jump.setJump(true);
+                    break;
+                default:
+                    break;
+            }
+        }
+
     }
 
     private void OnCollisionExit2D(Collision2D collision) {
