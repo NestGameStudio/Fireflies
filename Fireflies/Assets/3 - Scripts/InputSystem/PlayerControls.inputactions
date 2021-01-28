@@ -14,9 +14,17 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Slingshot Movement Direction",
+                    "name": "Slingshot Movement Direction Gamepad",
                     "type": "Value",
                     "id": "e4051e2c-10b4-4d29-b3eb-d40bb5ebd129",
+                    "expectedControlType": "Analog",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Slingshot Movement Direction Mouse",
+                    "type": "Value",
+                    "id": "131f0c4b-b208-4359-9d91-9550ef65394c",
                     "expectedControlType": "Analog",
                     "processors": "",
                     "interactions": ""
@@ -63,7 +71,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Slingshot Movement Direction",
+                    "action": "Slingshot Movement Direction Gamepad",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -74,7 +82,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Slingshot Movement Direction",
+                    "action": "Slingshot Movement Direction Gamepad",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -85,7 +93,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Slingshot Movement Direction",
+                    "action": "Slingshot Movement Direction Gamepad",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -96,7 +104,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Slingshot Movement Direction",
+                    "action": "Slingshot Movement Direction Gamepad",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -107,18 +115,64 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Slingshot Movement Direction",
+                    "action": "Slingshot Movement Direction Gamepad",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "",
-                    "id": "a2a1c3f2-861d-4d79-81da-270edff4281e",
+                    "id": "fb477f0c-9b48-4b77-b866-9ed869bee644",
                     "path": "<Pointer>/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
-                    "action": "Slingshot Movement Direction",
+                    "action": "Slingshot Movement Direction Mouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Debug",
+            "id": "0ccc477b-c2e6-4b93-9cb6-645bcf013cbb",
+            "actions": [
+                {
+                    "name": "Next Scene",
+                    "type": "Button",
+                    "id": "e03ccde1-d7ad-4c7a-a9b1-1ea5e7736930",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Previous Scene",
+                    "type": "Button",
+                    "id": "7b6eaad8-d389-4378-b7d8-afa71b94b1bb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f5c9d30c-382c-420e-be4c-7da7b8dc41bc",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Next Scene",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "43be77c6-0955-42d4-8e13-35ebb07763a4",
+                    "path": "<Keyboard>/h",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Previous Scene",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

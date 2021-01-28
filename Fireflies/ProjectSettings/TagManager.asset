@@ -11,6 +11,12 @@ TagManager:
   - Looker_Vulneravel
   - Plataforma_Recarregavel
   - Plataforma_NaoRecarregavel
+  - Level_Final
+  - Spawn
+  - Checkpoint
+  - LevelManager
+  - Plataforma_Quebravel
+  - Plataforma_Quebravel_Fake
   layers:
   - Default
   - TransparentFX
@@ -53,4 +59,7 @@ TagManager:
     locked: 0
   - name: Debug
     uniqueID: 2690618069
+    locked: 0
+  - name: Player
+    uniqueID: 2173713769
     locked: 0

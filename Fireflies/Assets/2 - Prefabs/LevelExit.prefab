@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4441181102740821577}
   - component: {fileID: 5649561758195453739}
+  - component: {fileID: 5435045283311405749}
   m_Layer: 0
   m_Name: LevelExit
-  m_TagString: Untagged
+  m_TagString: Level_Final
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,12 +43,25 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 1
+--- !u!114 &5435045283311405749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5033216584744478426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52df090a1e23c424aa2d722cc52133f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextLevel: {fileID: 0}
 --- !u!1001 &8891018563734749479
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55,6 +69,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4441181102740821577}
     m_Modifications:
+    - target: {fileID: 455988205295105298, guid: f40d595a06b28484fbc5e5095d801ba7,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.3254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 455988205295105298, guid: f40d595a06b28484fbc5e5095d801ba7,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.7568628
+      objectReference: {fileID: 0}
+    - target: {fileID: 455988205295105298, guid: f40d595a06b28484fbc5e5095d801ba7,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.34901962
+      objectReference: {fileID: 0}
     - target: {fileID: 2468101890801092490, guid: f40d595a06b28484fbc5e5095d801ba7,
         type: 3}
       propertyPath: m_RootOrder
@@ -114,6 +143,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Graphics_LevelExit
+      objectReference: {fileID: 0}
+    - target: {fileID: 4873956181582002914, guid: f40d595a06b28484fbc5e5095d801ba7,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.3254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 4873956181582002914, guid: f40d595a06b28484fbc5e5095d801ba7,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.7568628
+      objectReference: {fileID: 0}
+    - target: {fileID: 4873956181582002914, guid: f40d595a06b28484fbc5e5095d801ba7,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.34901962
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f40d595a06b28484fbc5e5095d801ba7, type: 3}

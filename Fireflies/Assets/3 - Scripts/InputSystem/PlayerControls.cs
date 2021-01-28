@@ -27,9 +27,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Slingshot Movement Direction"",
+                    ""name"": ""Slingshot Movement Direction Gamepad"",
                     ""type"": ""Value"",
                     ""id"": ""e4051e2c-10b4-4d29-b3eb-d40bb5ebd129"",
+                    ""expectedControlType"": ""Analog"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Slingshot Movement Direction Mouse"",
+                    ""type"": ""Value"",
+                    ""id"": ""131f0c4b-b208-4359-9d91-9550ef65394c"",
                     ""expectedControlType"": ""Analog"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -76,7 +84,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Slingshot Movement Direction"",
+                    ""action"": ""Slingshot Movement Direction Gamepad"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -87,7 +95,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Slingshot Movement Direction"",
+                    ""action"": ""Slingshot Movement Direction Gamepad"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -98,7 +106,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Slingshot Movement Direction"",
+                    ""action"": ""Slingshot Movement Direction Gamepad"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -109,7 +117,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Slingshot Movement Direction"",
+                    ""action"": ""Slingshot Movement Direction Gamepad"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -120,18 +128,64 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Slingshot Movement Direction"",
+                    ""action"": ""Slingshot Movement Direction Gamepad"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
-                    ""id"": ""a2a1c3f2-861d-4d79-81da-270edff4281e"",
+                    ""id"": ""fb477f0c-9b48-4b77-b866-9ed869bee644"",
                     ""path"": ""<Pointer>/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""Slingshot Movement Direction"",
+                    ""action"": ""Slingshot Movement Direction Mouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Debug"",
+            ""id"": ""0ccc477b-c2e6-4b93-9cb6-645bcf013cbb"",
+            ""actions"": [
+                {
+                    ""name"": ""Next Scene"",
+                    ""type"": ""Button"",
+                    ""id"": ""e03ccde1-d7ad-4c7a-a9b1-1ea5e7736930"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Previous Scene"",
+                    ""type"": ""Button"",
+                    ""id"": ""7b6eaad8-d389-4378-b7d8-afa71b94b1bb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""f5c9d30c-382c-420e-be4c-7da7b8dc41bc"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Next Scene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""43be77c6-0955-42d4-8e13-35ebb07763a4"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Previous Scene"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -171,7 +225,12 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_SlingshotSlowMotion = m_Gameplay.FindAction("Slingshot Slow Motion", throwIfNotFound: true);
-        m_Gameplay_SlingshotMovementDirection = m_Gameplay.FindAction("Slingshot Movement Direction", throwIfNotFound: true);
+        m_Gameplay_SlingshotMovementDirectionGamepad = m_Gameplay.FindAction("Slingshot Movement Direction Gamepad", throwIfNotFound: true);
+        m_Gameplay_SlingshotMovementDirectionMouse = m_Gameplay.FindAction("Slingshot Movement Direction Mouse", throwIfNotFound: true);
+        // Debug
+        m_Debug = asset.FindActionMap("Debug", throwIfNotFound: true);
+        m_Debug_NextScene = m_Debug.FindAction("Next Scene", throwIfNotFound: true);
+        m_Debug_PreviousScene = m_Debug.FindAction("Previous Scene", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -222,13 +281,15 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Gameplay;
     private IGameplayActions m_GameplayActionsCallbackInterface;
     private readonly InputAction m_Gameplay_SlingshotSlowMotion;
-    private readonly InputAction m_Gameplay_SlingshotMovementDirection;
+    private readonly InputAction m_Gameplay_SlingshotMovementDirectionGamepad;
+    private readonly InputAction m_Gameplay_SlingshotMovementDirectionMouse;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
         public GameplayActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @SlingshotSlowMotion => m_Wrapper.m_Gameplay_SlingshotSlowMotion;
-        public InputAction @SlingshotMovementDirection => m_Wrapper.m_Gameplay_SlingshotMovementDirection;
+        public InputAction @SlingshotMovementDirectionGamepad => m_Wrapper.m_Gameplay_SlingshotMovementDirectionGamepad;
+        public InputAction @SlingshotMovementDirectionMouse => m_Wrapper.m_Gameplay_SlingshotMovementDirectionMouse;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -241,9 +302,12 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @SlingshotSlowMotion.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSlingshotSlowMotion;
                 @SlingshotSlowMotion.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSlingshotSlowMotion;
                 @SlingshotSlowMotion.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSlingshotSlowMotion;
-                @SlingshotMovementDirection.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSlingshotMovementDirection;
-                @SlingshotMovementDirection.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSlingshotMovementDirection;
-                @SlingshotMovementDirection.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSlingshotMovementDirection;
+                @SlingshotMovementDirectionGamepad.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSlingshotMovementDirectionGamepad;
+                @SlingshotMovementDirectionGamepad.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSlingshotMovementDirectionGamepad;
+                @SlingshotMovementDirectionGamepad.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSlingshotMovementDirectionGamepad;
+                @SlingshotMovementDirectionMouse.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSlingshotMovementDirectionMouse;
+                @SlingshotMovementDirectionMouse.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSlingshotMovementDirectionMouse;
+                @SlingshotMovementDirectionMouse.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSlingshotMovementDirectionMouse;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -251,13 +315,57 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @SlingshotSlowMotion.started += instance.OnSlingshotSlowMotion;
                 @SlingshotSlowMotion.performed += instance.OnSlingshotSlowMotion;
                 @SlingshotSlowMotion.canceled += instance.OnSlingshotSlowMotion;
-                @SlingshotMovementDirection.started += instance.OnSlingshotMovementDirection;
-                @SlingshotMovementDirection.performed += instance.OnSlingshotMovementDirection;
-                @SlingshotMovementDirection.canceled += instance.OnSlingshotMovementDirection;
+                @SlingshotMovementDirectionGamepad.started += instance.OnSlingshotMovementDirectionGamepad;
+                @SlingshotMovementDirectionGamepad.performed += instance.OnSlingshotMovementDirectionGamepad;
+                @SlingshotMovementDirectionGamepad.canceled += instance.OnSlingshotMovementDirectionGamepad;
+                @SlingshotMovementDirectionMouse.started += instance.OnSlingshotMovementDirectionMouse;
+                @SlingshotMovementDirectionMouse.performed += instance.OnSlingshotMovementDirectionMouse;
+                @SlingshotMovementDirectionMouse.canceled += instance.OnSlingshotMovementDirectionMouse;
             }
         }
     }
     public GameplayActions @Gameplay => new GameplayActions(this);
+
+    // Debug
+    private readonly InputActionMap m_Debug;
+    private IDebugActions m_DebugActionsCallbackInterface;
+    private readonly InputAction m_Debug_NextScene;
+    private readonly InputAction m_Debug_PreviousScene;
+    public struct DebugActions
+    {
+        private @PlayerControls m_Wrapper;
+        public DebugActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @NextScene => m_Wrapper.m_Debug_NextScene;
+        public InputAction @PreviousScene => m_Wrapper.m_Debug_PreviousScene;
+        public InputActionMap Get() { return m_Wrapper.m_Debug; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DebugActions set) { return set.Get(); }
+        public void SetCallbacks(IDebugActions instance)
+        {
+            if (m_Wrapper.m_DebugActionsCallbackInterface != null)
+            {
+                @NextScene.started -= m_Wrapper.m_DebugActionsCallbackInterface.OnNextScene;
+                @NextScene.performed -= m_Wrapper.m_DebugActionsCallbackInterface.OnNextScene;
+                @NextScene.canceled -= m_Wrapper.m_DebugActionsCallbackInterface.OnNextScene;
+                @PreviousScene.started -= m_Wrapper.m_DebugActionsCallbackInterface.OnPreviousScene;
+                @PreviousScene.performed -= m_Wrapper.m_DebugActionsCallbackInterface.OnPreviousScene;
+                @PreviousScene.canceled -= m_Wrapper.m_DebugActionsCallbackInterface.OnPreviousScene;
+            }
+            m_Wrapper.m_DebugActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @NextScene.started += instance.OnNextScene;
+                @NextScene.performed += instance.OnNextScene;
+                @NextScene.canceled += instance.OnNextScene;
+                @PreviousScene.started += instance.OnPreviousScene;
+                @PreviousScene.performed += instance.OnPreviousScene;
+                @PreviousScene.canceled += instance.OnPreviousScene;
+            }
+        }
+    }
+    public DebugActions @Debug => new DebugActions(this);
     private int m_GamepadSchemeIndex = -1;
     public InputControlScheme GamepadScheme
     {
@@ -279,6 +387,12 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     public interface IGameplayActions
     {
         void OnSlingshotSlowMotion(InputAction.CallbackContext context);
-        void OnSlingshotMovementDirection(InputAction.CallbackContext context);
+        void OnSlingshotMovementDirectionGamepad(InputAction.CallbackContext context);
+        void OnSlingshotMovementDirectionMouse(InputAction.CallbackContext context);
+    }
+    public interface IDebugActions
+    {
+        void OnNextScene(InputAction.CallbackContext context);
+        void OnPreviousScene(InputAction.CallbackContext context);
     }
 }

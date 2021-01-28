@@ -46,6 +46,8 @@ public class SlingshotVisual : MonoBehaviour
     [Tooltip("Mostra ou não visualmente o ponto de referência na scene")]
     public bool showReference = true;
 
+    public SlingshotController slingshotControl;
+
     // ------------- Variáveis privadas ------------------
 
     // Linha
@@ -53,6 +55,13 @@ public class SlingshotVisual : MonoBehaviour
     private Vector2 lineFinalPosition;
 
     private bool isActive = false;
+
+    // ------------- inicio ------------------
+
+    private void Start()
+    {
+        line.enabled = false;
+    }
 
     // ------------- Faz o setup visual do slingshot ------------------
 
@@ -93,8 +102,23 @@ public class SlingshotVisual : MonoBehaviour
     void Update() {
 
         if (isActive) {
-            if (!cincunferenceInPlayer && !this.GetComponentInParent<SlingshotController>().ReferenceFollowPlayer) { adjustCircunference();}
-            if (!this.GetComponentInParent<SlingshotController>().ReferenceFollowPlayer) { adjustCenterReference();}
+
+            if (ControlManager.Instance.getCurrentControlScheme() == ControlScheme.KeyboardMouse) {
+
+                if (slingshotControl.ClickReferenceInPlayer && slingshotControl.ReferenceFollowPlayer) {
+                    lineCenterPosition = this.transform.position;
+                } else if (cincunferenceInPlayer) {
+                    adjustCenterReference();
+                } else {
+                    adjustCircunference();
+                    adjustCenterReference();
+                }
+
+            // Está no controle -> referencia sempre na Cali
+            } else {
+                lineCenterPosition = this.transform.position;
+            }
+            
             adjustSlingshotLine();
             adjustArrowPointer();
         }
@@ -229,8 +253,8 @@ public class SlingshotVisual : MonoBehaviour
         arrow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         // desenha a trajetória
-        this.GetComponentInChildren<TrajetoriaPredicao>().angle = angle;
-        this.GetComponentInChildren<TrajetoriaPredicao>().RenderArc();
+        //this.GetComponentInChildren<TrajetoriaPredicao>().angle = angle;
+        //this.GetComponentInChildren<TrajetoriaPredicao>().RenderArc();
 
     }
 
@@ -241,7 +265,7 @@ public class SlingshotVisual : MonoBehaviour
     }
 
     public float GetMaxLine() {
-        return LineMinRadius;
+        return LineMaxRadius;
     }
 
     public void SetFinalLinePosition(Vector2 position) {
