@@ -17,6 +17,7 @@ TagManager:
   - LevelManager
   - Plataforma_Quebravel
   - Plataforma_Quebravel_Fake
+  - Music
   layers:
   - Default
   - TransparentFX
