@@ -552,6 +552,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5576838445713630572, guid: 196f5403eb9fd20469d1ca9c77c53a79,
         type: 3}
+      propertyPath: MaxJumpTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5576838445713630572, guid: 196f5403eb9fd20469d1ca9c77c53a79,
+        type: 3}
       propertyPath: ControlManager
       value: 
       objectReference: {fileID: 224875667}

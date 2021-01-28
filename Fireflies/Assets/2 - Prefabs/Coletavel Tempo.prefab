@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7121536469723245844}
   - component: {fileID: 7047511564035759948}
-  - component: {fileID: 1707133168050025497}
+  - component: {fileID: 859653960}
+  - component: {fileID: 859653961}
   m_Layer: 0
   m_Name: Coletavel Tempo
   m_TagString: Untagged
@@ -82,7 +83,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &1707133168050025497
+--- !u!61 &859653960
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,7 +93,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -108,3 +109,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &859653961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2305351742990763694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86eb11da8293fd5468d417805dcb2eb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 5
