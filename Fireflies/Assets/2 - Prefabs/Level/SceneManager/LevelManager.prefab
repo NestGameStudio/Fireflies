@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneNames:
-  - Level0
+  - Menu
   - Level1
   - Level2
   - Level3
@@ -129,7 +129,7 @@ MonoBehaviour:
   - Level5
   - Level6
   - Level7
-  startingLevel: 1
+  startingLevel: 6
   SceneLoaded:
     m_PersistentCalls:
       m_Calls: []
