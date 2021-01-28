@@ -78,15 +78,5 @@ public class TimerController : MonoBehaviour
         timerUI.UpdateUI(time);
         isOver = false;
     }
-
-    public void ChangeState(int state){
-        switch (state){
-            case 0:
-                break;
-            default:
-                break;
-
-        }
-    }
 }
 
