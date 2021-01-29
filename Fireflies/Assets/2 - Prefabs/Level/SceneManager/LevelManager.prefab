@@ -121,12 +121,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneNames:
+  - Menu
   - Level1
   - Level2
   - Level3
   - Level4
   - Level5
-  startingLevel: 1
+  - Level6
+  - Level7
+  startingLevel: 6
   SceneLoaded:
     m_PersistentCalls:
       m_Calls: []

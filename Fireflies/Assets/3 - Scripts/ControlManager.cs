@@ -117,9 +117,10 @@ public class ControlManager : MonoBehaviour {
             StartTimer();
         }
 
-        isOnSlowMotion = true;
-        SlingshotController.EnterSlowMotionMode();
-              
+        if (!isOnSlowMotion) {
+            SlingshotController.EnterSlowMotionMode();
+            isOnSlowMotion = true;
+        }
     }
 
     private void ExitSlowMotionMode(InputAction.CallbackContext context) {
