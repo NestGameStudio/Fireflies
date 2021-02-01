@@ -4080,6 +4080,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8681001651391626046, guid: 76305d4b91bc8334d941d5e3b7c49ef6,
         type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8681001651391626046, guid: 76305d4b91bc8334d941d5e3b7c49ef6,
+        type: 3}
       propertyPath: m_LocalAABB.m_Center.x
       value: 0.12897062
       objectReference: {fileID: 0}
