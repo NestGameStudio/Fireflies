@@ -129,7 +129,7 @@ MonoBehaviour:
   - Level4
   - Level6
   - Level5
-  startingLevel: 5
+  startingLevel: 1
   SceneLoaded:
     m_PersistentCalls:
       m_Calls: []
