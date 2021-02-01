@@ -29,6 +29,8 @@ public class LevelManager : MonoBehaviour
 
     public AudioSource nextLevelAudio;
 
+    public List<GameObject> timeCollectables = new List<GameObject>();
+
     private void Awake()
     {
 
@@ -99,6 +101,8 @@ public class LevelManager : MonoBehaviour
         //resetar a lista com as plataformas quebraveis do level
         ClearBreakPlatList();
 
+        clearTimeCollectable();
+
         //pegar as plataformas quebraveis do level numa lista
         getLevelBreakPlats();
 
@@ -126,6 +130,7 @@ public class LevelManager : MonoBehaviour
     public void nextLevel()
     {
         NextLevelAudio();
+        
 
         if (startingLevel < sceneNames.Length) {
             startingLevel += 1;
@@ -202,6 +207,41 @@ public class LevelManager : MonoBehaviour
                     breakPlats.Add(GameObject.FindGameObjectsWithTag("Plataforma_Quebravel_Fake")[x].transform.parent.gameObject);
                 }
             }
+        }
+    }
+    public void resetTimeCollectable()
+    {
+        if (timeCollectables.Count > 0)
+        {
+            for (int i = 0; i < timeCollectables.Count; i++)
+            {
+                if(timeCollectables[i] != null)
+                {
+                    timeCollectables[i].SetActive(true);
+                }
+            }
+        }
+    }
+    public void clearTimeCollectable()
+    {
+        timeCollectables.Clear();
+    }
+    public void addTimeCollectable(GameObject objeto)
+    {
+        /*
+        if (GameObject.FindGameObjectsWithTag("Time_Collectable").Length > 0)
+        {
+            Debug.Log("ativar coletavel de tempo");
+            for (int i = 0; i < GameObject.FindGameObjectsWithTag("Time_Collectable").Length; i++)
+            {
+                Debug.Log("activated", GameObject.FindGameObjectsWithTag("Time_Collectable")[i].gameObject);
+                GameObject.FindGameObjectsWithTag("Time_Collectable")[i].gameObject.SetActive(true);
+            }
+        }
+        */
+        if (timeCollectables.Contains(objeto) == false)
+        {
+            timeCollectables.Add(objeto);
         }
     }
 

@@ -82,6 +82,8 @@ public class Respawn : MonoBehaviour
             //fazer as plataformas resetarem
             LevelManager.Instance.resetPlats();
 
+            LevelManager.Instance.resetTimeCollectable();
+
             //Player.GetComponentInChildren<TrailRenderer>().enabled = true;
         }
     }

@@ -18,6 +18,7 @@ TagManager:
   - Plataforma_Quebravel
   - Plataforma_Quebravel_Fake
   - Music
+  - Time_Collectable
   layers:
   - Default
   - TransparentFX
