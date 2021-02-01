@@ -11,7 +11,9 @@ public class TimerCollectable : MonoBehaviour
 
         if (collision.transform.CompareTag("Player")) {
             TimerController.Instance.AddTimer(value);
-            Destroy(this.gameObject);
+            gameObject.SetActive(false);
+
+            LevelManager.Instance.addTimeCollectable(gameObject);
         }
     }
     
