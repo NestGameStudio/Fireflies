@@ -510,11 +510,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c35c29b81ebc6544c8f4d55d40c585ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
-  slider: {fileID: 0}
+  text: {fileID: 457512437612808102}
+  slider: {fileID: 3551255770032723789}
   defaultColor: {r: 0, g: 0.5137255, b: 1, a: 0.7490196}
   dangerColor: {r: 0.9150943, g: 0.28057137, b: 0.33017707, a: 0.7490196}
-  feedbackRect: {fileID: 0}
+  feedbackRect: {fileID: 5515386008414115231}
 --- !u!1 &4448010880348678639
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ using TMPro;
 public class TimerUI : MonoBehaviour
 {
     public TextMeshProUGUI text;
-    [HideInInspector] public Slider slider;
+    public Slider slider;
     public Color defaultColor = Color.blue;
     public Color dangerColor = Color.red;
     private Image fillImage;
@@ -15,7 +15,7 @@ public class TimerUI : MonoBehaviour
     private Image feedbackImage;
 
     public void Start(){
-        slider = GetComponent<Slider>();
+        //slider = GetComponent<Slider>();
         fillImage = slider.fillRect.gameObject.GetComponent<Image>();
         if(text == null) text = GetComponentInChildren<TextMeshProUGUI>();
         if(feedbackRect == null) feedbackRect = transform.Find("Feedback").GetComponent<RectTransform>();

@@ -198,6 +198,7 @@ public class CollisionCheck : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision) {
         
     }
+
     void playAudioColisao()
     {
         //play audio
