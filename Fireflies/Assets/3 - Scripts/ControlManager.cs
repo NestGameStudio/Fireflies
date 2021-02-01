@@ -22,7 +22,7 @@ public class ControlManager : MonoBehaviour {
     private ControlScheme currentControlScheme = ControlScheme.Gamepad;
 
     // Actions possíveis 
-    private InputAction slowMotion;
+    public InputAction slowMotion;
     private InputAction slingshotMovementDirectionMouse;
     private InputAction slingshotMovementDirectionGamepad;
 
