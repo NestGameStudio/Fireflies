@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/1 - Scenes/Final/EndScene.unity
     guid: 3fbbf13219aaf81439e71eb9e2ca8c6e
+  - enabled: 1
+    path: Assets/1 - Scenes/Levels/Menu.unity
+    guid: a3c065b7f1997e242b669aa76ac12080
   m_configObjects: {}
