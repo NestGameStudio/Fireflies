@@ -516,11 +516,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelManager
       objectReference: {fileID: 0}
-    - target: {fileID: 4359816666750097156, guid: 196f5403eb9fd20469d1ca9c77c53a79,
-        type: 3}
-      propertyPath: startingLevel
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6303802480410583092, guid: 196f5403eb9fd20469d1ca9c77c53a79,
         type: 3}
       propertyPath: m_AnchorMax.x
