@@ -15,7 +15,7 @@ public class JumpRecovery : MonoBehaviour
     public void setJump(bool value) {
 
         if(value == true) {
-            JumpTimeController.ResetJumpTimer();
+            //JumpTimeController.ResetJumpTimer();
         }
 
         canJump = value;
