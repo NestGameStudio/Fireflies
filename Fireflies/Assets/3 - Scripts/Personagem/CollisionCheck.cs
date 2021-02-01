@@ -11,6 +11,9 @@ public class CollisionCheck : MonoBehaviour
     public AudioSource colisao;
     public AudioSource Lose;
     private float startPitch;
+    public PhysicsMaterial2D playerMaterial;
+    public PhysicsMaterial2D playerMaterialCurva;
+    public PhysicsMaterial2D platformMaterial;
 
     private void Start()
     {
@@ -27,7 +30,7 @@ public class CollisionCheck : MonoBehaviour
 
                 //funcao para camerashake ----------------------------> shakecam(intensidade,frequencia,tempo)
                 if (CameraShake.instance != null) { CameraShake.instance.shakeCam(gameObject.GetComponent<Rigidbody2D>().velocity.magnitude/6,1, 0.13f); }
-
+                //resetMaterial(collision);
                 //instanciar particula de colisao com a parede
                 GameObject particula = Instantiate(paredeParticle,transform.position,Quaternion.identity);
                 if (GetComponent<Rigidbody2D>().velocity.magnitude > 10000f)
@@ -36,6 +39,23 @@ public class CollisionCheck : MonoBehaviour
                 }
                 break;
 
+            case "PlatRec_Curva":
+                Jump.setJump(true);
+
+                playAudioColisao();
+
+                //funcao para camerashake ----------------------------> shakecam(intensidade,frequencia,tempo)
+                if (CameraShake.instance != null) { CameraShake.instance.shakeCam(gameObject.GetComponent<Rigidbody2D>().velocity.magnitude / 6, 1, 0.13f); }
+                //setCurveMaterial(collision);
+                //instanciar particula de colisao com a parede
+                GameObject particula5 = Instantiate(paredeParticle, transform.position, Quaternion.identity);
+                if (GetComponent<Rigidbody2D>().velocity.magnitude > 10000f)
+                {
+                    particula5.GetComponent<ParticleSystem>().startSpeed = gameObject.GetComponent<Rigidbody2D>().velocity.magnitude * 1.2f;
+                }
+                break;
+
+                break;
             case "Plataforma_Quebravel":
 
                 Jump.setJump(true);
@@ -52,7 +72,7 @@ public class CollisionCheck : MonoBehaviour
                     particula2.GetComponent<ParticleSystem>().startSpeed = gameObject.GetComponent<Rigidbody2D>().velocity.magnitude * 1.2f;
 
                 }
-
+                //resetMaterial(collision);
                 LevelManager.Instance.getLevelBreakPlats();
 
                 //fazer com que a plataforma desapareca
@@ -73,6 +93,7 @@ public class CollisionCheck : MonoBehaviour
                     particula3.GetComponent<ParticleSystem>().startSpeed = gameObject.GetComponent<Rigidbody2D>().velocity.magnitude * 1.2f;
 
                 }
+                //resetMaterial(collision);
 
                 LevelManager.Instance.getLevelBreakPlats();
 
@@ -122,7 +143,17 @@ public class CollisionCheck : MonoBehaviour
         }
         
     }
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "PlatRec_Curva")
+        {
+            setCurveMaterial(collision);
+        }
+        else
+        {
+            resetMaterial(collision);
+        }
+    }
     void deathParticleTrigger()
     {
         Instantiate(deathParticle,gameObject.transform.position,Quaternion.identity);
@@ -148,7 +179,22 @@ public class CollisionCheck : MonoBehaviour
         }
 
     }
-
+    void resetMaterial(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponentInChildren<EdgeCollider2D>() != null)
+        {
+            collision.gameObject.GetComponentInChildren<EdgeCollider2D>().sharedMaterial = null;
+        }
+        gameObject.GetComponent<Rigidbody2D>().sharedMaterial = playerMaterial;
+    }
+    void setCurveMaterial(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponentInChildren<EdgeCollider2D>() != null)
+        {
+            collision.gameObject.GetComponentInChildren<EdgeCollider2D>().sharedMaterial = platformMaterial;
+        }
+        gameObject.GetComponent<Rigidbody2D>().sharedMaterial = playerMaterialCurva;
+    }
     private void OnCollisionExit2D(Collision2D collision) {
         
     }
