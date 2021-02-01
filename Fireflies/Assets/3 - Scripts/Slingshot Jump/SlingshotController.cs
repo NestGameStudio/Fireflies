@@ -42,9 +42,22 @@ public class SlingshotController : MonoBehaviour {
 
     private Vector2 impulseVector = Vector2.zero;
 
+    public AudioSource jumpAudio;
+    private float startPitch;
+    private AudioLowPassFilter audioMusic; 
+
     // ------------- Setup e checagens ------------------
     private void Start() {
         JumpControl = this.GetComponent<JumpRecovery>();
+
+        startPitch = jumpAudio.pitch;
+        
+
+        if(audioMusic == null)
+        {
+            audioMusic = GameObject.FindGameObjectWithTag("Music").GetComponent<AudioLowPassFilter>();
+            audioMusic.enabled = false;
+        }
     }
 
     // Verifica se usa recursos de seguir o player -> atualiza a posição das coisas visuais
@@ -75,6 +88,8 @@ public class SlingshotController : MonoBehaviour {
             slingshotVisual.SlingshotVisualSetup(lineCenterPos);
 
             isOnSlowMotion = true;
+
+            audioMusic.enabled = true;
         }
     }
 
@@ -90,6 +105,8 @@ public class SlingshotController : MonoBehaviour {
 
             isOnSlowMotion = false;
             JumpControl.setJump(false);
+
+            audioMusic.enabled = false;
         }
     }
 
@@ -144,10 +161,17 @@ public class SlingshotController : MonoBehaviour {
             // Calcula o impulso
             Vector2 impulse = new Vector2(impulseVector.x, impulseVector.y) * ImpulseForce;
             rb.AddForce(impulse, ForceMode2D.Impulse);
+
+            jumpAudioEvent();
         }
 
         impulseVector = Vector2.zero;
 
     }
 
+    void jumpAudioEvent()
+    {
+        jumpAudio.pitch = Random.Range(startPitch - 0.13f, startPitch + 0.13f);
+        jumpAudio.PlayOneShot(jumpAudio.clip,jumpAudio.volume);
+    }
 }

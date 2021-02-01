@@ -12,9 +12,12 @@ public class TimerController : MonoBehaviour
     private TimerUI timerUI;
     private float time;
     public float timeStart = 30f;
+    [Tooltip("Limite para considerar 'tempo acabando' (%)")]
+    [Range(0.0f,1.0f)]
+    public float timeDangerZone = 0.3f;
     [HideInInspector] public bool isPaused = true;
-    public int state; // controlador da máquina de estados
-    public bool isOver = false;    // true quando timer atinge ZERO no método AddTimer
+    private int state; // controlador da máquina de estados
+    private bool isOver = false;    // true quando timer atinge ZERO no método AddTimer
     [HideInInspector] public bool hasStarted = false;
 
     private void Awake()
@@ -62,11 +65,16 @@ public class TimerController : MonoBehaviour
         if(time <= 0 && !isOver){
             TimerOver();
         }
+
+        // Danger State
+        if(time <= timeStart * timeDangerZone) {if(state != 1) ChangeState(1);}
+        else {if(state != 0) ChangeState(0);}
     }
 
     public void TimerOver() {
         PauseTimer(true); //para o tempo
         isOver = true; 
+        ChangeState(2); //feedback de tempo esgotado
 
         //reposicionar o player na fase
         if(Respawn.instance != null)
@@ -79,6 +87,23 @@ public class TimerController : MonoBehaviour
         time = timeStart;
         timerUI.UpdateUI(time);
         isOver = false;
+        ChangeState(0);
+    }
+
+    public void ChangeState(int s){
+        state = s;
+        switch (s){
+            case 2:
+                timerUI.StateOver();
+                break;
+            case 1:
+                timerUI.StateDanger();
+                break;
+            default:
+                timerUI.StateDefault();
+                break;
+
+        }
     }
 
     // ------------- Jump Timer ------------------

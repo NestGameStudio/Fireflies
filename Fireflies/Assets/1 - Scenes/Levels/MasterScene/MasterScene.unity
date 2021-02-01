@@ -121,18 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &224875667 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 947740464, guid: a98ebab5d004fea4a9c907652b7f36b9,
-    type: 3}
-  m_PrefabInstance: {fileID: 2097784957}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2448989ea5a6d7340b3a9760688787e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &458051484
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -219,10 +207,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1171408052, guid: b2cb1b6921a06724a82b6476946a00ad, type: 3}
-      propertyPath: JumpTimeController
-      value: 
-      objectReference: {fileID: 2247198619217625794}
     - target: {fileID: 1986088843813828928, guid: b2cb1b6921a06724a82b6476946a00ad,
         type: 3}
       propertyPath: m_Name
@@ -236,7 +220,7 @@ PrefabInstance:
     - target: {fileID: 1986088843813828929, guid: b2cb1b6921a06724a82b6476946a00ad,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -19.72
       objectReference: {fileID: 0}
     - target: {fileID: 1986088843813828929, guid: b2cb1b6921a06724a82b6476946a00ad,
         type: 3}
@@ -382,6 +366,65 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1804138329
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1804138332}
+  - component: {fileID: 1804138331}
+  - component: {fileID: 1804138330}
+  m_Layer: 0
+  m_Name: Scene Variables
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1804138330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1804138329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 995777834, guid: c8d0ad23af520fe46aabe2b1fecf6462, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1804138331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1804138329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1465209106, guid: c8d0ad23af520fe46aabe2b1fecf6462, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"declarations":{"collection":{"$content":[],"$version":"A"},"$version":"A"}}'
+    _objectReferences: []
+--- !u!4 &1804138332
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1804138329}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2097784957
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -394,17 +437,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2571143157697779141}
     - target: {fileID: 947740464, guid: a98ebab5d004fea4a9c907652b7f36b9, type: 3}
-      propertyPath: JumpTimeController
-      value: 
-      objectReference: {fileID: 2247198619217625794}
-    - target: {fileID: 947740464, guid: a98ebab5d004fea4a9c907652b7f36b9, type: 3}
       propertyPath: SlingshotController
       value: 
       objectReference: {fileID: 1162788243}
-    - target: {fileID: 947740464, guid: a98ebab5d004fea4a9c907652b7f36b9, type: 3}
-      propertyPath: StartTimerAfterJump
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 622947454393651110, guid: a98ebab5d004fea4a9c907652b7f36b9,
         type: 3}
       propertyPath: m_DefaultActionMap
@@ -480,16 +515,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1634053543581089601, guid: 196f5403eb9fd20469d1ca9c77c53a79,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1634053543581089603, guid: 196f5403eb9fd20469d1ca9c77c53a79,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2247198618228586726, guid: 196f5403eb9fd20469d1ca9c77c53a79,
         type: 3}
       propertyPath: m_RootOrder
@@ -550,16 +575,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelManager
       objectReference: {fileID: 0}
-    - target: {fileID: 5576838445713630572, guid: 196f5403eb9fd20469d1ca9c77c53a79,
+    - target: {fileID: 4359816666750097156, guid: 196f5403eb9fd20469d1ca9c77c53a79,
         type: 3}
-      propertyPath: MaxJumpTime
-      value: 2
+      propertyPath: startingLevel
+      value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 5576838445713630572, guid: 196f5403eb9fd20469d1ca9c77c53a79,
+    - target: {fileID: 4359816666750097156, guid: 196f5403eb9fd20469d1ca9c77c53a79,
         type: 3}
-      propertyPath: ControlManager
-      value: 
-      objectReference: {fileID: 224875667}
+      propertyPath: sceneNames.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4359816666750097156, guid: 196f5403eb9fd20469d1ca9c77c53a79,
+        type: 3}
+      propertyPath: sceneNames.Array.data[8]
+      value: Level8
+      objectReference: {fileID: 0}
     - target: {fileID: 6303802480410583092, guid: 196f5403eb9fd20469d1ca9c77c53a79,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -577,18 +607,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 196f5403eb9fd20469d1ca9c77c53a79, type: 3}
---- !u!114 &2247198619217625794 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5576838445713630572, guid: 196f5403eb9fd20469d1ca9c77c53a79,
-    type: 3}
-  m_PrefabInstance: {fileID: 2247198619217625793}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6e0e638dbc62bd42bc6180b9f633577, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2571143157697779141 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4359816666750097156, guid: 196f5403eb9fd20469d1ca9c77c53a79,
