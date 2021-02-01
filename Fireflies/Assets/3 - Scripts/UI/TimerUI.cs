@@ -10,16 +10,16 @@ public class TimerUI : MonoBehaviour
     public Slider slider;
     public Color defaultColor = Color.blue;
     public Color dangerColor = Color.red;
-    private Image fillImage;
+    public Image fillImage;
     public RectTransform feedbackRect;
-    private Image feedbackImage;
+    public Image feedbackImage;
 
     public void Start(){
         //slider = GetComponent<Slider>();
-        fillImage = slider.fillRect.gameObject.GetComponent<Image>();
+        //fillImage = slider.fillRect.gameObject.GetComponent<Image>();
         if(text == null) text = GetComponentInChildren<TextMeshProUGUI>();
         if(feedbackRect == null) feedbackRect = transform.Find("Feedback").GetComponent<RectTransform>();
-        feedbackImage = feedbackRect.gameObject.GetComponent<Image>();
+        //feedbackImage = feedbackRect.gameObject.GetComponent<Image>();
     }
     public void SetupUI(float value)
     {
@@ -34,6 +34,7 @@ public class TimerUI : MonoBehaviour
     }
 
     public void StateDefault(){
+
         Debug.Log("State: Default");
 
         feedbackRect.LeanCancel();
@@ -42,6 +43,7 @@ public class TimerUI : MonoBehaviour
         feedbackImage.rectTransform.LeanCancel();
 
         fillImage.color = defaultColor;
+        
     }
     public void StateDanger(){
         Debug.Log("State: Danger");

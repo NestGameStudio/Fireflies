@@ -514,7 +514,9 @@ MonoBehaviour:
   slider: {fileID: 3551255770032723789}
   defaultColor: {r: 0, g: 0.5137255, b: 1, a: 0.7490196}
   dangerColor: {r: 0.9150943, g: 0.28057137, b: 0.33017707, a: 0.7490196}
+  fillImage: {fileID: 4092202475139774850}
   feedbackRect: {fileID: 5515386008414115231}
+  feedbackImage: {fileID: 5923199619702020959}
 --- !u!1 &4448010880348678639
 GameObject:
   m_ObjectHideFlags: 0
