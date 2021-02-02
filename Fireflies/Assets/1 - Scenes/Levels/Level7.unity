@@ -589,6 +589,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8333107125524664441, guid: f5ebeede3124a564789335002e4790d7,
         type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8333107125524664441, guid: f5ebeede3124a564789335002e4790d7,
+        type: 3}
       propertyPath: m_LocalAABB.m_Center.x
       value: 0.9325565
       objectReference: {fileID: 0}
@@ -2377,6 +2382,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.r
       value: 0.29803923
+      objectReference: {fileID: 0}
+    - target: {fileID: 4124450873057335852, guid: 85dd69fab0437604eb2bafb47d86fafd,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4124450873057335852, guid: 85dd69fab0437604eb2bafb47d86fafd,
         type: 3}
@@ -4479,7 +4489,7 @@ SpriteShapeRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 1
   m_Color: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 1}
   m_MaskInteraction: 0
   m_ShapeTexture: {fileID: 2800000, guid: 698b7f143b297694ba121d65312b58b2, type: 3}

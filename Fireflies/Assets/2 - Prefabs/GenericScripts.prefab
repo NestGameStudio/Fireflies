@@ -44,13 +44,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SlingshotController: {fileID: 0}
-  JumpTimeController: {fileID: 0}
-  StartTimerAfterJump: 0
+  StartTimerAfterJump: 1
   slowMotion:
-    m_Name: 
+    m_Name: Slow Motion
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 1a72ae31-9ff1-44e5-b421-2bc156b4b013
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
