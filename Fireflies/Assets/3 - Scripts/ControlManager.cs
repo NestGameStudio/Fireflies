@@ -71,6 +71,7 @@ public class ControlManager : MonoBehaviour {
         // Debug
         controls.Debug.NextScene.performed += GoToNextScene;
         controls.Debug.PreviousScene.performed += GoToPreviousScene;
+        controls.Debug.InvertDirection.performed += InvertDirection;
 
         // Define os controles do input system (Keyboard & mouse, mouse e gamepad)
         slowMotion = controls.Gameplay.SlingshotSlowMotion;
@@ -140,6 +141,10 @@ public class ControlManager : MonoBehaviour {
 
     private void GoToPreviousScene(InputAction.CallbackContext context) {
         LevelManager.Instance.previousLevel();
+    }
+
+    private void InvertDirection(InputAction.CallbackContext context){
+        SlingshotController.slingshotVisual.InvertedSlingshot = !SlingshotController.slingshotVisual.InvertedSlingshot; 
     }
 
     // ------------- Cuida da troca de devices ------------------

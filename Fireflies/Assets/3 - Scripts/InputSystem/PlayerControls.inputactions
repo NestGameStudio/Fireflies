@@ -151,6 +151,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Invert Direction",
+                    "type": "Button",
+                    "id": "3549ad4e-760a-4b16-97fe-4d1e3aadcaca",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -173,6 +181,17 @@
                     "processors": "",
                     "groups": "Keyboard and Mouse",
                     "action": "Previous Scene",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4237284a-530a-47f3-8309-f55c854bcc14",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Invert Direction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
