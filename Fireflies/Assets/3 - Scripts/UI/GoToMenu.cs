@@ -7,6 +7,6 @@ public class GoToMenu : MonoBehaviour
 {
     public void menu()
     {
-        SceneManager.LoadScene("MenuScene");
+        SceneManager.LoadScene("MasterScene");
     }
 }

@@ -72,7 +72,6 @@ public class TimerController : MonoBehaviour
     }
 
     public void TimerOver() {
-        PauseTimer(true); //para o tempo
         isOver = true; 
         ChangeState(2); //feedback de tempo esgotado
 

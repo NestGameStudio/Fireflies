@@ -57,6 +57,9 @@ public class LevelManager : MonoBehaviour
     {
         if (sceneNames != null)
         {
+            //resetar timer quando passar de fase
+            TimerController.Instance.ResetTimer();
+
             //load active and unactive levels
             for (int x = 0; x < sceneNames.Length; x++)
             {

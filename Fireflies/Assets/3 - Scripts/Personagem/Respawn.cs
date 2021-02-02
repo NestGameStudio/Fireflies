@@ -78,6 +78,7 @@ public class Respawn : MonoBehaviour
 
             //resetar timer
             TimerController.Instance.ResetTimer();
+            TimerController.Instance.PauseTimer(true);
 
             //fazer as plataformas resetarem
             LevelManager.Instance.resetPlats();

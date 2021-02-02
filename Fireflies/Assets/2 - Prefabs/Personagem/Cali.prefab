@@ -948,6 +948,7 @@ GameObject:
   - component: {fileID: 1986088843813828922}
   - component: {fileID: 1986088843813828933}
   - component: {fileID: 1523693111}
+  - component: {fileID: 5558172570495970629}
   m_Layer: 0
   m_Name: Cali
   m_TagString: Player
@@ -1030,6 +1031,25 @@ MonoBehaviour:
     type: 3}
   colisao: {fileID: 5975696958082937567}
   Lose: {fileID: 8734085957729434228}
+  playerMaterial: {fileID: 6200000, guid: 773dd6cfc423f864493ee2b110bbc449, type: 2}
+  playerMaterialCurva: {fileID: 6200000, guid: 231c5675fac3f8e45ace5d943bb2c9f0, type: 2}
+  platformMaterial: {fileID: 6200000, guid: 35f59708e0e90674da5180e43b986349, type: 2}
+--- !u!58 &5558172570495970629
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986088843813828928}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.48
 --- !u!1 &3303763762343284749
 GameObject:
   m_ObjectHideFlags: 0

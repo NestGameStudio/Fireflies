@@ -64,7 +64,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1b612942feee61d4682392fa0bc0f1e4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e633ab05088e76341b8dc762e805c8eb, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -511,9 +511,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 457512437612808102}
-  slider: {fileID: 0}
-  startColor: {r: 0, g: 0.5137255, b: 1, a: 0.7490196}
+  slider: {fileID: 3551255770032723789}
+  defaultColor: {r: 0, g: 0.5137255, b: 1, a: 0.7490196}
+  dangerColor: {r: 0.9150943, g: 0.28057137, b: 0.33017707, a: 0.7490196}
+  fillImage: {fileID: 4092202475139774850}
   feedbackRect: {fileID: 5515386008414115231}
+  feedbackImage: {fileID: 5923199619702020959}
 --- !u!1 &4448010880348678639
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,9 +1,13 @@
-﻿using System.Collections;
+﻿#if (UNITY_EDITOR) 
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEditor.SceneManagement;
 using UnityEditor;
+
+
 
 [CustomEditor(typeof(LevelManager))]
 public class LevelManager_Display : Editor
@@ -188,3 +192,5 @@ public static class EditorScenes
         return scene == activeScene;
     }
 }
+
+#endif

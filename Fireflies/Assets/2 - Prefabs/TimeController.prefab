@@ -43,8 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ba1b5cbda1cbfe42bfc582daa3046ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 0
-  timeStart: 30
   timerObj: {fileID: 0}
+  timeStart: 10
+  timeDangerZone: 0.5
   isPaused: 0
-  isOver: 0
+  hasStarted: 0

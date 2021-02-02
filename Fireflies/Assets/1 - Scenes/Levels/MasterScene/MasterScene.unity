@@ -505,11 +505,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1760967649323635988, guid: 196f5403eb9fd20469d1ca9c77c53a79,
-        type: 3}
-      propertyPath: timeStart
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 2247198618228586726, guid: 196f5403eb9fd20469d1ca9c77c53a79,
         type: 3}
       propertyPath: m_RootOrder
@@ -569,36 +564,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LevelManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 4359816666750097156, guid: 196f5403eb9fd20469d1ca9c77c53a79,
-        type: 3}
-      propertyPath: startingLevel
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4359816666750097156, guid: 196f5403eb9fd20469d1ca9c77c53a79,
-        type: 3}
-      propertyPath: sceneNames.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4359816666750097156, guid: 196f5403eb9fd20469d1ca9c77c53a79,
-        type: 3}
-      propertyPath: sceneNames.Array.data[4]
-      value: Level7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4359816666750097156, guid: 196f5403eb9fd20469d1ca9c77c53a79,
-        type: 3}
-      propertyPath: sceneNames.Array.data[5]
-      value: Level4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4359816666750097156, guid: 196f5403eb9fd20469d1ca9c77c53a79,
-        type: 3}
-      propertyPath: sceneNames.Array.data[7]
-      value: Level5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4359816666750097156, guid: 196f5403eb9fd20469d1ca9c77c53a79,
-        type: 3}
-      propertyPath: sceneNames.Array.data[8]
-      value: Level8
       objectReference: {fileID: 0}
     - target: {fileID: 6303802480410583092, guid: 196f5403eb9fd20469d1ca9c77c53a79,
         type: 3}
