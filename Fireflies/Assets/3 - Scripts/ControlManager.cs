@@ -172,9 +172,14 @@ public class ControlManager : MonoBehaviour {
 
     public void StartTimer() {
 
-        if (!TimerController.Instance.hasStarted) {
+        if (!TimerController.Instance.hasStarted && LevelManager.Instance.canStartTimer) {
             TimerController.Instance.hasStarted = false;
             TimerController.Instance.PauseTimer(false);
+            
+        }
+        else
+        {
+            
         }
     }
 }
