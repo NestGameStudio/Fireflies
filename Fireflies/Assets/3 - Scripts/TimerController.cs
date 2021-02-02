@@ -35,12 +35,31 @@ public class TimerController : MonoBehaviour
     }
 
     public void Start() {
+        /*
         if(timerObj != null) {
             //timerUI = timerObj.GetComponent<TimerUI>();
             timerUI.SetupUI(timeStart);
             ResetTimer();
         }
         else {
+            PauseTimer(true);
+            Debug.Log("Timer UI Object is not referenced in TimeController");
+        }
+        */
+        PauseTimer(true);
+        timerUI.SetupUI(timeStart);
+
+    }
+    public void startTimer()
+    {
+        if (timerObj != null)
+        {
+            //timerUI = timerObj.GetComponent<TimerUI>();
+            timerUI.SetupUI(timeStart);
+            ResetTimer();
+        }
+        else
+        {
             PauseTimer(true);
             Debug.Log("Timer UI Object is not referenced in TimeController");
         }

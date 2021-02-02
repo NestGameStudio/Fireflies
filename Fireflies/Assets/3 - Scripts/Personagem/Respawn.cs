@@ -85,6 +85,8 @@ public class Respawn : MonoBehaviour
 
             LevelManager.Instance.resetTimeCollectable();
 
+            LevelManager.Instance.ResetarEspinhosMoveis();
+
             //Player.GetComponentInChildren<TrailRenderer>().enabled = true;
         }
     }

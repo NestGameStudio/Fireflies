@@ -164,6 +164,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Invert Direction"",
+                    ""type"": ""Button"",
+                    ""id"": ""3549ad4e-760a-4b16-97fe-4d1e3aadcaca"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -186,6 +194,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
                     ""action"": ""Previous Scene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4237284a-530a-47f3-8309-f55c854bcc14"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Invert Direction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -231,6 +250,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Debug = asset.FindActionMap("Debug", throwIfNotFound: true);
         m_Debug_NextScene = m_Debug.FindAction("Next Scene", throwIfNotFound: true);
         m_Debug_PreviousScene = m_Debug.FindAction("Previous Scene", throwIfNotFound: true);
+        m_Debug_InvertDirection = m_Debug.FindAction("Invert Direction", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -331,12 +351,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private IDebugActions m_DebugActionsCallbackInterface;
     private readonly InputAction m_Debug_NextScene;
     private readonly InputAction m_Debug_PreviousScene;
+    private readonly InputAction m_Debug_InvertDirection;
     public struct DebugActions
     {
         private @PlayerControls m_Wrapper;
         public DebugActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @NextScene => m_Wrapper.m_Debug_NextScene;
         public InputAction @PreviousScene => m_Wrapper.m_Debug_PreviousScene;
+        public InputAction @InvertDirection => m_Wrapper.m_Debug_InvertDirection;
         public InputActionMap Get() { return m_Wrapper.m_Debug; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -352,6 +374,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @PreviousScene.started -= m_Wrapper.m_DebugActionsCallbackInterface.OnPreviousScene;
                 @PreviousScene.performed -= m_Wrapper.m_DebugActionsCallbackInterface.OnPreviousScene;
                 @PreviousScene.canceled -= m_Wrapper.m_DebugActionsCallbackInterface.OnPreviousScene;
+                @InvertDirection.started -= m_Wrapper.m_DebugActionsCallbackInterface.OnInvertDirection;
+                @InvertDirection.performed -= m_Wrapper.m_DebugActionsCallbackInterface.OnInvertDirection;
+                @InvertDirection.canceled -= m_Wrapper.m_DebugActionsCallbackInterface.OnInvertDirection;
             }
             m_Wrapper.m_DebugActionsCallbackInterface = instance;
             if (instance != null)
@@ -362,6 +387,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @PreviousScene.started += instance.OnPreviousScene;
                 @PreviousScene.performed += instance.OnPreviousScene;
                 @PreviousScene.canceled += instance.OnPreviousScene;
+                @InvertDirection.started += instance.OnInvertDirection;
+                @InvertDirection.performed += instance.OnInvertDirection;
+                @InvertDirection.canceled += instance.OnInvertDirection;
             }
         }
     }
@@ -394,5 +422,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     {
         void OnNextScene(InputAction.CallbackContext context);
         void OnPreviousScene(InputAction.CallbackContext context);
+        void OnInvertDirection(InputAction.CallbackContext context);
     }
 }
