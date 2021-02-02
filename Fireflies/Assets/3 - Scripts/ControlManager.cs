@@ -118,12 +118,9 @@ public class ControlManager : MonoBehaviour {
             StartTimer();
         }
 
-        print("AAAA");
 
-        //if (!isOnSlowMotion) {
-            SlingshotController.EnterSlowMotionMode();
-            //isOnSlowMotion = true;
-        //}
+        SlingshotController.EnterSlowMotionMode();
+           
     }
 
     private void ExitSlowMotionMode(InputAction.CallbackContext context) {
@@ -134,7 +131,6 @@ public class ControlManager : MonoBehaviour {
 
         SlingshotController.ExitSlowMotionMode();
         
-        // isOnSlowMotion = false;
     }
 
     // ---------------- Funções de debug ---------------------

@@ -106,7 +106,6 @@ public class SlingshotController : MonoBehaviour {
 
             isOnSlowMotion = false;
             JumpControl.setJump(false);
-            //print("ta falso");
 
             audioMusic.enabled = false;
         }

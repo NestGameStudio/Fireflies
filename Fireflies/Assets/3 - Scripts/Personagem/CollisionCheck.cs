@@ -163,36 +163,6 @@ public class CollisionCheck : MonoBehaviour
         deathCounter.instance.addDeath();
     }
 
-   /* private void OnCollisionStay2D(Collision2D collision) {
-
-        print("sai disso");
-
-        if (Jump.CanJump() == false) {
-
-            switch (collision.transform.tag) {
-                case "Plataforma_Recarregavel":
-                    print("ta true 1");
-                    Jump.setJump(true);
-                    break;
-                case "PlatRec_Curva":
-                    print("ta true 2");
-                    Jump.setJump(true);
-                    break;
-                case "Plataforma_Quebravel":
-                    print("ta true 3");
-                    Jump.setJump(true);
-                    break;
-                case "Plataforma_Quebravel_Fake":
-                    print("ta true 4");
-                    Jump.setJump(true);
-                    break;
-                default:
-                    break;
-            }
-        }
-
-    }*/
-
     void resetMaterial(Collider2D collision)
     {
         if (collision.gameObject.GetComponentInChildren<EdgeCollider2D>() != null)
