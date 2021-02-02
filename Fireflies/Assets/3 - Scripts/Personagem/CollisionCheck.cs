@@ -108,7 +108,7 @@ public class CollisionCheck : MonoBehaviour
 
                 playAudioLose();
 
-                //particula de morte
+                //particula de morte e contador de morte
                 if (deathParticle != null)
                     deathParticleTrigger();
 
@@ -120,7 +120,7 @@ public class CollisionCheck : MonoBehaviour
 
                 playAudioLose();
 
-                //particula de morte
+                //particula de morte e contador de morte
                 if (deathParticle != null)
                     deathParticleTrigger();
 
@@ -132,7 +132,7 @@ public class CollisionCheck : MonoBehaviour
 
                 playAudioLose();
 
-                //particula de morte
+                //particula de morte e contador de morte
                 if (deathParticle != null)
                     deathParticleTrigger();
 
@@ -157,6 +157,8 @@ public class CollisionCheck : MonoBehaviour
     void deathParticleTrigger()
     {
         Instantiate(deathParticle,gameObject.transform.position,Quaternion.identity);
+
+        deathCounter.instance.addDeath();
     }
 
     private void OnCollisionStay2D(Collision2D collision) {

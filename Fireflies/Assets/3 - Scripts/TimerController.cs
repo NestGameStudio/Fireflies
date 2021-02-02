@@ -99,6 +99,7 @@ public class TimerController : MonoBehaviour
         if(Respawn.instance != null)
         {
             Respawn.instance.RepositionPlayer();
+            deathCounter.instance.addDeath();
         }
     }
 
