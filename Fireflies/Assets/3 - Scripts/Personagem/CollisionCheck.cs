@@ -22,6 +22,8 @@ public class CollisionCheck : MonoBehaviour
     // Faz todos os checks que precisam de colisão
     private void OnCollisionEnter2D(Collision2D collision) {
 
+        //print("ta true ENTER");
+
         switch (collision.transform.tag) {
             case "Plataforma_Recarregavel":
                 Jump.setJump(true);
@@ -161,18 +163,27 @@ public class CollisionCheck : MonoBehaviour
         deathCounter.instance.addDeath();
     }
 
-    private void OnCollisionStay2D(Collision2D collision) {
+   /* private void OnCollisionStay2D(Collision2D collision) {
+
+        print("sai disso");
 
         if (Jump.CanJump() == false) {
 
             switch (collision.transform.tag) {
                 case "Plataforma_Recarregavel":
+                    print("ta true 1");
+                    Jump.setJump(true);
+                    break;
+                case "PlatRec_Curva":
+                    print("ta true 2");
                     Jump.setJump(true);
                     break;
                 case "Plataforma_Quebravel":
+                    print("ta true 3");
                     Jump.setJump(true);
                     break;
                 case "Plataforma_Quebravel_Fake":
+                    print("ta true 4");
                     Jump.setJump(true);
                     break;
                 default:
@@ -180,7 +191,8 @@ public class CollisionCheck : MonoBehaviour
             }
         }
 
-    }
+    }*/
+
     void resetMaterial(Collider2D collision)
     {
         if (collision.gameObject.GetComponentInChildren<EdgeCollider2D>() != null)
@@ -198,7 +210,7 @@ public class CollisionCheck : MonoBehaviour
         gameObject.GetComponent<Rigidbody2D>().sharedMaterial = playerMaterialCurva;
     }
     private void OnCollisionExit2D(Collision2D collision) {
-        
+        //print("sai disso");
     }
 
     void playAudioColisao()

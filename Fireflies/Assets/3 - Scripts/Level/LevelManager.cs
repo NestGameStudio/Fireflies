@@ -100,7 +100,7 @@ public class LevelManager : MonoBehaviour
     }
     void changeScene()
     {
-        Debug.Log("changedScene");
+        //Debug.Log("changedScene");
 
         loadingSceneStatus = SceneManager.LoadSceneAsync(sceneNames[startingLevel - 1], LoadSceneMode.Additive);
 
@@ -267,7 +267,7 @@ public class LevelManager : MonoBehaviour
 
     public void resetPlats()
     {
-        Debug.Log("reseted breakplats");
+        //Debug.Log("reseted breakplats");
 
         if (breakPlats.Count > 0)
         {

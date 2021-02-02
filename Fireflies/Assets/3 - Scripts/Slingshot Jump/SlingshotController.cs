@@ -95,7 +95,8 @@ public class SlingshotController : MonoBehaviour {
 
     public void ExitSlowMotionMode() {
 
-        if (JumpControl.CanJump()) {
+        // precisa do isOnSlowMotion para que não ocorra o soft lock
+        if (JumpControl.CanJump() && isOnSlowMotion) {
 
             Time.timeScale = 1f;
 
@@ -105,6 +106,7 @@ public class SlingshotController : MonoBehaviour {
 
             isOnSlowMotion = false;
             JumpControl.setJump(false);
+            //print("ta falso");
 
             audioMusic.enabled = false;
         }

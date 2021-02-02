@@ -35,7 +35,7 @@ public class TimerUI : MonoBehaviour
 
     public void StateDefault(){
 
-        Debug.Log("State: Default");
+        //Debug.Log("State: Default");
 
         feedbackRect.LeanCancel();
         feedbackRect.sizeDelta = new Vector2(50f,50f);
@@ -46,7 +46,7 @@ public class TimerUI : MonoBehaviour
         
     }
     public void StateDanger(){
-        Debug.Log("State: Danger");
+        //Debug.Log("State: Danger");
 
         feedbackRect.sizeDelta = new Vector2(170f,170f);
         feedbackImage.color = new Color (1f,1f,1f,0f);
@@ -59,7 +59,7 @@ public class TimerUI : MonoBehaviour
     }
 
     public void StateOver(){
-        Debug.Log("State: Over");
+        //Debug.Log("State: Over");
 
         Transform feedbackParent = feedbackRect.transform;
 

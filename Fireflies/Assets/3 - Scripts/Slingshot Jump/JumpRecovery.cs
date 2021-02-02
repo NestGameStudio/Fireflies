@@ -6,7 +6,11 @@ public class JumpRecovery : MonoBehaviour
 {
     public JumpTimeController JumpTimeController;
 
-    private bool canJump = true;     // Consegue executar o pulo
+    private bool canJump = false;     // Consegue executar o pulo
+
+    private void Update() {
+        print("can Jump: " + canJump); 
+    }
 
     public bool CanJump() {
         return canJump;
@@ -15,7 +19,9 @@ public class JumpRecovery : MonoBehaviour
     public void setJump(bool value) {
 
         if(value == true) {
-            //JumpTimeController.ResetJumpTimer();
+            if (JumpTimeController != null) {
+                JumpTimeController.ResetJumpTimer();
+            }
         }
 
         canJump = value;

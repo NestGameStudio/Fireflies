@@ -118,10 +118,12 @@ public class ControlManager : MonoBehaviour {
             StartTimer();
         }
 
-        if (!isOnSlowMotion) {
+        print("AAAA");
+
+        //if (!isOnSlowMotion) {
             SlingshotController.EnterSlowMotionMode();
-            isOnSlowMotion = true;
-        }
+            //isOnSlowMotion = true;
+        //}
     }
 
     private void ExitSlowMotionMode(InputAction.CallbackContext context) {
@@ -131,7 +133,8 @@ public class ControlManager : MonoBehaviour {
         }
 
         SlingshotController.ExitSlowMotionMode();
-        isOnSlowMotion = false;
+        
+        // isOnSlowMotion = false;
     }
 
     // ---------------- Funções de debug ---------------------
@@ -152,7 +155,7 @@ public class ControlManager : MonoBehaviour {
 
         if (change == InputUserChange.ControlSchemeChanged && !isOnSlowMotion) {
 
-            print(user.controlScheme.Value.name);
+            //print(user.controlScheme.Value.name);
 
             switch (user.controlScheme.Value.name) {
                 case "Keyboard and Mouse":
