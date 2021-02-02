@@ -33,6 +33,9 @@ public class LevelManager : MonoBehaviour
 
     public List<PerigoMovel> espinhos = new List<PerigoMovel>();
 
+    [HideInInspector]
+    public bool canStartTimer = false;
+
     private void Awake()
     {
 
@@ -182,6 +185,16 @@ public class LevelManager : MonoBehaviour
         SceneLoaded.Invoke();
 
         PegarEspinhosMoveis();
+
+        if(startingLevel > 1)
+        {
+            canStartTimer = true;
+            GetComponent<timeController_Display>().hasTimer = true;
+        }
+        else
+        {
+            GetComponent<timeController_Display>().hasTimer = false;
+        }
     }
     public void getLevelBreakPlats()
     {
