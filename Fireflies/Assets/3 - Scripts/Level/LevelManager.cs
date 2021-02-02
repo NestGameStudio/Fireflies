@@ -31,6 +31,8 @@ public class LevelManager : MonoBehaviour
 
     public List<GameObject> timeCollectables = new List<GameObject>();
 
+    public List<PerigoMovel> espinhos = new List<PerigoMovel>();
+
     private void Awake()
     {
 
@@ -178,6 +180,8 @@ public class LevelManager : MonoBehaviour
 
         // Invoca todas as ações que estavam escutando a scene ser loaded
         SceneLoaded.Invoke();
+
+        PegarEspinhosMoveis();
     }
     public void getLevelBreakPlats()
     {
@@ -277,5 +281,28 @@ public class LevelManager : MonoBehaviour
     void NextLevelAudio()
     {
         nextLevelAudio.PlayOneShot(nextLevelAudio.clip, nextLevelAudio.volume);
+    }
+    void PegarEspinhosMoveis()
+    {
+        espinhos.Clear();
+
+        if(GameObject.FindGameObjectsWithTag("Perigo").Length > 0)
+        {
+            for (int i = 0; i < GameObject.FindGameObjectsWithTag("Perigo").Length; i++)
+            {
+                if(GameObject.FindGameObjectsWithTag("Perigo")[i].GetComponent<PerigoMovel>() != null)
+                {
+                    espinhos.Add(GameObject.FindGameObjectsWithTag("Perigo")[i].GetComponent<PerigoMovel>());
+                }
+            }
+        }
+        
+    }
+    public void ResetarEspinhosMoveis()
+    {
+        for (int i = 0; i < espinhos.Count; i++)
+        {
+            espinhos[i].resetarPerigoMovel();
+        }
     }
 }
