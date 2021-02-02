@@ -139,6 +139,8 @@ MonoBehaviour:
   breakPlats: []
   nextLevelAudio: {fileID: 4689651531290820924}
   timeCollectables: []
+  espinhos: []
+  canStartTimer: 0
 --- !u!114 &9026755330497502013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,6 +590,11 @@ PrefabInstance:
       propertyPath: timerObj
       value: 
       objectReference: {fileID: 6303802478809863432}
+    - target: {fileID: 3633202696787152998, guid: a174a9116e114f744accf9db6e22e312,
+        type: 3}
+      propertyPath: timeStart
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 3633202696787152999, guid: a174a9116e114f744accf9db6e22e312,
         type: 3}
       propertyPath: m_RootOrder
