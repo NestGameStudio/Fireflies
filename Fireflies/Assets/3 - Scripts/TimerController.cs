@@ -8,8 +8,9 @@ public class TimerController : MonoBehaviour
 
     [SerializeField]
 
+
     public GameObject timerObj;
-    private TimerUI timerUI;
+    public TimerUI timerUI;
     private float time;
     public float timeStart = 30f;
     [Tooltip("Limite para considerar 'tempo acabando' (%)")]
@@ -35,7 +36,7 @@ public class TimerController : MonoBehaviour
 
     public void Start() {
         if(timerObj != null) {
-            timerUI = timerObj.GetComponent<TimerUI>();
+            //timerUI = timerObj.GetComponent<TimerUI>();
             timerUI.SetupUI(timeStart);
             ResetTimer();
         }

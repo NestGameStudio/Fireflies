@@ -575,6 +575,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3633202696787152998, guid: a174a9116e114f744accf9db6e22e312,
         type: 3}
+      propertyPath: timerUI
+      value: 
+      objectReference: {fileID: 8048485093701622371}
+    - target: {fileID: 3633202696787152998, guid: a174a9116e114f744accf9db6e22e312,
+        type: 3}
       propertyPath: isPaused
       value: 1
       objectReference: {fileID: 0}
@@ -817,3 +822,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 8048485093543991732}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8048485093701622371 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 179028951, guid: dfdda5bb783f06746812cf4b564af9fb,
+    type: 3}
+  m_PrefabInstance: {fileID: 8048485093543991732}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6303802478809863432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35c29b81ebc6544c8f4d55d40c585ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
