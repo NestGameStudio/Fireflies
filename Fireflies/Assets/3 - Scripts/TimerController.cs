@@ -47,6 +47,7 @@ public class TimerController : MonoBehaviour
         }
         */
         PauseTimer(true);
+        timerUI.SetupUI(timeStart);
 
     }
     public void startTimer()
