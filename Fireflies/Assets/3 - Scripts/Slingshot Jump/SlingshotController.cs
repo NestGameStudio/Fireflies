@@ -99,14 +99,15 @@ public class SlingshotController : MonoBehaviour {
         if (JumpControl.CanJump() && isOnSlowMotion) {
 
             Time.timeScale = 1f;
-
             slingshotVisual.DisableSlingshotVisuals();
-
-            Jump();
+            
+            //evita pulos de força extremamente baixa (game breaking)
+            if (impulseVector.magnitude > slingshotVisual.GetMinLine()) {
+                Jump();
+                JumpControl.setJump(false);
+            }
 
             isOnSlowMotion = false;
-            JumpControl.setJump(false);
-
             audioMusic.enabled = false;
         }
     }
@@ -152,19 +153,15 @@ public class SlingshotController : MonoBehaviour {
 
     private void Jump() {
 
-        //evita pulos de força zero (game breaking)
-        if (impulseVector.magnitude > slingshotVisual.GetMinLine()) {
+        // Zera a velocidade do player antes de dar um novo impulso para não ter soma de vetores
+        Rigidbody2D rb = this.GetComponentInParent<Rigidbody2D>();
+        rb.velocity = Vector3.zero;
 
-            // Zera a velocidade do player antes de dar um novo impulso para não ter soma de vetores
-            Rigidbody2D rb = this.GetComponentInParent<Rigidbody2D>();
-            rb.velocity = Vector3.zero;
+        // Calcula o impulso
+        Vector2 impulse = new Vector2(impulseVector.x, impulseVector.y) * ImpulseForce;
+        rb.AddForce(impulse, ForceMode2D.Impulse);
 
-            // Calcula o impulso
-            Vector2 impulse = new Vector2(impulseVector.x, impulseVector.y) * ImpulseForce;
-            rb.AddForce(impulse, ForceMode2D.Impulse);
-
-            jumpAudioEvent();
-        }
+        jumpAudioEvent();
 
         impulseVector = Vector2.zero;
 

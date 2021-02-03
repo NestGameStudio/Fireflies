@@ -7,6 +7,7 @@ public class JumpRecovery : MonoBehaviour
     public JumpTimeController JumpTimeController;
 
     private bool canJump = false;     // Consegue executar o pulo
+    public Animator playerAnim;
 
     private void Update() {
         print("can Jump: " + canJump); 
@@ -25,6 +26,7 @@ public class JumpRecovery : MonoBehaviour
         }
 
         canJump = value;
+        playerAnim.SetBool("canJump", value);
     }
 
 }

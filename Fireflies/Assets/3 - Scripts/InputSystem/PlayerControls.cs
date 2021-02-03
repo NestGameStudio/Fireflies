@@ -172,6 +172,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Quit Game"",
+                    ""type"": ""Button"",
+                    ""id"": ""a1d48284-44d6-45b8-9def-e520f2cfc831"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -205,6 +213,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
                     ""action"": ""Invert Direction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""65d8bd06-12c3-4d4c-8e6b-f8b354fd28cd"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Quit Game"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -251,6 +270,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Debug_NextScene = m_Debug.FindAction("Next Scene", throwIfNotFound: true);
         m_Debug_PreviousScene = m_Debug.FindAction("Previous Scene", throwIfNotFound: true);
         m_Debug_InvertDirection = m_Debug.FindAction("Invert Direction", throwIfNotFound: true);
+        m_Debug_QuitGame = m_Debug.FindAction("Quit Game", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -352,6 +372,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Debug_NextScene;
     private readonly InputAction m_Debug_PreviousScene;
     private readonly InputAction m_Debug_InvertDirection;
+    private readonly InputAction m_Debug_QuitGame;
     public struct DebugActions
     {
         private @PlayerControls m_Wrapper;
@@ -359,6 +380,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @NextScene => m_Wrapper.m_Debug_NextScene;
         public InputAction @PreviousScene => m_Wrapper.m_Debug_PreviousScene;
         public InputAction @InvertDirection => m_Wrapper.m_Debug_InvertDirection;
+        public InputAction @QuitGame => m_Wrapper.m_Debug_QuitGame;
         public InputActionMap Get() { return m_Wrapper.m_Debug; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -377,6 +399,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @InvertDirection.started -= m_Wrapper.m_DebugActionsCallbackInterface.OnInvertDirection;
                 @InvertDirection.performed -= m_Wrapper.m_DebugActionsCallbackInterface.OnInvertDirection;
                 @InvertDirection.canceled -= m_Wrapper.m_DebugActionsCallbackInterface.OnInvertDirection;
+                @QuitGame.started -= m_Wrapper.m_DebugActionsCallbackInterface.OnQuitGame;
+                @QuitGame.performed -= m_Wrapper.m_DebugActionsCallbackInterface.OnQuitGame;
+                @QuitGame.canceled -= m_Wrapper.m_DebugActionsCallbackInterface.OnQuitGame;
             }
             m_Wrapper.m_DebugActionsCallbackInterface = instance;
             if (instance != null)
@@ -390,6 +415,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @InvertDirection.started += instance.OnInvertDirection;
                 @InvertDirection.performed += instance.OnInvertDirection;
                 @InvertDirection.canceled += instance.OnInvertDirection;
+                @QuitGame.started += instance.OnQuitGame;
+                @QuitGame.performed += instance.OnQuitGame;
+                @QuitGame.canceled += instance.OnQuitGame;
             }
         }
     }
@@ -423,5 +451,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnNextScene(InputAction.CallbackContext context);
         void OnPreviousScene(InputAction.CallbackContext context);
         void OnInvertDirection(InputAction.CallbackContext context);
+        void OnQuitGame(InputAction.CallbackContext context);
     }
 }

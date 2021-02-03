@@ -14,66 +14,41 @@ public class CollisionCheck : MonoBehaviour
     public PhysicsMaterial2D playerMaterial;
     public PhysicsMaterial2D playerMaterialCurva;
     public PhysicsMaterial2D platformMaterial;
+    private Rigidbody2D rb;
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         startPitch = colisao.pitch;
     }
+
     // Faz todos os checks que precisam de colisão
     private void OnCollisionEnter2D(Collision2D collision) {
-
-        //print("ta true ENTER");
 
         switch (collision.transform.tag) {
             case "Plataforma_Recarregavel":
                 Jump.setJump(true);
 
                 playAudioColisao();
+                playFeedbackRecarga();
 
-                //funcao para camerashake ----------------------------> shakecam(intensidade,frequencia,tempo)
-                if (CameraShake.instance != null) { CameraShake.instance.shakeCam(gameObject.GetComponent<Rigidbody2D>().velocity.magnitude/6,1, 0.13f); }
-                //resetMaterial(collision);
-                //instanciar particula de colisao com a parede
-                GameObject particula = Instantiate(paredeParticle,transform.position,Quaternion.identity);
-                if (GetComponent<Rigidbody2D>().velocity.magnitude > 10000f)
-                {
-                    particula.GetComponent<ParticleSystem>().startSpeed = gameObject.GetComponent<Rigidbody2D>().velocity.magnitude * 1.2f;
-                }
                 break;
 
             case "PlatRec_Curva":
                 Jump.setJump(true);
 
                 playAudioColisao();
-
-                //funcao para camerashake ----------------------------> shakecam(intensidade,frequencia,tempo)
-                if (CameraShake.instance != null) { CameraShake.instance.shakeCam(gameObject.GetComponent<Rigidbody2D>().velocity.magnitude / 6, 1, 0.13f); }
-                //setCurveMaterial(collision);
-                //instanciar particula de colisao com a parede
-                GameObject particula5 = Instantiate(paredeParticle, transform.position, Quaternion.identity);
-                if (GetComponent<Rigidbody2D>().velocity.magnitude > 10000f)
-                {
-                    particula5.GetComponent<ParticleSystem>().startSpeed = gameObject.GetComponent<Rigidbody2D>().velocity.magnitude * 1.2f;
-                }
-                break;
+                playFeedbackRecarga();
 
                 break;
+
             case "Plataforma_Quebravel":
 
                 Jump.setJump(true);
 
                 playAudioColisao();
-
-                //funcao para camerashake ----------------------------> shakecam(intensidade,frequencia,tempo)
-                if (CameraShake.instance != null) { CameraShake.instance.shakeCam(gameObject.GetComponent<Rigidbody2D>().velocity.magnitude / 6, 1, 0.13f); }
-
-                //instanciar particula de colisao com a parede
-                GameObject particula2 = Instantiate(paredeParticle, transform.position, Quaternion.identity);
-                if (GetComponent<Rigidbody2D>().velocity.magnitude > 10000f)
-                {
-                    particula2.GetComponent<ParticleSystem>().startSpeed = gameObject.GetComponent<Rigidbody2D>().velocity.magnitude * 1.2f;
-
-                }
+                playFeedbackRecarga();
+                
                 //resetMaterial(collision);
                 LevelManager.Instance.getLevelBreakPlats();
 
@@ -84,18 +59,6 @@ public class CollisionCheck : MonoBehaviour
                     break;
 
             case "Plataforma_Quebravel_Fake":
-
-                //funcao para camerashake ----------------------------> shakecam(intensidade,frequencia,tempo)
-                if (CameraShake.instance != null) { CameraShake.instance.shakeCam(gameObject.GetComponent<Rigidbody2D>().velocity.magnitude / 6, 1, 0.13f); }
-
-                //instanciar particula de colisao com a parede
-                GameObject particula3 = Instantiate(paredeParticle, transform.position, Quaternion.identity);
-                if (GetComponent<Rigidbody2D>().velocity.magnitude > 10000f)
-                {
-                    particula3.GetComponent<ParticleSystem>().startSpeed = gameObject.GetComponent<Rigidbody2D>().velocity.magnitude * 1.2f;
-
-                }
-                //resetMaterial(collision);
 
                 LevelManager.Instance.getLevelBreakPlats();
 
@@ -169,7 +132,7 @@ public class CollisionCheck : MonoBehaviour
         {
             collision.gameObject.GetComponentInChildren<EdgeCollider2D>().sharedMaterial = null;
         }
-        gameObject.GetComponent<Rigidbody2D>().sharedMaterial = playerMaterial;
+        rb.sharedMaterial = playerMaterial;
     }
     void setCurveMaterial(Collider2D collision)
     {
@@ -177,7 +140,7 @@ public class CollisionCheck : MonoBehaviour
         {
             collision.gameObject.GetComponentInChildren<EdgeCollider2D>().sharedMaterial = platformMaterial;
         }
-        gameObject.GetComponent<Rigidbody2D>().sharedMaterial = playerMaterialCurva;
+        rb.sharedMaterial = playerMaterialCurva;
     }
     private void OnCollisionExit2D(Collision2D collision) {
         //print("sai disso");
@@ -187,13 +150,26 @@ public class CollisionCheck : MonoBehaviour
     {
         //play audio
         colisao.pitch = Random.Range(startPitch - 0.1f, startPitch + 0.1f);
-        colisao.PlayOneShot(colisao.clip, colisao.volume.Remap(0,1,0, GetComponent<Rigidbody2D>().velocity.magnitude/2));
+        colisao.PlayOneShot(colisao.clip, colisao.volume.Remap(0,1,0, rb.velocity.magnitude/2));
     }
     void playAudioLose()
     {
         //play audio
         Lose.pitch = Random.Range(0.9f, 1.1f);
         Lose.PlayOneShot(Lose.clip, Lose.volume);
+    }
+
+    void playFeedbackRecarga(){
+        //funcao para camerashake ----------------------------> shakecam(intensidade,frequencia,tempo)
+        if (CameraShake.instance != null) { CameraShake.instance.shakeCam(rb.velocity.magnitude/6,1, 0.13f); }
+
+        //resetMaterial(collision);
+
+        //instanciar particula de colisao com a parede
+        ParticleSystem particula = Instantiate(paredeParticle,transform.position,Quaternion.identity).GetComponent<ParticleSystem>();
+        if (rb.velocity.magnitude > 10000f){
+            particula.startSpeed = rb.velocity.magnitude * 1.2f;
+        }
     }
 
 }
