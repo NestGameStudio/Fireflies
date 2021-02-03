@@ -10,7 +10,7 @@ public class JumpRecovery : MonoBehaviour
     public Animator playerAnim;
 
     private void Update() {
-        print("can Jump: " + canJump); 
+        //print("can Jump: " + canJump); 
     }
 
     public bool CanJump() {

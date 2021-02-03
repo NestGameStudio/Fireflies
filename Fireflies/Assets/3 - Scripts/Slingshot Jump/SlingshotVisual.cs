@@ -63,45 +63,12 @@ public class SlingshotVisual : MonoBehaviour
         line.enabled = false;
     }
 
-    // ------------- Faz o setup visual do slingshot ------------------
-
-    public void SlingshotVisualSetup(Vector2 centerReferencePosition) {
-
-        lineCenterPosition = centerReferencePosition;
-
-        if (showReference) {
-            CreateCenterReference();
-        }
-
-        if (showCincunference) {
-
-            if (cincunferenceInPlayer) {
-                CreateCircunference(this.transform.position);
-            } else {
-                CreateCircunference(lineCenterPosition);
-            }
-        }
-
-        lineSetup();
-
-        isActive = true;
-    }
-
-    public void DisableSlingshotVisuals() {
-
-        centerReference.SetActive(false);
-        circunference.SetActive(false);
-        line.enabled = false;
-        arrow.SetActive(false);
-
-        isActive = false;
-
-    }
-
     // Update is called once per frame
     void Update() {
 
         if (isActive) {
+
+            //Debug.Log("Line End - x: " + lineFinalPosition.x + " | y: " + lineFinalPosition.y);
 
             if (ControlManager.Instance.getCurrentControlScheme() == ControlScheme.KeyboardMouse) {
 
@@ -125,6 +92,40 @@ public class SlingshotVisual : MonoBehaviour
 
     }
 
+    // ------------- Faz o setup visual do slingshot ------------------
+    public void SlingshotVisualSetup(Vector2 centerReferencePosition) {
+
+        lineCenterPosition = centerReferencePosition;
+        //SetFinalLinePosition(lineCenterPosition);
+
+        if (showReference) {
+            CreateCenterReference();
+        }
+
+        if (showCincunference) {
+
+            if (cincunferenceInPlayer) {
+                CreateCircunference(this.transform.position);
+            } else {
+                CreateCircunference(lineCenterPosition);
+            }
+        }
+        
+        lineSetup();
+
+        isActive = true;
+    }
+
+    public void DisableSlingshotVisuals() {
+
+        centerReference.SetActive(false);
+        circunference.SetActive(false);
+        line.enabled = false;
+        arrow.SetActive(false);
+
+        isActive = false;
+    }
+
     // ------------- cria os visuais ------------------
 
     // Inicializa a posição da referência
@@ -140,8 +141,8 @@ public class SlingshotVisual : MonoBehaviour
         circunference.transform.position = position;
         circunference.SetActive(true);
 
-        circunference.transform.localScale = new Vector2(LineMaxRadius / 2, LineMaxRadius / 2);
-        circunference.GetComponentInChildren<Animator>().SetTrigger("Shoot");
+        //circunference.transform.localScale = new Vector2(LineMaxRadius / 2, LineMaxRadius / 2);
+        //circunference.GetComponentInChildren<Animator>().SetTrigger("Shoot");
 
     }
 
@@ -150,7 +151,7 @@ public class SlingshotVisual : MonoBehaviour
 
         line.widthMultiplier = LineWidth;
         line.positionCount = 2;
-        line.enabled = true;
+        //line.enabled = true;
     }
 
     // ------------- Faz o update do arrow ------------------
@@ -173,8 +174,8 @@ public class SlingshotVisual : MonoBehaviour
         Vector2 lineFinalPos = Camera.main.ScreenToWorldPoint(lineFinalPosition);
 
         // Dois pontos da reta
-        Vector2 PointA = Vector2.zero;  // Final (ponta do cursor/analógico)
-        Vector2 PointB = Vector2.zero;  // o Inverso ou no centro da Cali
+        Vector2 PointA = lineCenterPosition;  // Final (ponta do cursor/analógico)
+        Vector2 PointB = lineCenterPosition;  // o Inverso ou no centro da Cali
 
         // Ponto A (posição do mouse)
         if (!InvertedSlingshot) {

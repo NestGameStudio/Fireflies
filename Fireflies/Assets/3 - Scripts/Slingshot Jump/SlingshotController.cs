@@ -131,6 +131,7 @@ public class SlingshotController : MonoBehaviour {
 
         // Posição atual do Mouse ou Analógico
         Vector2 lineFinalPos = Camera.main.ScreenToWorldPoint(direction);
+        //Debug.Log("Direction - x: " + direction.x + " | y: " + direction.y);
 
         if ((lineCenterPos - lineFinalPos).magnitude <= slingshotVisual.GetMaxLine()) {
 
