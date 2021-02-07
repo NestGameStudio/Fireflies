@@ -45,8 +45,6 @@ public class CollisionCheck : MonoBehaviour
     // Faz todos os checks que precisam de colisão
     private void OnCollisionEnter2D(Collision2D collision) {
 
-        print("enter");
-
         switch (collision.transform.tag) {
             case "Plataforma_Recarregavel":
                 Jump.setJump(true);
@@ -134,7 +132,6 @@ public class CollisionCheck : MonoBehaviour
     private void OnCollisionStay2D(Collision2D collision) {
         
         if (!Jump.CanJump() && canRecharge) {
-            print("stay");
 
             switch (collision.transform.tag) {
                 case "Plataforma_Recarregavel":
