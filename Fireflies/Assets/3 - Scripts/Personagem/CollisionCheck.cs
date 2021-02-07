@@ -16,14 +16,36 @@ public class CollisionCheck : MonoBehaviour
     public PhysicsMaterial2D platformMaterial;
     private Rigidbody2D rb;
 
+    public float collisionStayDelay = 0.3f;
+    private float currentColissionStayTimer = 0;
+    private bool canRecharge = false;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         startPitch = colisao.pitch;
+
+    }
+
+    private void Update() {
+
+        if (!Jump.CanJump()) {
+            currentColissionStayTimer += Time.unscaledDeltaTime;
+
+            if(currentColissionStayTimer >= collisionStayDelay) {
+                canRecharge = true;
+                currentColissionStayTimer = 0;
+            }
+        } else {
+            canRecharge = false;
+        }
+
     }
 
     // Faz todos os checks que precisam de colisão
     private void OnCollisionEnter2D(Collision2D collision) {
+
+        print("enter");
 
         switch (collision.transform.tag) {
             case "Plataforma_Recarregavel":
@@ -108,6 +130,38 @@ public class CollisionCheck : MonoBehaviour
         }
         
     }
+
+    private void OnCollisionStay2D(Collision2D collision) {
+        
+        if (!Jump.CanJump() && canRecharge) {
+            print("stay");
+
+            switch (collision.transform.tag) {
+                case "Plataforma_Recarregavel":
+                    Jump.setJump(true);
+
+                    playAudioColisao();
+                    playFeedbackRecarga();
+                    break;
+                case "PlatRec_Curva":
+                    Jump.setJump(true);
+
+                    playAudioColisao();
+                    playFeedbackRecarga();
+                    break;
+                case "Plataforma_Quebravel":
+                    Jump.setJump(true);
+
+                    playAudioColisao();
+                    playFeedbackRecarga();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "PlatRec_Curva")
