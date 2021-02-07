@@ -562,11 +562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db9d2b9e348f834f87fdfaab4f24a3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeSlow: 0.1
-  ImpulseForce: 0.78
   slingshotVisual: {fileID: 1986088842798969980}
-  ClickReferenceInPlayer: 0
-  ReferenceFollowPlayer: 0
   direction: {x: 0, y: 0}
   jumpAudio: {fileID: 4666462514753765126}
 --- !u!114 &1171408052
@@ -1729,16 +1725,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrow: {fileID: 5214924101378468204}
   line: {fileID: 884644836}
-  LineWidth: 0.15
-  LineMaxRadius: 2
-  LineMinRadius: 0.1
-  TransversalArrow: 0
-  InvertedSlingshot: 0
   circunference: {fileID: 563005848}
-  showCincunference: 1
-  cincunferenceInPlayer: 1
   centerReference: {fileID: 247549054}
-  showReference: 1
   slingshotControl: {fileID: 2064471805}
 --- !u!1001 &1986088843016688805
 PrefabInstance:

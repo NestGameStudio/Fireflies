@@ -207,16 +207,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1986088842798969980, guid: b2cb1b6921a06724a82b6476946a00ad,
-        type: 3}
-      propertyPath: cursor
-      value: 
-      objectReference: {fileID: 2800000, guid: 7a828506976b6aa418523c608ab27dbc, type: 3}
-    - target: {fileID: 1986088842798969980, guid: b2cb1b6921a06724a82b6476946a00ad,
-        type: 3}
-      propertyPath: LineMinRadius
-      value: 0.15
-      objectReference: {fileID: 0}
     - target: {fileID: 1986088843813828928, guid: b2cb1b6921a06724a82b6476946a00ad,
         type: 3}
       propertyPath: m_Name
@@ -454,10 +444,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 743739014, guid: a98ebab5d004fea4a9c907652b7f36b9, type: 3}
-      propertyPath: showCursor
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 947740464, guid: a98ebab5d004fea4a9c907652b7f36b9, type: 3}
       propertyPath: JumpControl
       value: 

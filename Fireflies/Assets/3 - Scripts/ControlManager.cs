@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
 
@@ -27,6 +28,8 @@ public class ControlManager : MonoBehaviour {
     private Vector2 directions;
 
     private bool isOnSlowMotion = false;
+    private bool gamepadDelay = false;
+    private float currentDelayTime = 0;
 
     // ------------- Ativa e coleta inputs ------------------
     private void OnEnable() {
@@ -82,17 +85,31 @@ public class ControlManager : MonoBehaviour {
 
         EnableCursor(false);
 
+        currentDelayTime = Setup.Instance.JumpDelay;
     }
 
     // Update is called once per frame
     void Update() {
+
         UpdateDirection();
+
+        // Cuida do delay do controle
+        if (gamepadDelay) {
+            currentDelayTime -= Time.unscaledDeltaTime;
+
+            if (currentDelayTime <= 0) {
+                gamepadDelay = false;
+                currentDelayTime = Setup.Instance.JumpDelay;
+            }
+        }
     }
 
     private void UpdateDirection() {
+
         if (currentControlScheme == ControlScheme.Gamepad) {
 
-            Vector2 maxVector = (Vector2) Camera.main.WorldToScreenPoint(SlingshotController.transform.position) + slingshotMovementDirectionGamepad.ReadValue<Vector2>() * 300;
+            Vector2 maxVector = (Vector2) Camera.main.WorldToScreenPoint(SlingshotController.transform.position) + 
+                                slingshotMovementDirectionGamepad.ReadValue<Vector2>() * Setup.Instance.GamepadSensibility * 100;
             directions = maxVector;
 
         } else {
@@ -105,25 +122,39 @@ public class ControlManager : MonoBehaviour {
     // ------------- Funções das actions ------------------
     private void EnterSlowMotionMode(InputAction.CallbackContext context) {
 
-        UpdateDirection();
+        if (!gamepadDelay) {
 
-        if (!Setup.Instance.StartTimerAfterJump) {
-            StartTimer();
-        }
+            if (currentControlScheme == ControlScheme.Gamepad) {
+                gamepadDelay = true;
+            }
 
-        EnableCursor(true);
-        SlingshotController.EnterSlowMotionMode();
+            isOnSlowMotion = true;
+
+            UpdateDirection();
+
+            if (!Setup.Instance.StartTimerAfterJump) {
+                StartTimer();
+            }
+
+            EnableCursor(true);
+            SlingshotController.EnterSlowMotionMode();
+        } 
     }
 
     private void ExitSlowMotionMode(InputAction.CallbackContext context) {
 
-        if (Setup.Instance.StartTimerAfterJump) {
-            StartTimer();
+        if (isOnSlowMotion) {
+
+            if (Setup.Instance.StartTimerAfterJump) {
+                StartTimer();
+            }
+
+            isOnSlowMotion = false;
+
+            EnableCursor(false);
+
+            SlingshotController.ExitSlowMotionMode();
         }
-
-        EnableCursor(false);
-
-        SlingshotController.ExitSlowMotionMode();
 
     }
 
@@ -193,4 +224,5 @@ public class ControlManager : MonoBehaviour {
         }
         
     }
+
 }

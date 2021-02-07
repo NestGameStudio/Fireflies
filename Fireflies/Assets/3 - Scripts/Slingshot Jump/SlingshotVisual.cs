@@ -257,7 +257,6 @@ public class SlingshotVisual : MonoBehaviour
     }
 
     public void SetFinalLinePosition(Vector2 position) {
-        print("position:" + position);
         lineFinalPosition = position;
     }
     

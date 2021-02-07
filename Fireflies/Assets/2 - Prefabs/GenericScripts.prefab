@@ -51,12 +51,15 @@ MonoBehaviour:
   cincunferenceInPlayer: 1
   showReference: 1
   showCursor: 1
+  setReferenceInCenter: 1
   ClickReferenceInPlayer: 0
   ReferenceFollowPlayer: 0
   ImpulseForce: 0.78
   LineMaxRadius: 2
   LineMinRadius: 1.5
   TimeSlow: 0.01
+  GamepadSensibility: 1
+  JumpDelay: 0.7
 --- !u!1 &7929600313996243151
 GameObject:
   m_ObjectHideFlags: 0
