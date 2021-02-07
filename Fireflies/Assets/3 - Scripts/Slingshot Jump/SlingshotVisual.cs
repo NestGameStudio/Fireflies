@@ -10,31 +10,13 @@ public class SlingshotVisual : MonoBehaviour
     
     public GameObject arrow;            // ponta da seta
     public LineRenderer line;           // a linha
-    public float LineWidth = 0.2f;
-    [Tooltip("O tamanho máximo afeta o impulso final da Cali")]
-    public float LineMaxRadius = 3.0f;
-    [Tooltip("O tamanho mínimo afeta o impulso final da Cali")]
-    public float LineMinRadius = 1.5f;
-
-    // ------------- Orientação da seta ------------------
-    [Header("Teste & Debug - Orientação e formato da linha")]
-    [Space(0.3f)]
-
-    public bool TransversalArrow = true;
-    public bool InvertedSlingshot = true;
-
+ 
     // ------------- Circunferência de Impulso ------------------
-    [Header("Teste & Debug - Limite de impulso")]
+    [Header("Limite de impulso")]
     [Space(0.3f)]
 
     [Tooltip("Objeto que vai fazer a animação de aparição da circunferência")]
     public GameObject circunference;
-
-    [Tooltip("Mostra a circunferencia.")]
-    public bool showCincunference = true;
-
-    [Tooltip("Mostra a circunferencia no player. Caso contrário a circunferência aparecerá no local de referência.")]
-    public bool cincunferenceInPlayer = true;
 
     // ------------- Centro de referência do giro ------------------
     [Header("Teste & Debug - Centro de referência do giro")]
@@ -43,8 +25,7 @@ public class SlingshotVisual : MonoBehaviour
     [Tooltip("Icone que reprensenta referência de giro na scene")]
     public GameObject centerReference;
 
-    [Tooltip("Mostra ou não visualmente o ponto de referência na scene")]
-    public bool showReference = true;
+    [Space(0.3f)]
 
     public SlingshotController slingshotControl;
 
@@ -61,6 +42,12 @@ public class SlingshotVisual : MonoBehaviour
     private void Start()
     {
         line.enabled = false;
+        Cursor.visible = false;
+
+        if (Setup.Instance.setReferenceInCenter && ControlManager.Instance.getCurrentControlScheme() == ControlScheme.KeyboardMouse) {
+            SetFinalLinePosition(new Vector2(Screen.width / 2, Screen.height / 2));
+        }
+       
     }
 
     // Update is called once per frame
@@ -68,13 +55,11 @@ public class SlingshotVisual : MonoBehaviour
 
         if (isActive) {
 
-            //Debug.Log("Line End - x: " + lineFinalPosition.x + " | y: " + lineFinalPosition.y);
-
             if (ControlManager.Instance.getCurrentControlScheme() == ControlScheme.KeyboardMouse) {
 
-                if (slingshotControl.ClickReferenceInPlayer && slingshotControl.ReferenceFollowPlayer) {
+                if (Setup.Instance.ClickReferenceInPlayer && Setup.Instance.ReferenceFollowPlayer) {
                     lineCenterPosition = this.transform.position;
-                } else if (cincunferenceInPlayer) {
+                } else if (Setup.Instance.cincunferenceInPlayer) {
                     adjustCenterReference();
                 } else {
                     adjustCircunference();
@@ -88,7 +73,7 @@ public class SlingshotVisual : MonoBehaviour
             
             adjustSlingshotLine();
             adjustArrowPointer();
-        }
+        } 
 
     }
 
@@ -96,15 +81,17 @@ public class SlingshotVisual : MonoBehaviour
     public void SlingshotVisualSetup(Vector2 centerReferencePosition) {
 
         lineCenterPosition = centerReferencePosition;
-        //SetFinalLinePosition(lineCenterPosition);
+        //if(ControlManager.Instance.getCurrentControlScheme() == ControlScheme.KeyboardMouse) {
+            SetFinalLinePosition(new Vector2(Screen.width / 2, Screen.height / 2));
+        //}
 
-        if (showReference) {
+        if (Setup.Instance.showReference) {
             CreateCenterReference();
         }
 
-        if (showCincunference) {
+        if (Setup.Instance.showCincunference) {
 
-            if (cincunferenceInPlayer) {
+            if (Setup.Instance.cincunferenceInPlayer) {
                 CreateCircunference(this.transform.position);
             } else {
                 CreateCircunference(lineCenterPosition);
@@ -149,7 +136,7 @@ public class SlingshotVisual : MonoBehaviour
     // Inicializa a linha
     private void lineSetup() {
 
-        line.widthMultiplier = LineWidth;
+        line.widthMultiplier = Setup.Instance.LineWidth;
         line.positionCount = 2;
         //line.enabled = true;
     }
@@ -178,15 +165,15 @@ public class SlingshotVisual : MonoBehaviour
         Vector2 PointB = lineCenterPosition;  // o Inverso ou no centro da Cali
 
         // Ponto A (posição do mouse)
-        if (!InvertedSlingshot) {
+        if (!Setup.Instance.InvertedSlingshot) {
             PointA = (Vector2)this.transform.position + lineFinalPos - lineCenterPosition;
         } else {
             PointA = (Vector2)this.transform.position - lineFinalPos + lineCenterPosition;
         }
 
-        if (TransversalArrow) {
+        if (Setup.Instance.TransversalArrow) {
 
-            if (!InvertedSlingshot) {
+            if (!Setup.Instance.InvertedSlingshot) {
                 PointB = (Vector2) this.transform.position - lineFinalPos + lineCenterPosition;
             } else {
                 PointB = (Vector2) this.transform.position + lineFinalPos - lineCenterPosition;
@@ -197,7 +184,7 @@ public class SlingshotVisual : MonoBehaviour
         }
 
         // O cursor está dentro do limite máximo    
-        if (Vector2.Distance(lineCenterPosition, lineFinalPos) <= LineMaxRadius) {
+        if (Vector2.Distance(lineCenterPosition, lineFinalPos) <= Setup.Instance.LineMaxRadius) {
 
             // Desenha a linha com a Cali como centro
             line.SetPosition(0, PointA);
@@ -207,9 +194,9 @@ public class SlingshotVisual : MonoBehaviour
         // Clicou alem do raio máximo da Cali (seta no máximo e move a direção)
         } else {
 
-            float dist = Mathf.Clamp(Vector3.Distance(lineCenterPosition, lineFinalPos), 0, LineMaxRadius);
+            float dist = Mathf.Clamp(Vector3.Distance(lineCenterPosition, lineFinalPos), 0, Setup.Instance.LineMaxRadius);
 
-            if (InvertedSlingshot) {
+            if (Setup.Instance.InvertedSlingshot) {
 
                 Vector2 dir = lineCenterPosition - lineFinalPos;
                 PointA = (Vector2) this.transform.position + (dir.normalized * dist);
@@ -220,9 +207,9 @@ public class SlingshotVisual : MonoBehaviour
                 PointA = (dir.normalized * dist) + (Vector2) this.transform.position;
             }
 
-            if (TransversalArrow) {
+            if (Setup.Instance.TransversalArrow) {
 
-                if (InvertedSlingshot) {
+                if (Setup.Instance.InvertedSlingshot) {
 
                     Vector2 dir = lineFinalPos - lineCenterPosition;
                     PointB = (dir.normalized * dist) + (Vector2) this.transform.position;
@@ -262,14 +249,15 @@ public class SlingshotVisual : MonoBehaviour
     // ------------- Valores visuais ------------------
 
     public float GetMinLine() {
-        return LineMinRadius;
+        return Setup.Instance.LineMinRadius;
     }
 
     public float GetMaxLine() {
-        return LineMaxRadius;
+        return Setup.Instance.LineMaxRadius;
     }
 
     public void SetFinalLinePosition(Vector2 position) {
+        print("position:" + position);
         lineFinalPosition = position;
     }
     

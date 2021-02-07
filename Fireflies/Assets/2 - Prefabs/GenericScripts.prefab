@@ -1,5 +1,62 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &743739012
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 743739013}
+  - component: {fileID: 743739014}
+  m_Layer: 0
+  m_Name: Setup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &743739013
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743739012}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7929600315750768243}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &743739014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743739012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 571a2ec2bdbd39b4e89d81165b69af69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartTimerAfterJump: 1
+  TransversalArrow: 0
+  InvertedSlingshot: 0
+  LineWidth: 0.2
+  showCincunference: 1
+  cincunferenceInPlayer: 1
+  showReference: 1
+  showCursor: 1
+  ClickReferenceInPlayer: 0
+  ReferenceFollowPlayer: 0
+  ImpulseForce: 0.78
+  LineMaxRadius: 2
+  LineMinRadius: 1.5
+  TimeSlow: 0.01
 --- !u!1 &7929600313996243151
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SlingshotController: {fileID: 0}
-  StartTimerAfterJump: 1
+  JumpControl: {fileID: 0}
   slowMotion:
     m_Name: Slow Motion
     m_Type: 0
@@ -81,6 +138,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7929600313996243150}
+  - {fileID: 743739013}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

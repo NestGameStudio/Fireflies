@@ -10,22 +10,7 @@ public class SlingshotController : MonoBehaviour {
     [Header("Controle da Movimentação")]
     [Space(0.3f)]
 
-    [Range(0.0f, 1.0f)] public float TimeSlow = 0.02f;
-    public float ImpulseForce = 330f;
     public SlingshotVisual slingshotVisual;
-
-    // ------------------- Ponto de referência -------------------------
-    [Header("Teste & Debug - Referência de Giro")]
-    [Space(0.3f)]
-
-    [Tooltip ("(Mouse/Keyboard & Mouse) Define a ponto de centro para que aconteça a rotação da linha de slingshot da Cali, ele está indicado como um Gizmo no editor." +
-              "Caso seja true, o ponto de referência deste centro está acompenhando a movimentação da Cali. Caso seja false, o ponto de referência está aonde foi clicado com o mouse." +
-              "Caso esteja usando Gamepad o ponto de referência é sempre o jogador.")]
-    public bool ClickReferenceInPlayer = true;
-
-    [Tooltip("(Mouse/Keyboard & Mouse/Gamepad) Valido apenas para quando o ponto de referencia está no player. Se true, o ponto de referência segue a posição da Cali que se move mesmo em slow motion." +
-             "Se falso, ele usa como ponto de referência a posição original da Cali quando clicou com o mouse.")]
-    public bool ReferenceFollowPlayer = true;
 
     // ------------- Variáveis privadas ------------------
 
@@ -66,12 +51,13 @@ public class SlingshotController : MonoBehaviour {
         // Se está apertando o slowMotion, ajeita a posição do slingshot de acordo com a movimentação do analógico/mouse
         if (isOnSlowMotion) {
 
-            if (ClickReferenceInPlayer & ReferenceFollowPlayer || ControlManager.Instance.getCurrentControlScheme() == ControlScheme.Gamepad) {
+            if (Setup.Instance.ClickReferenceInPlayer & Setup.Instance.ReferenceFollowPlayer || ControlManager.Instance.getCurrentControlScheme() == ControlScheme.Gamepad) {
                 CenterReference();
             }
 
             slingshotVisual.SetFinalLinePosition(direction);
             adjustImpulse();
+ 
         }
 
     }
@@ -81,8 +67,8 @@ public class SlingshotController : MonoBehaviour {
 
         if (JumpControl.CanJump()) {
 
-            Time.timeScale = TimeSlow;
-            Time.fixedDeltaTime = TimeSlow * Time.deltaTime;    // faz com que o slowmotion não fique travado
+            Time.timeScale = Setup.Instance.TimeSlow;
+            Time.fixedDeltaTime = Setup.Instance.TimeSlow * Time.deltaTime;    // faz com que o slowmotion não fique travado
 
             CenterReference();
             slingshotVisual.SlingshotVisualSetup(lineCenterPos);
@@ -100,7 +86,8 @@ public class SlingshotController : MonoBehaviour {
 
             Time.timeScale = 1f;
             slingshotVisual.DisableSlingshotVisuals();
-            
+            slingshotVisual.SetFinalLinePosition(new Vector2(Screen.width / 2, Screen.height / 2));
+
             //evita pulos de força extremamente baixa (game breaking)
             if (impulseVector.magnitude > slingshotVisual.GetMinLine()) {
                 Jump();
@@ -117,12 +104,17 @@ public class SlingshotController : MonoBehaviour {
     // Pega a referência do centro da rotação da linha do slingshot conforme o padrão de controles
     private void CenterReference() {
 
-        if (ClickReferenceInPlayer || ControlManager.Instance.getCurrentControlScheme() == ControlScheme.Gamepad) {
+        if (ControlManager.Instance.getCurrentControlScheme() == ControlScheme.Gamepad) {
             lineCenterPos = this.gameObject.transform.position;
+        } else {
 
-        } else if (!ClickReferenceInPlayer) {
-
-            lineCenterPos = Camera.main.ScreenToWorldPoint(direction);
+            if (Setup.Instance.setReferenceInCenter) {
+                lineCenterPos = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width / 2, Screen.height / 2));
+            } else if (Setup.Instance.ClickReferenceInPlayer) {
+                lineCenterPos = this.gameObject.transform.position;
+            } else if (!Setup.Instance.ClickReferenceInPlayer) {
+                lineCenterPos = Camera.main.ScreenToWorldPoint(direction);
+            }
         }
     }
     
@@ -131,11 +123,10 @@ public class SlingshotController : MonoBehaviour {
 
         // Posição atual do Mouse ou Analógico
         Vector2 lineFinalPos = Camera.main.ScreenToWorldPoint(direction);
-        //Debug.Log("Direction - x: " + direction.x + " | y: " + direction.y);
 
         if ((lineCenterPos - lineFinalPos).magnitude <= slingshotVisual.GetMaxLine()) {
 
-            if (slingshotVisual.InvertedSlingshot) {
+            if (Setup.Instance.InvertedSlingshot) {
                 impulseVector = lineCenterPos - lineFinalPos;
             } else {
                 impulseVector = lineFinalPos - lineCenterPos;
@@ -144,7 +135,7 @@ public class SlingshotController : MonoBehaviour {
         // Passou da linha limite
         } else {
 
-            if (slingshotVisual.InvertedSlingshot) {
+            if (Setup.Instance.InvertedSlingshot) {
                 impulseVector = (lineCenterPos - lineFinalPos).normalized * slingshotVisual.GetMaxLine();
             } else {
                 impulseVector = (lineFinalPos - lineCenterPos).normalized * slingshotVisual.GetMaxLine();
@@ -159,7 +150,7 @@ public class SlingshotController : MonoBehaviour {
         rb.velocity = Vector3.zero;
 
         // Calcula o impulso
-        Vector2 impulse = new Vector2(impulseVector.x, impulseVector.y) * ImpulseForce;
+        Vector2 impulse = new Vector2(impulseVector.x, impulseVector.y) * Setup.Instance.ImpulseForce;
         rb.AddForce(impulse, ForceMode2D.Impulse);
 
         jumpAudioEvent();

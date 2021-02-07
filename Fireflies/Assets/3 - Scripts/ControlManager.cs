@@ -12,14 +12,12 @@ public class ControlManager : MonoBehaviour {
 
     // Referência as classes de acesso
     public SlingshotController SlingshotController;
-
-    // Inicia o timer depois que solta o botão de pulo
-    public bool StartTimerAfterJump = true;
+    public JumpRecovery JumpControl;
 
     // Referência ao setting de controle da Cali
     private PlayerControls controls;
 
-    private ControlScheme currentControlScheme = ControlScheme.Gamepad;
+    private ControlScheme currentControlScheme = ControlScheme.KeyboardMouse;
 
     // Actions possíveis 
     public InputAction slowMotion;
@@ -82,32 +80,24 @@ public class ControlManager : MonoBehaviour {
         slowMotion.performed += EnterSlowMotionMode;
         slowMotion.canceled += ExitSlowMotionMode;
 
+        EnableCursor(false);
+
     }
 
     // Update is called once per frame
     void Update() {
+        UpdateDirection();
+    }
 
+    private void UpdateDirection() {
         if (currentControlScheme == ControlScheme.Gamepad) {
-
-            //print((Vector2) SlingshotController.gameObject.transform.position + "A");
-            //print(slingshotMovementDirection.ReadValue<Vector2>() + "B");
-            //print((Vector2)SlingshotController.gameObject.transform.position + (slingshotMovementDirection.ReadValue<Vector2>() * 2) + "C");
-
-            
 
             Vector2 maxVector = (Vector2) Camera.main.WorldToScreenPoint(SlingshotController.transform.position) + slingshotMovementDirectionGamepad.ReadValue<Vector2>() * 300;
             directions = maxVector;
 
-            //directions = (Vector2) SlingshotController.gameObject.transform.position + (slingshotMovementDirection.ReadValue<Vector2>() * 2);
-
         } else {
             directions = slingshotMovementDirectionMouse.ReadValue<Vector2>();
-            //print(Camera.main.ScreenToWorldPoint(slingshotMovementDirection.ReadValue<Vector2>()) + "A");
-
-            // Isso aqui é a posição da tela
-            // a direção é a posição do mouse na tela
         }
-
 
         SlingshotController.direction = directions;
     }
@@ -115,23 +105,46 @@ public class ControlManager : MonoBehaviour {
     // ------------- Funções das actions ------------------
     private void EnterSlowMotionMode(InputAction.CallbackContext context) {
 
-        if (!StartTimerAfterJump) {
+        UpdateDirection();
+
+        if (!Setup.Instance.StartTimerAfterJump) {
             StartTimer();
         }
 
-
+        EnableCursor(true);
         SlingshotController.EnterSlowMotionMode();
-           
     }
 
     private void ExitSlowMotionMode(InputAction.CallbackContext context) {
 
-        if (StartTimerAfterJump) {
+        if (Setup.Instance.StartTimerAfterJump) {
             StartTimer();
         }
 
+        EnableCursor(false);
+
         SlingshotController.ExitSlowMotionMode();
-        
+
+    }
+
+    private void EnableCursor(bool enable) {
+
+        if (currentControlScheme == ControlScheme.KeyboardMouse && Setup.Instance.setReferenceInCenter) {
+            Mouse.current.WarpCursorPosition(new Vector2(Screen.width / 2, Screen.height / 2));
+
+            if (enable) {
+
+                if (Setup.Instance.showCursor) {
+                    Cursor.visible = true;
+                }
+                Cursor.lockState = CursorLockMode.None;
+            } else {
+                if (Setup.Instance.showCursor) {
+                    Cursor.visible = false;
+                }
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+        }
     }
 
     // ---------------- Funções de debug ---------------------
@@ -144,7 +157,7 @@ public class ControlManager : MonoBehaviour {
     }
 
     private void InvertDirection(InputAction.CallbackContext context){
-        SlingshotController.slingshotVisual.InvertedSlingshot = !SlingshotController.slingshotVisual.InvertedSlingshot; 
+        Setup.Instance.InvertedSlingshot = !Setup.Instance.InvertedSlingshot; 
     }
 
     private void QuitGame(InputAction.CallbackContext context){
@@ -154,8 +167,6 @@ public class ControlManager : MonoBehaviour {
     private void onInputDeviceChange(InputUser user, InputUserChange change, InputDevice device) {
 
         if (change == InputUserChange.ControlSchemeChanged && !isOnSlowMotion) {
-
-            //print(user.controlScheme.Value.name);
 
             switch (user.controlScheme.Value.name) {
                 case "Keyboard and Mouse":
@@ -180,9 +191,6 @@ public class ControlManager : MonoBehaviour {
             TimerController.Instance.PauseTimer(false);
             
         }
-        else
-        {
-            
-        }
+        
     }
 }
