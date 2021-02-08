@@ -56,8 +56,8 @@ MonoBehaviour:
   ReferenceFollowPlayer: 0
   ImpulseForce: 0.78
   LineMaxRadius: 2
-  LineMinRadius: 1.5
-  TimeSlow: 0.01
+  LineMinRadius: 0.5
+  TimeSlow: 0.2
   GamepadSensibility: 1
   JumpDelay: 0.7
 --- !u!1 &7929600313996243151
