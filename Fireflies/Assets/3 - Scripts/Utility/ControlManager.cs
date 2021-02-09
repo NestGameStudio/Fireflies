@@ -132,9 +132,9 @@ public class ControlManager : MonoBehaviour {
 
             UpdateDirection();
 
-            if (!Setup.Instance.StartTimerAfterJump) {
-                StartTimer();
-            }
+            //if (!Setup.Instance.StartTimerAfterJump) {
+            //    StartTimer();
+            //}
 
             EnableCursor(true);
             SlingshotController.EnterSlowMotionMode();
@@ -145,9 +145,9 @@ public class ControlManager : MonoBehaviour {
 
         if (isOnSlowMotion) {
 
-            if (Setup.Instance.StartTimerAfterJump) {
+            /*if (Setup.Instance.StartTimerAfterJump) {
                 StartTimer();
-            }
+            }*/
 
             isOnSlowMotion = false;
 
@@ -215,14 +215,14 @@ public class ControlManager : MonoBehaviour {
         return currentControlScheme;
     }
 
-    public void StartTimer() {
+    //public void starttimer() {
 
-        if (!TimerController.Instance.hasStarted && LevelManager.Instance.canStartTimer) {
-            TimerController.Instance.hasStarted = false;
-            TimerController.Instance.PauseTimer(false);
-            
-        }
-        
-    }
+    //    if (!timercontroller.instance.hasstarted && levelmanager.instance.canstarttimer) {
+    //        timercontroller.instance.hasstarted = false;
+    //        timercontroller.instance.pausetimer(false);
+
+    //    }
+
+    //}
 
 }

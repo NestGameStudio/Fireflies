@@ -11,7 +11,7 @@ public class Setup: MonoBehaviour {
     [Space(0.3f)]
 
     [Tooltip(" Inicia o timer geral do jogo depois que solta o botão de pulo")]
-    public bool StartTimerAfterJump = true;
+    //public bool StartTimerAfterJump = true;
 
     // ------------------- Seta -------------------------
     [Header("Seta")]
