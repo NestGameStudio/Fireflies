@@ -38,11 +38,13 @@ public class SlingshotController : MonoBehaviour {
 
         startPitch = jumpAudio.pitch;
         
-
+        // Procura o objeto que contém a música do jogo
         if(audioMusic == null)
         {
-            audioMusic = GameObject.FindGameObjectWithTag("Music").GetComponent<AudioLowPassFilter>();
-            audioMusic.enabled = false;
+            if (GameObject.FindGameObjectWithTag("Music") != null) {
+                audioMusic = GameObject.FindGameObjectWithTag("Music").GetComponent<AudioLowPassFilter>();
+                audioMusic.enabled = false;
+            }
         }
     }
 
