@@ -134,6 +134,7 @@ public class ControlManager : MonoBehaviour {
 
             //if (!Setup.Instance.StartTimerAfterJump) {
             //    StartTimer();
+
             //}
 
             EnableCursor(true);
