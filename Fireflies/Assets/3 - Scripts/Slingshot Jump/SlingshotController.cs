@@ -85,7 +85,7 @@ public class SlingshotController : MonoBehaviour {
                 audioMusic.enabled = true;
             }
 
-            
+            GetComponentInParent<Trajectory>().enterArc();
         }
         // Apertou o botão sem poder pular -> 'bufferiza' o pulo
         else{
@@ -116,6 +116,8 @@ public class SlingshotController : MonoBehaviour {
             {
                 audioMusic.enabled = false;
             }
+
+            GetComponentInParent<Trajectory>().exitArc();
         }
         // Soltou o botão sem estar no slowmotion
         else{

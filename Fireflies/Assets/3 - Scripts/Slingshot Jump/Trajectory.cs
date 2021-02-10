@@ -106,10 +106,14 @@ return lineRendererPoints;
         //}
     }
 */
+    public void enterArc()
+    {
+        lr.enabled = true;
+    }
     public void exitArc()
     {
-        lr.positionCount = 0;
-
-        oneCheck = true;
+        //lr.positionCount = 0;
+        lr.enabled = false;
+        //oneCheck = true;
     }
 }
