@@ -1070,7 +1070,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: aad646a03323591419405873ea772fcf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1102,7 +1102,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.31132317
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -1144,7 +1144,7 @@ LineRenderer:
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
+    textureMode: 1
     shadowBias: 0.5
     generateLightingData: 0
   m_UseWorldSpace: 1
@@ -1163,7 +1163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Points: 10
   Player: {fileID: 1986088843813828928}
-  TimeOfSimulation: 10
+  TimeOfSimulation: 4
 --- !u!1 &3303763762343284749
 GameObject:
   m_ObjectHideFlags: 0
