@@ -34,8 +34,8 @@ public class Trajectory : MonoBehaviour
         Vector2 launchPosition = gameObject.transform.position;//Position where you launch from
 
         //Debug.Log("launchSpeed = " + Player.GetComponentInChildren<SlingshotController>().impulseVector.magnitude);
-        //float launchSpeed = Player.GetComponentInChildren<SlingshotController>().impulseVector.magnitude * Setup.Instance.ImpulseForce * 3.5f;//Example speed per secs.
-        float launchSpeed = Player.GetComponentInChildren<SlingshotController>().impulse.magnitude * 3.5f;
+        float launchSpeed = Player.GetComponentInChildren<SlingshotController>().impulseVector.magnitude * Setup.Instance.ImpulseForce * 3.5f;//Example speed per secs.
+        //float launchSpeed = Player.GetComponentInChildren<SlingshotController>().impulse.magnitude * 3.5f;
 
         //float launchSpeed = Player.GetComponentInChildren<SlingshotController>().impulse.magnitude * 4 - GetComponent<Rigidbody2D>().mass;
 
