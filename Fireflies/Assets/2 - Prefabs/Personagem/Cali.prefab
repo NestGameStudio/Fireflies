@@ -1161,9 +1161,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15b2f29a84085a947b6b13b4eae6aa45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Points: 10
+  Points: 25
   Player: {fileID: 1986088843813828928}
-  TimeOfSimulation: 4
+  TimeOfSimulation: 1.6
 --- !u!1 &3303763762343284749
 GameObject:
   m_ObjectHideFlags: 0

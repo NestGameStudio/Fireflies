@@ -10,7 +10,7 @@ public class Trajectory : MonoBehaviour
 
     public GameObject Player;
 
-    private float collisionCheckRadius = 0.6f;
+    private float collisionCheckRadius = 0.5f;
 
     public float TimeOfSimulation;
 
