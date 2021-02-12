@@ -66,7 +66,15 @@ public class SlingshotController : MonoBehaviour {
         }
 
     }
-   
+    /*
+    private void FixedUpdate()
+    {
+        if (isOnSlowMotion)
+        {
+            GetComponentInParent<Trajectory>().SimulateArc();
+        }
+    }
+    */
     // -> Slow Motion 
     public void EnterSlowMotionMode() {
 

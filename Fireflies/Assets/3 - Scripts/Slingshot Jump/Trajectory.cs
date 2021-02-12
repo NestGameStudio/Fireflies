@@ -10,7 +10,7 @@ public class Trajectory : MonoBehaviour
 
     public GameObject Player;
 
-    private float collisionCheckRadius = 0.1f;
+    private float collisionCheckRadius = 0.3f;
 
     public float TimeOfSimulation;
 
@@ -22,41 +22,6 @@ public class Trajectory : MonoBehaviour
         lr.startColor = Color.white;
     }
 
-    /*
-    public List<Vector2> SimulateArc()
-    {
-        Debug.Log("simulating arc");
-        float simulateForDuration = TimeOfSimulation;
-        float simulationStep = 0.1f;//Will add a point every 0.1 secs.
-
-        int steps = (int)(simulateForDuration / simulationStep);
-        List<Vector2> lineRendererPoints = new List<Vector2>();
-        Vector2 calculatedPosition;
-        Vector2 directionVector = Player.GetComponentInChildren<SlingshotController>().impulseVector ;// The direction it should go
-        Vector2 launchPosition = transform.position;//Position where you launch from
-        float launchSpeed = Player.GetComponentInChildren<SlingshotController>().impulseVector.magnitude;//The initial power applied on the player
-
-        for (int i = 0; i < steps; ++i)
-        {
-            calculatedPosition = launchPosition + (directionVector * (launchSpeed * i * simulationStep));
-            //Calculate gravity
-            calculatedPosition.y += Physics2D.gravity.y * (i * simulationStep);
-            lineRendererPoints.Add(calculatedPosition);
-            /*
-            if (CheckForCollision(calculatedPosition))//if you hit something
-            {
-                break;//stop adding positions
-            }
-            */
-    /*
-}
-
-return lineRendererPoints;
-
-
-
-}
-*/
     public void SimulateArc()
     {
         float simulateForDuration = 5f;//simulate for 5 secs in the furture
@@ -67,53 +32,97 @@ return lineRendererPoints;
         Vector2 calculatedPosition;
         Vector2 directionVector = Player.GetComponentInChildren<SlingshotController>().impulseVector;//You plug you own direction here this is just an example
         Vector2 launchPosition = gameObject.transform.position;//Position where you launch from
+
+        Debug.Log("launchSpeed = " + Player.GetComponentInChildren<SlingshotController>().impulseVector.magnitude);
         float launchSpeed = Player.GetComponentInChildren<SlingshotController>().impulseVector.magnitude * 2.75f;//Example speed per secs.
 
-        for (int i = 0; i < steps; ++i)
+        if (Player.GetComponentInChildren<SlingshotController>().impulseVector.magnitude > Setup.Instance.LineMinRadius)
         {
-            calculatedPosition = launchPosition + (directionVector * (launchSpeed * i * simulationStep));
-            //Calculate gravity
-            calculatedPosition.y += Physics2D.gravity.y * (i * simulationStep) * (i * simulationStep);
-            lineRendererPoints.Add(calculatedPosition);
-            //if (CheckForCollision(calculatedPosition))//if you hit something
-            //{
-            //    break;//stop adding positions
-            //}
-            lr.positionCount = steps;
-            lr.SetPosition(i, calculatedPosition);
+
+            enterArc();
+
+            for (int i = 0; i < steps; ++i)
+            {
+                calculatedPosition = launchPosition + (directionVector * (launchSpeed * i * simulationStep));
+                //Calculate gravity
+                calculatedPosition.y += Physics2D.gravity.y * (i * simulationStep) * (i * simulationStep);
+                lineRendererPoints.Add(calculatedPosition);
+                //if (CheckForCollision(calculatedPosition))//if you hit something
+                //{
+                //    break;//stop adding positions
+                //}
+
+                lr.positionCount = steps;
+
+                lr.SetPosition(i, calculatedPosition);
+
+                //Vector2 positionLerp = Vector2.Lerp(lr.GetPosition(i), calculatedPosition, Time.deltaTime);
+
+                //lr.SetPosition(i, positionLerp);
+
+                if (CheckForCollision(lr.GetPosition(i)))//if you hit something
+                {
+                    deletePositionsAboveX(i, steps);
+                    break;//stop adding positions
+                }
+
+            }
+
+            //Assign all the positions to the line renderer.
+
+        }
+        else
+        {
+            exitArc();
         }
 
-        //Assign all the positions to the line renderer.
-
-        
-
     }
 
-    /*
-    public void EnterArc()
-    {
-        
-        if (oneCheck)
-        {
-            oneCheck = false;
-            
-            lr.positionCount = SimulateArc().Count;
-
-            for (int a = 0; a < lr.positionCount; a++)
-            {
-                lr.SetPosition(a, SimulateArc()[a]);
-            }
-        //}
-    }
-*/
     public void enterArc()
     {
-        lr.enabled = true;
+        if (lr.enabled == false)
+        {
+            lr.enabled = true;
+        }
     }
     public void exitArc()
     {
-        //lr.positionCount = 0;
-        lr.enabled = false;
-        //oneCheck = true;
+        if (lr.enabled)
+        {
+            //lr.positionCount = 0;
+            lr.enabled = false;
+            //oneCheck = true;
+        }
     }
+    void deletePositionsAboveX(int x, int steps)
+    {
+
+        lr.positionCount = lr.positionCount - Mathf.Abs(x - steps);
+        
+    }
+    private bool CheckForCollision(Vector2 position)
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(position, collisionCheckRadius);
+        if (hits.Length > 0)
+        {
+            //We hit something 
+            //check if its a wall or seomthing
+            //if its a valid hit then return true
+            foreach(Collider2D hit in hits)
+            {
+                if(hit.gameObject.tag == "Plataforma_Recarregavel" || hit.gameObject.tag == "Plataforma_NaoRecarregavel" || hit.gameObject.tag == "Plataforma_Quebravel" || hit.gameObject.tag == "Plataforma_Quebravel_Fake" || hit.gameObject.tag == "PlatRec_Curva")
+                {
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            
+        }
+        return false;
+    }
+
 }
