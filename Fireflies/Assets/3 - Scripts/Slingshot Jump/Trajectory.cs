@@ -33,9 +33,11 @@ public class Trajectory : MonoBehaviour
         Vector2 directionVector = Player.GetComponentInChildren<SlingshotController>().impulseVector;//You plug you own direction here this is just an example
         Vector2 launchPosition = gameObject.transform.position;//Position where you launch from
 
-        Debug.Log("launchSpeed = " + Player.GetComponentInChildren<SlingshotController>().impulseVector.magnitude);
-        float launchSpeed = Player.GetComponentInChildren<SlingshotController>().impulseVector.magnitude * Setup.Instance.ImpulseForce * 3.5f;//Example speed per secs.
-        //float launchSpeed = Player.GetComponentInChildren<SlingshotController>().impulse.magnitude * 3.5f;
+        //Debug.Log("launchSpeed = " + Player.GetComponentInChildren<SlingshotController>().impulseVector.magnitude);
+        //float launchSpeed = Player.GetComponentInChildren<SlingshotController>().impulseVector.magnitude * Setup.Instance.ImpulseForce * 3.5f;//Example speed per secs.
+        float launchSpeed = Player.GetComponentInChildren<SlingshotController>().impulse.magnitude * 3.5f;
+
+        //float launchSpeed = Player.GetComponentInChildren<SlingshotController>().impulse.magnitude * 4 - GetComponent<Rigidbody2D>().mass;
 
         if (Player.GetComponentInChildren<SlingshotController>().impulseVector.magnitude > Setup.Instance.LineMinRadius)
         {
@@ -44,7 +46,7 @@ public class Trajectory : MonoBehaviour
 
             for (int i = 0; i < steps; ++i)
             {
-                calculatedPosition = launchPosition + (directionVector * (launchSpeed * i * simulationStep));
+                calculatedPosition = launchPosition + (directionVector * ((launchSpeed) * i * simulationStep));
                 //Calculate gravity
                 calculatedPosition.y += Physics2D.gravity.y * (i * simulationStep) * (i * simulationStep);
                 lineRendererPoints.Add(calculatedPosition);
