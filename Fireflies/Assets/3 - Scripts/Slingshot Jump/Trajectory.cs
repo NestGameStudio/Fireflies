@@ -34,7 +34,8 @@ public class Trajectory : MonoBehaviour
         Vector2 launchPosition = gameObject.transform.position;//Position where you launch from
 
         Debug.Log("launchSpeed = " + Player.GetComponentInChildren<SlingshotController>().impulseVector.magnitude);
-        float launchSpeed = Player.GetComponentInChildren<SlingshotController>().impulseVector.magnitude * 2.75f;//Example speed per secs.
+        float launchSpeed = Player.GetComponentInChildren<SlingshotController>().impulseVector.magnitude * Setup.Instance.ImpulseForce * 3.5f;//Example speed per secs.
+        //float launchSpeed = Player.GetComponentInChildren<SlingshotController>().impulse.magnitude * 3.5f;
 
         if (Player.GetComponentInChildren<SlingshotController>().impulseVector.magnitude > Setup.Instance.LineMinRadius)
         {
@@ -102,12 +103,21 @@ public class Trajectory : MonoBehaviour
     }
     private bool CheckForCollision(Vector2 position)
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(position, collisionCheckRadius);
+
+        // Bit shift the index of the layer (8) to get a bit mask
+        int layerMask = 1 << 0;
+
+        // This would cast rays only against colliders in layer 8.
+        // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
+        //layerMask = ~layerMask;
+
+        Collider2D[] hits = Physics2D.OverlapCircleAll(position, collisionCheckRadius,layerMask);
         if (hits.Length > 0)
         {
             //We hit something 
             //check if its a wall or seomthing
             //if its a valid hit then return true
+
             foreach(Collider2D hit in hits)
             {
                 if(hit.gameObject.tag == "Plataforma_Recarregavel" || hit.gameObject.tag == "Plataforma_NaoRecarregavel" || hit.gameObject.tag == "Plataforma_Quebravel" || hit.gameObject.tag == "Plataforma_Quebravel_Fake" || hit.gameObject.tag == "PlatRec_Curva")
@@ -115,6 +125,7 @@ public class Trajectory : MonoBehaviour
 
                     return true;
                 }
+
                 else
                 {
                     return false;
