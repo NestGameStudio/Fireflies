@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64552ccf624340e5ac0c3c984ff97a21, type: 3}
+  m_Name: LDtkProject
+  m_EditorClassIdentifier: 
+  _jsonProject: {fileID: -9137991013969108190, guid: 9d3ba164ca56bef49b9ba5e0e3717cca,
+    type: 3}
+  _tilemapPrefab: {fileID: 0}
+  _intGridValueColorsVisible: 0
+  _pixelsPerUnit: 16
+  _levels:
+  - {fileID: -8900196649867604931, guid: 5cf8d7f61bcd6ba478410af1e4252705, type: 3}
+  - {fileID: -8900196649867604931, guid: 9169e6d29e085eb4d8c0b67695bd678d, type: 3}
+  - {fileID: -8900196649867604931, guid: 07dbbccd5f378884ca4eeb2296b510c5, type: 3}
+  - {fileID: -8900196649867604931, guid: 3c48b2b59ac3d78478d52c02c2b3eb9a, type: 3}
+  - {fileID: -8900196649867604931, guid: 2add9d25fba39a14da2fccb4d3245b67, type: 3}
+  - {fileID: -8900196649867604931, guid: d3a2b6943e4d8d240b2aea284a7cc577, type: 3}
+  - {fileID: -8900196649867604931, guid: 1c51b55c6c19d2143996ee41fda70f86, type: 3}
+  - {fileID: -8900196649867604931, guid: d5d09b8cf0e03384d9d5fe04fa8d6026, type: 3}
+  - {fileID: -8900196649867604931, guid: 70f148b44fab840469f05f08f1ac2d52, type: 3}
+  - {fileID: -8900196649867604931, guid: cb2138798c42a3c4a951a33780a7b691, type: 3}
+  - {fileID: -8900196649867604931, guid: 8198c946e3efdc0409b21ab0e0a53450, type: 3}
+  - {fileID: -8900196649867604931, guid: 8adb12077ad26b44f865b849577f5ccb, type: 3}
+  - {fileID: -8900196649867604931, guid: 59e97126211aea64c8693a33d829eb0b, type: 3}
+  - {fileID: -8900196649867604931, guid: 42fdb2ec5ae3206498b40c9cbfc50898, type: 3}
+  - {fileID: -8900196649867604931, guid: 5dc0e990ccea2cf46acd6e767ebb5789, type: 3}
+  - {fileID: -8900196649867604931, guid: 82f52f128db02ec4997533cf4bc03fcf, type: 3}
+  _intGridValues:
+  - {fileID: 11400000, guid: 6d6bbd660c05dc344a2e8bf77332092b, type: 2}
+  - {fileID: 11400000, guid: af84f809800494a46a5cd9aac0b05421, type: 2}
+  - {fileID: 0}
+  _entities:
+  - {fileID: 11400000, guid: 4c461033763fc0649b7d79742ca9aa36, type: 2}
+  _tilesets:
+  - {fileID: 11400000, guid: 4dcf3a0a0ff265649afd9f52096fcd9c, type: 2}
+  - {fileID: 11400000, guid: 414a8ae028d0ae04ca18e72cb24d4e3b, type: 2}
