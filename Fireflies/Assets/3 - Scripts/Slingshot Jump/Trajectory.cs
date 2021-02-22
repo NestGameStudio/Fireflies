@@ -77,7 +77,20 @@ public class Trajectory : MonoBehaviour
 
             }
 
-            //Assign all the positions to the line renderer.
+            // A simple 2 color gradient with a fixed alpha of 1.0f.
+            float[] alpha = new float[]{ 1.0f , 0 };
+            float stepsAlpha = lr.positionCount;
+
+            Gradient gradient = new Gradient();
+            gradient.SetKeys(
+                new GradientColorKey[] { new GradientColorKey(Color.white, 0.0f), new GradientColorKey(Color.white, 1.0f) },
+                //new GradientColorKey[] { new GradientColorKey(Color.white, stepsAlpha.Remap(stepsAlpha, 0,0f,0.6f)), new GradientColorKey(Color.red, 1.0f) },
+                //new GradientAlphaKey[] { new GradientAlphaKey(alpha[0], stepsAlpha.Remap(0, lr.positionCount, 0.5f, 0f)), new GradientAlphaKey(alpha[1], stepsAlpha.Remap(0, lr.positionCount, 1,0.8f)) }
+                //new GradientAlphaKey[] { new GradientAlphaKey(alpha[0], 0), new GradientAlphaKey(alpha[0], 1) }
+                new GradientAlphaKey[] { new GradientAlphaKey(alpha[0], 0), new GradientAlphaKey(stepsAlpha.Remap(Player.GetComponentInChildren<SlingshotController>().impulseVector.magnitude, 0, 0.8f, 1f), 1) }
+                );
+            lr.colorGradient = gradient;
+
 
         }
         else
