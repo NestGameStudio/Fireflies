@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: 7050684960040369926}
   - component: {fileID: 311546769987869399}
   - component: {fileID: 3219064947472739551}
+  - component: {fileID: 6718477867574047999}
   m_Layer: 0
   m_Name: Bleeper_Enemy
   m_TagString: Bleeper_Invulneravel
@@ -189,6 +190,8 @@ MonoBehaviour:
   - {fileID: 2414950381358209739}
   angy: {fileID: 2414950381358209737}
   changeTime: 2
+  impulseForce: 1
+  canViewPlayer: 0
   Estado: 0
 --- !u!114 &7050684960040369926
 MonoBehaviour:
@@ -229,19 +232,35 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3783430493388078546}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1.5
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
+--- !u!58 &6718477867574047999
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3783430493388078546}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 8
 --- !u!1 &7859704960089466569
 GameObject:
   m_ObjectHideFlags: 0

@@ -397,6 +397,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85dd69fab0437604eb2bafb47d86fafd, type: 3}
+--- !u!1001 &948659647
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1039117042206833852, guid: 24f81ec6ade7a43448057c07a2f280e0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1039117042206833852, guid: 24f81ec6ade7a43448057c07a2f280e0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 1039117042206833852, guid: 24f81ec6ade7a43448057c07a2f280e0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1039117042206833852, guid: 24f81ec6ade7a43448057c07a2f280e0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1039117042206833852, guid: 24f81ec6ade7a43448057c07a2f280e0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1039117042206833852, guid: 24f81ec6ade7a43448057c07a2f280e0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1039117042206833852, guid: 24f81ec6ade7a43448057c07a2f280e0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1039117042206833852, guid: 24f81ec6ade7a43448057c07a2f280e0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1039117042206833852, guid: 24f81ec6ade7a43448057c07a2f280e0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1039117042206833852, guid: 24f81ec6ade7a43448057c07a2f280e0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1039117042206833852, guid: 24f81ec6ade7a43448057c07a2f280e0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3783430493388078546, guid: 24f81ec6ade7a43448057c07a2f280e0,
+        type: 3}
+      propertyPath: m_Name
+      value: Bleeper_Enemy
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 24f81ec6ade7a43448057c07a2f280e0, type: 3}
 --- !u!1 &988243636
 GameObject:
   m_ObjectHideFlags: 0

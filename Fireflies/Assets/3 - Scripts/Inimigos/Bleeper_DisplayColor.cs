@@ -12,17 +12,18 @@ public class Bleeper_DisplayColor : MonoBehaviour
     public GameObject debugObject;
 
     public GameObject effectObject;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        //visualizacao de mudanca de cor
-        behaviourScript.mudarCor();
+
 
         //visualizacao de debug
         if (behaviourScript.Debug)

@@ -41,6 +41,13 @@ public class BleeperBehaviour : MonoBehaviour
     //variavel que guarda o changeTime logo no inicio do jogo
     private float timeBackup;
 
+    [Header("Forca de impulso ate o player")]
+    public float impulseForce = 2;
+
+    private Rigidbody2D rb;
+
+    public bool canViewPlayer = false;
+
     public enum estado
     {
         inatingivel,
@@ -53,6 +60,8 @@ public class BleeperBehaviour : MonoBehaviour
     void Start()
     {
         timeBackup = changeTime;
+
+        rb = GetComponent<Rigidbody2D>();
 
         if (Estado == estado.inatingivel)
         {
@@ -71,7 +80,7 @@ public class BleeperBehaviour : MonoBehaviour
         {
             changeTime -= Time.deltaTime;
         }
-        else
+        else if(changeTime <= 0 && rb.velocity.magnitude <= 0.2f)
         {
             changeState();
 
@@ -104,6 +113,9 @@ public class BleeperBehaviour : MonoBehaviour
         else
         {
             Estado = estado.inatingivel;
+
+            //se joga no player
+            forceToPlayer();
         }
 
     }
@@ -118,6 +130,8 @@ public class BleeperBehaviour : MonoBehaviour
         if (Estado == estado.inatingivel)
         {
             angy.SetActive(true);
+
+            
         }
         else
         {
@@ -139,6 +153,44 @@ public class BleeperBehaviour : MonoBehaviour
             gameObject.tag = "Bleeper_Invulneravel";
         }
     }
+    public void forceToPlayer()
+    {
+        //caso esteja vendo o player
+        if (canViewPlayer)
+        {
+            //get player
+            Vector3 playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
 
+            rb.AddForce((playerPos - gameObject.transform.position) * impulseForce, ForceMode2D.Impulse);
+
+            print("se jogou");
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            //player esta dentro da visao
+            canViewPlayer = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            //player esta fora da visao
+            canViewPlayer = false;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.white;
+        Gizmos.DrawLine(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position);
+
+        //Gizmos.color = Color.red;
+        //Gizmos.DrawWireSphere(transform.position, 1);
+    }
 }
 
