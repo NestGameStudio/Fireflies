@@ -98,7 +98,7 @@ public class Trajectory : MonoBehaviour
                 //new GradientColorKey[] { new GradientColorKey(Color.white, stepsAlpha.Remap(stepsAlpha, 0,0f,0.6f)), new GradientColorKey(Color.red, 1.0f) },
                 //new GradientAlphaKey[] { new GradientAlphaKey(alpha[0], stepsAlpha.Remap(0, lr.positionCount, 0.5f, 0f)), new GradientAlphaKey(alpha[1], stepsAlpha.Remap(0, lr.positionCount, 1,0.8f)) }
                 //new GradientAlphaKey[] { new GradientAlphaKey(alpha[0], 0), new GradientAlphaKey(alpha[0], 1) }
-                new GradientAlphaKey[] { new GradientAlphaKey(alpha[0], 0), new GradientAlphaKey(stepsAlpha.Remap(Player.GetComponentInChildren<SlingshotController>().impulseVector.magnitude, 0, 0.8f, 1f), 1) }
+                new GradientAlphaKey[] { new GradientAlphaKey(alpha[0], 0), new GradientAlphaKey(stepsAlpha.Remap(Player.GetComponentInChildren<SlingshotController>().impulseVector.magnitude, 0, 0.7f, 1f), 1) }
                 );
             lr.colorGradient = gradient;
 
