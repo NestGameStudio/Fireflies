@@ -16,6 +16,12 @@ public class Trajectory : MonoBehaviour
 
     private bool oneCheck = true;
 
+    public GameObject trajectoryHit;
+
+    bool showHitPoint = false;
+
+    private Vector2 hitpoint;
+
     private void Awake()
     {
         lr = GetComponent<LineRenderer>();
@@ -72,7 +78,12 @@ public class Trajectory : MonoBehaviour
                 if (CheckForCollision(lr.GetPosition(i)))//if you hit something
                 {
                     deletePositionsAboveX(i, steps);
+                    //showHitPoint = true;
                     break;//stop adding positions
+                }
+                else
+                {
+                    //showHitPoint = false;
                 }
 
             }
@@ -91,7 +102,34 @@ public class Trajectory : MonoBehaviour
                 );
             lr.colorGradient = gradient;
 
+            //trajectoryHit.transform.position = lr.GetPosition(lr.positionCount-1);
+            /*
+            if (CheckForCollision(lr.GetPosition(lr.positionCount-1))){
+                //trajectoryHit.SetActive(true);
+                showHitPoint = true;
+            }
+            else
+            {
+                //trajectoryHit.SetActive(false);
+                showHitPoint = false;
+            }
+            */
+            trajectoryHit.transform.position = Vector2.Lerp(trajectoryHit.transform.position, hitpoint,Time.deltaTime*1000);
 
+            float size = 1 - ( lr.positionCount)/10;
+
+            trajectoryHit.transform.localScale = new Vector3(size,size,size);
+
+            if (showHitPoint)
+            {
+                trajectoryHit.SetActive(true);
+                
+            }
+            else
+            {
+                trajectoryHit.SetActive(false);
+            }
+            
         }
         else
         {
@@ -105,6 +143,7 @@ public class Trajectory : MonoBehaviour
         if (lr.enabled == false)
         {
             lr.enabled = true;
+            trajectoryHit.SetActive(true);
         }
     }
     public void exitArc()
@@ -113,6 +152,7 @@ public class Trajectory : MonoBehaviour
         {
             //lr.positionCount = 0;
             lr.enabled = false;
+            trajectoryHit.SetActive(false);
             //oneCheck = true;
         }
     }
@@ -143,12 +183,14 @@ public class Trajectory : MonoBehaviour
             {
                 if(hit.gameObject.tag == "Plataforma_Recarregavel" || hit.gameObject.tag == "Plataforma_NaoRecarregavel" || hit.gameObject.tag == "Plataforma_Quebravel" || hit.gameObject.tag == "Plataforma_Quebravel_Fake" || hit.gameObject.tag == "PlatRec_Curva")
                 {
-
+                    showHitPoint = true;
+                    hitpoint = position ;
                     return true;
                 }
 
                 else
                 {
+                    showHitPoint = false;
                     return false;
                 }
             }
