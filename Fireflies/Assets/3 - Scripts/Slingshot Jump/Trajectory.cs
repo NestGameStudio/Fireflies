@@ -39,7 +39,7 @@ public class Trajectory : MonoBehaviour
 
         float lerpSpeed = Player.GetComponentInChildren<SlingshotController>().impulseVector.magnitude.Remap(Setup.Instance.LineMinRadius, Setup.Instance.LineMaxRadius, 5.9f, 4.55f);
 
-        float launchSpeed = Player.GetComponentInChildren<SlingshotController>().impulseVector.magnitude * Setup.Instance.ImpulseForce * Setup.Instance.ImpulseForce * lerpSpeed;
+        float launchSpeed = Player.GetComponentInChildren<SlingshotController>().impulseVector.magnitude * Setup.Instance.ImpulseForce * Setup.Instance.ImpulseForce * lerpSpeed * GetComponent<Rigidbody2D>().mass*5;
 
         //float launchSpeed = Player.GetComponentInChildren<SlingshotController>().impulse.magnitude * 3.5f;
 
