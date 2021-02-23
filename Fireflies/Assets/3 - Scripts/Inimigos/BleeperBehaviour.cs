@@ -48,6 +48,7 @@ public class BleeperBehaviour : MonoBehaviour
 
     public bool canViewPlayer = false;
 
+    public bool raycastCanViewPlayer = false;
     public enum estado
     {
         inatingivel,
@@ -100,7 +101,7 @@ public class BleeperBehaviour : MonoBehaviour
         //reseta timer
         changeTime = timeBackup;
 
-        mudarCor();
+        
 
         //colocar tag correspondente ao estado
         mudarTag();
@@ -117,6 +118,8 @@ public class BleeperBehaviour : MonoBehaviour
             //se joga no player
             forceToPlayer();
         }
+
+        mudarCor();
 
     }
     public void mudarCor()
@@ -155,18 +158,23 @@ public class BleeperBehaviour : MonoBehaviour
     }
     public void forceToPlayer()
     {
+        RaycastView();
+
         //caso esteja vendo o player
-        if (canViewPlayer)
+        if (canViewPlayer && raycastCanViewPlayer)
         {
             //get player
             Vector3 playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
 
-            rb.AddForce((playerPos - gameObject.transform.position) * impulseForce, ForceMode2D.Impulse);
+            Vector2 forceDirection = (playerPos - gameObject.transform.position);
 
-            print("se jogou");
+            rb.AddForce(forceDirection.normalized * impulseForce, ForceMode2D.Impulse);
+
+            //print("se jogou");
         }
     }
 
+    //Ver se player esta dentro do raio de visao
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player")
@@ -187,10 +195,41 @@ public class BleeperBehaviour : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.white;
-        Gizmos.DrawLine(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position);
+        //Gizmos.DrawLine(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position);
 
         //Gizmos.color = Color.red;
         //Gizmos.DrawWireSphere(transform.position, 1);
+    }
+    void RaycastView()
+    {
+        //Length of the ray
+        float laserLength = 50f;
+        Vector2 startPosition = (Vector2)transform.position;
+        int layerMask = LayerMask.GetMask("Default");
+
+        //get player
+        Vector3 playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
+
+        //Get the first object hit by the ray
+        RaycastHit2D hit = Physics2D.Raycast(startPosition, (playerPos - gameObject.transform.position), laserLength, layerMask, 0);
+
+        //If the collider of the object hit is not NUll
+        if (hit.collider.gameObject.tag == "Player")
+        {
+            //Hit something, print the tag of the object
+            UnityEngine.Debug.Log("Hitting: " + hit.collider.tag);
+
+            //Method to draw the ray in scene for debug purpose
+            UnityEngine.Debug.DrawRay(startPosition, (playerPos - gameObject.transform.position) * laserLength, Color.green);
+            raycastCanViewPlayer = true;
+        }
+        else{
+            UnityEngine.Debug.DrawRay(startPosition, (playerPos - gameObject.transform.position) * laserLength, Color.red);
+            raycastCanViewPlayer = false;
+        }
+
+        
+
     }
 }
 

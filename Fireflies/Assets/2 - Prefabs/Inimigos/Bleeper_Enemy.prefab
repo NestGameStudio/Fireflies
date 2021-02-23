@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4431142428395839936}
   - component: {fileID: 4809759701789970275}
   - component: {fileID: 8772236941256666579}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5497405494134362347}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Debug
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 311546769987869399}
   - component: {fileID: 3219064947472739551}
   - component: {fileID: 6718477867574047999}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bleeper_Enemy
   m_TagString: Bleeper_Invulneravel
   m_Icon: {fileID: 0}
@@ -190,8 +190,9 @@ MonoBehaviour:
   - {fileID: 2414950381358209739}
   angy: {fileID: 2414950381358209737}
   changeTime: 2
-  impulseForce: 1
+  impulseForce: 7
   canViewPlayer: 0
+  raycastCanViewPlayer: 0
   Estado: 0
 --- !u!114 &7050684960040369926
 MonoBehaviour:
@@ -237,7 +238,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1.5
+  m_LinearDrag: 2
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -270,7 +271,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2231485917781748096}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -303,7 +304,7 @@ GameObject:
   - component: {fileID: 4503209778056915014}
   - component: {fileID: 4082979069520987379}
   - component: {fileID: 177942200428171948}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: timeDisplay_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -380,7 +381,7 @@ GameObject:
   m_Component:
   - component: {fileID: 401231214157658738}
   - component: {fileID: 6031157545942407794}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Circle_Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -460,6 +461,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 511554900827192160, guid: 566f66e3fee146245a67a9f8002de85e,
         type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 511554900827192160, guid: 566f66e3fee146245a67a9f8002de85e,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -493,6 +499,11 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 280797445
       objectReference: {fileID: 0}
+    - target: {fileID: 1352203003588112814, guid: 566f66e3fee146245a67a9f8002de85e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1352203003588112816, guid: 566f66e3fee146245a67a9f8002de85e,
         type: 3}
       propertyPath: m_SortingLayer
@@ -507,6 +518,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingLayerID
       value: 280797445
+      objectReference: {fileID: 0}
+    - target: {fileID: 1352203003691283603, guid: 566f66e3fee146245a67a9f8002de85e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1352203003691283605, guid: 566f66e3fee146245a67a9f8002de85e,
         type: 3}
@@ -607,6 +623,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Graphics_Bleeper
+      objectReference: {fileID: 0}
+    - target: {fileID: 1352203003927931447, guid: 566f66e3fee146245a67a9f8002de85e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 566f66e3fee146245a67a9f8002de85e, type: 3}

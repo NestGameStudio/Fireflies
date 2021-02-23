@@ -89,39 +89,50 @@ public class CollisionCheck : MonoBehaviour
                 break;
             case "Bleeper_Invulneravel":
 
-                if (CameraShake.instance != null) { CameraShake.instance.shakeCam(2, 1, 0.5f); }
+                //if (CameraShake.instance != null) { CameraShake.instance.shakeCam(2, 1, 0.5f); }
 
-                playAudioLose();
+                //playAudioLose();
 
                 //particula de morte e contador de morte
                 if (deathParticle != null)
                     deathParticleTrigger();
 
-                Respawn.RepositionPlayer();
+                //Respawn.RepositionPlayer();
+
+                //tomou dano
+                dano();
+
                 break;
             case "Inimigo":
 
-                if (CameraShake.instance != null) { CameraShake.instance.shakeCam(2, 1, 0.5f); }
+                //if (CameraShake.instance != null) { CameraShake.instance.shakeCam(2, 1, 0.5f); }
 
-                playAudioLose();
+                //playAudioLose();
 
                 //particula de morte e contador de morte
                 if (deathParticle != null)
                     deathParticleTrigger();
 
-                Respawn.RepositionPlayer();
+                //Respawn.RepositionPlayer();
+
+                //tomou dano
+                dano();
                 break;
             case "Perigo":
 
-                if (CameraShake.instance != null) { CameraShake.instance.shakeCam(2, 1, 0.5f); }
+                
 
-                playAudioLose();
+                //playAudioLose();
 
                 //particula de morte e contador de morte
                 if (deathParticle != null)
                     deathParticleTrigger();
 
-                Respawn.RepositionPlayer();
+                //Respawn.RepositionPlayer();
+
+                //tomou dano
+                dano();
+
                 break;
             default:
                 break;
@@ -174,7 +185,10 @@ public class CollisionCheck : MonoBehaviour
     {
         Instantiate(deathParticle,gameObject.transform.position,Quaternion.identity);
 
-        deathCounter.instance.addDeath();
+        if (deathCounter.instance != null)
+        {
+            deathCounter.instance.addDeath();
+        }
     }
 
     void resetMaterial(Collider2D collision)
@@ -208,6 +222,18 @@ public class CollisionCheck : MonoBehaviour
         //play audio
         Lose.pitch = Random.Range(0.9f, 1.1f);
         Lose.PlayOneShot(Lose.clip, Lose.volume);
+    }
+
+    void dano()
+    {
+        //camera shake
+        if (CameraShake.instance != null) { CameraShake.instance.shakeCam(2, 1, 0.5f); }
+
+        //tocar audio de dano
+        playAudioLose();
+
+        //perder vida
+        HealthManager.instance.menosVida(10);
     }
 
     void playFeedbackRecarga(){

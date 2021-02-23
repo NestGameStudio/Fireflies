@@ -44,6 +44,25 @@ public class Looker_Behaviour : MonoBehaviour
     private bool oneCheck = true;
 
     Vector3 dir;
+
+    [HideInInspector]
+    public enum bulletType
+    {
+        reto,
+        curvo
+    }
+
+    [Header("Tipo de bala a ser atirada")]
+    public bulletType tipoDeBala;
+
+    [Header("Forca do tiro")]
+    public float tiroForca = 2;
+
+    [Header("Projetil a ser atirado em linha reta")]
+    public GameObject bulletStraight;
+
+    //Se o player esta dentro do raio de visao
+    public bool canViewPlayer = false;
     void Start()
     {
         timeBackup = changeTime;
@@ -79,7 +98,10 @@ public class Looker_Behaviour : MonoBehaviour
                 dir = player.position - transform.position;
             }
 
-            lookAtPlayer();
+            if (canViewPlayer)
+            {
+                lookAtPlayer();
+            }
         }
 
         //mostrar tempo faltante em display
@@ -113,12 +135,17 @@ public class Looker_Behaviour : MonoBehaviour
         {
             oneCheck = true;
             isChangingRot = false;
+
+            if (player != null)
+            {
+                atirar();
+            }
         }
         else
         {
             t += Time.deltaTime * 2;
         }
-        UnityEngine.Debug.Log("Looker olhou pro player",gameObject);
+        //UnityEngine.Debug.Log("Looker olhou pro player",gameObject);
     }
     //desenhar linha ate o player registrado
     private void OnDrawGizmos()
@@ -132,5 +159,55 @@ public class Looker_Behaviour : MonoBehaviour
     public static Quaternion Damp(Quaternion source, Quaternion target, float smoothing, float dt)
     {
         return Quaternion.Lerp(source, target, 1 - Mathf.Pow(smoothing, dt));
+    }
+
+    public void morreu()
+    {
+        Destroy(gameObject);
+    }
+
+    public void atirar()
+    {
+        UnityEngine.Debug.Log("Looker atirou");
+
+        if(tipoDeBala == bulletType.reto)
+        {
+            GameObject bala = Instantiate(bulletStraight,transform.position,Quaternion.identity);
+            //bala.GetComponent<Rigidbody2D>().AddForce((player.transform.position - lookerGraphics.transform.position).normalized * tiroForca,ForceMode2D.Impulse);
+            bala.GetComponent<Rigidbody2D>().AddForce(lookerGraphics.transform.up * tiroForca, ForceMode2D.Impulse);
+        }
+        else if(tipoDeBala == bulletType.curvo)
+        {
+
+        }
+    }
+
+    //Ver se player esta dentro do raio de visao
+
+    /*
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            //player esta dentro da visao
+            canViewPlayer = true;
+        }
+    }
+    */
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            //player esta dentro da visao
+            canViewPlayer = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            //player esta fora da visao
+            canViewPlayer = false;
+        }
     }
 }
