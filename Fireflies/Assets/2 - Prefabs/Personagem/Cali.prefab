@@ -1063,6 +1063,7 @@ GameObject:
   - component: {fileID: 1642648144}
   - component: {fileID: 1642648146}
   - component: {fileID: 4621162699819753573}
+  - component: {fileID: 3135720550138432630}
   m_Layer: 0
   m_Name: Cali
   m_TagString: Player
@@ -1288,6 +1289,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad33e013764447243b0c6f9847a63cde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  maximoVida: 100
+--- !u!114 &3135720550138432630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986088843813828928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbe104dd572cd5940806175ac7d79a4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3303763762343284749
