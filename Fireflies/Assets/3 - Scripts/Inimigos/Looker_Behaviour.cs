@@ -13,6 +13,9 @@ public class Looker_Behaviour : MonoBehaviour
     [Header("Debug Vars")]
     public Text timeDisplay;
 
+    [Header("Vida")]
+    public int health = 100;
+
     public GameObject lookerGraphics;
 
     //tempo ate olhar para o player novamente
@@ -63,6 +66,12 @@ public class Looker_Behaviour : MonoBehaviour
 
     //Se o player esta dentro do raio de visao
     public bool canViewPlayer = false;
+
+    //variaveis abaixo sao para o raycast
+
+    public bool raycastCanViewPlayer = false;
+
+
     void Start()
     {
         timeBackup = changeTime;
@@ -168,17 +177,21 @@ public class Looker_Behaviour : MonoBehaviour
 
     public void atirar()
     {
-        UnityEngine.Debug.Log("Looker atirou");
+        RaycastView();
 
-        if(tipoDeBala == bulletType.reto)
-        {
-            GameObject bala = Instantiate(bulletStraight,transform.position,Quaternion.identity);
-            //bala.GetComponent<Rigidbody2D>().AddForce((player.transform.position - lookerGraphics.transform.position).normalized * tiroForca,ForceMode2D.Impulse);
-            bala.GetComponent<Rigidbody2D>().AddForce(lookerGraphics.transform.up * tiroForca, ForceMode2D.Impulse);
-        }
-        else if(tipoDeBala == bulletType.curvo)
-        {
+        if (raycastCanViewPlayer) {
+            UnityEngine.Debug.Log("Looker atirou");
 
+            if (tipoDeBala == bulletType.reto)
+            {
+                GameObject bala = Instantiate(bulletStraight, transform.position, Quaternion.identity);
+                //bala.GetComponent<Rigidbody2D>().AddForce((player.transform.position - lookerGraphics.transform.position).normalized * tiroForca,ForceMode2D.Impulse);
+                bala.GetComponent<Rigidbody2D>().AddForce(lookerGraphics.transform.up * tiroForca, ForceMode2D.Impulse);
+            }
+            else if (tipoDeBala == bulletType.curvo)
+            {
+
+            }
         }
     }
 
@@ -200,6 +213,7 @@ public class Looker_Behaviour : MonoBehaviour
         {
             //player esta dentro da visao
             canViewPlayer = true;
+
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -208,6 +222,52 @@ public class Looker_Behaviour : MonoBehaviour
         {
             //player esta fora da visao
             canViewPlayer = false;
+        }
+    }
+
+    //perder vida por x quantidade, definindo um minimo e maximo de dano
+    public void perderVida(int danoMin, int danoMax)
+    {
+        int quantidade = Random.Range(danoMin, danoMax + 1);
+
+        if (health - quantidade < 0)
+        {
+            //morreu
+            morreu();
+        }
+        else
+        {
+            health -= quantidade;
+        }
+    }
+
+    void RaycastView()
+    {
+        //Length of the ray
+        float laserLength = 50f;
+        Vector2 startPosition = (Vector2)transform.position;
+        int layerMask = LayerMask.GetMask("Default");
+
+        //get player
+        Vector3 playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
+
+        //Get the first object hit by the ray
+        RaycastHit2D hit = Physics2D.Raycast(startPosition, (playerPos - gameObject.transform.position), laserLength, layerMask, 0);
+
+        //If the collider of the object hit is not NUll
+        if (hit.collider.gameObject.tag == "Player")
+        {
+            //Hit something, print the tag of the object
+            UnityEngine.Debug.Log("Hitting: " + hit.collider.tag);
+
+            //Method to draw the ray in scene for debug purpose
+            UnityEngine.Debug.DrawRay(startPosition, (playerPos - gameObject.transform.position) * laserLength, Color.green);
+            raycastCanViewPlayer = true;
+        }
+        else
+        {
+            UnityEngine.Debug.DrawRay(startPosition, (playerPos - gameObject.transform.position) * laserLength, Color.red);
+            raycastCanViewPlayer = false;
         }
     }
 }

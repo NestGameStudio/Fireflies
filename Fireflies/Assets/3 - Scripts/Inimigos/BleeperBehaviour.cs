@@ -26,6 +26,9 @@ public class BleeperBehaviour : MonoBehaviour
     [Header("Ativa visualizacao de debug")]
     public bool Debug = false;
 
+    [Header("Vida")]
+    public int health = 100;
+
     [Header("Ativa efeito de contagem de tempo")]
     public bool Effect = true;
 
@@ -175,7 +178,7 @@ public class BleeperBehaviour : MonoBehaviour
     }
 
     //Ver se player esta dentro do raio de visao
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player")
         {
@@ -227,8 +230,39 @@ public class BleeperBehaviour : MonoBehaviour
             UnityEngine.Debug.DrawRay(startPosition, (playerPos - gameObject.transform.position) * laserLength, Color.red);
             raycastCanViewPlayer = false;
         }
+    }
 
-        
+    //perder vida por x quantidade, definindo um minimo e maximo de dano
+    public void perderVida(int danoMin, int danoMax)
+    {
+        int quantidade = Random.Range(danoMin, danoMax + 1);
+
+        if (health - quantidade < 0)
+        {
+            //morreu
+            morreu();
+        }
+        else
+        {
+            health -= quantidade;
+        }
+    }
+
+    public void morreu()
+    {
+        Destroy(gameObject);
+    }
+
+    //detect dano
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player" && Estado == estado.atingivel)
+        {
+            perderVida(5, 10);
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
 
     }
 }

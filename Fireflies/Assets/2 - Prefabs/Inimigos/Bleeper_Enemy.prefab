@@ -180,6 +180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeDisplay: {fileID: 177942200428171948}
   Debug: 1
+  health: 100
   Effect: 1
   effectObject: {fileID: 7859704960089466569}
   baseColors:
