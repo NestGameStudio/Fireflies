@@ -52,7 +52,7 @@ public class Looker_Behaviour : MonoBehaviour
     public enum bulletType
     {
         reto,
-        curvo
+        guiado
     }
 
     [Header("Tipo de bala a ser atirada")]
@@ -202,7 +202,7 @@ public class Looker_Behaviour : MonoBehaviour
                     bala.GetComponent<Rigidbody2D>().AddForce(lookerGraphics.transform.up * tiroForca, ForceMode2D.Impulse);
                 }
                 //atirar bala curva
-                else if (tipoDeBala == bulletType.curvo)
+                else if (tipoDeBala == bulletType.guiado)
                 {
                     GameObject bala = Instantiate(bulletGuided, transform.position, Quaternion.identity);
 

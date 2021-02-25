@@ -14,7 +14,7 @@ public class bulletGuided : MonoBehaviour
 
     bool canDestroy = false;
 
-    [Header("Tempo ate projetil explodir(s)")]
+    [Header("Tempo ate projetil explodir (s)")]
     public int tempoAteExplodir = 5;
 
     // Start is called before the first frame update
