@@ -64,6 +64,9 @@ public class Looker_Behaviour : MonoBehaviour
     [Header("Projetil a ser atirado em linha reta")]
     public GameObject bulletStraight;
 
+    [Header("Projetil a ser atirado em curva/guiado")]
+    public GameObject bulletGuided;
+
     //Se o player esta dentro do raio de visao
     public bool canViewPlayer = false;
 
@@ -71,6 +74,8 @@ public class Looker_Behaviour : MonoBehaviour
 
     public bool raycastCanViewPlayer = false;
 
+    //para assegurar que o looker so vai atirar uma vez
+    private bool oneCheckAtirar = true;
 
     void Start()
     {
@@ -153,6 +158,8 @@ public class Looker_Behaviour : MonoBehaviour
         else
         {
             t += Time.deltaTime * 2;
+
+            oneCheckAtirar = true;
         }
         //UnityEngine.Debug.Log("Looker olhou pro player",gameObject);
     }
@@ -177,20 +184,30 @@ public class Looker_Behaviour : MonoBehaviour
 
     public void atirar()
     {
-        RaycastView();
+        if (oneCheckAtirar)
+        {
+            oneCheckAtirar = false;
 
-        if (raycastCanViewPlayer) {
-            UnityEngine.Debug.Log("Looker atirou");
+            RaycastView();
 
-            if (tipoDeBala == bulletType.reto)
+            if (raycastCanViewPlayer)
             {
-                GameObject bala = Instantiate(bulletStraight, transform.position, Quaternion.identity);
-                //bala.GetComponent<Rigidbody2D>().AddForce((player.transform.position - lookerGraphics.transform.position).normalized * tiroForca,ForceMode2D.Impulse);
-                bala.GetComponent<Rigidbody2D>().AddForce(lookerGraphics.transform.up * tiroForca, ForceMode2D.Impulse);
-            }
-            else if (tipoDeBala == bulletType.curvo)
-            {
+                UnityEngine.Debug.Log("Looker atirou");
 
+                //atirar bala reta
+                if (tipoDeBala == bulletType.reto)
+                {
+                    GameObject bala = Instantiate(bulletStraight, transform.position, Quaternion.identity);
+                    //bala.GetComponent<Rigidbody2D>().AddForce((player.transform.position - lookerGraphics.transform.position).normalized * tiroForca,ForceMode2D.Impulse);
+                    bala.GetComponent<Rigidbody2D>().AddForce(lookerGraphics.transform.up * tiroForca, ForceMode2D.Impulse);
+                }
+                //atirar bala curva
+                else if (tipoDeBala == bulletType.curvo)
+                {
+                    GameObject bala = Instantiate(bulletGuided, transform.position, Quaternion.identity);
+
+                    bala.GetComponent<Rigidbody2D>().AddForce(lookerGraphics.transform.up * tiroForca * 1.5f, ForceMode2D.Impulse);
+                }
             }
         }
     }

@@ -141,6 +141,8 @@ MonoBehaviour:
   tiroForca: 4
   bulletStraight: {fileID: 7326216379624124121, guid: bce796346e5de4942bab689a4c7902d2,
     type: 3}
+  bulletGuided: {fileID: 7326216379624124121, guid: 0d2d9d1d6ab50f449853ba9a844e529b,
+    type: 3}
   canViewPlayer: 0
   raycastCanViewPlayer: 0
 --- !u!114 &1727927927891371797
