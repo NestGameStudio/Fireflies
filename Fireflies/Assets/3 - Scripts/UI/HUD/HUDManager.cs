@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class HUDManager : MonoBehaviour
 {
     public static HUDManager instance { get; private set; }
 
-    public Text timerCounterText;
+    public TextMeshProUGUI timerCounterText;
 
     private void Awake()
     {
