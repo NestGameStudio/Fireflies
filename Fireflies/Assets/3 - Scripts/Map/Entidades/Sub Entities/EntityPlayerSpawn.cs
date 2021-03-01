@@ -12,6 +12,7 @@ public class EntityPlayerSpawn: Entity {
 
         SpawnPosition = this.transform.position;
 
-        // Instancia a Cali (pega da Hierarquia pela tag?)
+        GameObject.FindGameObjectWithTag("Player").transform.position = SpawnPosition;
+        CameraShake.instance.CameraFollow();
     }
 }

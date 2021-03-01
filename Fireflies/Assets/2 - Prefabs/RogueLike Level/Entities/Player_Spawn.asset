@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c246313394e7425a836944747b021f9b, type: 3}
   m_Name: Player_Spawn
   m_EditorClassIdentifier: 
-  _asset: {fileID: 3449024010389150485, guid: d43be110640a52247901f001008afcbc, type: 3}
+  _asset: {fileID: 1954091932563455196, guid: 627044e5066c26340b02e51e4ef39e4c, type: 3}

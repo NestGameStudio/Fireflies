@@ -20,6 +20,10 @@ public class CameraShake : MonoBehaviour
         cinemachineVC = GetComponent<CinemachineVirtualCamera>();
     }
 
+    public void CameraFollow() {
+        cinemachineVC.m_Follow = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
     public void shakeCam(float intensity, float frequency , float time)
     {
         CinemachineBasicMultiChannelPerlin cinemachineNoise = cinemachineVC.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();

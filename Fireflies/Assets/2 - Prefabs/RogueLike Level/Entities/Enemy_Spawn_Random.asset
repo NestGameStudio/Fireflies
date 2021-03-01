@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c246313394e7425a836944747b021f9b, type: 3}
   m_Name: Enemy_Spawn_Random
   m_EditorClassIdentifier: 
-  _asset: {fileID: 6972779115007737175, guid: d26f6cc3c1403ba4d86c8b35a52635ed, type: 3}
+  _asset: {fileID: 3783430493388078546, guid: 24f81ec6ade7a43448057c07a2f280e0, type: 3}

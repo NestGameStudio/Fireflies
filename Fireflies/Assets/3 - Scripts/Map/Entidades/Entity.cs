@@ -18,7 +18,7 @@ public class Entity: MonoBehaviour {
             type = EntityType.PlayerSpawn;
 
         // Separa o tipo em Bleeper, Looker, Random dentro da classe Entity Enemy Spawn
-        } else if (name.Contains("Enemy Spawn")) {
+        } else if (name.Contains("Enemy")) {
             type = EntityType.EnemySpawn;
 
         } else if (name.Contains("Barrel")) {
