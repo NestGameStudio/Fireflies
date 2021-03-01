@@ -12,33 +12,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64552ccf624340e5ac0c3c984ff97a21, type: 3}
   m_Name: LDtkProject
   m_EditorClassIdentifier: 
-  _jsonProject: {fileID: -9137991013969108190, guid: 9d3ba164ca56bef49b9ba5e0e3717cca,
+  _jsonProject: {fileID: -9137991013969108190, guid: 42d5b59f5ab027540aeeecdd37bc651c,
     type: 3}
-  _tilemapPrefab: {fileID: 0}
+  _tilemapPrefab: {fileID: 7883775806120263513, guid: 1f6e98461cc4d5149aa030094e56d6c9,
+    type: 3}
   _intGridValueColorsVisible: 0
   _pixelsPerUnit: 16
   _levels:
-  - {fileID: -8900196649867604931, guid: 5cf8d7f61bcd6ba478410af1e4252705, type: 3}
-  - {fileID: -8900196649867604931, guid: 9169e6d29e085eb4d8c0b67695bd678d, type: 3}
-  - {fileID: -8900196649867604931, guid: 07dbbccd5f378884ca4eeb2296b510c5, type: 3}
-  - {fileID: -8900196649867604931, guid: 3c48b2b59ac3d78478d52c02c2b3eb9a, type: 3}
-  - {fileID: -8900196649867604931, guid: 2add9d25fba39a14da2fccb4d3245b67, type: 3}
-  - {fileID: -8900196649867604931, guid: d3a2b6943e4d8d240b2aea284a7cc577, type: 3}
-  - {fileID: -8900196649867604931, guid: 1c51b55c6c19d2143996ee41fda70f86, type: 3}
-  - {fileID: -8900196649867604931, guid: d5d09b8cf0e03384d9d5fe04fa8d6026, type: 3}
-  - {fileID: -8900196649867604931, guid: 70f148b44fab840469f05f08f1ac2d52, type: 3}
-  - {fileID: -8900196649867604931, guid: cb2138798c42a3c4a951a33780a7b691, type: 3}
-  - {fileID: -8900196649867604931, guid: 8198c946e3efdc0409b21ab0e0a53450, type: 3}
-  - {fileID: -8900196649867604931, guid: 8adb12077ad26b44f865b849577f5ccb, type: 3}
-  - {fileID: -8900196649867604931, guid: 59e97126211aea64c8693a33d829eb0b, type: 3}
-  - {fileID: -8900196649867604931, guid: 42fdb2ec5ae3206498b40c9cbfc50898, type: 3}
-  - {fileID: -8900196649867604931, guid: 5dc0e990ccea2cf46acd6e767ebb5789, type: 3}
-  - {fileID: -8900196649867604931, guid: 82f52f128db02ec4997533cf4bc03fcf, type: 3}
+  - {fileID: -8900196649867604931, guid: d1a6458881734cf48a28090afaa459a0, type: 3}
+  - {fileID: -8900196649867604931, guid: 00cbaa6414691d14688d070cd0fcdadd, type: 3}
+  - {fileID: -8900196649867604931, guid: d8731709d96131f48ac975c439b85b54, type: 3}
+  - {fileID: -8900196649867604931, guid: 73f6a94dd32c31f478193c4535d93b02, type: 3}
+  - {fileID: -8900196649867604931, guid: e03dccbc3cc01874999a2e66c2800e8c, type: 3}
+  - {fileID: -8900196649867604931, guid: 5eeb43c413e727c40a2d70a2cd2ec929, type: 3}
+  - {fileID: -8900196649867604931, guid: bd6c91222f88e0d48967877cedf38061, type: 3}
+  - {fileID: -8900196649867604931, guid: a244eefc68fcb4a41a273831fe540b86, type: 3}
+  - {fileID: -8900196649867604931, guid: 7c3b16931afc1c242a14a7daf8860254, type: 3}
+  - {fileID: -8900196649867604931, guid: 3421aabec1ea0be448823670b64ef64f, type: 3}
+  - {fileID: -8900196649867604931, guid: 198129df232906b4280ae8297993be8b, type: 3}
+  - {fileID: -8900196649867604931, guid: 03bb172eaed38b149b1b8da17cf00186, type: 3}
+  - {fileID: -8900196649867604931, guid: 8f9058a1793443e45af28d0c646355a4, type: 3}
+  - {fileID: -8900196649867604931, guid: 3617d8b78f380aa44b44007e6955b7ae, type: 3}
+  - {fileID: -8900196649867604931, guid: 13c692ae82351d841b2000838d5627c5, type: 3}
+  - {fileID: -8900196649867604931, guid: 833990a5b7b779346affb2c06aa81fdb, type: 3}
   _intGridValues:
   - {fileID: 11400000, guid: 6d6bbd660c05dc344a2e8bf77332092b, type: 2}
   - {fileID: 11400000, guid: af84f809800494a46a5cd9aac0b05421, type: 2}
   - {fileID: 0}
   _entities:
+  - {fileID: 11400000, guid: bab166750b9ee794d8adb7aa435cc175, type: 2}
+  - {fileID: 11400000, guid: 6c3a21b0b7c991948ab2928555acf607, type: 2}
+  - {fileID: 11400000, guid: 16ae02c583e27454a9c8cb78f4a5f00a, type: 2}
+  - {fileID: 11400000, guid: 6d5401047f9b542409acc108f89e740f, type: 2}
+  - {fileID: 11400000, guid: fa8231c87c247af44a4b74fcb57fe336, type: 2}
   - {fileID: 11400000, guid: 4c461033763fc0649b7d79742ca9aa36, type: 2}
   _tilesets:
   - {fileID: 11400000, guid: 4dcf3a0a0ff265649afd9f52096fcd9c, type: 2}
