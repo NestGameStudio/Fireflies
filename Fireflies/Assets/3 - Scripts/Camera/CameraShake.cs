@@ -8,48 +8,37 @@ public class CameraShake : MonoBehaviour
     public static CameraShake instance { get; private set; }
 
     private CinemachineVirtualCamera cinemachineVC;
-    private float shakeTimer;
-    private float startingIntensity;
-    private float shakeTimerTotal;
-    //private float shakeFrequency;
+    private CinemachineBasicMultiChannelPerlin cinemachineNoise;
 
-    // Start is called before the first frame update
     void Awake()
     {
         instance = this;
         cinemachineVC = GetComponent<CinemachineVirtualCamera>();
+        cinemachineNoise = cinemachineVC.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
+        //Iniciar com zero shake
+        cinemachineNoise.m_AmplitudeGain = 0;
+        cinemachineNoise.m_FrequencyGain = 0;
     }
 
     public void CameraFollow() {
         cinemachineVC.m_Follow = GameObject.FindGameObjectWithTag("Player").transform;
     }
-
-    public void shakeCam(float intensity, float frequency , float time)
-    {
-        CinemachineBasicMultiChannelPerlin cinemachineNoise = cinemachineVC.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-
-        cinemachineNoise.m_AmplitudeGain = intensity;
-        cinemachineNoise.m_FrequencyGain = frequency;
-
-        startingIntensity = intensity;
-        shakeTimer = time;
-        shakeTimerTotal = time;
-        
+    public void shakeCam(float intensity, float frequency , float time){
+        //Debug.Log("Starting shake...");
+        StartCoroutine(shake(intensity, frequency, time));
     }
 
-    private void Update()
-    {
-        if(shakeTimer > 0)
-        {
-            shakeTimer -= Time.unscaledDeltaTime;
-            if(shakeTimer <= 0)
-            {
-                //acabou tempo de shake
-                CinemachineBasicMultiChannelPerlin cinemachineNoise = cinemachineVC.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-
-                cinemachineNoise.m_AmplitudeGain = Mathf.Lerp(startingIntensity, 0, 1 - (shakeTimer / shakeTimerTotal));
-
-            }
-        }
+    private IEnumerator shake(float intensity, float frequency , float time){
+        cinemachineNoise.m_AmplitudeGain = intensity;
+        cinemachineNoise.m_FrequencyGain = frequency;
+        
+        yield return new WaitForSecondsRealtime(time);
+        
+        //acabou tempo de shake
+        cinemachineNoise.m_AmplitudeGain = 0;
+        cinemachineNoise.m_FrequencyGain = 0;
+        //Debug.Log("Shake finished");
+        yield return 0;
     }
 }
