@@ -10,6 +10,7 @@ public class TimerManager : MonoBehaviour
     public float time = 0;
 
     public bool isTimerOn = false;
+    private HUDManager hudUI;
 
     private void Awake()
     {
@@ -24,46 +25,46 @@ public class TimerManager : MonoBehaviour
         }
     }
 
+    void Start(){
+        //guarda referência para singleton de HUD Manager e atualiza com tempo zerado
+        hudUI = HUDManager.instance;
+        if(hudUI != null){
+            hudUI.UpdateTimer(0f);
+            hudUI.ChangeTimerState(isTimerOn);
+        }
+        else {
+            Debug.Log("Não há nenhum objeto com HUD Manager em cena");
+        }
+    }
+
     //ligar ou retomar o timer
     public void startTimer()
     {
         isTimerOn = true;
+        hudUI.ChangeTimerState(isTimerOn);
     }
 
     //parar o timer
     public void stopTimer()
     {
         isTimerOn = false;
+        hudUI.ChangeTimerState(isTimerOn);
     }
 
     //resetar timer a 0, podendo fazer ele comecar ligado ou nao
     public void resetTimer(bool isOn)
     {
         time = 0;
-        if (isOn) {
-
-            isTimerOn = true;
-
-        }
-        else
-        {
-            isTimerOn = false;
-        }
+        isTimerOn = isOn;
+        hudUI.ChangeTimerState(isTimerOn);
     }
 
-    public void FixedUpdate()
+    public void Update()
     {
-
-        //assign do valor do tempo ao elemento de ui, formatacao com a variavel de tempo
-        System.TimeSpan timeFormat = System.TimeSpan.FromSeconds(time);
-
-        string timeText = string.Format("{0:D2}:{1:D2}:{2:D2}", timeFormat.Hours, timeFormat.Minutes, timeFormat.Seconds);
-
-        HUDManager.instance.timerCounterText.text = timeText;
-
         if (isTimerOn)
         {
-            time += Time.deltaTime;
+            time += Time.unscaledDeltaTime;
+            hudUI.UpdateTimer(time);
         }
     }
 }
