@@ -12,6 +12,7 @@ public class Looker_Behaviour : MonoBehaviour
 
     [Header("Debug Vars")]
     public Text timeDisplay;
+    public Text healthDisplay;
 
     [Header("Vida")]
     public int health = 100;
@@ -120,6 +121,8 @@ public class Looker_Behaviour : MonoBehaviour
 
         //mostrar tempo faltante em display
         timeDisplay.text = (Mathf.Round(changeTime * 10) / 10).ToString();
+        //mostrar vida em display
+        healthDisplay.text = ("HP: " + health).ToString();
 
         //mudar tamanho de objeto de efeito baseado no tempo faltante
         // min - 0.275 / max - 0.5
@@ -242,12 +245,10 @@ public class Looker_Behaviour : MonoBehaviour
         }
     }
 
-    //perder vida por x quantidade, definindo um minimo e maximo de dano
-    public void perderVida(int danoMin, int danoMax)
+    //perder vida por x quantidade
+    public void perderVida(int quantidade)
     {
-        int quantidade = Random.Range(danoMin, danoMax + 1);
-
-        if (health - quantidade < 0)
+        if (health - quantidade <= 0)
         {
             //morreu
             morreu();

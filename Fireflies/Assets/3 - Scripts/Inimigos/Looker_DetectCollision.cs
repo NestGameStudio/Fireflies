@@ -8,7 +8,7 @@ public class Looker_DetectCollision : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            gameObject.transform.parent.parent.gameObject.GetComponent<Looker_Behaviour>().perderVida(5,10);
+            gameObject.transform.parent.parent.gameObject.GetComponent<Looker_Behaviour>().perderVida(10);
         }
     }
     private void OnCollisionExit2D(Collision2D collision)

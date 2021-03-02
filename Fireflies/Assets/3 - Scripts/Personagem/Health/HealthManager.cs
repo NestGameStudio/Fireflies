@@ -25,9 +25,11 @@ public class HealthManager : MonoBehaviour
         }
     }
 
-    //perder vida por x quantidade
-    public void menosVida(int quantidade)
+    //perder vida por x quantidade, definindo um minimo e maximo de dano
+    public void menosVida(int danoMin, int danoMax)
     {
+        int quantidade = Random.Range(danoMin, danoMax + 1);
+        
         if (health - quantidade > 0)
         {
             //perdeu vida
@@ -94,5 +96,6 @@ public class HealthManager : MonoBehaviour
     public void morreu()
     {
         Respawn.instance.RepositionPlayer();
+        health = maximoVida;
     }     
 }

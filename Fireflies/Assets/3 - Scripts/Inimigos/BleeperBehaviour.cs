@@ -22,6 +22,7 @@ public class BleeperBehaviour : MonoBehaviour
 
     [Header("Debug Vars")]
     public Text timeDisplay;
+    public Text healthDisplay;
 
     [Header("Ativa visualizacao de debug")]
     public bool Debug = false;
@@ -92,6 +93,8 @@ public class BleeperBehaviour : MonoBehaviour
 
         //mostrar tempo faltante em display
         timeDisplay.text = (Mathf.Round(changeTime*10)/10).ToString();
+        //mostrar vida em display
+        healthDisplay.text = ("HP: " + health).ToString();
 
         //mudar tamanho de objeto de efeito baseado no tempo faltante
         // min - 0.275 / max - 0.5
@@ -232,12 +235,10 @@ public class BleeperBehaviour : MonoBehaviour
         }
     }
 
-    //perder vida por x quantidade, definindo um minimo e maximo de dano
-    public void perderVida(int danoMin, int danoMax)
+    //perder vida por x quantidade
+    public void perderVida(int quantidade)
     {
-        int quantidade = Random.Range(danoMin, danoMax + 1);
-
-        if (health - quantidade < 0)
+        if (health - quantidade <= 0)
         {
             //morreu
             morreu();
@@ -258,7 +259,7 @@ public class BleeperBehaviour : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && Estado == estado.atingivel)
         {
-            perderVida(5, 10);
+            perderVida(10);
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
