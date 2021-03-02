@@ -220,7 +220,7 @@ public class BleeperBehaviour : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(startPosition, (playerPos - gameObject.transform.position), laserLength, layerMask, 0);
 
         //If the collider of the object hit is not NUll
-        if (hit.collider.gameObject.tag == "Player")
+        if (hit.collider.gameObject.CompareTag("Player"))
         {
             //Hit something, print the tag of the object
             UnityEngine.Debug.Log("Hitting: " + hit.collider.tag);
