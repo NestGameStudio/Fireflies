@@ -8,26 +8,26 @@
 		"appVersion": "0.8.1",
 		"url": "https://ldtk.io"
 	},
-	"identifier": "Base",
-	"uid": 0,
-	"worldX": 1000,
+	"identifier": "Pitoco",
+	"uid": 4,
+	"worldX": 0,
 	"worldY": -1200,
-	"pxWid": 2000,
+	"pxWid": 1000,
 	"pxHei": 1200,
 	"__bgColor": "#7F8093",
 	"bgColor": null,
-	"bgRelPath": "CurriculoPrancheta 21.png",
+	"bgRelPath": "CurriculoPrancheta 21 cópia.png",
 	"bgPos": "Unscaled",
 	"bgPivotX": 0.5,
 	"bgPivotY": 0.5,
-	"__bgPos": { "topLeftPx": [0,0], "scale": [1,1], "cropRect": [0,0.5,2000,1200] },
+	"__bgPos": { "topLeftPx": [0,0], "scale": [1,1], "cropRect": [0,0.5,1000,1200] },
 	"externalRelPath": null,
 	"fieldInstances": [],
 	"layerInstances": [
 		{
 			"__identifier": "Entities",
 			"__type": "Entities",
-			"__cWid": 20,
+			"__cWid": 10,
 			"__cHei": 12,
 			"__gridSize": 100,
 			"__opacity": 1,
@@ -35,7 +35,7 @@
 			"__pxTotalOffsetY": 0,
 			"__tilesetDefUid": null,
 			"__tilesetRelPath": null,
-			"levelId": 0,
+			"levelId": 4,
 			"layerDefUid": 92,
 			"pxOffsetX": 0,
 			"pxOffsetY": 0,
@@ -43,7 +43,7 @@
 			"intGrid": [],
 			"intGridCsv": [],
 			"autoLayerTiles": [],
-			"seed": 8268085,
+			"seed": 4745731,
 			"overrideTilesetUid": null,
 			"gridTiles": [],
 			"entityInstances": []
@@ -51,7 +51,7 @@
 		{
 			"__identifier": "TilesBase",
 			"__type": "IntGrid",
-			"__cWid": 20,
+			"__cWid": 10,
 			"__cHei": 12,
 			"__gridSize": 100,
 			"__opacity": 1,
@@ -59,7 +59,7 @@
 			"__pxTotalOffsetY": 0,
 			"__tilesetDefUid": 24,
 			"__tilesetRelPath": "tilesetPrancheta 24 .png",
-			"levelId": 0,
+			"levelId": 4,
 			"layerDefUid": 160,
 			"pxOffsetX": 0,
 			"pxOffsetY": 0,
@@ -69,13 +69,10 @@
 				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 			],
 			"autoLayerTiles": [],
-			"seed": 9051893,
+			"seed": 7659520,
 			"overrideTilesetUid": null,
 			"gridTiles": [],
 			"entityInstances": []
@@ -83,7 +80,7 @@
 		{
 			"__identifier": "TilesLayer2",
 			"__type": "IntGrid",
-			"__cWid": 20,
+			"__cWid": 10,
 			"__cHei": 12,
 			"__gridSize": 100,
 			"__opacity": 1,
@@ -91,7 +88,7 @@
 			"__pxTotalOffsetY": 0,
 			"__tilesetDefUid": 24,
 			"__tilesetRelPath": "tilesetPrancheta 24 .png",
-			"levelId": 0,
+			"levelId": 4,
 			"layerDefUid": 47,
 			"pxOffsetX": 0,
 			"pxOffsetY": 0,
@@ -101,13 +98,10 @@
 				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 			],
 			"autoLayerTiles": [],
-			"seed": 6405543,
+			"seed": 1990259,
 			"overrideTilesetUid": null,
 			"gridTiles": [],
 			"entityInstances": []
@@ -115,7 +109,7 @@
 		{
 			"__identifier": "Dangers",
 			"__type": "IntGrid",
-			"__cWid": 20,
+			"__cWid": 10,
 			"__cHei": 12,
 			"__gridSize": 100,
 			"__opacity": 1,
@@ -123,7 +117,7 @@
 			"__pxTotalOffsetY": 0,
 			"__tilesetDefUid": 25,
 			"__tilesetRelPath": "Perigos.png",
-			"levelId": 0,
+			"levelId": 4,
 			"layerDefUid": 94,
 			"pxOffsetX": 0,
 			"pxOffsetY": 0,
@@ -133,17 +127,14 @@
 				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 			],
 			"autoLayerTiles": [],
-			"seed": 1375742,
+			"seed": 9087193,
 			"overrideTilesetUid": null,
 			"gridTiles": [],
 			"entityInstances": []
 		}
 	],
-	"__neighbours": [ { "levelUid": 45, "dir": "n" }, { "levelUid": 46, "dir": "n" }, { "levelUid": 4, "dir": "w" } ]
+	"__neighbours": [ { "levelUid": 0, "dir": "e" }, { "levelUid": 45, "dir": "n" } ]
 }
