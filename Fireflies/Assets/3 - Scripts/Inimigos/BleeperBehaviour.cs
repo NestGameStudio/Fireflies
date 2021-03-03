@@ -186,7 +186,7 @@ public class BleeperBehaviour : MonoBehaviour
     //Ver se player esta dentro do raio de visao
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.CompareTag("Player"))
         {
             //player esta dentro da visao
             canViewPlayer = true;
@@ -194,7 +194,7 @@ public class BleeperBehaviour : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
             //player esta fora da visao
             canViewPlayer = false;
@@ -267,7 +267,7 @@ public class BleeperBehaviour : MonoBehaviour
     //detect dano
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player" && Estado == estado.atingivel)
+        if (collision.gameObject.CompareTag("Player") && Estado == estado.atingivel)
         {
             perderVida(10);
         }

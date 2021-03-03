@@ -229,7 +229,7 @@ public class Looker_Behaviour : MonoBehaviour
     */
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
             //player esta dentro da visao
             canViewPlayer = true;
@@ -238,7 +238,7 @@ public class Looker_Behaviour : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
             //player esta fora da visao
             canViewPlayer = false;
@@ -273,7 +273,7 @@ public class Looker_Behaviour : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(startPosition, (playerPos - gameObject.transform.position), laserLength, layerMask, 0);
 
         //If the collider of the object hit is not NUll
-        if (hit.collider.gameObject.tag == "Player")
+        if (hit.collider.gameObject.CompareTag("Player"))
         {
             //Hit something, print the tag of the object
             UnityEngine.Debug.Log("Hitting: " + hit.collider.tag);
