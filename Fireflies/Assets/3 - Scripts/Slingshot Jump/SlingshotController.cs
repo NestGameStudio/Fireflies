@@ -30,6 +30,7 @@ public class SlingshotController : MonoBehaviour {
     public AudioSource jumpAudio;
     private float startPitch;
     private AudioLowPassFilter audioMusic; 
+    private bool bufferingJump;
 
     // ------------- Setup e checagens ------------------
     private void Start() {
@@ -77,6 +78,11 @@ public class SlingshotController : MonoBehaviour {
 
             audioMusic.enabled = true;
         }
+        // Apertou o botão sem poder pular -> 'bufferiza' o pulo
+        else{
+            bufferingJump=true;
+            StartCoroutine(BufferedJump());
+        }
     }
 
     public void ExitSlowMotionMode() {
@@ -96,6 +102,21 @@ public class SlingshotController : MonoBehaviour {
 
             isOnSlowMotion = false;
             audioMusic.enabled = false;
+        }
+        // Soltou o botão sem estar no slowmotion
+        else{
+            bufferingJump=false;
+        }
+    }
+
+    // -> Buffer
+    private IEnumerator BufferedJump()
+    {
+        yield return new WaitUntil(()=>{
+            return (JumpControl.CanJump() || !bufferingJump);
+            });
+        if(bufferingJump){
+            EnterSlowMotionMode();
         }
     }
 
