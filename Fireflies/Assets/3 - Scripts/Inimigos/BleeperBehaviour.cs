@@ -42,6 +42,9 @@ public class BleeperBehaviour : MonoBehaviour
     [Header("Tempo(s) ate mudar de estado")]
     public float changeTime = 1;
 
+    [Header("É afetado pelo slow motion?")]
+    public bool scaledTime = false;
+
     //variavel que guarda o changeTime logo no inicio do jogo
     private float timeBackup;
 
@@ -83,7 +86,7 @@ public class BleeperBehaviour : MonoBehaviour
     {
         if (changeTime > 0)
         {
-            changeTime -= Time.deltaTime;
+            changeTime -= scaledTime? Time.deltaTime : Time.unscaledDeltaTime;
         }
         else if(changeTime <= 0 && rb.velocity.magnitude <= 0.2f)
         {
