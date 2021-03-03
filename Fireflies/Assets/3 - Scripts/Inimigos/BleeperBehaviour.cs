@@ -206,6 +206,9 @@ public class BleeperBehaviour : MonoBehaviour
         //Gizmos.color = Color.red;
         //Gizmos.DrawWireSphere(transform.position, 1);
     }
+
+    //player transform cache
+    private Transform playerTransform = null;
     void RaycastView()
     {
         //Length of the ray
@@ -213,8 +216,12 @@ public class BleeperBehaviour : MonoBehaviour
         Vector2 startPosition = (Vector2)transform.position;
         int layerMask = LayerMask.GetMask("Default");
 
-        //get player
-        Vector3 playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
+        if(!playerTransform)
+        {
+            playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+        //get player position
+        Vector3 playerPos = playerTransform.position;
 
         //Get the first object hit by the ray
         RaycastHit2D hit = Physics2D.Raycast(startPosition, (playerPos - gameObject.transform.position), laserLength, layerMask, 0);
