@@ -53,17 +53,17 @@ PrefabInstance:
     - target: {fileID: 1986088843813828929, guid: b2cb1b6921a06724a82b6476946a00ad,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.5873516
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1986088843813828929, guid: b2cb1b6921a06724a82b6476946a00ad,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.7122394
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1986088843813828929, guid: b2cb1b6921a06724a82b6476946a00ad,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.44251066
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1986088843813828929, guid: b2cb1b6921a06724a82b6476946a00ad,
         type: 3}
@@ -160,17 +160,17 @@ PrefabInstance:
     - target: {fileID: 7929600315750768243, guid: a98ebab5d004fea4a9c907652b7f36b9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.3066188
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7929600315750768243, guid: a98ebab5d004fea4a9c907652b7f36b9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5987413
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7929600315750768243, guid: a98ebab5d004fea4a9c907652b7f36b9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.14768991
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7929600315750768243, guid: a98ebab5d004fea4a9c907652b7f36b9,
         type: 3}
@@ -227,6 +227,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3449024010389150484}
     m_Modifications:
+    - target: {fileID: 2064918273280545926, guid: e11f824fb02c0d8468a94a2851de9b63,
+        type: 3}
+      propertyPath: m_Name
+      value: HealthUI
+      objectReference: {fileID: 0}
     - target: {fileID: 2064918273827316152, guid: e11f824fb02c0d8468a94a2851de9b63,
         type: 3}
       propertyPath: m_Material
@@ -236,6 +241,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 6605887706700466165, guid: e11f824fb02c0d8468a94a2851de9b63,
+        type: 3}
+      propertyPath: healthUI
+      value: 
+      objectReference: {fileID: 2670349044954399500}
+    - target: {fileID: 7855811162603730626, guid: e11f824fb02c0d8468a94a2851de9b63,
+        type: 3}
+      propertyPath: sizeToHealthRate
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9013142899210520415, guid: e11f824fb02c0d8468a94a2851de9b63,
         type: 3}
@@ -300,3 +315,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5191400154825274830}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2670349044954399500 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7855811162603730626, guid: e11f824fb02c0d8468a94a2851de9b63,
+    type: 3}
+  m_PrefabInstance: {fileID: 5191400154825274830}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b491a55f156bf064cb2edd4612a26b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

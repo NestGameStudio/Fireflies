@@ -10,7 +10,8 @@ public class HealthManager : MonoBehaviour
     public int health = 100;
 
     [Header("Maximo de vida do player")]
-    public int maximoVida = 100;
+    public int maxHealth = 100;
+    private HUDManager hudUI;
 
     private void Awake()
     {
@@ -25,6 +26,18 @@ public class HealthManager : MonoBehaviour
         }
     }
 
+    private void Start(){
+        //guarda referência para singleton de HUD Manager
+        hudUI = HUDManager.instance;
+        if(hudUI != null){
+            hudUI.healthUI.SetupUI(maxHealth);
+            hudUI.healthUI.SetMaxHealth(maxHealth);
+        } 
+        else{
+            Debug.Log("Não há nenhum objeto com HUD Manager em cena");
+        }
+    }
+
     //perder vida por x quantidade, definindo um minimo e maximo de dano
     public void menosVida(int danoMin, int danoMax)
     {
@@ -34,11 +47,13 @@ public class HealthManager : MonoBehaviour
         {
             //perdeu vida
             health -= quantidade;
+            hudUI.healthUI.SetHealth(health);
         }
         else
         {
             //morreu
             health = 0;
+            hudUI.healthUI.SetHealth(health);
             morreu();
         }
     }
@@ -46,49 +61,53 @@ public class HealthManager : MonoBehaviour
     //ganhar vida por x quantidade
     public void maisVida(int quantidade)
     {
-        if(health + quantidade > maximoVida)
+        if(health + quantidade > maxHealth)
         {
             //limitar a vida pelo maximo
-            health = maximoVida;
+            health = maxHealth;
         }
         else
         {
             health += quantidade;
         }
+        hudUI.healthUI.SetHealth(health);
     }
 
-    //aumentar limite de vida por x quantidade, completar vida?
-    public void aumentarLimite(int quantidade, bool completar)
+    //aumentar limite de vida por x quantidade, aumentar vida?
+    public void aumentarLimite(int quantidade, bool aumentarVida)
     {
-        maximoVida += quantidade;
-
+        maxHealth += quantidade;
+        hudUI.healthUI.SetMaxHealth(maxHealth);
+        
         //caso esteja true, completar vida 
-        if (completar)
+        if (aumentarVida)
         {
-            health = maximoVida;
+            maisVida(quantidade);
         }
     }
 
     //diminuir limite de vida por x quantidade
     public void diminuirLimite(int quantidade)
     {
-        maximoVida -= quantidade;
+        maxHealth -= quantidade;
+        hudUI.healthUI.SetMaxHealth(maxHealth);
 
         //perder vida caso a vida esteja dentro do range que sera perdido
-        if(health > maximoVida)
+        if(health > maxHealth)
         {
-            health = maximoVida;
+            health = maxHealth;
         }
     }
 
     //especificar um limite de vida, completar vida?
     public void setLimite(int limite, bool completar)
     {
-        maximoVida = limite;
+        maxHealth = limite;
+        hudUI.healthUI.SetMaxHealth(maxHealth);
 
         if (completar)
         {
-            health = maximoVida;
+            health = maxHealth;
         }
     }
 
@@ -96,6 +115,7 @@ public class HealthManager : MonoBehaviour
     public void morreu()
     {
         Respawn.instance.RepositionPlayer();
-        health = maximoVida;
+        health = maxHealth;
+        hudUI.healthUI.SetHealth(health);
     }     
 }

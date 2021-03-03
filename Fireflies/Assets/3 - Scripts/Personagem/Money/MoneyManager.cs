@@ -9,6 +9,8 @@ public class MoneyManager : MonoBehaviour
     [Header("Dinheiro do player")]
     public int money = 0;
 
+    private HUDManager hudUI;
+
     public void Awake()
     {
         // Singleton
@@ -19,6 +21,17 @@ public class MoneyManager : MonoBehaviour
         else
         {
             instance = this;
+        }
+    }
+
+    public void Start(){
+        //guarda referência para singleton de HUD Manager
+        hudUI = HUDManager.instance;
+        if(hudUI != null){
+
+        } 
+        else{
+            Debug.Log("Não há nenhum objeto com HUD Manager em cena");
         }
     }
 

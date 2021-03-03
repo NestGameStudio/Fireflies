@@ -15,6 +15,12 @@ public class HUDManager : MonoBehaviour
     public Color timerActiveColor = Color.white;
     public Color timerPausedColor = Color.gray;
 
+    //Health variables
+    [Header("Health")]
+    [Space(0.3f)]
+    public HealthBarUI healthUI;
+
+
     private void Awake(){
         // Singleton
         if (instance != null && instance != this)

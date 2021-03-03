@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LifeBarUI : MonoBehaviour
+public class HealthBarUI : MonoBehaviour
 {
-    public float sizeToLifeRate = 2f;
+    //em quantas vezes visual da barra é multiplicada para corresponder vida
+    //Ex: Com 'sizeToHealthRate = 2', vida máxima 100 indica tamanho de UI 200;
+    public float sizeToHealthRate = 2f;
     private float sizeHeight;
     public float dangerLimitValue = 25f;
     public Color dangerLimitColor;
@@ -26,51 +28,36 @@ public class LifeBarUI : MonoBehaviour
         fillRect = slider.fillRect;
         fillImage = fillRect.GetComponent<Image>();
         defaultColor = fillImage.color;
-
-        //debug
-        //SetupUI(100f);
-        //UpgradeMaxLife(50f);
-    }
-
-    void Update(){
-        //debug
-        //UpdateUI(slider.value - 0.1f);
     }
 
     public void SetupUI(float value){
         slider.maxValue = value;
-        UpdateUI(value);
+        SetHealth(value);
     }
 
-    public void UpdateUI(float value){
+    public void SetHealth(float value){
         slider.value = value;
 
         //State machine controller
         if (value > alertLimitValue){
             //default zone
-            if(state != 0) ChangeState(0);            
+            if(state != 0) ChangeHealthState(0);            
         } else if (value > dangerLimitValue){
             //alert zone
-            if(state != 1) ChangeState(1);
+            if(state != 1) ChangeHealthState(1);
         } else{
             //danger zone
-            if(state != 2) ChangeState(2);
+            if(state != 2) ChangeHealthState(2);
         }
 
     }
 
-    public void UpgradeMaxLife(float value){
-        UpgradeMaxLife(value,true);
-    }
-    public void UpgradeMaxLife(float value, bool increaseLife){
-        slider.maxValue += value;
-        rect.sizeDelta = new Vector2 (slider.maxValue*sizeToLifeRate, sizeHeight);
-        if(increaseLife){
-            slider.value += value;
-        }
+    public void SetMaxHealth(float value){
+        slider.maxValue = value;
+        rect.sizeDelta = new Vector2 (slider.maxValue*sizeToHealthRate, sizeHeight);
     }
 
-    public void ChangeState(int s){
+    public void ChangeHealthState(int s){
         state = s;
         switch (s){
             case 2:
