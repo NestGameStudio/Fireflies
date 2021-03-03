@@ -22,6 +22,9 @@ public class Looker_Behaviour : MonoBehaviour
     //tempo ate olhar para o player novamente
     public float changeTime = 2;
 
+    [Header("É afetado pelo slow motion?")]
+    public bool scaledTime = false;
+
     //angulo de abertura de area vulneravel
     [Range(0,360)]
     public float angle = 60;
@@ -100,7 +103,7 @@ public class Looker_Behaviour : MonoBehaviour
 
         if (changeTime > 0 && isChangingRot == false)
         {
-            changeTime -= Time.deltaTime;
+            changeTime -= scaledTime? Time.deltaTime : Time.unscaledDeltaTime;
         }
         else if(changeTime <= 0 || isChangingRot)
         {
