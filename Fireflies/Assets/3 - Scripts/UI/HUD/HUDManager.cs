@@ -19,6 +19,10 @@ public class HUDManager : MonoBehaviour
     [Header("Health")]
     [Space(0.3f)]
     public HealthBarUI healthUI;
+    //Money variables
+    [Header("Money")]
+    [Space(0.3f)]
+    public MoneyUI moneyUI;
 
 
     private void Awake(){

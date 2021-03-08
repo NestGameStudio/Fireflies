@@ -28,7 +28,7 @@ public class MoneyManager : MonoBehaviour
         //guarda referência para singleton de HUD Manager
         hudUI = HUDManager.instance;
         if(hudUI != null){
-
+            hudUI.moneyUI.SetupUI(money);
         } 
         else{
             Debug.Log("Não há nenhum objeto com HUD Manager em cena");
@@ -41,12 +41,13 @@ public class MoneyManager : MonoBehaviour
         //caso a quantidade de dinheiro n seja suficiente, nao fazer nada
         if (money - quantidade < 0)
         {
-            
+            hudUI.moneyUI.LowMoney();
         }
         //caso contrario, descontar da quantidade de dinheiro atual do jogador
         else
         {
             money -= quantidade;
+            hudUI.moneyUI.SetMoney(money);
         }
     }
 
@@ -54,11 +55,13 @@ public class MoneyManager : MonoBehaviour
     public void ganharDinheiro(int quantidade)
     {
         money += quantidade;
+        hudUI.moneyUI.SetMoney(money);
     }
 
     //definir uma quantidade especifica de dinheiro
     public void setDinheiro(int quantidade)
     {
         money = quantidade;
+        hudUI.moneyUI.SetMoney(money);
     } 
 }
