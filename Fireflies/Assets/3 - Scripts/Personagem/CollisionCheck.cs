@@ -6,6 +6,7 @@ public class CollisionCheck : MonoBehaviour
 {
     public JumpRecovery Jump;
     public Respawn Respawn;
+    public HurtFeedback HurtFeedback;
     public GameObject paredeParticle;
     public GameObject deathParticle;
     public AudioSource colisao;
@@ -101,7 +102,6 @@ public class CollisionCheck : MonoBehaviour
 
                 //tomou dano
                 dano();
-
                 break;
             case "Inimigo":
 
@@ -234,6 +234,9 @@ public class CollisionCheck : MonoBehaviour
 
         //perder vida
         HealthManager.instance.menosVida(5, 10);
+
+        //Feedback de dano
+        HurtFeedback.HurtTrigger();
     }
 
     void playFeedbackRecarga(){

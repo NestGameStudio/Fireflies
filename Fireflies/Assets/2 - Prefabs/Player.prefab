@@ -1323,7 +1323,7 @@ GameObject:
   - component: {fileID: 331342999589612788}
   - component: {fileID: 8015511733105295591}
   m_Layer: 0
-  m_Name: Cali
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 2800000, guid: 5d52b20f865aff242bfcb08c3b6f61a5, type: 3}
   m_NavMeshLayer: 0
@@ -1398,6 +1398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Jump: {fileID: 4951848864073189413}
   Respawn: {fileID: 4769713941466231589}
+  HurtFeedback: {fileID: 7482340298135023992}
   paredeParticle: {fileID: 1196370577524665508, guid: ef4b4fab5214c524f962b1f019016b49,
     type: 3}
   deathParticle: {fileID: 4972606679766911167, guid: 99076d77a24051844adcd175a04c2c2f,
@@ -1550,7 +1551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  maximoVida: 100
+  maxHealth: 100
 --- !u!114 &8015511733105295591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1785,6 +1786,7 @@ GameObject:
   - component: {fileID: 4951848863457775624}
   - component: {fileID: 4951848863457775627}
   - component: {fileID: 4951848863457775629}
+  - component: {fileID: 7482340298135023992}
   - component: {fileID: 2965705973359285041}
   m_Layer: 0
   m_Name: Graphics_Personagem
@@ -1969,6 +1971,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minVelocity: 2
   rigidbody: {fileID: 6856872311861081515}
+--- !u!114 &7482340298135023992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8887355420590758978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93e0ed411bcbacd4ba7b1975742adc70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hurtColor: {r: 1, g: 0, b: 0, a: 1}
+  lerpTime: 0.5
+  isHurt: 0
 --- !u!95 &2965705973359285041
 Animator:
   serializedVersion: 3
