@@ -5,20 +5,18 @@ using UnityEngine;
 public class Trajectory : MonoBehaviour
 {
     LineRenderer lr;
-    public int Points;
-
+    public float simulateForDuration; //simulate for 5 secs in the furture
+    public float simulationStep; //Will add a point every 0.1 secs
 
     public GameObject Player;
 
-    private float collisionCheckRadius = 0.5f;
-
-    public float TimeOfSimulation;
+    public float collisionCheckRadius = 0.5f;
 
     private bool oneCheck = true;
 
     public GameObject trajectoryHit;
 
-    bool showHitPoint = false;
+    private bool showHitPoint = false;
 
     private Vector2 hitpoint;
 
@@ -30,28 +28,20 @@ public class Trajectory : MonoBehaviour
 
     public void SimulateArc()
     {
-        float simulateForDuration = 5f;//simulate for 5 secs in the furture
-        float simulationStep = 0.1f;//Will add a point every 0.1 secs.
+        int steps = (int)(simulateForDuration / simulationStep);
 
-        int steps = (int)(simulateForDuration / simulationStep);//50 in this example
+        SlingshotController playerSC = Player.GetComponentInChildren<SlingshotController>();
         List<Vector2> lineRendererPoints = new List<Vector2>();
         Vector2 calculatedPosition;
-        Vector2 directionVector = Player.GetComponentInChildren<SlingshotController>().impulseVector;//You plug you own direction here this is just an example
-        Vector2 launchPosition = gameObject.transform.position;//Position where you launch from
+        Vector2 directionVector = playerSC.impulseVector; //You plug you own direction here this is just an example
+        Vector2 launchPosition = gameObject.transform.position; //Position where you launch from
+        
 
-        //Debug.Log("launchSpeed = " + Player.GetComponentInChildren<SlingshotController>().impulseVector.magnitude);
+        float lerpSpeed = playerSC.impulseVector.magnitude.Remap(Setup.Instance.LineMinRadius, Setup.Instance.LineMaxRadius, 5.9f, 4.55f);
 
-        //float launchSpeed = Player.GetComponentInChildren<SlingshotController>().impulseVector.magnitude * Setup.Instance.ImpulseForce * 3.5f;//Example speed per secs.
+        float launchSpeed = playerSC.impulseVector.magnitude * Setup.Instance.ImpulseForce * Setup.Instance.ImpulseForce * lerpSpeed * GetComponent<Rigidbody2D>().mass*5;
 
-        float lerpSpeed = Player.GetComponentInChildren<SlingshotController>().impulseVector.magnitude.Remap(Setup.Instance.LineMinRadius, Setup.Instance.LineMaxRadius, 5.9f, 4.55f);
-
-        float launchSpeed = Player.GetComponentInChildren<SlingshotController>().impulseVector.magnitude * Setup.Instance.ImpulseForce * Setup.Instance.ImpulseForce * lerpSpeed * GetComponent<Rigidbody2D>().mass*5;
-
-        //float launchSpeed = Player.GetComponentInChildren<SlingshotController>().impulse.magnitude * 3.5f;
-
-        //float launchSpeed = Player.GetComponentInChildren<SlingshotController>().impulse.magnitude * 4 - GetComponent<Rigidbody2D>().mass;
-
-        if (Player.GetComponentInChildren<SlingshotController>().impulseVector.magnitude > Setup.Instance.LineMinRadius)
+        if (playerSC.impulseVector.magnitude > Setup.Instance.LineMinRadius)
         {
 
             enterArc();
@@ -59,23 +49,15 @@ public class Trajectory : MonoBehaviour
             for (int i = 0; i < steps; ++i)
             {
                 calculatedPosition = launchPosition + (directionVector * ((launchSpeed) * i * simulationStep));
+
                 //Calculate gravity
                 calculatedPosition.y += Physics2D.gravity.y * (i * simulationStep) * (i * simulationStep);
                 lineRendererPoints.Add(calculatedPosition);
-                //if (CheckForCollision(calculatedPosition))//if you hit something
-                //{
-                //    break;//stop adding positions
-                //}
 
                 lr.positionCount = steps;
-
                 lr.SetPosition(i, calculatedPosition);
 
-                //Vector2 positionLerp = Vector2.Lerp(lr.GetPosition(i), calculatedPosition, Time.deltaTime);
-
-                //lr.SetPosition(i, positionLerp);
-
-                if (CheckForCollision(lr.GetPosition(i)))//if you hit something
+                if (CheckForCollision(lr.GetPosition(i))) //if you hit something
                 {
                     deletePositionsAboveX(i, steps);
                     //showHitPoint = true;
@@ -89,31 +71,16 @@ public class Trajectory : MonoBehaviour
             }
 
             // A simple 2 color gradient with a fixed alpha of 1.0f.
-            float[] alpha = new float[]{ 1.0f , 0 };
-            float stepsAlpha = lr.positionCount;
+            //float[] alpha = new float[]{ 1.0f , 0 };
+            //float stepsAlpha = lr.positionCount;
+//
+            //Gradient gradient = new Gradient();
+            //gradient.SetKeys(
+            //    new GradientColorKey[] { new GradientColorKey(Color.white, 0.0f), new GradientColorKey(Color.white, 1.0f) },
+            //    new GradientAlphaKey[] { new GradientAlphaKey(alpha[0], 0), new GradientAlphaKey(stepsAlpha.Remap(playerSC.impulseVector.magnitude, 0, 0.7f, 1f), 1) }
+            //    );
+            //lr.colorGradient = gradient;
 
-            Gradient gradient = new Gradient();
-            gradient.SetKeys(
-                new GradientColorKey[] { new GradientColorKey(Color.white, 0.0f), new GradientColorKey(Color.white, 1.0f) },
-                //new GradientColorKey[] { new GradientColorKey(Color.white, stepsAlpha.Remap(stepsAlpha, 0,0f,0.6f)), new GradientColorKey(Color.red, 1.0f) },
-                //new GradientAlphaKey[] { new GradientAlphaKey(alpha[0], stepsAlpha.Remap(0, lr.positionCount, 0.5f, 0f)), new GradientAlphaKey(alpha[1], stepsAlpha.Remap(0, lr.positionCount, 1,0.8f)) }
-                //new GradientAlphaKey[] { new GradientAlphaKey(alpha[0], 0), new GradientAlphaKey(alpha[0], 1) }
-                new GradientAlphaKey[] { new GradientAlphaKey(alpha[0], 0), new GradientAlphaKey(stepsAlpha.Remap(Player.GetComponentInChildren<SlingshotController>().impulseVector.magnitude, 0, 0.7f, 1f), 1) }
-                );
-            lr.colorGradient = gradient;
-
-            //trajectoryHit.transform.position = lr.GetPosition(lr.positionCount-1);
-            /*
-            if (CheckForCollision(lr.GetPosition(lr.positionCount-1))){
-                //trajectoryHit.SetActive(true);
-                showHitPoint = true;
-            }
-            else
-            {
-                //trajectoryHit.SetActive(false);
-                showHitPoint = false;
-            }
-            */
             trajectoryHit.transform.position = Vector2.Lerp(trajectoryHit.transform.position, hitpoint,Time.deltaTime*1000);
 
             float size = 1 - ( lr.positionCount)/10;
@@ -176,16 +143,19 @@ public class Trajectory : MonoBehaviour
         if (hits.Length > 0)
         {
             //We hit something 
-            //check if its a wall or seomthing
+            //check if its a wall or something
             //if its a valid hit then return true
 
             foreach(Collider2D hit in hits)
             {
-                if(hit.gameObject.tag == "Plataforma_Recarregavel" || hit.gameObject.tag == "Plataforma_NaoRecarregavel" || hit.gameObject.tag == "Plataforma_Quebravel" || hit.gameObject.tag == "Plataforma_Quebravel_Fake" || hit.gameObject.tag == "PlatRec_Curva")
+                if(hit.gameObject.CompareTag("Plataforma_Recarregavel") || hit.gameObject.CompareTag("Plataforma_NaoRecarregavel") 
+                || hit.gameObject.CompareTag("Plataforma_Quebravel") || hit.gameObject.CompareTag("Plataforma_Quebravel_Fake") 
+                || hit.gameObject.CompareTag("PlatRec_Curva"))
                 {
                     showHitPoint = true;
                     hitpoint = position ;
                     return true;
+                    
                 }
 
                 else
