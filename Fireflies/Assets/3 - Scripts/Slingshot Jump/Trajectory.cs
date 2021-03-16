@@ -15,6 +15,7 @@ public class Trajectory : MonoBehaviour
     private bool oneCheck = true;
 
     public GameObject trajectoryHit;
+    public float hitSize = 0.5f;
 
     private bool showHitPoint = false;
 
@@ -71,9 +72,8 @@ public class Trajectory : MonoBehaviour
             }
 
             // A simple 2 color gradient with a fixed alpha of 1.0f.
-            //float[] alpha = new float[]{ 1.0f , 0 };
             //float stepsAlpha = lr.positionCount;
-//
+            //float[] alpha = new float[]{ 1.0f , 0 };
             //Gradient gradient = new Gradient();
             //gradient.SetKeys(
             //    new GradientColorKey[] { new GradientColorKey(Color.white, 0.0f), new GradientColorKey(Color.white, 1.0f) },
@@ -81,11 +81,8 @@ public class Trajectory : MonoBehaviour
             //    );
             //lr.colorGradient = gradient;
 
-            trajectoryHit.transform.position = Vector2.Lerp(trajectoryHit.transform.position, hitpoint,Time.deltaTime*1000);
-
-            float size = 1 - ( lr.positionCount)/10;
-
-            trajectoryHit.transform.localScale = new Vector3(size,size,size);
+            trajectoryHit.transform.position = Vector2.Lerp(trajectoryHit.transform.position, hitpoint,Time.deltaTime*100);
+            trajectoryHit.transform.localScale = new Vector3(hitSize,hitSize,1f);
 
             if (showHitPoint)
             {
@@ -139,7 +136,7 @@ public class Trajectory : MonoBehaviour
         // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
         //layerMask = ~layerMask;
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(position, collisionCheckRadius,layerMask);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(position, collisionCheckRadius, layerMask);
         if (hits.Length > 0)
         {
             //We hit something 
@@ -150,7 +147,7 @@ public class Trajectory : MonoBehaviour
             {
                 if(hit.gameObject.CompareTag("Plataforma_Recarregavel") || hit.gameObject.CompareTag("Plataforma_NaoRecarregavel") 
                 || hit.gameObject.CompareTag("Plataforma_Quebravel") || hit.gameObject.CompareTag("Plataforma_Quebravel_Fake") 
-                || hit.gameObject.CompareTag("PlatRec_Curva"))
+                || hit.gameObject.CompareTag("PlatRec_Curva")) 
                 {
                     showHitPoint = true;
                     hitpoint = position ;
