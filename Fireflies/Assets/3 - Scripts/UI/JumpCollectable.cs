@@ -6,6 +6,7 @@ public class JumpCollectable : MonoBehaviour
 {
     private JumpRecovery Jump;
     private GameObject Used;
+    private Collider2D collider;
     private bool canUse = true;
 
     [Header("Segundos para ser reconstituído")]
@@ -15,6 +16,15 @@ public class JumpCollectable : MonoBehaviour
     {
         Jump = GameObject.Find("Movement").GetComponent<JumpRecovery>();
         Used = gameObject.transform.GetChild(1).gameObject;
+        collider = gameObject.GetComponent<Collider2D>();
+    }
+
+    void Update()
+    {
+        if(canUse)
+            collider.enabled = true;
+        else
+            collider.enabled = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {

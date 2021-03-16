@@ -30,6 +30,10 @@ public class BleeperBehaviour : MonoBehaviour
     [Header("Vida")]
     public int health = 100;
 
+    [Header("Partícula de morte e dano")]
+    public GameObject enemyDeathParticle;
+    public GameObject damageParticle;
+
     [Header("Ativa efeito de contagem de tempo")]
     public bool Effect = true;
 
@@ -261,7 +265,19 @@ public class BleeperBehaviour : MonoBehaviour
 
     public void morreu()
     {
+        if (enemyDeathParticle != null)
+            enemyDeathParticleTrigger();
         Destroy(gameObject);
+    }
+
+    private void enemyDeathParticleTrigger()
+    {
+        Instantiate(enemyDeathParticle,gameObject.transform.position,Quaternion.identity);
+    }
+
+    void damageParticleTrigger()
+    {
+        Instantiate(damageParticle,gameObject.transform.position,Quaternion.identity);
     }
 
     //detect dano
@@ -269,6 +285,12 @@ public class BleeperBehaviour : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && Estado == estado.atingivel)
         {
+            //trocar o 10 pela variavel de dano do player
+            if(health > 10)
+            {
+                if (damageParticle != null)
+                    damageParticleTrigger();
+            }
             perderVida(10);
         }
     }

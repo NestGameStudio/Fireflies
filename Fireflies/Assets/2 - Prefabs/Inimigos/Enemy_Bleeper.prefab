@@ -261,6 +261,10 @@ MonoBehaviour:
   healthDisplay: {fileID: 5075156393056644884}
   Debug: 1
   health: 100
+  enemyDeathParticle: {fileID: 3012395059707143272, guid: 16554822c2db08e4a9d1fbfab639a6c5,
+    type: 3}
+  damageParticle: {fileID: 4972606679766911167, guid: f1e2cf87820068d49bf9a7222c3b49b3,
+    type: 3}
   Effect: 1
   effectObject: {fileID: 7859704960089466569}
   baseColors:
@@ -271,6 +275,7 @@ MonoBehaviour:
   - {fileID: 2414950381358209739}
   angy: {fileID: 2414950381358209737}
   changeTime: 2
+  scaledTime: 0
   impulseForce: 7
   canViewPlayer: 0
   raycastCanViewPlayer: 0

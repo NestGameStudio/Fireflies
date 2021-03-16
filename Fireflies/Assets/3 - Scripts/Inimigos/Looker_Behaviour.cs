@@ -22,6 +22,10 @@ public class Looker_Behaviour : MonoBehaviour
     //tempo ate olhar para o player novamente
     public float changeTime = 2;
 
+    [Header("Partícula de morte")]
+    public GameObject enemyDeathParticle;
+    public GameObject damageParticle;
+
     [Header("É afetado pelo slow motion?")]
     public bool scaledTime = false;
 
@@ -185,7 +189,19 @@ public class Looker_Behaviour : MonoBehaviour
 
     public void morreu()
     {
+        if (enemyDeathParticle != null)
+            enemyDeathParticleTrigger();
         Destroy(gameObject);
+    }
+
+    private void enemyDeathParticleTrigger()
+    {
+        Instantiate(enemyDeathParticle,gameObject.transform.position,Quaternion.identity);
+    }
+
+    public void damageParticleTrigger()
+    {
+        Instantiate(damageParticle,gameObject.transform.position,Quaternion.identity);
     }
 
     public void atirar()
