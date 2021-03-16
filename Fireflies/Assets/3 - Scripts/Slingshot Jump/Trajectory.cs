@@ -12,10 +12,8 @@ public class Trajectory : MonoBehaviour
 
     public float collisionCheckRadius = 0.5f;
 
-    private bool oneCheck = true;
-
     public GameObject trajectoryHit;
-    public float hitSize = 0.5f;
+    public float trajectoryHitSize = 0.5f;
 
     private bool showHitPoint = false;
 
@@ -61,14 +59,8 @@ public class Trajectory : MonoBehaviour
                 if (CheckForCollision(lr.GetPosition(i))) //if you hit something
                 {
                     deletePositionsAboveX(i, steps);
-                    //showHitPoint = true;
                     break;//stop adding positions
                 }
-                else
-                {
-                    //showHitPoint = false;
-                }
-
             }
 
             // A simple 2 color gradient with a fixed alpha of 1.0f.
@@ -82,7 +74,7 @@ public class Trajectory : MonoBehaviour
             //lr.colorGradient = gradient;
 
             trajectoryHit.transform.position = Vector2.Lerp(trajectoryHit.transform.position, hitpoint,Time.deltaTime*100);
-            trajectoryHit.transform.localScale = new Vector3(hitSize,hitSize,1f);
+            trajectoryHit.transform.localScale = new Vector3(trajectoryHitSize,trajectoryHitSize,1f);
 
             if (showHitPoint)
             {
@@ -114,10 +106,8 @@ public class Trajectory : MonoBehaviour
     {
         if (lr.enabled)
         {
-            //lr.positionCount = 0;
             lr.enabled = false;
             trajectoryHit.SetActive(false);
-            //oneCheck = true;
         }
     }
     void deletePositionsAboveX(int x, int steps)

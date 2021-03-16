@@ -139,6 +139,12 @@ public class SlingshotVisual : MonoBehaviour
         line.widthMultiplier = Setup.Instance.LineWidth;
         line.positionCount = 2;
         //line.enabled = true;
+
+        // Desenha a linha e ponta do impulso
+        if(Setup.Instance.ShowArrow){
+            line.enabled = true;
+            arrow.SetActive(true);
+        }
     }
 
     // ------------- Faz o update do arrow ------------------
@@ -229,11 +235,7 @@ public class SlingshotVisual : MonoBehaviour
 
     private void adjustArrowPointer() {
 
-        // Desenha a linha do impulso
-        line.enabled = true;
-
         // Ajeita a ponta da seta
-        arrow.SetActive(true);
         arrow.transform.position = line.GetPosition(0);
 
         Vector3 dir = line.GetPosition(0) - this.transform.position;

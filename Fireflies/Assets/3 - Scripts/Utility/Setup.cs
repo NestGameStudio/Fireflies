@@ -7,17 +7,26 @@ public class Setup: MonoBehaviour {
     private static Setup instance;
 
     // ------------------- Timer -------------------------
-    [Header("Tempo")]
-    [Space(0.3f)]
+    //[Header("Tempo")]
+    //[Space(0.3f)]
 
-    [Tooltip(" Inicia o timer geral do jogo depois que solta o botão de pulo")]
+    //[Tooltip(" Inicia o timer geral do jogo depois que solta o botão de pulo")]
     //public bool StartTimerAfterJump = true;
 
     // ------------------- Seta -------------------------
     [Header("Seta")]
     [Space(0.3f)]
 
+    [Tooltip("Usar arco de trajetória de impulso")]
+    public bool ShowArc = true; 
+    
+    [Tooltip("Usar linha reta de indicação de direção de impulso")]
+    public bool ShowArrow = false;
+
+    [Tooltip("Linha da seta avança apenas para frente do player (false) ou para frente e para trás do player (true)")]
     public bool TransversalArrow = true;
+
+    [Tooltip("Input será invertido, ou seja, arrastar para a direção (false) ou ao contrário da direção (true)")]
     public bool InvertedSlingshot = true;
     public float LineWidth = 0.2f;
 

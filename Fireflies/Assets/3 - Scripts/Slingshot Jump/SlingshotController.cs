@@ -34,6 +34,8 @@ public class SlingshotController : MonoBehaviour {
 
     [HideInInspector]
     public Vector2 impulse;
+
+    private Trajectory trajectory;
     // ------------- Setup e checagens ------------------
     private void Start() {
         JumpControl = this.GetComponent<JumpRecovery>();
@@ -46,6 +48,8 @@ public class SlingshotController : MonoBehaviour {
             audioMusic = GameObject.FindGameObjectWithTag("Music").GetComponent<AudioLowPassFilter>();
             audioMusic.enabled = false;
         }
+
+        trajectory = GetComponentInParent<Trajectory>();
     }
 
     // Verifica se usa recursos de seguir o player -> atualiza a posição das coisas visuais
@@ -61,21 +65,14 @@ public class SlingshotController : MonoBehaviour {
             slingshotVisual.SetFinalLinePosition(direction);
             adjustImpulse();
 
-            //GetComponentInParent<Trajectory>().EnterArc();
-            GetComponentInParent<Trajectory>().SimulateArc();
+
+            if (Setup.Instance.ShowArc){
+                trajectory.SimulateArc();
+            }
         }
 
     }
-    /*
-    private void FixedUpdate()
-    {
-        if (isOnSlowMotion)
-        {
-            GetComponentInParent<Trajectory>().SimulateArc();
-        }
-    }
-    */
-    // -> Slow Motion 
+
     public void EnterSlowMotionMode() {
 
         if (JumpControl.CanJump()) {
@@ -93,7 +90,9 @@ public class SlingshotController : MonoBehaviour {
                 audioMusic.enabled = true;
             }
 
-            GetComponentInParent<Trajectory>().enterArc();
+            if (Setup.Instance.ShowArc){
+                trajectory.enterArc();
+            }
         }
         // Apertou o botão sem poder pular -> 'bufferiza' o pulo
         else{
@@ -125,7 +124,7 @@ public class SlingshotController : MonoBehaviour {
                 audioMusic.enabled = false;
             }
 
-            GetComponentInParent<Trajectory>().exitArc();
+            trajectory.exitArc();
         }
         // Soltou o botão sem estar no slowmotion
         else{
