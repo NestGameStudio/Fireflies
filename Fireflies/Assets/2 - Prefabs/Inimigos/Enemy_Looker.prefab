@@ -132,6 +132,11 @@ MonoBehaviour:
   health: 100
   lookerGraphics: {fileID: 7904883686407763943}
   changeTime: 3
+  enemyDeathParticle: {fileID: 3012395059707143272, guid: 16554822c2db08e4a9d1fbfab639a6c5,
+    type: 3}
+  damageParticle: {fileID: 4972606679766911167, guid: f1e2cf87820068d49bf9a7222c3b49b3,
+    type: 3}
+  scaledTime: 0
   angle: 140
   parteVulneravel: {fileID: 676378332416876056}
   Effect: 1
