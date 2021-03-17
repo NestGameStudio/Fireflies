@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EntityBarrel : Entity {
 
-    public Animator anim;
+    public SpriteRenderer renderer;
     public float hp = 10;
     private float maxHp = 10;
     public int reward = 10;
@@ -13,8 +13,12 @@ public class EntityBarrel : Entity {
     // Start is called before the first frame update
     void Start()
     {
-        if(anim == null) GetComponentInChildren<Animator>();
+        if(renderer == null) GetComponentInChildren<SpriteRenderer>();
+
+        renderer.sharedMaterial = new Material(renderer.sharedMaterial);
+
         maxHp = hp;
+        renderer.sharedMaterial.SetFloat("_DissolveAmount", hp/maxHp);
     }
 
     // Sobrescreve o método com as informações adequadas
@@ -24,12 +28,12 @@ public class EntityBarrel : Entity {
         // Vincular ao coin sistem que o DJ fez (spawnnar moedas quando quebra)
     }
 
-    public void OnCollisionEnter(Collision other){
+    public void OnCollisionEnter2D(Collision2D other){
         if(other.gameObject.CompareTag("Player")){
             //Player bateu neste objeto
 
             hp--; //Perde 1 hp
-            anim.SetFloat("hp", hp/maxHp); //valor de 0 a 1 de quão destruído
+            renderer.sharedMaterial.SetFloat("_DissolveAmount", hp/maxHp); //valor de 0 a 1 de quão destruído
 
             if(hp <= 0){
                 //objeto deverá dar recompensa a player e ser destruído
@@ -39,7 +43,7 @@ public class EntityBarrel : Entity {
                 //Instancia partícula
                 if(rewardParticle != null) Instantiate(rewardParticle, this.transform.position, Quaternion.identity);
 
-                Destroy(this); //Destrói este objeto
+                Destroy(this.gameObject); //Destrói este objeto
             } 
         }
     }
