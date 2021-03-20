@@ -35,7 +35,7 @@ public class SlingshotController : MonoBehaviour {
     [HideInInspector]
     public Vector2 impulse;
 
-    private Trajectory trajectory;
+    public Trajectory trajectory;
     // ------------- Setup e checagens ------------------
     private void Start() {
         JumpControl = this.GetComponent<JumpRecovery>();
@@ -49,7 +49,9 @@ public class SlingshotController : MonoBehaviour {
             audioMusic.enabled = false;
         }
 
-        trajectory = GetComponentInParent<Trajectory>();
+        if(trajectory == null){
+            trajectory = transform.parent.parent.Find("Slingshot Visuals").GetComponent<Trajectory>();
+        }
     }
 
     // Verifica se usa recursos de seguir o player -> atualiza a posição das coisas visuais
