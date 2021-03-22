@@ -129,7 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeDisplay: {fileID: 6509478306694069755}
   healthDisplay: {fileID: 5137660469351477550}
-  health: 100
+  health: 30
   lookerGraphics: {fileID: 7904883686407763943}
   changeTime: 3
   enemyDeathParticle: {fileID: 3012395059707143272, guid: 16554822c2db08e4a9d1fbfab639a6c5,
@@ -507,6 +507,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6694221689821177762, guid: ba1f57e824a9fc847acdea84df6a66ed,
+        type: 3}
+      propertyPath: m_TagString
+      value: Inimigo_Vulneravel
       objectReference: {fileID: 0}
     - target: {fileID: 6738118354930735318, guid: ba1f57e824a9fc847acdea84df6a66ed,
         type: 3}

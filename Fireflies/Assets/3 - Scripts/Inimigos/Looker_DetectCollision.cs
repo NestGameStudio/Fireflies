@@ -4,21 +4,24 @@ using UnityEngine;
 
 public class Looker_DetectCollision : MonoBehaviour
 {
+    private Looker_Behaviour looker;
+    private void Start(){
+        if(looker == null){
+            looker = gameObject.transform.parent.parent.gameObject.GetComponent<Looker_Behaviour>();
+        }
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Player")
         {
             //trocar o 10 pela variavel de dano do player
-            if (gameObject.transform.parent.parent.gameObject.GetComponent<Looker_Behaviour>().health > 10)
+
+            if (looker.health > 10)
             {
-                if (gameObject.transform.parent.parent.gameObject.GetComponent<Looker_Behaviour>().damageParticle != null)
-                    gameObject.transform.parent.parent.gameObject.GetComponent<Looker_Behaviour>().damageParticleTrigger();
+                if (looker.damageParticle != null)
+                    looker.damageParticleTrigger();
             }
-            gameObject.transform.parent.parent.gameObject.GetComponent<Looker_Behaviour>().perderVida(10);
+            looker.perderVida(10);
         }
-    }
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        
     }
 }

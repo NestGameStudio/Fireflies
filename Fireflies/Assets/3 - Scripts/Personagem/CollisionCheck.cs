@@ -55,7 +55,7 @@ public class CollisionCheck : MonoBehaviour
 
                 break;
 
-            case "PlatRec_Curva":
+            /*case "PlatRec_Curva":
                 Jump.setJump(true);
 
                 playAudioColisao();
@@ -106,7 +106,8 @@ public class CollisionCheck : MonoBehaviour
 
                 //tomou dano
                 dano();
-                break;
+                break;*/
+            
             case "Inimigo":
 
                 //if (CameraShake.instance != null) { CameraShake.instance.shakeCam(2, 1, 0.5f); }
@@ -126,6 +127,16 @@ public class CollisionCheck : MonoBehaviour
                 //tomou dano
                 dano();
                 break;
+
+            case "Inimigo_Vulneravel":
+                
+                Jump.setJump(true);
+
+                playAudioColisao();
+                playFeedbackRecarga();
+
+                break;    
+
             case "Perigo":
 
                 Jump.setJump(true);
@@ -145,13 +156,14 @@ public class CollisionCheck : MonoBehaviour
                 dano();
 
                 break;
+
             default:
                 break;
         }
         
     }
 
-    private void OnCollisionStay2D(Collision2D collision) {
+    /*private void OnCollisionStay2D(Collision2D collision) {
         
         if (!Jump.CanJump() && canRecharge) {
 
@@ -179,7 +191,7 @@ public class CollisionCheck : MonoBehaviour
             }
         }
 
-    }
+    }*/
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
