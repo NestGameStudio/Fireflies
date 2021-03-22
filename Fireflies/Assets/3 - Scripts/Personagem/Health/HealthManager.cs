@@ -13,6 +13,10 @@ public class HealthManager : MonoBehaviour
     public int maxHealth = 100;
     private HUDManager hudUI;
 
+    [Header("Morte")]
+    public DeathAnimation DeathAnimation;
+    public int DeathWaitTime;
+
     private void Awake()
     {
         // Singleton
@@ -113,9 +117,21 @@ public class HealthManager : MonoBehaviour
 
     //morreu
     public void morreu()
+    {  
+        StartCoroutine(DeathWait());
+        gameObject.GetComponent<Rigidbody2D>().simulated = false;
+        DeathAnimation.DeathAnimationTrigger();
+        
+    }   
+
+    private IEnumerator DeathWait()
     {
+        yield return new WaitForSeconds(DeathWaitTime);
         Respawn.instance.RepositionPlayer();
         health = maxHealth;
         hudUI.healthUI.SetHealth(health);
-    }     
+        gameObject.GetComponent<Rigidbody2D>().simulated = true;
+    }
+
+
 }

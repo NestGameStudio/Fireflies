@@ -1000,7 +1000,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 5b669cbfaa848a145abd9e3ed2058bc1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1114,7 +1114,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 5b669cbfaa848a145abd9e3ed2058bc1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1534,10 +1534,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15b2f29a84085a947b6b13b4eae6aa45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Points: 25
+  simulateForDuration: 0
+  simulationStep: 0
   Player: {fileID: 6856872311861081553}
-  TimeOfSimulation: 1.6
+  collisionCheckRadius: 0.5
   trajectoryHit: {fileID: 4951848863040703151}
+  trajectoryHitSize: 0.5
 --- !u!114 &331342999589612788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1552,6 +1554,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   maxHealth: 100
+  DeathAnimation: {fileID: 5986931170994649444}
+  DeathWaitTime: 2
 --- !u!114 &8015511733105295591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1614,7 +1618,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 5b669cbfaa848a145abd9e3ed2058bc1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1788,6 +1792,7 @@ GameObject:
   - component: {fileID: 4951848863457775629}
   - component: {fileID: 7482340298135023992}
   - component: {fileID: 2965705973359285041}
+  - component: {fileID: 5986931170994649444}
   m_Layer: 0
   m_Name: Graphics_Personagem
   m_TagString: Untagged
@@ -2005,6 +2010,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5986931170994649444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8887355420590758978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09d71a1fd5ccb424da36f3324f32069e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HealthManager: {fileID: 331342999589612788}
+  lookAlongVelocity: {fileID: 4951848863457775629}
+  scaleByVelocity: {fileID: 4951848863457775627}
+  lerpTime: 2
 --- !u!1001 &6856872311097858100
 PrefabInstance:
   m_ObjectHideFlags: 0

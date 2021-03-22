@@ -18,6 +18,8 @@ public class Trajectory : MonoBehaviour
     private bool showHitPoint = false;
 
     private Vector2 hitpoint;
+    public float massMultiplier = 5.0f;
+    public Vector2 speedRemap = new Vector2(5.9f,4.55f);
 
     private void Awake()
     {
@@ -36,9 +38,9 @@ public class Trajectory : MonoBehaviour
         Vector2 launchPosition = gameObject.transform.position; //Position where you launch from
         
 
-        float lerpSpeed = playerSC.impulseVector.magnitude.Remap(Setup.Instance.LineMinRadius, Setup.Instance.LineMaxRadius, 5.9f, 4.55f);
+        float lerpSpeed = playerSC.impulseVector.magnitude.Remap(Setup.Instance.LineMinRadius, Setup.Instance.LineMaxRadius, speedRemap.x, speedRemap.y);
 
-        float launchSpeed = playerSC.impulseVector.magnitude * Setup.Instance.ImpulseForce * Setup.Instance.ImpulseForce * lerpSpeed * GetComponent<Rigidbody2D>().mass*5;
+        float launchSpeed = playerSC.impulseVector.magnitude * Setup.Instance.ImpulseForce * Setup.Instance.ImpulseForce * lerpSpeed * Player.GetComponent<Rigidbody2D>().mass * massMultiplier;
 
         if (playerSC.impulseVector.magnitude > Setup.Instance.LineMinRadius)
         {
