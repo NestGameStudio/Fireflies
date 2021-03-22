@@ -91,6 +91,10 @@ public class CollisionCheck : MonoBehaviour
             case "Bleeper_Invulneravel":
 
                 //if (CameraShake.instance != null) { CameraShake.instance.shakeCam(2, 1, 0.5f); }
+                Jump.setJump(true);
+
+                playAudioColisao();
+                playFeedbackRecarga();
 
                 //playAudioLose();
 
@@ -106,6 +110,10 @@ public class CollisionCheck : MonoBehaviour
             case "Inimigo":
 
                 //if (CameraShake.instance != null) { CameraShake.instance.shakeCam(2, 1, 0.5f); }
+                Jump.setJump(true);
+
+                playAudioColisao();
+                playFeedbackRecarga();
 
                 //playAudioLose();
 
@@ -120,7 +128,10 @@ public class CollisionCheck : MonoBehaviour
                 break;
             case "Perigo":
 
-                
+                Jump.setJump(true);
+
+                playAudioColisao();
+                playFeedbackRecarga();
 
                 //playAudioLose();
 
