@@ -937,6 +937,7 @@ MonoBehaviour:
   impulseVector: {x: 0, y: 0}
   jumpAudio: {fileID: 322599601779618711}
   impulse: {x: 0, y: 0}
+  trajectory: {fileID: 0}
 --- !u!114 &4951848864073189413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1021,8 +1022,8 @@ SpriteRenderer:
   m_SortingLayerID: -2121253527
   m_SortingLayer: 3
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: e4f422bb764948642bbd91dfe4aa9799, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: d746c8e4b23e18347a1f937215834ae8, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1140,7 +1141,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.13, y: 5.12}
+  m_Size: {x: 1.0019531, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1540,6 +1541,8 @@ MonoBehaviour:
   collisionCheckRadius: 0.5
   trajectoryHit: {fileID: 4951848863040703151}
   trajectoryHitSize: 0.5
+  massMultiplier: 5
+  speedRemap: {x: 5.9, y: 4.55}
 --- !u!114 &331342999589612788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2025,6 +2028,8 @@ MonoBehaviour:
   HealthManager: {fileID: 331342999589612788}
   lookAlongVelocity: {fileID: 4951848863457775629}
   scaleByVelocity: {fileID: 4951848863457775627}
+  fireParticle: {fileID: 1585373844812159063, guid: d8409e5691224414dbc3a6ae46e4a292,
+    type: 3}
   lerpTime: 2
 --- !u!1001 &6856872311097858100
 PrefabInstance:
