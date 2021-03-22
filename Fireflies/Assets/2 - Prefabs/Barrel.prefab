@@ -214,7 +214,8 @@ MonoBehaviour:
   renderer: {fileID: 4259433464320054562}
   hp: 2
   reward: 10
-  rewardParticle: {fileID: 0}
+  rewardParticle: {fileID: 3209758070368945166, guid: b0ae2bcdd07804842ad49a1db99bbc2b,
+    type: 3}
 --- !u!61 &4259433464449269518
 BoxCollider2D:
   m_ObjectHideFlags: 0
