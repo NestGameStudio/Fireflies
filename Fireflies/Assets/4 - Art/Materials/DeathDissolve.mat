@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DissolveTest
+  m_Name: DeathDissolve
   m_Shader: {fileID: -6465566751694194690, guid: 582c3783e3639e04abb42a74ebb07fbd,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
