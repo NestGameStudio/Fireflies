@@ -14,7 +14,7 @@ public class JumpCollectable : MonoBehaviour
 
     void Start()
     {
-        Jump = GameObject.Find("Movement").GetComponent<JumpRecovery>();
+        //Jump = GameObject.Find("Movement").GetComponent<JumpRecovery>();
         Used = gameObject.transform.GetChild(1).gameObject;
         collider = gameObject.GetComponent<Collider2D>();
     }
@@ -32,7 +32,7 @@ public class JumpCollectable : MonoBehaviour
         if (collision.transform.CompareTag("Player") && canUse == true) 
         {
             canUse = false;
-            Jump.setJump(true);
+            //Jump.setJump(true);
             Used.SetActive(true);
             StartCoroutine(Reset(resetTime));
         }
