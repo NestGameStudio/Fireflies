@@ -18,6 +18,8 @@ public class Trajectory : MonoBehaviour
     private bool showHitPoint = false;
 
     private Vector2 hitpoint;
+
+    [Header("Debug values")]
     public float massMultiplier = 5.0f;
     public Vector2 speedRemap = new Vector2(5.9f,4.55f);
 
@@ -34,7 +36,7 @@ public class Trajectory : MonoBehaviour
         SlingshotController playerSC = Player.GetComponentInChildren<SlingshotController>();
         List<Vector2> lineRendererPoints = new List<Vector2>();
         Vector2 calculatedPosition;
-        Vector2 directionVector = playerSC.impulseVector; //You plug you own direction here this is just an example
+        Vector2 directionVector = playerSC.impulseVector;
         Vector2 launchPosition = gameObject.transform.position; //Position where you launch from
         
 
@@ -122,7 +124,8 @@ public class Trajectory : MonoBehaviour
     {
 
         // Bit shift the index of the layer (8) to get a bit mask
-        int layerMask = 1 << 0;
+        //int layerMask = 1 << 0;
+        int layerMask = LayerMask.GetMask("Default");
 
         // This would cast rays only against colliders in layer 8.
         // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
@@ -137,9 +140,11 @@ public class Trajectory : MonoBehaviour
 
             foreach(Collider2D hit in hits)
             {
-                if(hit.gameObject.CompareTag("Plataforma_Recarregavel") || hit.gameObject.CompareTag("Plataforma_NaoRecarregavel") 
-                || hit.gameObject.CompareTag("Plataforma_Quebravel") || hit.gameObject.CompareTag("Plataforma_Quebravel_Fake") 
-                || hit.gameObject.CompareTag("PlatRec_Curva")) 
+                if(hit.gameObject.CompareTag("Plataforma_Recarregavel") 
+                || hit.gameObject.CompareTag("Plataforma_NaoRecarregavel") 
+                || hit.gameObject.CompareTag("Perigo")
+                || hit.gameObject.CompareTag("Inimigo")
+                || hit.gameObject.CompareTag("Inimigo_Vulneravel")) 
                 {
                     showHitPoint = true;
                     hitpoint = position ;
@@ -152,8 +157,7 @@ public class Trajectory : MonoBehaviour
                     showHitPoint = false;
                     return false;
                 }
-            }
-            
+            }            
         }
         return false;
     }

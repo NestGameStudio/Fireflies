@@ -8,7 +8,6 @@ TagManager:
   - Inimigo
   - Bleeper_Vulneravel
   - Bleeper_Invulneravel
-  - Looker_Vulneravel
   - Plataforma_Recarregavel
   - Plataforma_NaoRecarregavel
   - Level_Final
@@ -21,6 +20,9 @@ TagManager:
   - Time_Collectable
   - PlatRec_Curva
   - Heal_Collectable
+  - Inimigo_Vulneravel
+  - Trigger_Recarregavel
+  - Trigger_Safe
   layers:
   - Default
   - TransparentFX

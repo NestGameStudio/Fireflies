@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 6718477867574047999}
   m_Layer: 8
   m_Name: Enemy_Bleeper
-  m_TagString: Bleeper_Invulneravel
+  m_TagString: Inimigo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -260,7 +260,7 @@ MonoBehaviour:
   timeDisplay: {fileID: 177942200428171948}
   healthDisplay: {fileID: 5075156393056644884}
   Debug: 1
-  health: 100
+  health: 50
   enemyDeathParticle: {fileID: 3012395059707143272, guid: 16554822c2db08e4a9d1fbfab639a6c5,
     type: 3}
   damageParticle: {fileID: 4972606679766911167, guid: f1e2cf87820068d49bf9a7222c3b49b3,

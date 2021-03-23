@@ -75,14 +75,7 @@ public class BleeperBehaviour : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
 
-        if (Estado == estado.inatingivel)
-        {
-            gameObject.tag = "Bleeper_Invulneravel";
-        }
-        else
-        {
-            gameObject.tag = "Bleeper_Vulneravel";
-        }
+        changeState();
     }
 
     // Update is called once per frame
@@ -114,19 +107,16 @@ public class BleeperBehaviour : MonoBehaviour
         //reseta timer
         changeTime = timeBackup;
 
-        
-
-        //colocar tag correspondente ao estado
-        mudarTag();
-
         //alternar estado
         if (Estado == estado.inatingivel)
         {
             Estado = estado.atingivel;
+            gameObject.tag = "Inimigo_Vulneravel";
         }
         else
         {
             Estado = estado.inatingivel;
+            gameObject.tag = "Inimigo";
 
             //se joga no player
             forceToPlayer();
@@ -157,18 +147,7 @@ public class BleeperBehaviour : MonoBehaviour
         
 
     }
-    public void mudarTag()
-    {
 
-        if (Estado == estado.inatingivel)
-        {
-            gameObject.tag = "Bleeper_Vulneravel";
-        }
-        else
-        {
-            gameObject.tag = "Bleeper_Invulneravel";
-        }
-    }
     public void forceToPlayer()
     {
         RaycastView();
@@ -221,7 +200,7 @@ public class BleeperBehaviour : MonoBehaviour
         //Length of the ray
         float laserLength = 50f;
         Vector2 startPosition = (Vector2)transform.position;
-        int layerMask = LayerMask.GetMask("Default");
+        int layerMask = LayerMask.GetMask("Default", "Passable");
 
         if(!playerTransform)
         {
@@ -293,10 +272,6 @@ public class BleeperBehaviour : MonoBehaviour
             }
             perderVida(10);
         }
-    }
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-
     }
 }
 

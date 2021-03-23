@@ -7,6 +7,7 @@ public class DeathAnimation : MonoBehaviour
     public HealthManager HealthManager;
     public lookAlongVelocity lookAlongVelocity;
     public scaleByVelocity scaleByVelocity;
+    public GameObject fireParticle;
     
     private GameObject Base, Ears, Eyes;
     private Renderer rBase, rEars, rEyes;
@@ -36,6 +37,8 @@ public class DeathAnimation : MonoBehaviour
     {
         isDead = true;
         lerpControl = 0;
+        if (fireParticle != null)
+            FireParticleTrigger();
     }
 
     void Death()
@@ -76,6 +79,10 @@ public class DeathAnimation : MonoBehaviour
 
             isDead = false;
         }
+    }
 
+    private void FireParticleTrigger()
+    {
+        GameObject particle = (GameObject)Instantiate(fireParticle,gameObject.transform.position,Quaternion.identity);
     }
 }

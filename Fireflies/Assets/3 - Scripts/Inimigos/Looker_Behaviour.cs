@@ -283,7 +283,7 @@ public class Looker_Behaviour : MonoBehaviour
         //Length of the ray
         float laserLength = 50f;
         Vector2 startPosition = (Vector2)transform.position;
-        int layerMask = LayerMask.GetMask("Default");
+        int layerMask = LayerMask.GetMask("Default", "Passable");
 
         //get player
         Vector3 playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;

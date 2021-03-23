@@ -6,6 +6,7 @@ public class CollisionCheck : MonoBehaviour
 {
     public JumpRecovery Jump;
     public Respawn Respawn;
+    public TimerManager Timer;
     public HurtFeedback HurtFeedback;
     public GameObject paredeParticle;
     public GameObject deathParticle;
@@ -30,7 +31,8 @@ public class CollisionCheck : MonoBehaviour
 
     private void Update() {
 
-        if (!Jump.CanJump()) {
+        //Trecho usado para criar delay em OnCollisionStay2D, atualmente inativo
+        /*if (!Jump.CanJump()) {
             currentColissionStayTimer += Time.unscaledDeltaTime;
 
             if(currentColissionStayTimer >= collisionStayDelay) {
@@ -39,7 +41,7 @@ public class CollisionCheck : MonoBehaviour
             }
         } else {
             canRecharge = false;
-        }
+        }*/
 
     }
 
@@ -55,7 +57,7 @@ public class CollisionCheck : MonoBehaviour
 
                 break;
 
-            case "PlatRec_Curva":
+            /*case "PlatRec_Curva":
                 Jump.setJump(true);
 
                 playAudioColisao();
@@ -106,7 +108,8 @@ public class CollisionCheck : MonoBehaviour
 
                 //tomou dano
                 dano();
-                break;
+                break;*/
+            
             case "Inimigo":
 
                 //if (CameraShake.instance != null) { CameraShake.instance.shakeCam(2, 1, 0.5f); }
@@ -126,6 +129,16 @@ public class CollisionCheck : MonoBehaviour
                 //tomou dano
                 dano();
                 break;
+
+            case "Inimigo_Vulneravel":
+                
+                Jump.setJump(true);
+
+                playAudioColisao();
+                playFeedbackRecarga();
+
+                break;    
+
             case "Perigo":
 
                 Jump.setJump(true);
@@ -145,13 +158,14 @@ public class CollisionCheck : MonoBehaviour
                 dano();
 
                 break;
+
             default:
                 break;
         }
         
     }
 
-    private void OnCollisionStay2D(Collision2D collision) {
+    /*private void OnCollisionStay2D(Collision2D collision) {
         
         if (!Jump.CanJump() && canRecharge) {
 
@@ -179,17 +193,30 @@ public class CollisionCheck : MonoBehaviour
             }
         }
 
-    }
+    }*/
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag == "PlatRec_Curva")
+    private void OnTriggerEnter2D(Collider2D collision){
+        /*if(collision.gameObject.tag == "PlatRec_Curva")
         {
             setCurveMaterial(collision);
         }
         else
         {
             resetMaterial(collision);
+        }*/
+
+        if(collision.transform.CompareTag("Trigger_Recarregavel")){
+            Jump.setJump(true);
+            playFeedbackRecarga();
+        } else if (collision.transform.CompareTag("Trigger_Safe")){
+            Timer.stopTimer();
+        }
+
+    }
+
+    private void OnTriggerExit2D(Collider2D collision){
+        if (collision.transform.CompareTag("Trigger_Safe")){
+            Timer.startTimer();
         }
     }
     void deathParticleTrigger()
@@ -217,9 +244,6 @@ public class CollisionCheck : MonoBehaviour
             collision.gameObject.GetComponentInChildren<EdgeCollider2D>().sharedMaterial = platformMaterial;
         }
         rb.sharedMaterial = playerMaterialCurva;
-    }
-    private void OnCollisionExit2D(Collision2D collision) {
-        //print("sai disso");
     }
 
     void playAudioColisao()
