@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Passable_Mat
+  m_Name: Door_Mat
   m_Shader: {fileID: -6465566751694194690, guid: c4c5a33d070ab474ca6be59e6c933f0d,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
@@ -46,7 +46,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: bf640a92a2e6b14458bc1ed7d98216b0, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:

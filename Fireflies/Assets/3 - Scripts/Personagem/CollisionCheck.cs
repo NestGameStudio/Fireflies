@@ -6,6 +6,7 @@ public class CollisionCheck : MonoBehaviour
 {
     public JumpRecovery Jump;
     public Respawn Respawn;
+    public TimerManager Timer;
     public HurtFeedback HurtFeedback;
     public GameObject paredeParticle;
     public GameObject deathParticle;
@@ -194,8 +195,7 @@ public class CollisionCheck : MonoBehaviour
 
     }*/
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
+    private void OnTriggerEnter2D(Collider2D collision){
         /*if(collision.gameObject.tag == "PlatRec_Curva")
         {
             setCurveMaterial(collision);
@@ -208,6 +208,15 @@ public class CollisionCheck : MonoBehaviour
         if(collision.transform.CompareTag("Trigger_Recarregavel")){
             Jump.setJump(true);
             playFeedbackRecarga();
+        } else if (collision.transform.CompareTag("Trigger_Safe")){
+            Timer.stopTimer();
+        }
+
+    }
+
+    private void OnTriggerExit2D(Collider2D collision){
+        if (collision.transform.CompareTag("Trigger_Safe")){
+            Timer.startTimer();
         }
     }
     void deathParticleTrigger()
