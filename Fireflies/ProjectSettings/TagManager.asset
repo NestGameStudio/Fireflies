@@ -21,6 +21,7 @@ TagManager:
   - PlatRec_Curva
   - Heal_Collectable
   - Inimigo_Vulneravel
+  - Trigger_Recarregavel
   layers:
   - Default
   - TransparentFX
