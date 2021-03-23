@@ -268,7 +268,7 @@ public class CollisionCheck : MonoBehaviour
         playAudioLose();
 
         //perder vida
-        HealthManager.instance.menosVida(5, 10);
+        HealthManager.instance.menosVida(10, 10);
 
         //Feedback de dano
         HurtFeedback.HurtTrigger();
