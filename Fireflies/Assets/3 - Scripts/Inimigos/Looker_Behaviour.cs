@@ -178,7 +178,10 @@ public class Looker_Behaviour : MonoBehaviour
     {
         if (player != null)
         {
-            Gizmos.DrawLine(lookerGraphics.transform.position, player.position);
+            if (canViewPlayer)
+            {
+                Gizmos.DrawLine(lookerGraphics.transform.position, player.position);
+            }   
         }
     }
     //correcao do lerp - https://gamedevbeginner.com/the-right-way-to-lerp-in-unity-with-examples/

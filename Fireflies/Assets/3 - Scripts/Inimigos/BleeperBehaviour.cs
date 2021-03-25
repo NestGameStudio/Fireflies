@@ -85,10 +85,10 @@ public class BleeperBehaviour : MonoBehaviour
         {
             changeTime -= scaledTime? Time.deltaTime : Time.unscaledDeltaTime;
         }
-        else if(changeTime <= 0 && rb.velocity.magnitude <= 0.2f)
+        else if(changeTime <= 0 )
         {
             changeState();
-
+            UnityEngine.Debug.Log("fdfdfdfdsfdsfsdf");
         }
 
         //mostrar tempo faltante em display
@@ -187,8 +187,9 @@ public class BleeperBehaviour : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.white;
-        //Gizmos.DrawLine(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position);
-
+        if(canViewPlayer) {
+            Gizmos.DrawLine(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position);
+        }
         //Gizmos.color = Color.red;
         //Gizmos.DrawWireSphere(transform.position, 1);
     }
