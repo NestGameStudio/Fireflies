@@ -261,6 +261,8 @@ public class CollisionCheck : MonoBehaviour
 
     void dano()
     {
+        if(HealthManager.instance.IsPlayerInvencible()) return;
+
         //camera shake
         if (CameraShake.instance != null) { CameraShake.instance.shakeCam(2, 1, 0.5f); }
 

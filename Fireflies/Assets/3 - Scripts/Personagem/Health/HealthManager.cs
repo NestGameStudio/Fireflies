@@ -17,6 +17,10 @@ public class HealthManager : MonoBehaviour
     public DeathAnimation DeathAnimation;
     public int DeathWaitTime;
 
+    [Header("Invencibilidade")]
+    public float InvencibilityDuration;
+    private bool IsInvencible = false;
+
     private void Awake()
     {
         // Singleton
@@ -52,6 +56,7 @@ public class HealthManager : MonoBehaviour
             //perdeu vida
             health -= quantidade;
             hudUI.healthUI.SetHealth(health);
+            StartCoroutine(InvencibilidadeTimer());
         }
         else
         {
@@ -131,6 +136,16 @@ public class HealthManager : MonoBehaviour
         health = maxHealth;
         hudUI.healthUI.SetHealth(health);
         gameObject.GetComponent<Rigidbody2D>().simulated = true;
+    }
+
+    private IEnumerator InvencibilidadeTimer() {
+        IsInvencible = true;
+        yield return new WaitForSeconds(InvencibilityDuration);
+        IsInvencible = false;
+    }
+
+    public bool IsPlayerInvencible() {
+        return IsInvencible;
     }
 
 
