@@ -136,6 +136,7 @@ public class HealthManager : MonoBehaviour
         health = maxHealth;
         hudUI.healthUI.SetHealth(health);
         gameObject.GetComponent<Rigidbody2D>().simulated = true;
+        LevelManagerRL.Instance.ChooseNewMap();
     }
 
     private IEnumerator InvencibilidadeTimer() {
