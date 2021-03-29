@@ -140,7 +140,7 @@ public class HealthManager : MonoBehaviour
 
     private IEnumerator InvencibilidadeTimer() {
         IsInvencible = true;
-        yield return new WaitForSeconds(InvencibilityDuration);
+        yield return new WaitForSecondsRealtime(InvencibilityDuration);
         IsInvencible = false;
     }
 

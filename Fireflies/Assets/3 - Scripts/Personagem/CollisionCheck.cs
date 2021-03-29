@@ -119,11 +119,6 @@ public class CollisionCheck : MonoBehaviour
                 playFeedbackRecarga();
 
                 //playAudioLose();
-
-                //particula de morte e contador de morte
-                if (deathParticle != null)
-                    deathParticleTrigger();
-
                 //Respawn.RepositionPlayer();
 
                 //tomou dano
@@ -147,16 +142,10 @@ public class CollisionCheck : MonoBehaviour
                 playFeedbackRecarga();
 
                 //playAudioLose();
-
-                //particula de morte e contador de morte
-                if (deathParticle != null)
-                    deathParticleTrigger();
-
                 //Respawn.RepositionPlayer();
 
                 //tomou dano
                 dano();
-
                 break;
 
             default:
@@ -262,6 +251,10 @@ public class CollisionCheck : MonoBehaviour
     void dano()
     {
         if(HealthManager.instance.IsPlayerInvencible()) return;
+
+        //particula de morte e contador de morte
+        if (deathParticle != null)
+            deathParticleTrigger();
 
         //camera shake
         if (CameraShake.instance != null) { CameraShake.instance.shakeCam(2, 1, 0.5f); }
