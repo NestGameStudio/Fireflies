@@ -31,20 +31,20 @@ public class SaveSystem : MonoBehaviour
         }
     }
 
-    private static SaveSystem instance;
-    public static SaveSystem GetInstance()
+    private static SaveSystem Instance;
+    public static SaveSystem instance
     {
-        return instance;
+        get{return Instance;}
     }
 
     private void Awake() {
-        if(instance != null)
+        if(Instance != null)
         {
             GameObject.Destroy(this.gameObject);
         }
         else
         {
-            instance = this;
+            Instance = this;
             bool res = LoadState();
             if(!res || res)
             {

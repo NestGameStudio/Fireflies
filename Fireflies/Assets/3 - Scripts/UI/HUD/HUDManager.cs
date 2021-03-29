@@ -24,6 +24,16 @@ public class HUDManager : MonoBehaviour
     [Space(0.3f)]
     public MoneyUI moneyUI;
 
+    // Estattisticas da Tentativa
+    [Header("Stats")]
+    [Space(0.3f)]
+    public GameObject GameOverStats;
+    public TextMeshProUGUI AttemptText;
+    public TextMeshProUGUI JumpText;
+    public TextMeshProUGUI EnemiesText;
+    public TextMeshProUGUI MoneyText;
+    public TextMeshProUGUI TimeText;
+
 
     private void Awake(){
         // Singleton

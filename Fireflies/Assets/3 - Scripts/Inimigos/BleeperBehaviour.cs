@@ -256,6 +256,7 @@ public class BleeperBehaviour : MonoBehaviour
         DropItem();
         if (enemyDeathParticle != null)
             enemyDeathParticleTrigger();
+        SaveSystem.instance.Stats.EnemiesDefeated++;
         Destroy(gameObject);
     }
 

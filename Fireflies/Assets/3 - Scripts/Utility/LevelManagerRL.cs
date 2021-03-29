@@ -26,6 +26,7 @@ public class LevelManagerRL : MonoBehaviour
             rnd = Random.Range(0,MapList.Count);
         }
         SceneManager.LoadScene(MapList[rnd],LoadSceneMode.Single);
+        Time.timeScale = 1f;
     }
     
 }

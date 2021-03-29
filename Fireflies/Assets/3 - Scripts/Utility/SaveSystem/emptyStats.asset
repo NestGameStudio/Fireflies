@@ -10,5 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3aabfdc43671694c801c815af88d0bf, type: 3}
-  m_Name: New Game Stats
+  m_Name: emptyStats
   m_EditorClassIdentifier: 
+  JumpCount: 0

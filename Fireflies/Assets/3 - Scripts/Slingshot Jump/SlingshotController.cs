@@ -202,6 +202,7 @@ public class SlingshotController : MonoBehaviour {
         jumpAudioEvent();
 
         impulseVector = Vector2.zero;
+        SaveSystem.instance.Stats.JumpCount++;
 
     }
 
