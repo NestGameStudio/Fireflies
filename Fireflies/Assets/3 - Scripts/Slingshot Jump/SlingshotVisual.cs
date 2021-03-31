@@ -10,6 +10,7 @@ public class SlingshotVisual : MonoBehaviour
     
     public GameObject arrow;            // ponta da seta
     public LineRenderer line;           // a linha
+    public LineRenderer trajectoryLine; // a linha da trajetoria
  
     // ------------- Circunferência de Impulso ------------------
     [Header("Limite de impulso")]
@@ -73,6 +74,7 @@ public class SlingshotVisual : MonoBehaviour
             
             adjustSlingshotLine();
             adjustArrowPointer();
+            adjustCircunferenceScale();
         } 
 
     }
@@ -160,6 +162,13 @@ public class SlingshotVisual : MonoBehaviour
         circunference.transform.position = lineCenterPosition;
     }
 
+    private void adjustCircunferenceScale() {
+
+        // Scale
+        float circunferenceDistance = Vector2.Distance(line.GetPosition(0), line.GetPosition(1));
+        circunference.transform.localScale = Vector2.Lerp(new Vector2(0,0), new Vector2(1,1), circunferenceDistance/2);
+    }
+
 
     private void adjustSlingshotLine() {
 
@@ -193,6 +202,7 @@ public class SlingshotVisual : MonoBehaviour
         if (Vector2.Distance(lineCenterPosition, lineFinalPos) <= Setup.Instance.LineMaxRadius) {
 
             // Desenha a linha com a Cali como centro
+            //trajectoryLine.GetPosition((trajectoryLine.positionCount - 1)/2)
             line.SetPosition(0, PointA);
             line.SetPosition(1, PointB);
 
@@ -237,6 +247,10 @@ public class SlingshotVisual : MonoBehaviour
 
         // Ajeita a ponta da seta
         arrow.transform.position = line.GetPosition(0);
+
+        // Scale
+        //float arrowDistance = Vector2.Distance(line.GetPosition(0), line.GetPosition(1));
+        //arrow.transform.localScale = Vector2.Lerp(new Vector2(0,0), new Vector2(1,1), arrowDistance);
 
         Vector3 dir = line.GetPosition(0) - this.transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;

@@ -68,6 +68,15 @@ public class BleeperBehaviour : MonoBehaviour
 
     [Header("Visualizacao do estado do inimigo")]
     public estado Estado;
+
+    [Header("Chance de drop")]
+    [Range(0,100)]
+    public float MoneyDropChance;
+    public int MoneyQuantityMin;
+    public int MoneyQuantityMax;
+    [Range(0,100)]
+    public float HealthDropChance;
+    public GameObject HealthItem;
     // Start is called before the first frame update
     void Start()
     {
@@ -88,7 +97,6 @@ public class BleeperBehaviour : MonoBehaviour
         else if(changeTime <= 0 )
         {
             changeState();
-            UnityEngine.Debug.Log("fdfdfdfdsfdsfsdf");
         }
 
         //mostrar tempo faltante em display
@@ -245,8 +253,10 @@ public class BleeperBehaviour : MonoBehaviour
 
     public void morreu()
     {
+        DropItem();
         if (enemyDeathParticle != null)
             enemyDeathParticleTrigger();
+        SaveSystem.instance.Stats.EnemiesDefeated++;
         Destroy(gameObject);
     }
 
@@ -272,6 +282,19 @@ public class BleeperBehaviour : MonoBehaviour
                     damageParticleTrigger();
             }
             perderVida(10);
+        }
+    }
+
+    //Calcula se o player recebe o drop
+    private void DropItem() {
+        float rnd = Random.Range(0,100);
+        if(HealthDropChance > rnd) {
+            Instantiate(HealthItem, new Vector2(transform.position.x,transform.position.y),Quaternion.identity);
+        }
+        rnd = Random.Range(0,100);
+        if(MoneyDropChance > rnd) {
+            int money = Random.Range(MoneyQuantityMin,MoneyQuantityMax);
+            MoneyManager.instance.ganharDinheiro(money);
         }
     }
 }
