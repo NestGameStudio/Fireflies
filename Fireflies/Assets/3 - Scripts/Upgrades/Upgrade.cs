@@ -17,7 +17,7 @@ public class Upgrade : ScriptableObject {
 
     public Sprite icon;
 
-    class UpgradeStats{
+    public class UpgradeStats{
         public UpgradeType type;
         public float amount; 
 
@@ -26,6 +26,7 @@ public class Upgrade : ScriptableObject {
             amount = upgradeAmount;
         }
     }
+
     [SerializeField]
     public List<UpgradeStats> stats = new List<UpgradeStats>();
 }
