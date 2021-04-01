@@ -26,7 +26,7 @@ public class Trajectory : MonoBehaviour
     private void Awake()
     {
         lr = GetComponent<LineRenderer>();
-        lr.startColor = Color.white;
+        //lr.startColor = Color.white;
     }
 
     public void SimulateArc()

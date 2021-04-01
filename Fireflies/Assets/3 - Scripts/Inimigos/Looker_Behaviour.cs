@@ -85,6 +85,15 @@ public class Looker_Behaviour : MonoBehaviour
     //para assegurar que o looker so vai atirar uma vez
     private bool oneCheckAtirar = true;
 
+    [Header("Chance de drop")]
+    [Range(0,100)]
+    public float MoneyDropChance;
+    public int MoneyQuantityMin;
+    public int MoneyQuantityMax;
+    [Range(0,100)]
+    public float HealthDropChance;
+    public GameObject HealthItem;
+
     void Start()
     {
         timeBackup = changeTime;
@@ -192,8 +201,10 @@ public class Looker_Behaviour : MonoBehaviour
 
     public void morreu()
     {
+        DropItem();
         if (enemyDeathParticle != null)
             enemyDeathParticleTrigger();
+        SaveSystem.instance.Stats.EnemiesDefeated++;
         Destroy(gameObject);
     }
 
@@ -308,6 +319,18 @@ public class Looker_Behaviour : MonoBehaviour
         {
             UnityEngine.Debug.DrawRay(startPosition, (playerPos - gameObject.transform.position) * laserLength, Color.red);
             raycastCanViewPlayer = false;
+        }
+    }
+
+    private void DropItem() {
+        float rnd = Random.Range(0,100);
+        if(HealthDropChance > rnd) {
+            Instantiate(HealthItem, new Vector2(transform.position.x,transform.position.y),Quaternion.identity);
+        }
+        rnd = Random.Range(0,100);
+        if(MoneyDropChance > rnd) {
+            int money = Random.Range(MoneyQuantityMin,MoneyQuantityMax);
+            MoneyManager.instance.ganharDinheiro(money);
         }
     }
 }

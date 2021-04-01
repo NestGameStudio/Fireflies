@@ -17,6 +17,10 @@ public class HealthManager : MonoBehaviour
     public DeathAnimation DeathAnimation;
     public int DeathWaitTime;
 
+    [Header("Invencibilidade")]
+    public float InvencibilityDuration;
+    private bool IsInvencible = false;
+
     private void Awake()
     {
         // Singleton
@@ -52,6 +56,7 @@ public class HealthManager : MonoBehaviour
             //perdeu vida
             health -= quantidade;
             hudUI.healthUI.SetHealth(health);
+            StartCoroutine(InvencibilidadeTimer());
         }
         else
         {
@@ -115,13 +120,14 @@ public class HealthManager : MonoBehaviour
         }
     }
 
-    //morreu
     public void morreu()
     {  
         StartCoroutine(DeathWait());
         gameObject.GetComponent<Rigidbody2D>().simulated = false;
         DeathAnimation.DeathAnimationTrigger();
-        
+        SaveSystem.instance.Stats.AttemptCount++;
+        SaveSystem.instance.Stats.MoneyCount = MoneyManager.instance.money;
+        SaveSystem.instance.Stats.RunTime = TimerManager.instance.time;
     }   
 
     private IEnumerator DeathWait()
@@ -131,7 +137,35 @@ public class HealthManager : MonoBehaviour
         health = maxHealth;
         hudUI.healthUI.SetHealth(health);
         gameObject.GetComponent<Rigidbody2D>().simulated = true;
+        GameOverScreen();
     }
 
+    private IEnumerator InvencibilidadeTimer() {
+        IsInvencible = true;
+        yield return new WaitForSecondsRealtime(InvencibilityDuration);
+        IsInvencible = false;
+    }
 
+    public bool IsPlayerInvencible() {
+        return IsInvencible;
+    }
+
+    private void GameOverScreen() {
+        Time.timeScale = 0f;
+        GameStats stats = SaveSystem.instance.Stats; 
+        hudUI.GameOverStats.SetActive(true);
+        hudUI.JumpText.text = "Jumps performed: " + stats.JumpCount.ToString();
+        hudUI.MoneyText.text = "Money gathered: " + stats.MoneyCount.ToString();
+        hudUI.EnemiesText.text = "Enemies defeated: " + stats.EnemiesDefeated.ToString();
+        hudUI.AttemptText.text = "Attempt #" + stats.AttemptCount.ToString();
+        hudUI.TimeText.text = "Run time: " + GetConvertedTime(stats.RunTime);
+    }
+
+    private string GetConvertedTime(float time) {
+        int hours = Mathf.FloorToInt(time / 3600F);
+		int minutes = Mathf.FloorToInt((time % 3600)/60);
+		int seconds = Mathf.FloorToInt(time % 60);
+
+        return string.Format("{0:00}:{1:00}:{2:00}", hours, minutes,seconds);
+    }
 }
