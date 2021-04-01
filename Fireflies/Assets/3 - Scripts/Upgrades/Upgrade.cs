@@ -9,24 +9,45 @@ public enum UpgradeType {
     Damage
 }
 
-[CreateAssetMenu(fileName = "New Upgrade", menuName = "Upgrade")]
+public enum UpgradeRarity {
+    Common,
+    Rare,
+    Epic,
+    Legendary
+}
+
+[System.Serializable]
+public class UpgradeEffect{
+    [Tooltip("Attribute to which the upgrade will be applied")]
+    public UpgradeType type;
+
+    [Tooltip("Value that will be added to the selected attribute")]
+    public float amount; 
+    public UpgradeEffect(UpgradeType upgradeType, float upgradeAmount){
+        type = upgradeType;
+        amount = upgradeAmount;
+    }
+}
+
+[CreateAssetMenu(fileName = "New Upgrade", menuName = "ScriptableObjects/Upgrade")]
 public class Upgrade : ScriptableObject {
 
+    [Tooltip("Upgrade name")]
     public string name;
+
+    [Tooltip("Upgrade description that will be shown to the player")]
     public string description;
 
+    [Tooltip("Upgrade icon")]
     public Sprite icon;
 
-    public class UpgradeStats{
-        public UpgradeType type;
-        public float amount; 
+    [Tooltip("Upgrade cost, shown when shopping")]
+    public float cost;
 
-        public UpgradeStats(UpgradeType upgradeType, float upgradeAmount){
-            type = upgradeType;
-            amount = upgradeAmount;
-        }
-    }
+    [Tooltip("Upgrade rarity, affects chance of appearance")]
+    public UpgradeRarity rarity = UpgradeRarity.Common;
 
+    [Tooltip("List of upgrade effects. Effects will be applied following element order")]
     [SerializeField]
-    public List<UpgradeStats> stats = new List<UpgradeStats>();
+    public List<UpgradeEffect> effects;
 }
