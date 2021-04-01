@@ -47,6 +47,7 @@ public class Upgrade : ScriptableObject {
     [Tooltip("Upgrade rarity, affects chance of appearance")]
     public UpgradeRarity rarity = UpgradeRarity.Common;
 
+    [Header("Upgrade effects")]
     [Tooltip("List of upgrade effects. Effects will be applied following element order")]
     [SerializeField]
     public List<UpgradeEffect> effects;

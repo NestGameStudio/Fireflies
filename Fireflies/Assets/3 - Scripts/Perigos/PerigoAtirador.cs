@@ -5,7 +5,6 @@ using UnityEngine;
 public class PerigoAtirador : MonoBehaviour
 {
     public GameObject tiroReto;
-
     public GameObject tiroGuiado;
 
     [Header("Forca de propulsao do tiro")]
@@ -13,6 +12,7 @@ public class PerigoAtirador : MonoBehaviour
 
     [Header("Taxa de repeticao de tiro (s)")]
     public float repeatTime = 1;
+    public float changeTime = 1;
 
     [HideInInspector]
     public enum type
@@ -22,26 +22,44 @@ public class PerigoAtirador : MonoBehaviour
     }
 
     public type tipoTiro;
+    public GameObject spawnTiro;
+    public Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("atirar",0,repeatTime);
+        if(anim==null) GetComponentInChildren<Animator>();
+        anim.SetFloat("rate", 1/repeatTime);
+
+        if(spawnTiro==null) transform.Find("BulletSpawn");
+
+        changeTime = repeatTime;
+        //InvokeRepeating("atirar",0,repeatTime);
     }
 
-    void atirar()
-    {
+    public void Update(){
+        if (changeTime > 0){
+            changeTime -= Time.deltaTime;
+        } else {
+            atirar();
+            changeTime = repeatTime;
+        }
+    }
+
+    public void atirar(){
+        Debug.Log("Turret atira");
+
         //atirar bala reta
         if (tipoTiro == type.reto)
         {
-            GameObject bala = Instantiate(tiroReto, transform.position, Quaternion.identity);
+            GameObject bala = Instantiate(tiroReto, spawnTiro.transform.position, Quaternion.identity);
             //bala.GetComponent<Rigidbody2D>().AddForce((player.transform.position - lookerGraphics.transform.position).normalized * tiroForca,ForceMode2D.Impulse);
             bala.GetComponent<Rigidbody2D>().AddForce(transform.right * tiroForca, ForceMode2D.Impulse);
         }
         //atirar bala curva
         else if (tipoTiro == type.guiado)
         {
-            GameObject bala = Instantiate(tiroGuiado, transform.position, Quaternion.identity);
+            GameObject bala = Instantiate(tiroGuiado, spawnTiro.transform.position, Quaternion.identity);
 
             bala.GetComponent<Rigidbody2D>().AddForce(transform.right * tiroForca * 1.5f, ForceMode2D.Impulse);
         }
