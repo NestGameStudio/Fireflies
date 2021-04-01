@@ -9,7 +9,7 @@ public class CollisionCheck : MonoBehaviour
     public TimerManager Timer;
     public HurtFeedback HurtFeedback;
     public GameObject paredeParticle;
-    public GameObject deathParticle;
+    public GameObject damageParticle;
     public AudioSource colisao;
     public AudioSource Lose;
     private float startPitch;
@@ -48,6 +48,53 @@ public class CollisionCheck : MonoBehaviour
     // Faz todos os checks que precisam de colisão
     private void OnCollisionEnter2D(Collision2D collision) {
 
+        //Bateu em uma plataforma recarregável
+        if(collision.transform.CompareTag("Plataforma_Recarregavel")){
+            Jump.setJump(true);
+
+            playAudioColisao();
+            playFeedbackRecarga();
+
+            return;
+        }
+
+        //Bateu em inimigo
+        if(collision.transform.CompareTag("Inimigo")){
+            Jump.setJump(true);
+
+            playAudioColisao();
+            playFeedbackRecarga();
+
+            //tomou dano
+            dano();
+
+            return;
+        }
+
+        //Bateu em área ou inimigo vulnerável
+        if(collision.transform.CompareTag("Inimigo_Vulneravel")){
+            Jump.setJump(true);
+
+            playAudioColisao();
+            playFeedbackRecarga();
+
+            return;
+        }
+
+        //Bateu em perigo
+        if(collision.transform.CompareTag("Perigo")){
+            Jump.setJump(true);
+
+            playAudioColisao();
+            playFeedbackRecarga();
+
+            //tomou dano
+            dano();
+
+            return;            
+        }
+
+        /*
         switch (collision.transform.tag) {
             case "Plataforma_Recarregavel":
                 Jump.setJump(true);
@@ -56,70 +103,13 @@ public class CollisionCheck : MonoBehaviour
                 playFeedbackRecarga();
 
                 break;
-
-            /*case "PlatRec_Curva":
-                Jump.setJump(true);
-
-                playAudioColisao();
-                playFeedbackRecarga();
-
-                break;
-
-            case "Plataforma_Quebravel":
-
-                Jump.setJump(true);
-
-                playAudioColisao();
-                playFeedbackRecarga();
-                
-                //resetMaterial(collision);
-                LevelManager.Instance.getLevelBreakPlats();
-
-                //fazer com que a plataforma desapareca
-                //collision.transform.parent.gameObject.SetActive(false);
-                collision.gameObject.GetComponentInParent<Animator>().SetBool("Break",true);
-
-                    break;
-
-            case "Plataforma_Quebravel_Fake":
-
-                LevelManager.Instance.getLevelBreakPlats();
-
-                //fazer com que a plataforma desapareca
-                //collision.transform.parent.gameObject.SetActive(false);
-                collision.gameObject.GetComponentInParent<Animator>().SetBool("Break", true);
-
-                break;
-            case "Bleeper_Invulneravel":
-
-                //if (CameraShake.instance != null) { CameraShake.instance.shakeCam(2, 1, 0.5f); }
-                Jump.setJump(true);
-
-                playAudioColisao();
-                playFeedbackRecarga();
-
-                //playAudioLose();
-
-                //particula de morte e contador de morte
-                if (deathParticle != null)
-                    deathParticleTrigger();
-
-                //Respawn.RepositionPlayer();
-
-                //tomou dano
-                dano();
-                break;*/
             
             case "Inimigo":
 
-                //if (CameraShake.instance != null) { CameraShake.instance.shakeCam(2, 1, 0.5f); }
                 Jump.setJump(true);
 
                 playAudioColisao();
                 playFeedbackRecarga();
-
-                //playAudioLose();
-                //Respawn.RepositionPlayer();
 
                 //tomou dano
                 dano();
@@ -141,9 +131,6 @@ public class CollisionCheck : MonoBehaviour
                 playAudioColisao();
                 playFeedbackRecarga();
 
-                //playAudioLose();
-                //Respawn.RepositionPlayer();
-
                 //tomou dano
                 dano();
                 break;
@@ -151,6 +138,7 @@ public class CollisionCheck : MonoBehaviour
             default:
                 break;
         }
+        */
         
     }
 
@@ -194,30 +182,38 @@ public class CollisionCheck : MonoBehaviour
             resetMaterial(collision);
         }*/
 
+        //Entrou em área ou objeto recarregável
         if(collision.transform.CompareTag("Trigger_Recarregavel")){
             Jump.setJump(true);
             playFeedbackRecarga();
-        } else if (collision.transform.CompareTag("Trigger_Safe")){
+            return;
+        }
+        
+        //Entrou em safe zone
+        if (collision.transform.CompareTag("Trigger_Safe")){
             Timer.stopTimer();
+            return;
         }
 
     }
 
     private void OnTriggerExit2D(Collider2D collision){
+
+        //Saiu da safe zone
         if (collision.transform.CompareTag("Trigger_Safe")){
             Timer.startTimer();
+            return;
         }
     }
-    void deathParticleTrigger()
+    void damageParticleTrigger()
     {
-        Instantiate(deathParticle,gameObject.transform.position,Quaternion.identity);
+        Instantiate(damageParticle,gameObject.transform.position,Quaternion.identity);
 
-        if (deathCounter.instance != null)
-        {
-            deathCounter.instance.addDeath();
-        }
+        //Adiciona ao contador de mortes
+        //if (deathCounter.instance != null) {deathCounter.instance.addDeath();}
     }
 
+    //Usado para deslizar em plataformas curvas
     void resetMaterial(Collider2D collision)
     {
         if (collision.gameObject.GetComponentInChildren<EdgeCollider2D>() != null)
@@ -253,8 +249,8 @@ public class CollisionCheck : MonoBehaviour
         if(HealthManager.instance.IsPlayerInvencible()) return;
 
         //particula de morte e contador de morte
-        if (deathParticle != null)
-            deathParticleTrigger();
+        if (damageParticle != null)
+            damageParticleTrigger();
 
         //camera shake
         if (CameraShake.instance != null) { CameraShake.instance.shakeCam(2, 1, 0.5f); }
