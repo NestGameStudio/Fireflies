@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class CollisionCheck : MonoBehaviour
 {
@@ -21,6 +23,9 @@ public class CollisionCheck : MonoBehaviour
     public float collisionStayDelay = 0.3f;
     private float currentColissionStayTimer = 0;
     private bool canRecharge = false;
+
+    public Volume postProcessingVolume;
+    public GameObject skillUI;
 
     private void Start()
     {
@@ -195,6 +200,14 @@ public class CollisionCheck : MonoBehaviour
             return;
         }
 
+        if (collision.transform.CompareTag("Trigger_Shop")){
+            Timer.stopTimer();
+            Time.timeScale = 0;
+            postProcessingVolume.profile.TryGet<DepthOfField>(out var dph);
+            dph.active = true;
+            skillUI.SetActive(true);
+        }
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision){
@@ -272,9 +285,13 @@ public class CollisionCheck : MonoBehaviour
         //resetMaterial(collision);
 
         //instanciar particula de colisao com a parede
-        ParticleSystem particula = Instantiate(paredeParticle,transform.position,Quaternion.identity).GetComponent<ParticleSystem>();
-        if (rb.velocity.magnitude > 10000f){
-            particula.startSpeed = rb.velocity.magnitude * 1.2f;
+        if(!Jump.canJump)
+        {
+            ParticleSystem particula = Instantiate(paredeParticle,transform.position,Quaternion.identity).GetComponent<ParticleSystem>();
+            if (rb.velocity.magnitude > 10000f)
+            {
+                particula.startSpeed = rb.velocity.magnitude * 1.2f;
+            } 
         }
     }
 
