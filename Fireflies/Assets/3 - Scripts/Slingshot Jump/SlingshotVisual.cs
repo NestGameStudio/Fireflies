@@ -249,8 +249,8 @@ public class SlingshotVisual : MonoBehaviour
         arrow.transform.position = line.GetPosition(0);
 
         // Scale
-        //float arrowDistance = Vector2.Distance(line.GetPosition(0), line.GetPosition(1));
-        //arrow.transform.localScale = Vector2.Lerp(new Vector2(0,0), new Vector2(1,1), arrowDistance);
+        float arrowDistance = Vector2.Distance(line.GetPosition(0), line.GetPosition(1));
+        arrow.transform.localScale = Vector2.Lerp(new Vector2(0,0), new Vector2(0.4f,0.4f), arrowDistance/2);
 
         Vector3 dir = line.GetPosition(0) - this.transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;

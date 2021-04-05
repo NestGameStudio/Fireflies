@@ -15,6 +15,7 @@ public class HealthManager : MonoBehaviour
 
     [Header("Morte")]
     public DeathAnimation DeathAnimation;
+    private CameraZoom CameraZoom;
     public int DeathWaitTime;
 
     [Header("Invencibilidade")]
@@ -44,6 +45,8 @@ public class HealthManager : MonoBehaviour
         else{
             Debug.Log("Não há nenhum objeto com HUD Manager em cena");
         }
+        //CameraZoom script
+        CameraZoom = GameObject.Find("2D Cam_RogueLike").GetComponent<CameraZoom>();
     }
 
     //perder vida por x quantidade, definindo um minimo e maximo de dano
@@ -123,6 +126,7 @@ public class HealthManager : MonoBehaviour
     public void morreu()
     {  
         StartCoroutine(DeathWait());
+        CameraZoom.DeathZoomTrigger();
         gameObject.GetComponent<Rigidbody2D>().simulated = false;
         DeathAnimation.DeathAnimationTrigger();
         SaveSystem.instance.Stats.AttemptCount++;

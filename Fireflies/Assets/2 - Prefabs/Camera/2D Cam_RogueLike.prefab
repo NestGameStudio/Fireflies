@@ -115,6 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 71992867364475311}
   - component: {fileID: 7182805934190906552}
+  - component: {fileID: 1657515575571508141}
   m_Layer: 0
   m_Name: 2D Cam_RogueLike
   m_TagString: Untagged
@@ -151,6 +152,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTag: Player
   CMcamera: {fileID: 1669052613592169641}
+--- !u!114 &1657515575571508141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5129911248247689083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c0c8859b0b2ed5478b26ba41f1baad3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CMcamera: {fileID: 1669052613592169641}
+  min: 7
+  max: 3
+  speed: 3
+  waitTime: 0.6
 --- !u!1 &6984045857886182621
 GameObject:
   m_ObjectHideFlags: 0
