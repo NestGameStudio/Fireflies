@@ -10,9 +10,29 @@ public class HealCollectable : MonoBehaviour
     [Header("Quanto de vida recupera")]
     public int healValue;
 
+    [Header("É animado?")]
+    public bool animate = true;
+    private Animator anim;
+
+    [Header("Tempo para ligar o collider")]
+    public int colliderTimer = 1;
+    private Collider2D col;
+
     void Start()
     {
         healthManager = GameObject.FindWithTag("Player").GetComponent<HealthManager>();
+        anim = GetComponent<Animator>();
+        col = GetComponent<Collider2D>();
+        col.enabled = false;
+        
+        StartCoroutine(EnableCollider2D(colliderTimer));
+
+        if (animate)
+        {
+            anim.enabled = true;
+        } else {
+            anim.enabled = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -30,4 +50,11 @@ public class HealCollectable : MonoBehaviour
     {
         Instantiate(healParticle,gameObject.transform.position,Quaternion.identity);
     }
+
+    private IEnumerator EnableCollider2D(int timer)
+    {
+        yield return new WaitForSeconds(timer);
+        col.enabled = true;
+    }
+
 }
