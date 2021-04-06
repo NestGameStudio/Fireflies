@@ -19,5 +19,5 @@ MonoBehaviour:
   cost: 50
   rarity: 3
   effects:
-  - type: 8
+  - type: 9
     amount: 0
