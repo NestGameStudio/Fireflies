@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +6,15 @@ public enum UpgradeType {
     JumpCharge,
     JumpForce,
     MaxHealth,
-    Damage
+    Damage,
+    HoldLimit,
+    Invincibility,
+    CritChance,
+    LifeSteal,
+    Combo,
+    PerfectTiming
+
+
 }
 
 public enum UpgradeRarity {
@@ -36,6 +44,7 @@ public class Upgrade : ScriptableObject {
     public string name;
 
     [Tooltip("Upgrade description that will be shown to the player")]
+    [TextArea(3,10)]
     public string description;
 
     [Tooltip("Upgrade icon")]
