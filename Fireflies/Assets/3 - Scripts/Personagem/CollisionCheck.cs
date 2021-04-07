@@ -55,20 +55,20 @@ public class CollisionCheck : MonoBehaviour
 
         //Bateu em uma plataforma recarregável
         if(collision.transform.CompareTag("Plataforma_Recarregavel")){
-            Jump.setJump(true);
-
             playAudioColisao();
             playFeedbackRecarga();
+
+            Jump.setJump(true);
 
             return;
         }
 
         //Bateu em inimigo
         if(collision.transform.CompareTag("Inimigo")){
-            Jump.setJump(true);
-
             playAudioColisao();
             playFeedbackRecarga();
+
+            Jump.setJump(true);
 
             //tomou dano
             dano();
@@ -78,20 +78,20 @@ public class CollisionCheck : MonoBehaviour
 
         //Bateu em área ou inimigo vulnerável
         if(collision.transform.CompareTag("Inimigo_Vulneravel")){
-            Jump.setJump(true);
-
             playAudioColisao();
             playFeedbackRecarga();
+
+            Jump.setJump(true);
 
             return;
         }
 
         //Bateu em perigo
         if(collision.transform.CompareTag("Perigo")){
-            Jump.setJump(true);
-
             playAudioColisao();
             playFeedbackRecarga();
+
+            Jump.setJump(true);
 
             //tomou dano
             dano();
@@ -189,8 +189,8 @@ public class CollisionCheck : MonoBehaviour
 
         //Entrou em área ou objeto recarregável
         if(collision.transform.CompareTag("Trigger_Recarregavel")){
-            Jump.setJump(true);
             playFeedbackRecarga();
+            Jump.setJump(true);
             return;
         }
         

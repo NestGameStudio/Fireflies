@@ -21,7 +21,7 @@ public class LeanTweenTest : MonoBehaviour
         LeanTween.scale(skill_2_bg.GetComponent<RectTransform>(), new Vector3(0,0,1), 0f);
         LeanTween.scale(skill_3.GetComponent<RectTransform>(), new Vector3(0,0,1), 0f);
         LeanTween.scale(skill_3_bg.GetComponent<RectTransform>(), new Vector3(0,0,1), 0f);
-        
+
 
         LeanTween.scale(shop_bg.GetComponent<RectTransform>(), new Vector3(1,1,1), 0.5f).setEase(leanTweenType).setIgnoreTimeScale(true);
         LeanTween.scale(Back.GetComponent<RectTransform>(), new Vector3(1,1,1), 0.5f).setEase(leanTweenType).setIgnoreTimeScale(true);
@@ -35,6 +35,15 @@ public class LeanTweenTest : MonoBehaviour
         LeanTween.scale(skill_2_bg.GetComponent<RectTransform>(), new Vector3(1,1,1), 0.5f).setDelay(0.25f).setEase(leanTweenType).setIgnoreTimeScale(true);
         LeanTween.scale(skill_3.GetComponent<RectTransform>(), new Vector3(1,1,1), 0.5f).setDelay(0.4f).setEase(leanTweenType).setIgnoreTimeScale(true);
         LeanTween.scale(skill_3_bg.GetComponent<RectTransform>(), new Vector3(1,1,1), 0.5f).setDelay(0.3f).setEase(leanTweenType).setIgnoreTimeScale(true);
+    }
+
+    public void skillInfo(bool isOn)
+    {
+        switch (isOn)
+        {
+            case true:
+                break;
+        }
     }
 
 }
