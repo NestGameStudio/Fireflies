@@ -14,14 +14,7 @@ public class Looker_DetectCollision : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            //trocar o 10 pela variavel de dano do player
-
-            if (looker.health > 10)
-            {
-                if (looker.damageParticle != null)
-                    looker.damageParticleTrigger();
-            }
-            looker.perderVida(10);
+            looker.enemy.TakeDamage(10);
         }
     }
 }

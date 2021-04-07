@@ -74,15 +74,15 @@ Material:
     - _BumpScale: 1
     - _Cull: 2
     - _Cutoff: 0.5
-    - _DissolveAmount: 0.2
-    - _DissolveOutline: 0.15
+    - _DissolveAmount: 0.1
+    - _DissolveOutline: 1
     - _DstBlend: 0
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _NoiseScale: 0.2
+    - _NoiseScale: 0.07
     - _NoiseSpeed: 0.02
     - _OcclusionStrength: 1
     - _QueueOffset: 0
@@ -96,7 +96,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 0.14901961}
+    - _Color: {r: 0.18792278, g: 0.2849633, b: 0.38679248, a: 0.14901961}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OutlineColor: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 0.14901961}
+    - _OutlineColor: {r: 0.2794144, g: 0.4515864, b: 0.6509434, a: 0.14901961}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
