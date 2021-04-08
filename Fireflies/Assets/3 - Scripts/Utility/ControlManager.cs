@@ -159,7 +159,7 @@ public class ControlManager : MonoBehaviour {
 
     }
 
-    private void EnableCursor(bool enable) {
+    public void EnableCursor(bool enable) {
 
         if (currentControlScheme == ControlScheme.KeyboardMouse && Setup.Instance.setReferenceInCenter) {
             Mouse.current.WarpCursorPosition(new Vector2(Screen.width / 2, Screen.height / 2));

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class HealCollectable : MonoBehaviour
 {
-    private HealthManager healthManager;
     public GameObject healParticle;
 
     [Header("Quanto de vida recupera")]
@@ -20,7 +19,6 @@ public class HealCollectable : MonoBehaviour
 
     void Start()
     {
-        healthManager = GameObject.FindWithTag("Player").GetComponent<HealthManager>();
         anim = GetComponent<Animator>();
         col = GetComponent<Collider2D>();
         col.enabled = false;
@@ -39,7 +37,7 @@ public class HealCollectable : MonoBehaviour
 
         if (collision.transform.CompareTag("Player")) 
         {
-            healthManager.maisVida(healValue);
+            HealthManager.instance.maisVida(healValue);
             if (healParticle != null)
                 healParticleTrigger();
             Destroy(this.gameObject);
