@@ -3,28 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Enemy))]
 public class Looker_Behaviour : MonoBehaviour
 {
     /*
     //A cada 2 segundos ele atualiza sua direção, olhando para a posição atual da Kali.
     //Para ser derrotado, Kali deve atacá-lo por trás. Caso Kali acerte ele enquanto ele está olhando para ela, Kali perde Vida.
     */
+    [HideInInspector]
+    public Enemy enemy;
 
     [Header("Debug Vars")]
     public Text timeDisplay;
     public Text healthDisplay;
 
-    [Header("Vida")]
-    public int health = 100;
-
     public GameObject lookerGraphics;
 
     //tempo ate olhar para o player novamente
     public float changeTime = 2;
-
-    [Header("Partícula de morte")]
-    public GameObject enemyDeathParticle;
-    public GameObject damageParticle;
 
     [Header("É afetado pelo slow motion?")]
     public bool scaledTime = false;
@@ -79,23 +75,14 @@ public class Looker_Behaviour : MonoBehaviour
     public bool canViewPlayer = false;
 
     //variaveis abaixo sao para o raycast
-
     public bool raycastCanViewPlayer = false;
 
     //para assegurar que o looker so vai atirar uma vez
     private bool oneCheckAtirar = true;
 
-    [Header("Chance de drop")]
-    [Range(0,100)]
-    public float MoneyDropChance;
-    public int MoneyQuantityMin;
-    public int MoneyQuantityMax;
-    [Range(0,100)]
-    public float HealthDropChance;
-    public GameObject HealthItem;
-
     void Start()
     {
+        enemy = GetComponent<Enemy>();
         timeBackup = changeTime;
         
         //procurar player por tag PLAYER - SEM ISSO O INIMIGO NAO VAI OLHAR PARA O JOGADOR
@@ -138,7 +125,7 @@ public class Looker_Behaviour : MonoBehaviour
         //mostrar tempo faltante em display
         timeDisplay.text = (Mathf.Round(changeTime * 10) / 10).ToString();
         //mostrar vida em display
-        healthDisplay.text = ("HP: " + health).ToString();
+        healthDisplay.text = ("HP: " + enemy.health).ToString();
 
         //mudar tamanho de objeto de efeito baseado no tempo faltante
         // min - 0.275 / max - 0.5
@@ -199,25 +186,6 @@ public class Looker_Behaviour : MonoBehaviour
         return Quaternion.Lerp(source, target, 1 - Mathf.Pow(smoothing, dt));
     }
 
-    public void morreu()
-    {
-        DropItem();
-        if (enemyDeathParticle != null)
-            enemyDeathParticleTrigger();
-        SaveSystem.instance.Stats.EnemiesDefeated++;
-        Destroy(gameObject);
-    }
-
-    private void enemyDeathParticleTrigger()
-    {
-        Instantiate(enemyDeathParticle,gameObject.transform.position,Quaternion.identity);
-    }
-
-    public void damageParticleTrigger()
-    {
-        Instantiate(damageParticle,gameObject.transform.position,Quaternion.identity);
-    }
-
     public void atirar()
     {
         if (oneCheckAtirar)
@@ -248,18 +216,6 @@ public class Looker_Behaviour : MonoBehaviour
         }
     }
 
-    //Ver se player esta dentro do raio de visao
-
-    /*
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            //player esta dentro da visao
-            canViewPlayer = true;
-        }
-    }
-    */
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -275,20 +231,6 @@ public class Looker_Behaviour : MonoBehaviour
         {
             //player esta fora da visao
             canViewPlayer = false;
-        }
-    }
-
-    //perder vida por x quantidade
-    public void perderVida(int quantidade)
-    {
-        if (health - quantidade <= 0)
-        {
-            //morreu
-            morreu();
-        }
-        else
-        {
-            health -= quantidade;
         }
     }
 
@@ -319,18 +261,6 @@ public class Looker_Behaviour : MonoBehaviour
         {
             UnityEngine.Debug.DrawRay(startPosition, (playerPos - gameObject.transform.position) * laserLength, Color.red);
             raycastCanViewPlayer = false;
-        }
-    }
-
-    private void DropItem() {
-        float rnd = Random.Range(0,100);
-        if(HealthDropChance > rnd) {
-            Instantiate(HealthItem, new Vector2(transform.position.x,transform.position.y),Quaternion.identity);
-        }
-        rnd = Random.Range(0,100);
-        if(MoneyDropChance > rnd) {
-            int money = Random.Range(MoneyQuantityMin,MoneyQuantityMax);
-            MoneyManager.instance.ganharDinheiro(money);
         }
     }
 }

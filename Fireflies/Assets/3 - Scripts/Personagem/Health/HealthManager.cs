@@ -7,6 +7,7 @@ public class HealthManager : MonoBehaviour
     public static HealthManager instance { get; private set; }
 
     [Header("Vida do player")]
+    public GameObject Player;
     public int health = 100;
 
     [Header("Maximo de vida do player")]
@@ -17,11 +18,12 @@ public class HealthManager : MonoBehaviour
     public DeathAnimation DeathAnimation;
     private CameraZoom CameraZoom;
     public int DeathWaitTime;
+    [Tooltip("Precisa dele pra desligar o slowmotion e habilitar a movimentacao do mouse")]
+    public GameObject Input;
 
     [Header("Invencibilidade")]
     public float InvencibilityDuration;
     private bool IsInvencible = false;
-
     private void Awake()
     {
         // Singleton
@@ -127,7 +129,8 @@ public class HealthManager : MonoBehaviour
     {  
         StartCoroutine(DeathWait());
         CameraZoom.DeathZoomTrigger();
-        gameObject.GetComponent<Rigidbody2D>().simulated = false;
+        Player.gameObject.GetComponent<Rigidbody2D>().simulated = false;
+        Input.GetComponent<ControlManager>().enabled = false;
         DeathAnimation.DeathAnimationTrigger();
         SaveSystem.instance.Stats.AttemptCount++;
         SaveSystem.instance.Stats.MoneyCount = MoneyManager.instance.money;
@@ -137,10 +140,10 @@ public class HealthManager : MonoBehaviour
     private IEnumerator DeathWait()
     {
         yield return new WaitForSeconds(DeathWaitTime);
-        Respawn.instance.RepositionPlayer();
+        //Respawn.instance.RepositionPlayer();
         health = maxHealth;
         hudUI.healthUI.SetHealth(health);
-        gameObject.GetComponent<Rigidbody2D>().simulated = true;
+        Player.gameObject.GetComponent<Rigidbody2D>().simulated = true;
         GameOverScreen();
     }
 
@@ -155,11 +158,14 @@ public class HealthManager : MonoBehaviour
     }
 
     private void GameOverScreen() {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        Player.GetComponent<CollisionCheck>().Jump.setJump(false);
         Time.timeScale = 0f;
         GameStats stats = SaveSystem.instance.Stats; 
         hudUI.GameOverStats.SetActive(true);
         hudUI.JumpText.text = "Jumps performed: " + stats.JumpCount.ToString();
-        hudUI.MoneyText.text = "Money gathered: " + stats.MoneyCount.ToString();
+        hudUI.MoneyText.text = "Money gathered:     " + stats.MoneyCount.ToString();
         hudUI.EnemiesText.text = "Enemies defeated: " + stats.EnemiesDefeated.ToString();
         hudUI.AttemptText.text = "Attempt #" + stats.AttemptCount.ToString();
         hudUI.TimeText.text = "Run time: " + GetConvertedTime(stats.RunTime);

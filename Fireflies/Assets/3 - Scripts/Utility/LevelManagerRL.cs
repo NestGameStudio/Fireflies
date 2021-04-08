@@ -19,14 +19,16 @@ public class LevelManagerRL : MonoBehaviour
             instance = this;
         }
     }
-
+    // funcao chamada em botao pro proximo nivel
     public void ChooseNewMap() {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Time.timeScale = 1f;
         int rnd = Random.Range(0,MapList.Count);
         while(MapList[rnd] == SceneManager.GetActiveScene().name) {
             rnd = Random.Range(0,MapList.Count);
         }
         SceneManager.LoadScene(MapList[rnd],LoadSceneMode.Single);
-        Time.timeScale = 1f;
     }
     
 }

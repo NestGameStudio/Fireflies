@@ -37,8 +37,8 @@ public class EntityBarrel : Entity {
 
             if(hp <= 0){
                 //objeto deverá dar recompensa a player e ser destruído
-                MoneyManager money = other.gameObject.GetComponent<MoneyManager>();
-                money.ganharDinheiro(reward);
+                
+                MoneyManager.instance.ganharDinheiro(reward);
 
                 //Instancia partícula
                 if(rewardParticle != null) Instantiate(rewardParticle, this.transform.position, Quaternion.identity);

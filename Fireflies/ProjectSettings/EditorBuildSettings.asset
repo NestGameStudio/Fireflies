@@ -48,6 +48,9 @@ EditorBuildSettings:
     path: Assets/1 - Scenes/Roguelike/Mapa2.unity
     guid: f18640ac4ed540d41a9eb8148215a931
   - enabled: 1
+    path: Assets/1 - Scenes/Roguelike/Mapa3.unity
+    guid: 8fd35bdcbd8a5ee48825e18d4a748f41
+  - enabled: 1
     path: Assets/1 - Scenes/Roguelike/Tilemap Test.unity
     guid: 1aba0340033b72c43a5b4269f7564c22
   m_configObjects:

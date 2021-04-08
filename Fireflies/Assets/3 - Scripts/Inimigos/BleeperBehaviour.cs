@@ -12,6 +12,8 @@ public static class ExtensionMethods
     }
 
 }
+
+[RequireComponent(typeof(Enemy))]
 public class BleeperBehaviour : MonoBehaviour
 {
     /*
@@ -19,6 +21,8 @@ public class BleeperBehaviour : MonoBehaviour
     No caso da Cali acertar o inimigo enquanto ele está Verde, ele é derrotado.
     Caso Cali acerte ele enquanto ele está Vermelho, Cali perde Vida.
     */
+    [HideInInspector]
+    public Enemy enemy;
 
     [Header("Debug Vars")]
     public Text timeDisplay;
@@ -26,13 +30,6 @@ public class BleeperBehaviour : MonoBehaviour
 
     [Header("Ativa visualizacao de debug")]
     public bool Debug = false;
-
-    [Header("Vida")]
-    public int health = 100;
-
-    [Header("Partícula de morte e dano")]
-    public GameObject enemyDeathParticle;
-    public GameObject damageParticle;
 
     [Header("Ativa efeito de contagem de tempo")]
     public bool Effect = true;
@@ -69,17 +66,10 @@ public class BleeperBehaviour : MonoBehaviour
     [Header("Visualizacao do estado do inimigo")]
     public estado Estado;
 
-    [Header("Chance de drop")]
-    [Range(0,100)]
-    public float MoneyDropChance;
-    public int MoneyQuantityMin;
-    public int MoneyQuantityMax;
-    [Range(0,100)]
-    public float HealthDropChance;
-    public GameObject HealthItem;
     // Start is called before the first frame update
     void Start()
     {
+        enemy = GetComponent<Enemy>();
         timeBackup = changeTime;
 
         rb = GetComponent<Rigidbody2D>();
@@ -102,7 +92,7 @@ public class BleeperBehaviour : MonoBehaviour
         //mostrar tempo faltante em display
         timeDisplay.text = (Mathf.Round(changeTime*10)/10).ToString();
         //mostrar vida em display
-        healthDisplay.text = ("HP: " + health).ToString();
+        healthDisplay.text = ("HP: " + enemy.health).ToString();
 
         //mudar tamanho de objeto de efeito baseado no tempo faltante
         // min - 0.275 / max - 0.5
@@ -237,64 +227,12 @@ public class BleeperBehaviour : MonoBehaviour
         }
     }
 
-    //perder vida por x quantidade
-    public void perderVida(int quantidade)
-    {
-        if (health - quantidade <= 0)
-        {
-            //morreu
-            morreu();
-        }
-        else
-        {
-            health -= quantidade;
-        }
-    }
-
-    public void morreu()
-    {
-        DropItem();
-        if (enemyDeathParticle != null)
-            enemyDeathParticleTrigger();
-        SaveSystem.instance.Stats.EnemiesDefeated++;
-        Destroy(gameObject);
-    }
-
-    private void enemyDeathParticleTrigger()
-    {
-        Instantiate(enemyDeathParticle,gameObject.transform.position,Quaternion.identity);
-    }
-
-    void damageParticleTrigger()
-    {
-        Instantiate(damageParticle,gameObject.transform.position,Quaternion.identity);
-    }
-
     //detect dano
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && Estado == estado.atingivel)
         {
-            //trocar o 10 pela variavel de dano do player
-            if(health > 10)
-            {
-                if (damageParticle != null)
-                    damageParticleTrigger();
-            }
-            perderVida(10);
-        }
-    }
-
-    //Calcula se o player recebe o drop
-    private void DropItem() {
-        float rnd = Random.Range(0,100);
-        if(HealthDropChance > rnd) {
-            Instantiate(HealthItem, new Vector2(transform.position.x,transform.position.y),Quaternion.identity);
-        }
-        rnd = Random.Range(0,100);
-        if(MoneyDropChance > rnd) {
-            int money = Random.Range(MoneyQuantityMin,MoneyQuantityMax);
-            MoneyManager.instance.ganharDinheiro(money);
+            enemy.TakeDamage(10);
         }
     }
 }

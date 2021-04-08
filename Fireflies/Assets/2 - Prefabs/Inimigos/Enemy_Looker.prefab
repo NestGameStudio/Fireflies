@@ -87,6 +87,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4766767566103291034}
+  - component: {fileID: 3294078052156645389}
   - component: {fileID: 4938120493088734272}
   - component: {fileID: 1727927927891371797}
   - component: {fileID: 5420628098902122180}
@@ -115,6 +116,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3294078052156645389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835920935328775831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 350db7e2003185e429d6064a1f647de1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 30
+  MoneyDropChance: 100
+  MoneyQuantityMin: 5
+  MoneyQuantityMax: 10
+  HealthDropChance: 50
+  HealthItem: {fileID: 2778492761765553161, guid: f173d24464fe5374292288f416a599f8,
+    type: 3}
+  deathParticle: {fileID: 3012395059707143272, guid: 16554822c2db08e4a9d1fbfab639a6c5,
+    type: 3}
+  damageParticle: {fileID: 4972606679766911167, guid: f1e2cf87820068d49bf9a7222c3b49b3,
+    type: 3}
 --- !u!114 &4938120493088734272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,15 +151,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53400b4df21e21043bd695d440d19786, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
   timeDisplay: {fileID: 6509478306694069755}
   healthDisplay: {fileID: 5137660469351477550}
-  health: 30
   lookerGraphics: {fileID: 7904883686407763943}
   changeTime: 3
-  enemyDeathParticle: {fileID: 3012395059707143272, guid: 16554822c2db08e4a9d1fbfab639a6c5,
-    type: 3}
-  damageParticle: {fileID: 4972606679766911167, guid: f1e2cf87820068d49bf9a7222c3b49b3,
-    type: 3}
   scaledTime: 0
   angle: 140
   parteVulneravel: {fileID: 676378332416876056}
