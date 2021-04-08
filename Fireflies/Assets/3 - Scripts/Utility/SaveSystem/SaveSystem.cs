@@ -48,7 +48,7 @@ public class SaveSystem : MonoBehaviour
             bool res = LoadState();
             if(!res || res)
             {
-                NewGame(); // Temporario
+                
             }
         }
         DontDestroyOnLoad(this.gameObject);

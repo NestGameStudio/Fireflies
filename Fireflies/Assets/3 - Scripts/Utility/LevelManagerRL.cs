@@ -21,6 +21,8 @@ public class LevelManagerRL : MonoBehaviour
     }
     // funcao chamada em botao pro proximo nivel
     public void ChooseNewMap() {
+        SaveSystem.instance.Stats.JumpCount = 0;
+        SaveSystem.instance.SaveState();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1f;
