@@ -203,7 +203,7 @@ public class CollisionCheck : MonoBehaviour
         if (collision.transform.CompareTag("Trigger_Shop")){
             Timer.stopTimer();
             Time.timeScale = 0;
-            if(postProcessingVolume.profile == null){
+            if(postProcessingVolume.profile != null){
                 postProcessingVolume.profile.TryGet<DepthOfField>(out var dph);
                 dph.active = true;
             }

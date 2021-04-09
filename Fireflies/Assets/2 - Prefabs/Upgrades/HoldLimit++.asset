@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Hold Limit
   description: You can think way more before jumping!
-  icon: {fileID: 21300000, guid: 84b1005aeca4eda4082131596a61235d, type: 3}
+  icon: {fileID: 21300000, guid: b2983e3ba91897249973b626759190d6, type: 3}
   cost: 50
   rarity: 2
   effects:

@@ -34,7 +34,15 @@ public class CameraZoom : MonoBehaviour
 
     void DeathZoom()
     {
-        if(count == 0)
+
+        CMcamera.m_Lens.OrthographicSize = Mathf.Lerp(min, max, t);
+        t += speed * Time.unscaledDeltaTime;
+        if (t > 1.0f)
+        {
+            StartCoroutine(WaitAndZoomOut());              
+        }
+
+        /*if(count == 0)
         {
             CMcamera.m_Lens.OrthographicSize = Mathf.Lerp(min, max, t);
             t += speed * Time.unscaledDeltaTime;
@@ -52,10 +60,10 @@ public class CameraZoom : MonoBehaviour
                 count = 0;
                 canZoom = false;
             }
-        }
+        }*/
     }
 
-    void Revert()
+    /*void Revert()
     {
         CMcamera.m_Lens.OrthographicSize = Mathf.Lerp(max, min, t);
         t += speed * Time.unscaledDeltaTime;
@@ -65,12 +73,13 @@ public class CameraZoom : MonoBehaviour
             count = 0;
             t = 0.0f;
         }
-    }
+    }*/
 
     IEnumerator WaitAndZoomOut()
     {
         yield return new WaitForSecondsRealtime(waitTime);
-        count++;
-        t = 0.0f;  
+        //count++;
+        //t = 0.0f; 
+        canZoom = false;
     }
 }
