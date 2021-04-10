@@ -51,6 +51,8 @@ MonoBehaviour:
   renderer: {fileID: 6491884600832611113}
   hp: 2
   reward: 0
+  breakableParticle: {fileID: 783965754435900739, guid: 2b947048a5583c946aa5d4033cdccae5,
+    type: 3}
   rewardParticle: {fileID: 0}
 --- !u!61 &6491884600685066501
 BoxCollider2D:

@@ -8,6 +8,7 @@ public class EntityBarrel : Entity {
     public float hp = 10;
     private float maxHp = 10;
     public int reward = 10;
+    public GameObject breakableParticle;
     public GameObject rewardParticle;
 
     // Start is called before the first frame update
@@ -42,6 +43,7 @@ public class EntityBarrel : Entity {
 
                 //Instancia partícula
                 if(rewardParticle != null) Instantiate(rewardParticle, this.transform.position, Quaternion.identity);
+                if(breakableParticle != null) Instantiate(breakableParticle, this.transform.position, Quaternion.identity);
 
                 Destroy(this.gameObject); //Destrói este objeto
             } 
