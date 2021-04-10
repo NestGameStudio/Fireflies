@@ -62,6 +62,9 @@ public class Looker_Behaviour : MonoBehaviour
     [Header("Tipo de bala a ser atirada")]
     public bulletType tipoDeBala;
 
+    [Header("Ponto de spawn da bala")]
+    public GameObject spawnTiro;
+
     [Header("Forca do tiro")]
     public float tiroForca = 2;
 
@@ -86,15 +89,13 @@ public class Looker_Behaviour : MonoBehaviour
         timeBackup = changeTime;
         
         //procurar player por tag PLAYER - SEM ISSO O INIMIGO NAO VAI OLHAR PARA O JOGADOR
-        if (GameObject.FindGameObjectWithTag("Player") != null)
-        {
+        if (GameObject.FindGameObjectWithTag("Player") != null){
             player = GameObject.FindGameObjectWithTag("Player").transform;
-
-        }
-        else
-        {
+        } else {
             UnityEngine.Debug.LogWarning("Looker nao achou player", gameObject);
         }
+
+        if(spawnTiro==null) transform.Find("BulletSpawn");
     }
 
     // Update is called once per frame
@@ -197,20 +198,19 @@ public class Looker_Behaviour : MonoBehaviour
             if (raycastCanViewPlayer)
             {
                 UnityEngine.Debug.Log("Looker atirou");
-
                 //atirar bala reta
                 if (tipoDeBala == bulletType.reto)
                 {
-                    GameObject bala = Instantiate(bulletStraight, transform.position, Quaternion.identity);
-                    //bala.GetComponent<Rigidbody2D>().AddForce((player.transform.position - lookerGraphics.transform.position).normalized * tiroForca,ForceMode2D.Impulse);
+                    GameObject bala = Instantiate(bulletStraight, spawnTiro.transform.position, Quaternion.identity);
+                    
                     bala.GetComponent<Rigidbody2D>().AddForce(lookerGraphics.transform.up * tiroForca, ForceMode2D.Impulse);
                 }
                 //atirar bala curva
                 else if (tipoDeBala == bulletType.guiado)
                 {
-                    GameObject bala = Instantiate(bulletGuided, transform.position, Quaternion.identity);
+                    GameObject bala = Instantiate(bulletGuided, spawnTiro.transform.position, Quaternion.identity);
 
-                    bala.GetComponent<Rigidbody2D>().AddForce(lookerGraphics.transform.up * tiroForca * 1.5f, ForceMode2D.Impulse);
+                    bala.GetComponent<Rigidbody2D>().AddForce(lookerGraphics.transform.up * tiroForca * 0.5f, ForceMode2D.Impulse);
                 }
             }
         }

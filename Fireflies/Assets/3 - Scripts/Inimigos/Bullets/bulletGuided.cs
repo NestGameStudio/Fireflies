@@ -17,6 +17,8 @@ public class bulletGuided : MonoBehaviour
     [Header("Tempo ate projetil explodir (s)")]
     public int tempoAteExplodir = 5;
 
+    private Rigidbody2D rb;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,8 +31,10 @@ public class bulletGuided : MonoBehaviour
             Debug.Log("bala guiada nao achou player");
         }
 
-        GetComponentInChildren<CircleCollider2D>().enabled = false;
-        Invoke("activateCollider", 0.5f);
+        rb = GetComponent<Rigidbody2D>();
+
+        //GetComponentInChildren<CircleCollider2D>().enabled = false;
+        Invoke("activateCollider", 0.3f);
 
         //se autodestruir apos x segundos
         Destroy(gameObject, tempoAteExplodir);
@@ -49,10 +53,14 @@ public class bulletGuided : MonoBehaviour
 
         //Vector3 forceDir = Quaternion.AngleAxis(angle - 90, Vector3.forward).eulerAngles * 5;
 
-        GetComponent<Rigidbody2D>().AddForce(dir.normalized * force * Time.deltaTime * 100,ForceMode2D.Force);
+        rb.AddForce(dir.normalized * force * Time.deltaTime * 100,ForceMode2D.Force);
+
+        if(rb.velocity.magnitude > force){
+             rb.velocity = Vector3.ClampMagnitude(rb.velocity, force);
+         }
 
         //rotacionar projetil baseado em sua velocidade
-        Vector2 v = GetComponent<Rigidbody2D>().velocity;
+        Vector2 v = rb.velocity;
         angle = Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
