@@ -8,10 +8,10 @@ public class HealthManager : MonoBehaviour
 
     [Header("Vida do player")]
     public GameObject Player;
-    public int health = 100;
+    public float health = 100;
 
     [Header("Maximo de vida do player")]
-    public int maxHealth = 100;
+    public float maxHealth = 100;
     private HUDManager hudUI;
 
     [Header("Morte")]
@@ -52,9 +52,9 @@ public class HealthManager : MonoBehaviour
     }
 
     //perder vida por x quantidade, definindo um minimo e maximo de dano
-    public void menosVida(int danoMin, int danoMax)
+    public void menosVida(float danoMin, float danoMax)
     {
-        int quantidade = Random.Range(danoMin, danoMax + 1);
+        float quantidade = Mathf.Round(Random.Range(danoMin, danoMax));
         
         if (health - quantidade > 0)
         {
@@ -68,12 +68,12 @@ public class HealthManager : MonoBehaviour
             //morreu
             health = 0;
             hudUI.healthUI.SetHealth(health);
-            morreu();
+            death();
         }
     }
 
     //ganhar vida por x quantidade
-    public void maisVida(int quantidade)
+    public void maisVida(float quantidade)
     {
         if(health + quantidade > maxHealth)
         {
@@ -88,7 +88,7 @@ public class HealthManager : MonoBehaviour
     }
 
     //aumentar limite de vida por x quantidade, aumentar vida?
-    public void aumentarLimite(int quantidade, bool aumentarVida)
+    public void aumentarLimite(float quantidade, bool aumentarVida)
     {
         maxHealth += quantidade;
         hudUI.healthUI.SetMaxHealth(maxHealth);
@@ -101,7 +101,7 @@ public class HealthManager : MonoBehaviour
     }
 
     //diminuir limite de vida por x quantidade
-    public void diminuirLimite(int quantidade)
+    public void diminuirLimite(float quantidade)
     {
         maxHealth -= quantidade;
         hudUI.healthUI.SetMaxHealth(maxHealth);
@@ -114,7 +114,7 @@ public class HealthManager : MonoBehaviour
     }
 
     //especificar um limite de vida, completar vida?
-    public void setLimite(int limite, bool completar)
+    public void setLimite(float limite, bool completar)
     {
         maxHealth = limite;
         hudUI.healthUI.SetMaxHealth(maxHealth);
@@ -125,7 +125,7 @@ public class HealthManager : MonoBehaviour
         }
     }
 
-    public void morreu()
+    public void death()
     {  
         StartCoroutine(DeathWait());
         CameraZoom.DeathZoomTrigger();
