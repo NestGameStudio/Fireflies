@@ -8,6 +8,7 @@ public class HealthManager : MonoBehaviour
 
     [Header("Vida do player")]
     public GameObject Player;
+    private Animator playerAnim;
     public float health = 100;
 
     [Header("Maximo de vida do player")]
@@ -43,23 +44,22 @@ public class HealthManager : MonoBehaviour
         if(hudUI != null){
             hudUI.healthUI.SetupUI(maxHealth);
             hudUI.healthUI.SetMaxHealth(maxHealth);
-        } 
-        else{
+        }else{
             Debug.Log("Não há nenhum objeto com HUD Manager em cena");
         }
         //CameraZoom script
         CameraZoom = GameObject.Find("2D Cam_RogueLike").GetComponent<CameraZoom>();
+        playerAnim = Player.transform.GetChild(0).GetComponent<Animator>();
+        playerAnim.SetFloat("invincibilityTime", 1/InvencibilityDuration);
     }
 
     //perder vida por x quantidade, definindo um minimo e maximo de dano
-    public void menosVida(float danoMin, float danoMax)
-    {
-        float quantidade = Mathf.Round(Random.Range(danoMin, danoMax));
-        
-        if (health - quantidade > 0)
+    public void menosVida(float dano)
+    {      
+        if (health - dano > 0)
         {
             //perdeu vida
-            health -= quantidade;
+            health -= dano;
             hudUI.healthUI.SetHealth(health);
             StartCoroutine(InvencibilidadeTimer());
         }
@@ -149,8 +149,10 @@ public class HealthManager : MonoBehaviour
 
     private IEnumerator InvencibilidadeTimer() {
         IsInvencible = true;
-        yield return new WaitForSecondsRealtime(InvencibilityDuration);
+        playerAnim.SetBool("invincible", IsInvencible);
+        yield return new WaitForSeconds(InvencibilityDuration);
         IsInvencible = false;
+        playerAnim.SetBool("invincible", IsInvencible);
     }
 
     public bool IsPlayerInvencible() {

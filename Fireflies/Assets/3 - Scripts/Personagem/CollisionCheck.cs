@@ -70,8 +70,9 @@ public class CollisionCheck : MonoBehaviour
 
             Jump.setJump(true);
 
-            //tomou dano
-            dano();
+            //toma dano de toque variável (seguindo referência de inimigo)
+            Enemy e = collision.gameObject.GetComponent<Enemy>();
+            Damage(e.damage.x, e.damage.y);
 
             return;
         }
@@ -93,100 +94,14 @@ public class CollisionCheck : MonoBehaviour
 
             Jump.setJump(true);
 
-            //tomou dano
-            dano();
+            //toma dano padrão
+            Damage();
 
             return;            
-        }
-
-        /*
-        switch (collision.transform.tag) {
-            case "Plataforma_Recarregavel":
-                Jump.setJump(true);
-
-                playAudioColisao();
-                playFeedbackRecarga();
-
-                break;
-            
-            case "Inimigo":
-
-                Jump.setJump(true);
-
-                playAudioColisao();
-                playFeedbackRecarga();
-
-                //tomou dano
-                dano();
-                break;
-
-            case "Inimigo_Vulneravel":
-                
-                Jump.setJump(true);
-
-                playAudioColisao();
-                playFeedbackRecarga();
-
-                break;    
-
-            case "Perigo":
-
-                Jump.setJump(true);
-
-                playAudioColisao();
-                playFeedbackRecarga();
-
-                //tomou dano
-                dano();
-                break;
-
-            default:
-                break;
-        }
-        */
-        
+        } 
     }
 
-    /*private void OnCollisionStay2D(Collision2D collision) {
-        
-        if (!Jump.CanJump() && canRecharge) {
-
-            switch (collision.transform.tag) {
-                case "Plataforma_Recarregavel":
-                    Jump.setJump(true);
-
-                    playAudioColisao();
-                    playFeedbackRecarga();
-                    break;
-                case "PlatRec_Curva":
-                    Jump.setJump(true);
-
-                    playAudioColisao();
-                    playFeedbackRecarga();
-                    break;
-                case "Plataforma_Quebravel":
-                    Jump.setJump(true);
-
-                    playAudioColisao();
-                    playFeedbackRecarga();
-                    break;
-                default:
-                    break;
-            }
-        }
-
-    }*/
-
     private void OnTriggerEnter2D(Collider2D collision){
-        /*if(collision.gameObject.tag == "PlatRec_Curva")
-        {
-            setCurveMaterial(collision);
-        }
-        else
-        {
-            resetMaterial(collision);
-        }*/
-
         //Entrou em área ou objeto recarregável
         if(collision.transform.CompareTag("Trigger_Recarregavel")){
             playFeedbackRecarga();
@@ -259,7 +174,17 @@ public class CollisionCheck : MonoBehaviour
         Lose.PlayOneShot(Lose.clip, Lose.volume);
     }
 
-    void dano()
+    void Damage(){
+        //dano padrão
+        Damage(10f);
+    }
+
+    void Damage(float min, float max){
+        float damage = Mathf.Round(Random.Range(min, max));
+        Damage(damage);
+    }
+
+    void Damage(float damage)
     {
         if(HealthManager.instance.IsPlayerInvencible()) return;
 
@@ -274,10 +199,7 @@ public class CollisionCheck : MonoBehaviour
         playAudioLose();
 
         //perder vida
-        HealthManager.instance.menosVida(10, 10);
-
-        //Feedback de dano
-        HurtFeedback.HurtTrigger();
+        HealthManager.instance.menosVida(damage);
     }
 
     void playFeedbackRecarga(){

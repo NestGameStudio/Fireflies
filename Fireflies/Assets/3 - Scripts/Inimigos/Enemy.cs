@@ -7,6 +7,9 @@ public class Enemy : MonoBehaviour
     [Header("Vida")]
     public int health = 100;
 
+    [Header("Dano ao toque (mínimo/máximo)")]
+    public Vector2 damage = new Vector2(5f, 10f);
+
     [Header("Drop")]
     [Range(0,100)]
     public float MoneyDropChance;

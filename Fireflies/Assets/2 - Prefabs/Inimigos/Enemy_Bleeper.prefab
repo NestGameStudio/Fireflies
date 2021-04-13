@@ -259,6 +259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 40
+  damage: {x: 10, y: 10}
   MoneyDropChance: 100
   MoneyQuantityMin: 5
   MoneyQuantityMax: 10

@@ -20,7 +20,7 @@ public class HealthBarUI : MonoBehaviour
     private Image fillImage;
     private int state = 0; //State machine value
 
-    void Start()
+    void Awake()
     {
         rect = GetComponent<RectTransform>();
         sizeHeight = rect.sizeDelta.y;
