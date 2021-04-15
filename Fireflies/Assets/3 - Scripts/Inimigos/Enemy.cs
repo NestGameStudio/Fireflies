@@ -25,11 +25,11 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        DamageParticle();
         if (health - damage <= 0){
             health = 0;
             Death();
         } else {
+            DamageParticle();
             health -= damage;
         }
     }

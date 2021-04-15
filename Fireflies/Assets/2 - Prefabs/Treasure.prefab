@@ -457,8 +457,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lerpTime: 3
   myColors:
-  - {r: 1, g: 0.32980233, b: 0, a: 0.5019608}
-  - {r: 1, g: 0.87067926, b: 0.2971698, a: 0.5019608}
+  - {r: 1, g: 0.8705883, b: 0.29803923, a: 0.5019608}
+  - {r: 1, g: 0.32941177, b: 0, a: 0.5019608}
 --- !u!1 &5595448386641733246
 GameObject:
   m_ObjectHideFlags: 0
