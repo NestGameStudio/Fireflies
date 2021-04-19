@@ -18,7 +18,6 @@ public class SlingshotController : MonoBehaviour {
 
     // Variáveis da movimentação
     private bool isOnSlowMotion = false;    // Entrou no slowMotion com um clique
-    private bool canJump = true;             // Está com o pulo carregado
 
     // Direção atualizada conforme pega os valores do analógico/mouse
     [HideInInspector] public Vector2 direction;
@@ -117,7 +116,7 @@ public class SlingshotController : MonoBehaviour {
             if (impulseVector.magnitude > slingshotVisual.GetMinLine())
             {
                 Jump();
-                JumpControl.setJump(false);
+                JumpControl.useJumpCharge();
             }
 
             isOnSlowMotion = false;
