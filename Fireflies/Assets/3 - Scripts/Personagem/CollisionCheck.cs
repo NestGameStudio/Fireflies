@@ -58,7 +58,7 @@ public class CollisionCheck : MonoBehaviour
             playAudioColisao();
             playFeedbackRecarga();
 
-            Jump.setJump(true);
+            Jump.restoreJumpCharge(true);
 
             return;
         }
@@ -68,7 +68,7 @@ public class CollisionCheck : MonoBehaviour
             playAudioColisao();
             playFeedbackRecarga();
 
-            Jump.setJump(true);
+            Jump.restoreJumpCharge(true);
 
             //toma dano de toque variável (seguindo referência de inimigo)
             Enemy e = collision.gameObject.GetComponent<Enemy>();
@@ -82,7 +82,7 @@ public class CollisionCheck : MonoBehaviour
             playAudioColisao();
             playFeedbackRecarga();
 
-            Jump.setJump(true);
+            Jump.restoreJumpCharge(true);
 
             return;
         }
@@ -92,7 +92,7 @@ public class CollisionCheck : MonoBehaviour
             playAudioColisao();
             playFeedbackRecarga();
 
-            Jump.setJump(true);
+            Jump.restoreJumpCharge(true);
 
             //toma dano padrão
             Damage();
@@ -105,7 +105,7 @@ public class CollisionCheck : MonoBehaviour
         //Entrou em área ou objeto recarregável
         if(collision.transform.CompareTag("Trigger_Recarregavel")){
             playFeedbackRecarga();
-            Jump.setJump(true);
+            Jump.restoreJumpCharge(true);
             return;
         }
         
