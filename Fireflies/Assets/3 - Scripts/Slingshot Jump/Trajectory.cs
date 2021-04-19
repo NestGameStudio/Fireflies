@@ -40,11 +40,11 @@ public class Trajectory : MonoBehaviour
         Vector2 launchPosition = gameObject.transform.position; //Position where you launch from
         
 
-        float lerpSpeed = playerSC.impulseVector.magnitude.Remap(Setup.Instance.LineMinRadius, Setup.Instance.LineMaxRadius, speedRemap.x, speedRemap.y);
+        float lerpSpeed = playerSC.impulseVector.magnitude.Remap(Setup.Instance.PlayerValue.LineMinRadius, Setup.Instance.PlayerValue.LineMaxRadius, speedRemap.x, speedRemap.y);
 
-        float launchSpeed = playerSC.impulseVector.magnitude * Setup.Instance.ImpulseForce * Setup.Instance.ImpulseForce * lerpSpeed * Player.GetComponent<Rigidbody2D>().mass * massMultiplier;
+        float launchSpeed = playerSC.impulseVector.magnitude * Setup.Instance.PlayerValue.ImpulseForce * Setup.Instance.PlayerValue.ImpulseForce * lerpSpeed * Player.GetComponent<Rigidbody2D>().mass * massMultiplier;
 
-        if (playerSC.impulseVector.magnitude > Setup.Instance.LineMinRadius)
+        if (playerSC.impulseVector.magnitude > Setup.Instance.PlayerValue.LineMinRadius)
         {
 
             enterArc();

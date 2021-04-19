@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71909a4c40c6c0146ae3cb80f839469e, type: 3}
+  m_Name: PlayerValue
+  m_EditorClassIdentifier: 
+  ImpulseForce: 0.78
+  LineMaxRadius: 3
+  LineMinRadius: 1.5
+  TimeSlow: 0.02
+  GamepadSensibility: 2.5
+  JumpDelay: 0.1
+  Damage: 0
+  CritChance: 0
+  invincibilityTime: 0
+  CommonWeight: 80
+  RareWeight: 25
+  EpicWeight: 15
+  LegendaryWeight: 10

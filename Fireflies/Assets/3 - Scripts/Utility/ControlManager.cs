@@ -85,7 +85,7 @@ public class ControlManager : MonoBehaviour {
 
         EnableCursor(false);
 
-        currentDelayTime = Setup.Instance.JumpDelay;
+        currentDelayTime = Setup.Instance.PlayerValue.JumpDelay;
     }
 
     // Update is called once per frame
@@ -99,7 +99,7 @@ public class ControlManager : MonoBehaviour {
 
             if (currentDelayTime <= 0) {
                 gamepadDelay = false;
-                currentDelayTime = Setup.Instance.JumpDelay;
+                currentDelayTime = Setup.Instance.PlayerValue.JumpDelay;
             }
         }
     }
@@ -109,7 +109,7 @@ public class ControlManager : MonoBehaviour {
         if (currentControlScheme == ControlScheme.Gamepad) {
 
             Vector2 maxVector = (Vector2) Camera.main.WorldToScreenPoint(SlingshotController.transform.position) + 
-                                slingshotMovementDirectionGamepad.ReadValue<Vector2>() * Setup.Instance.GamepadSensibility * 100;
+                                slingshotMovementDirectionGamepad.ReadValue<Vector2>() * Setup.Instance.PlayerValue.GamepadSensibility * 100;
             directions = maxVector;
 
         } else {

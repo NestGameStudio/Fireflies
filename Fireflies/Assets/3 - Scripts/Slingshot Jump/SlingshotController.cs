@@ -78,8 +78,8 @@ public class SlingshotController : MonoBehaviour {
 
         if (JumpControl.CanJump()) {
 
-            Time.timeScale = Setup.Instance.TimeSlow;
-            Time.fixedDeltaTime = Setup.Instance.TimeSlow * Time.deltaTime;    // faz com que o slowmotion não fique travado
+            Time.timeScale = Setup.Instance.PlayerValue.TimeSlow;
+            Time.fixedDeltaTime = Setup.Instance.PlayerValue.TimeSlow * Time.deltaTime;    // faz com que o slowmotion não fique travado
 
             CenterReference();
             slingshotVisual.SlingshotVisualSetup(lineCenterPos);
@@ -195,7 +195,7 @@ public class SlingshotController : MonoBehaviour {
         rb.velocity = Vector3.zero;
 
         // Calcula o impulso
-        impulse = new Vector2(impulseVector.x, impulseVector.y) * Setup.Instance.ImpulseForce;
+        impulse = new Vector2(impulseVector.x, impulseVector.y) * Setup.Instance.PlayerValue.ImpulseForce;
         rb.AddForce(impulse, ForceMode2D.Impulse);
         Debug.Log("RBvelocity = " + rb.velocity.magnitude + " / " + "RBimpulse = " + impulse.magnitude);
         jumpAudioEvent();

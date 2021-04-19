@@ -199,7 +199,7 @@ public class SlingshotVisual : MonoBehaviour
         }
 
         // O cursor está dentro do limite máximo    
-        if (Vector2.Distance(lineCenterPosition, lineFinalPos) <= Setup.Instance.LineMaxRadius) {
+        if (Vector2.Distance(lineCenterPosition, lineFinalPos) <= Setup.Instance.PlayerValue.LineMaxRadius) {
 
             // Desenha a linha com a Cali como centro
             //trajectoryLine.GetPosition((trajectoryLine.positionCount - 1)/2)
@@ -210,7 +210,7 @@ public class SlingshotVisual : MonoBehaviour
         // Clicou alem do raio máximo da Cali (seta no máximo e move a direção)
         } else {
 
-            float dist = Mathf.Clamp(Vector3.Distance(lineCenterPosition, lineFinalPos), 0, Setup.Instance.LineMaxRadius);
+            float dist = Mathf.Clamp(Vector3.Distance(lineCenterPosition, lineFinalPos), 0, Setup.Instance.PlayerValue.LineMaxRadius);
 
             if (Setup.Instance.InvertedSlingshot) {
 
@@ -265,11 +265,11 @@ public class SlingshotVisual : MonoBehaviour
     // ------------- Valores visuais ------------------
 
     public float GetMinLine() {
-        return Setup.Instance.LineMinRadius;
+        return Setup.Instance.PlayerValue.LineMinRadius;
     }
 
     public float GetMaxLine() {
-        return Setup.Instance.LineMaxRadius;
+        return Setup.Instance.PlayerValue.LineMaxRadius;
     }
 
     public void SetFinalLinePosition(Vector2 position) {
