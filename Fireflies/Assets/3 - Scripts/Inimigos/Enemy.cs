@@ -23,11 +23,28 @@ public class Enemy : MonoBehaviour
     public GameObject deathParticle;
     public GameObject damageParticle;
 
+    [Header("BodyCollider")]
+    public CircleCollider2D _col;
+
+    [Header("VisionCollider")]
+    public CircleCollider2D _vcol;
+
+    private Rigidbody2D _rb;
+    private bool onGround = false;
+    private GameObject vulneravelObject;
+
+    void Start() {
+        _rb = GetComponent<Rigidbody2D>();
+        if (this.gameObject.name == "Enemy_Looker") {
+            vulneravelObject = this.gameObject.transform.GetChild(0).GetChild(1).gameObject;
+        }
+    }
+
     public void TakeDamage(int damage)
     {
         if (health - damage <= 0){
             health = 0;
-            Death();
+            DropBody();
         } else {
             DamageParticle();
             health -= damage;
@@ -59,5 +76,35 @@ public class Enemy : MonoBehaviour
             int money = Random.Range(MoneyQuantityMin,MoneyQuantityMax);
             MoneyManager.instance.ganharDinheiro(money);
         }
+    }
+
+    private void DropBody() {
+        if (vulneravelObject != null) {
+            vulneravelObject.SetActive(false);
+        }
+        _vcol.enabled = false;
+        _col.isTrigger = true;
+        _rb.bodyType = RigidbodyType2D.Dynamic;
+        _rb.drag = 2;
+        _rb.gravityScale = 2;
+    }
+
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.tag != "Player" && other.gameObject.tag != "Inimigo") {
+            onGround = true;
+        }
+    }
+    void OnTriggerStay2D(Collider2D other) {
+        if (other.gameObject.tag != "Player" && other.gameObject.tag != "Inimigo") {
+            onGround = true;
+            if (health <= 0) {
+                Death();
+            }
+        }
+    }
+    void OnTriggerExit2D(Collider2D other) {
+        if (other.gameObject.tag != "Player" && other.gameObject.tag != "Inimigo") {
+            onGround = false;
+        } 
     }
 }
