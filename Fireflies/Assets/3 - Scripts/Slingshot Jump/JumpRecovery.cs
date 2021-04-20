@@ -5,6 +5,7 @@ using UnityEngine;
 public class JumpRecovery : MonoBehaviour
 {
     public JumpTimeController JumpTimeController;
+    public JumpChargeUI chargeUI;
 
     [HideInInspector]
     public bool canJump = false;     // Consegue executar o pulo
@@ -12,6 +13,9 @@ public class JumpRecovery : MonoBehaviour
     public int maxJumpCharges = 1;  // Máximo de cargas de pulo
     public Animator playerAnim;
 
+    void Start(){
+        if(chargeUI != null) chargeUI.Setup(maxJumpCharges);
+    }
 
     public bool CanJump() {
         return canJump;
@@ -39,6 +43,7 @@ public class JumpRecovery : MonoBehaviour
                 jumpCharges = 0;
                 setJump(false);
             }
+            chargeUI.UpdateCharges(jumpCharges);
         }
     }
 
@@ -46,6 +51,8 @@ public class JumpRecovery : MonoBehaviour
         if(max){
             jumpCharges = maxJumpCharges;
             setJump(true);
+
+            chargeUI.UpdateCharges(jumpCharges);
         } else {
             restoreJumpCharge();
         }
@@ -57,6 +64,8 @@ public class JumpRecovery : MonoBehaviour
             jumpCharges = maxJumpCharges;
         }
         setJump(true);
+
+        chargeUI.UpdateCharges(jumpCharges);
     }
 
 }

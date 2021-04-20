@@ -55,12 +55,7 @@ MonoBehaviour:
   setReferenceInCenter: 1
   ClickReferenceInPlayer: 1
   ReferenceFollowPlayer: 1
-  ImpulseForce: 1
-  LineMaxRadius: 2
-  LineMinRadius: 0.5
-  TimeSlow: 0.2
-  GamepadSensibility: 1
-  JumpDelay: 0.7
+  PlayerValue: {fileID: 11400000, guid: b82d2207d5fce1b42af0be985b0141c1, type: 2}
 --- !u!1 &1231992754
 GameObject:
   m_ObjectHideFlags: 0

@@ -262,11 +262,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3449024010389150484}
     m_Modifications:
-    - target: {fileID: 743739014, guid: a98ebab5d004fea4a9c907652b7f36b9, type: 3}
-      propertyPath: PlayerValue
-      value: 
-      objectReference: {fileID: 11400000, guid: b82d2207d5fce1b42af0be985b0141c1,
-        type: 2}
     - target: {fileID: 947740464, guid: a98ebab5d004fea4a9c907652b7f36b9, type: 3}
       propertyPath: JumpControl
       value: 
@@ -279,10 +274,6 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 3768778790577475238}
-    - target: {fileID: 1428278430, guid: a98ebab5d004fea4a9c907652b7f36b9, type: 3}
-      propertyPath: health
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1428278430, guid: a98ebab5d004fea4a9c907652b7f36b9, type: 3}
       propertyPath: DeathAnimation
       value: 
@@ -570,6 +561,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Material
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2064918273827316154, guid: e11f824fb02c0d8468a94a2851de9b63,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2064918273827316154, guid: e11f824fb02c0d8468a94a2851de9b63,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2086131463638358208, guid: e11f824fb02c0d8468a94a2851de9b63,
         type: 3}
@@ -1285,6 +1286,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SkillButton3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780748513689737883, guid: e11f824fb02c0d8468a94a2851de9b63,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9013142899210520415, guid: e11f824fb02c0d8468a94a2851de9b63,
         type: 3}

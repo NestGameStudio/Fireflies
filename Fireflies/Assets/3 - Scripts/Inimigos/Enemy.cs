@@ -88,7 +88,7 @@ public class Enemy : MonoBehaviour
         _rb.drag = 2;
         _rb.gravityScale = 2;
     }
-
+    /*
     void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag != "Player" && other.gameObject.tag != "Inimigo") {
             onGround = true;
@@ -107,4 +107,5 @@ public class Enemy : MonoBehaviour
             onGround = false;
         } 
     }
+    */
 }
