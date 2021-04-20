@@ -140,6 +140,8 @@ MonoBehaviour:
     type: 3}
   damageParticle: {fileID: 4972606679766911167, guid: f1e2cf87820068d49bf9a7222c3b49b3,
     type: 3}
+  deadBody: {fileID: 6284848975730887409, guid: d8d2363a0c06f9740875a04c2ba825dd,
+    type: 3}
   _col: {fileID: 5808199290941051329}
   _vcol: {fileID: 7037506043560626063}
 --- !u!114 &4938120493088734272

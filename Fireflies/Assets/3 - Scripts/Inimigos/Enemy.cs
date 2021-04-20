@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour
     [Header("Visual feedback")]
     public GameObject deathParticle;
     public GameObject damageParticle;
+    public GameObject deadBody;
 
     [Header("BodyCollider")]
     public CircleCollider2D _col;
@@ -44,7 +45,7 @@ public class Enemy : MonoBehaviour
     {
         if (health - damage <= 0){
             health = 0;
-            DropBody();
+            Death();
         } else {
             DamageParticle();
             health -= damage;
@@ -53,17 +54,17 @@ public class Enemy : MonoBehaviour
 
     private void Death(){
         DropItem();
-        DeathParticle();
+        EnemyDeadBody();
         SaveSystem.instance.Stats.EnemiesDefeated++;
         Destroy(gameObject);
     }
 
-    private void DeathParticle(){
-        if (deathParticle != null) Instantiate(deathParticle,gameObject.transform.position,Quaternion.identity);
+    private void DamageParticle() {
+        if (damageParticle != null) Instantiate(damageParticle,gameObject.transform.position,Quaternion.identity);
     }
 
-    private void DamageParticle(){
-        if (damageParticle != null) Instantiate(damageParticle,gameObject.transform.position,Quaternion.identity);
+    private void EnemyDeadBody() {
+        if (damageParticle != null) Instantiate(deadBody,gameObject.transform.position,Quaternion.identity);
     }
 
     private void DropItem() {
@@ -77,35 +78,4 @@ public class Enemy : MonoBehaviour
             MoneyManager.instance.ganharDinheiro(money);
         }
     }
-
-    private void DropBody() {
-        if (vulneravelObject != null) {
-            vulneravelObject.SetActive(false);
-        }
-        _vcol.enabled = false;
-        _col.isTrigger = true;
-        _rb.bodyType = RigidbodyType2D.Dynamic;
-        _rb.drag = 2;
-        _rb.gravityScale = 2;
-    }
-    /*
-    void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.tag != "Player" && other.gameObject.tag != "Inimigo") {
-            onGround = true;
-        }
-    }
-    void OnTriggerStay2D(Collider2D other) {
-        if (other.gameObject.tag != "Player" && other.gameObject.tag != "Inimigo") {
-            onGround = true;
-            if (health <= 0) {
-                Death();
-            }
-        }
-    }
-    void OnTriggerExit2D(Collider2D other) {
-        if (other.gameObject.tag != "Player" && other.gameObject.tag != "Inimigo") {
-            onGround = false;
-        } 
-    }
-    */
 }
