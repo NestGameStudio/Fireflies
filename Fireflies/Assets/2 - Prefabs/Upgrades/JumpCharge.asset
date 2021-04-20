@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dd329a1f35f447459b7bd0f83489a70, type: 3}
   m_Name: JumpCharge
   m_EditorClassIdentifier: 
-  name: Bonus Jump
+  nome: Bonus Jump
   description: 'You''ve got an extra jump! '
   icon: {fileID: 21300000, guid: 3c1c3512a65321045aaabdb51173f499, type: 3}
   cost: 0

@@ -73,5 +73,4 @@ public class Setup: MonoBehaviour {
             instance = this;
         }
     }
-
 }

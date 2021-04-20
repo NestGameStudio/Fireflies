@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dd329a1f35f447459b7bd0f83489a70, type: 3}
   m_Name: Damage++
   m_EditorClassIdentifier: 
-  name: Damage Up
+  nome: Damage Up
   description: You deal way more damage!
   icon: {fileID: 21300000, guid: 30a179d483c1107449157655fe9939a1, type: 3}
   cost: 50

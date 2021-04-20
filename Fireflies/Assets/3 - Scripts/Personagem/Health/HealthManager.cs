@@ -129,8 +129,6 @@ public class HealthManager : MonoBehaviour
     {  
         StartCoroutine(DeathWait());
         CameraZoom.DeathZoomTrigger();
-        Player.gameObject.GetComponent<Rigidbody2D>().simulated = false;
-        Input.GetComponent<ControlManager>().enabled = false;
         DeathAnimation.DeathAnimationTrigger();
         SaveSystem.instance.Stats.AttemptCount++;
         SaveSystem.instance.Stats.MoneyCount = MoneyManager.instance.money;
@@ -160,10 +158,7 @@ public class HealthManager : MonoBehaviour
     }
 
     private void GameOverScreen() {
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-        Player.GetComponent<CollisionCheck>().Jump.setJump(false);
-        Time.timeScale = 0f;
+        FreezePlayer();
         GameStats stats = SaveSystem.instance.Stats; 
         hudUI.GameOverStats.SetActive(true);
         hudUI.JumpText.text = "Jumps performed: " + stats.JumpCount.ToString();
@@ -179,5 +174,21 @@ public class HealthManager : MonoBehaviour
 		int seconds = Mathf.FloorToInt(time % 60);
 
         return string.Format("{0:00}:{1:00}:{2:00}", hours, minutes,seconds);
+    }
+
+    public void FreezePlayer() {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        HealthManager.instance.Player.GetComponent<CollisionCheck>().Jump.setJump(false);
+        Time.timeScale = 0f;
+        Input.GetComponent<ControlManager>().enabled = false;
+    }
+
+    public void UnFreezePlayer() {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        HealthManager.instance.Player.GetComponent<CollisionCheck>().Jump.setJump(true);
+        Time.timeScale = 1f;
+        Input.GetComponent<ControlManager>().enabled = true;
     }
 }

@@ -29,12 +29,15 @@ public class PlayerValues : ScriptableObject
     public float JumpDelay = 0.1f;
 
     [Header("Dano")]
-    public int Damage;
+    public float Damage;
+    public float LifeSteal;
     [Range(0,100)]
     public float CritChance;
 
     [Header("Invenciblidade")]
     public float invincibilityTime;
+    [Header("Vida")]
+    public float MaxHealth;
 
     [Header("Upgrades")]
     public int CommonWeight;
@@ -45,13 +48,32 @@ public class PlayerValues : ScriptableObject
 
     public void IncreaseCritChance(float amount) {
         CritChance += amount;
+        Debug.Log("Critico!");
     }
 
-    public void IncreaseDamage(int amount ) {
+    public void IncreaseDamage(float amount ) {
         Damage += amount;
+        Debug.Log("Dano!");
     }
 
     public void IncreaseInvicibility(float amount) {
         invincibilityTime += amount;
+        Debug.Log("Invencivel!");
+    }
+
+    public void IncreaseMaxHealth(float amount) {
+        MaxHealth += amount;
+        HealthManager.instance.maisVida(amount);
+        Debug.Log("Vida!");
+    }
+
+    public void IncreaseLifeSteal(float amount) {
+        LifeSteal += amount;
+        Debug.Log("LifeSteal!");
+    }
+
+    public void IncreaseImpulseForce(float amount) {
+        ImpulseForce += amount;
+        Debug.Log("Impulso!");
     }
 }

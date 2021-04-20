@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dd329a1f35f447459b7bd0f83489a70, type: 3}
   m_Name: HoldLimit
   m_EditorClassIdentifier: 
-  name: Hold Limit
+  nome: Hold Limit
   description: You can think a little bit more before jumping!
   icon: {fileID: 21300000, guid: b2983e3ba91897249973b626759190d6, type: 3}
   cost: 50

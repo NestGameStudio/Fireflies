@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dd329a1f35f447459b7bd0f83489a70, type: 3}
   m_Name: LifeSteal
   m_EditorClassIdentifier: 
-  name: Vampirism Up
+  nome: Vampirism Up
   description: You receive health while dealing damage!
   icon: {fileID: 21300000, guid: 333e53b30e2e8354f95e385427f6d67f, type: 3}
   cost: 50

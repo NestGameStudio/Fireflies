@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dd329a1f35f447459b7bd0f83489a70, type: 3}
   m_Name: Combo
   m_EditorClassIdentifier: 
-  name: Wombo Combo
+  nome: Wombo Combo
   description: After you bounce 3 times really fast, your next jump will deal more
     damage and go further!
   icon: {fileID: 21300000, guid: 50eb91d5be30d284ebaf79e4638541d0, type: 3}

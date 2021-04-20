@@ -41,7 +41,7 @@ public class UpgradeEffect{
 public class Upgrade : ScriptableObject {
 
     [Tooltip("Upgrade name")]
-    public string name;
+    public string nome;
 
     [Tooltip("Upgrade description that will be shown to the player")]
     [TextArea(3,10)]

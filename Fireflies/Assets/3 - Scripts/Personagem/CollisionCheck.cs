@@ -123,6 +123,7 @@ public class CollisionCheck : MonoBehaviour
                 dph.active = true;
             }
             skillUI.SetActive(true);
+            HealthManager.instance.FreezePlayer();
         }
         
     }
@@ -217,6 +218,11 @@ public class CollisionCheck : MonoBehaviour
                 particula.startSpeed = rb.velocity.magnitude * 1.2f;
             } 
         }
+    }
+
+    public void DesligaFog() {
+        postProcessingVolume.profile.TryGet<DepthOfField>(out var dph);
+        dph.active = false;
     }
 
 }
