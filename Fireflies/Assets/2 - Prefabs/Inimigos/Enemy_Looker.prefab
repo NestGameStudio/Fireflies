@@ -165,6 +165,8 @@ MonoBehaviour:
   angle: 140
   parteVulneravel: {fileID: 676378332416876056}
   Effect: 1
+  Eyes: {fileID: 7904883687016082558}
+  closedEyes: {fileID: 2325040871667006615}
   effectObject: {fileID: 5293145122085637533}
   Debug: 1
   vulnerableCollider: {fileID: 589059042537950846}
@@ -557,6 +559,18 @@ GameObject:
 --- !u!4 &7904883686407763942 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8738201899271152301, guid: ba1f57e824a9fc847acdea84df6a66ed,
+    type: 3}
+  m_PrefabInstance: {fileID: 1510849373669299531}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7904883687016082558 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8738201900952959285, guid: ba1f57e824a9fc847acdea84df6a66ed,
+    type: 3}
+  m_PrefabInstance: {fileID: 1510849373669299531}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2325040871667006615 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3797565666875664860, guid: ba1f57e824a9fc847acdea84df6a66ed,
     type: 3}
   m_PrefabInstance: {fileID: 1510849373669299531}
   m_PrefabAsset: {fileID: 0}
