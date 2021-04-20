@@ -12,15 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71909a4c40c6c0146ae3cb80f839469e, type: 3}
   m_Name: PlayerValue
   m_EditorClassIdentifier: 
-  ImpulseForce: 0.78
-  LineMaxRadius: 3
-  LineMinRadius: 1.5
-  TimeSlow: 0.02
-  GamepadSensibility: 2.5
-  JumpDelay: 0.1
-  Damage: 0
-  CritChance: 0
-  invincibilityTime: 0
+  ImpulseForce: 1
+  LineMaxRadius: 2
+  LineMinRadius: 0.5
+  TimeSlow: 0.2
+  GamepadSensibility: 1
+  JumpDelay: 0.7
+  Damage: 10
+  LifeSteal: 0
+  CritChance: 0.1
+  invincibilityTime: 1
+  MaxHealth: 100
   CommonWeight: 80
   RareWeight: 25
   EpicWeight: 15
