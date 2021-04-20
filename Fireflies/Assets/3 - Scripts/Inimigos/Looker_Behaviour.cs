@@ -34,6 +34,10 @@ public class Looker_Behaviour : MonoBehaviour
     [Header("Ativa efeito de contagem de tempo")]
     public bool Effect = true;
 
+    [Header("Graphics")]
+    public GameObject Eyes;
+    public GameObject closedEyes;
+
     public GameObject effectObject;
 
     [Header("Ativa visualizacao de debug")]
@@ -222,7 +226,8 @@ public class Looker_Behaviour : MonoBehaviour
         {
             //player esta dentro da visao
             canViewPlayer = true;
-
+            Eyes.SetActive(true);
+            closedEyes.SetActive(false);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -231,6 +236,8 @@ public class Looker_Behaviour : MonoBehaviour
         {
             //player esta fora da visao
             canViewPlayer = false;
+            Eyes.SetActive(false);
+            closedEyes.SetActive(true);
         }
     }
 

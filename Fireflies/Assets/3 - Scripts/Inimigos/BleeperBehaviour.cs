@@ -39,6 +39,8 @@ public class BleeperBehaviour : MonoBehaviour
     public Color[] baseColors;
     public SpriteRenderer[] baseRenderer;
     public GameObject angy;
+    public GameObject Eyes;
+    public GameObject closedEyes;
 
     [Header("Tempo(s) ate mudar de estado")]
     public float changeTime = 1;
@@ -142,8 +144,6 @@ public class BleeperBehaviour : MonoBehaviour
             angy.SetActive(false);
         }
 
-        
-
     }
 
     public void forceToPlayer()
@@ -171,6 +171,8 @@ public class BleeperBehaviour : MonoBehaviour
         {
             //player esta dentro da visao
             canViewPlayer = true;
+            Eyes.SetActive(true);
+            closedEyes.SetActive(false);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -179,6 +181,8 @@ public class BleeperBehaviour : MonoBehaviour
         {
             //player esta fora da visao
             canViewPlayer = false;
+            Eyes.SetActive(false);
+            closedEyes.SetActive(true);
         }
     }
 
