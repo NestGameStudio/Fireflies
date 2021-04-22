@@ -38,12 +38,15 @@ public class PlayerValues : ScriptableObject
     public float invincibilityTime;
     [Header("Vida")]
     public float MaxHealth;
+    [Header("Quantidade de Pulos")]
+    public int MaxJumpCharges;
 
     [Header("Upgrades")]
     public int CommonWeight;
     public int RareWeight;
     public int EpicWeight;
     public int LegendaryWeight;
+    public List<Upgrade> upgrades;
 
 
     public void IncreaseCritChance(float amount, int cost) {
@@ -105,5 +108,16 @@ public class PlayerValues : ScriptableObject
         MoneyManager.instance.money -= cost;
         ImpulseForce += amount;
         Debug.Log("Impulso!");
+    }
+
+    public void IncreaseMaxJumpCharges(float amount, int cost) {
+        if(MoneyManager.instance.money < cost) {
+            // diz que nao tem dinheiro
+            return;
+        }
+        MoneyManager.instance.money -= cost;
+        MaxJumpCharges += (int) amount;
+        HealthManager.instance.Player.GetComponent<CollisionCheck>().Jump.chargeUI.Setup(MaxJumpCharges);
+        Debug.Log("MaxPulo!");
     }
 }

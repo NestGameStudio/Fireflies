@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71909a4c40c6c0146ae3cb80f839469e, type: 3}
   m_Name: PlayerValue
   m_EditorClassIdentifier: 
-  ImpulseForce: 1
+  ImpulseForce: 1.08
   LineMaxRadius: 2
   LineMinRadius: 0.5
   TimeSlow: 0.2
@@ -21,9 +21,11 @@ MonoBehaviour:
   Damage: 10
   LifeSteal: 0
   CritChance: 0.1
-  invincibilityTime: 1
-  MaxHealth: 100
+  invincibilityTime: 0.5
+  MaxHealth: 110
+  MaxJumpCharges: 1
   CommonWeight: 80
   RareWeight: 25
   EpicWeight: 15
   LegendaryWeight: 10
+  upgrades: []

@@ -11,19 +11,17 @@ public class SkillPicker : MonoBehaviour
     public Button SkillOption2;
     public Button SkillOption3;
 
-    public List<Upgrade> Upgrades;
+    private List<Upgrade> Upgrades;
 
     void Start()
     {
+        Upgrades = new List<Upgrade>();
+        for(int i=0;i<Setup.Instance.PlayerValue.upgrades.Count;i++) {
+            Upgrades.Add(Setup.Instance.PlayerValue.upgrades[i]);
+        }
         PickSkill(SkillOption1);
         PickSkill(SkillOption2);
         PickSkill(SkillOption3);
-    }
-
-    
-    void Update()
-    {
-        
     }
 
     private void PickSkill(Button SkillOption) {
@@ -57,12 +55,9 @@ public class SkillPicker : MonoBehaviour
         }
         int rnd = Random.Range(0,upgrade.Count);
         Upgrade skill = upgrade[rnd];
-        Debug.Log("Escolhido: " + skill.nome + " " + skill.rarity);
-
 
         for(int i=0;i<Upgrades.Count;i++) {
             if(Upgrades[i].nome == skill.nome) {
-                Debug.Log("Removido: " + Upgrades[i].nome + " " + Upgrades[i].rarity);
                 Upgrades.RemoveAt(i);
                 i = 0;
             }
@@ -80,23 +75,17 @@ public class SkillPicker : MonoBehaviour
 
         SkillOption.onClick.AddListener(delegate() {CheckCost(skill,SkillOption);});
         switch(name) {
-            case "Wombo Combo":
-                SkillOption.onClick.AddListener(delegate() {});
-                break;
             case "Crit% Up":
                 SkillOption.onClick.AddListener(delegate() {p.IncreaseCritChance(skill.effects[0].amount,skill.cost);});
                 break;
             case "Damage Up":
                 SkillOption.onClick.AddListener(delegate() {p.IncreaseDamage(skill.effects[0].amount,skill.cost);});
                 break;
-            case "Hold Limit":
-                SkillOption.onClick.AddListener(delegate() {});
-                break;
             case "Time to Breathe":
                 SkillOption.onClick.AddListener(delegate() {p.IncreaseInvicibility(skill.effects[0].amount,skill.cost);});
                 break;
             case "Bonus Jump":
-                SkillOption.onClick.AddListener(delegate() {});
+                SkillOption.onClick.AddListener(delegate() {p.IncreaseInvicibility(skill.effects[0].amount,skill.cost);});
                 break;
             case "Master Jumper":
                 SkillOption.onClick.AddListener(delegate() {p.IncreaseImpulseForce(skill.effects[0].amount,skill.cost);});
@@ -107,9 +96,6 @@ public class SkillPicker : MonoBehaviour
             case "Health Up":
                 SkillOption.onClick.AddListener(delegate() {p.IncreaseMaxHealth(skill.effects[0].amount,skill.cost);});
                 break;
-            case "Perfect Timing":
-                SkillOption.onClick.AddListener(delegate() {});
-                break;
         }
         
     }
@@ -119,6 +105,7 @@ public class SkillPicker : MonoBehaviour
                 HUDManager.instance.moneyUI.LowMoney();
             return;
         }
+        MoneyManager.instance.perderDinheiro(skill.cost);
         SkillOption.interactable = false;
     }
 

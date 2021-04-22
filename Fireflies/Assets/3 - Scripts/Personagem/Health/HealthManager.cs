@@ -10,9 +10,6 @@ public class HealthManager : MonoBehaviour
     public GameObject Player;
     private Animator playerAnim;
     public float health = 100;
-
-    [Header("Maximo de vida do player")]
-    public float maxHealth = 100;
     private HUDManager hudUI;
 
     [Header("Morte")]
@@ -22,9 +19,9 @@ public class HealthManager : MonoBehaviour
     [Tooltip("Precisa dele pra desligar o slowmotion e habilitar a movimentacao do mouse")]
     public GameObject Input;
 
-    [Header("Invencibilidade")]
-    public float InvencibilityDuration;
     private bool IsInvencible = false;
+
+    private PlayerValues playervalue;
     private void Awake()
     {
         // Singleton
@@ -40,17 +37,18 @@ public class HealthManager : MonoBehaviour
 
     private void Start(){
         //guarda referência para singleton de HUD Manager
+        playervalue = Setup.Instance.PlayerValue;
         hudUI = HUDManager.instance;
         if(hudUI != null){
-            hudUI.healthUI.SetupUI(maxHealth);
-            hudUI.healthUI.SetMaxHealth(maxHealth);
+            hudUI.healthUI.SetupUI(playervalue.MaxHealth);
+            hudUI.healthUI.SetMaxHealth(playervalue.MaxHealth);
         }else{
             Debug.Log("Não há nenhum objeto com HUD Manager em cena");
         }
         //CameraZoom script
         CameraZoom = GameObject.Find("2D Cam_RogueLike").GetComponent<CameraZoom>();
         playerAnim = Player.transform.GetChild(0).GetComponent<Animator>();
-        playerAnim.SetFloat("invincibilityTime", 1/InvencibilityDuration);
+        playerAnim.SetFloat("invincibilityTime", 1/playervalue.invincibilityTime);
     }
 
     //perder vida por x quantidade, definindo um minimo e maximo de dano
@@ -75,54 +73,16 @@ public class HealthManager : MonoBehaviour
     //ganhar vida por x quantidade
     public void maisVida(float quantidade)
     {
-        if(health + quantidade > maxHealth)
+        if(health + quantidade > playervalue.MaxHealth)
         {
             //limitar a vida pelo maximo
-            health = maxHealth;
+            health = playervalue.MaxHealth;
         }
         else
         {
             health += quantidade;
         }
         hudUI.healthUI.SetHealth(health);
-    }
-
-    //aumentar limite de vida por x quantidade, aumentar vida?
-    public void aumentarLimite(float quantidade, bool aumentarVida)
-    {
-        maxHealth += quantidade;
-        hudUI.healthUI.SetMaxHealth(maxHealth);
-        
-        //caso esteja true, completar vida 
-        if (aumentarVida)
-        {
-            maisVida(quantidade);
-        }
-    }
-
-    //diminuir limite de vida por x quantidade
-    public void diminuirLimite(float quantidade)
-    {
-        maxHealth -= quantidade;
-        hudUI.healthUI.SetMaxHealth(maxHealth);
-
-        //perder vida caso a vida esteja dentro do range que sera perdido
-        if(health > maxHealth)
-        {
-            health = maxHealth;
-        }
-    }
-
-    //especificar um limite de vida, completar vida?
-    public void setLimite(float limite, bool completar)
-    {
-        maxHealth = limite;
-        hudUI.healthUI.SetMaxHealth(maxHealth);
-
-        if (completar)
-        {
-            health = maxHealth;
-        }
     }
 
     public void death()
@@ -139,7 +99,7 @@ public class HealthManager : MonoBehaviour
     {
         yield return new WaitForSeconds(DeathWaitTime);
         //Respawn.instance.RepositionPlayer();
-        health = maxHealth;
+        health = playervalue.MaxHealth;
         hudUI.healthUI.SetHealth(health);
         Player.gameObject.GetComponent<Rigidbody2D>().simulated = true;
         GameOverScreen();
@@ -148,7 +108,7 @@ public class HealthManager : MonoBehaviour
     private IEnumerator InvencibilidadeTimer() {
         IsInvencible = true;
         playerAnim.SetBool("invincible", IsInvencible);
-        yield return new WaitForSeconds(InvencibilityDuration);
+        yield return new WaitForSeconds(playervalue.invincibilityTime);
         IsInvencible = false;
         playerAnim.SetBool("invincible", IsInvencible);
     }
