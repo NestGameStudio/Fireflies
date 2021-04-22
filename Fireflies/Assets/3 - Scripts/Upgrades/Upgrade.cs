@@ -51,7 +51,7 @@ public class Upgrade : ScriptableObject {
     public Sprite icon;
 
     [Tooltip("Upgrade cost, shown when shopping")]
-    public float cost;
+    public int cost;
 
     [Tooltip("Upgrade rarity, affects chance of appearance")]
     public UpgradeRarity rarity = UpgradeRarity.Common;

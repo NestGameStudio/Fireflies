@@ -46,33 +46,63 @@ public class PlayerValues : ScriptableObject
     public int LegendaryWeight;
 
 
-    public void IncreaseCritChance(float amount) {
+    public void IncreaseCritChance(float amount, int cost) {
+        if(MoneyManager.instance.money < cost) {
+            // diz que nao tem dinheiro
+            return;
+        }
+        MoneyManager.instance.money -= cost;
         CritChance += amount;
         Debug.Log("Critico!");
     }
 
-    public void IncreaseDamage(float amount ) {
+    public void IncreaseDamage(float amount, int cost) {
+        if(MoneyManager.instance.money < cost) {
+            // diz que nao tem dinheiro
+            return;
+        }
+        MoneyManager.instance.money -= cost;
         Damage += amount;
         Debug.Log("Dano!");
     }
 
-    public void IncreaseInvicibility(float amount) {
+    public void IncreaseInvicibility(float amount, int cost) {
+        if(MoneyManager.instance.money < cost) {
+            // diz que nao tem dinheiro
+            return;
+        }
+        MoneyManager.instance.money -= cost;
         invincibilityTime += amount;
         Debug.Log("Invencivel!");
     }
 
-    public void IncreaseMaxHealth(float amount) {
+    public void IncreaseMaxHealth(float amount, int cost) {
+        if(MoneyManager.instance.money < cost) {
+            // diz que nao tem dinheiro
+            return;
+        }
+        MoneyManager.instance.money -= cost;
         MaxHealth += amount;
         HealthManager.instance.maisVida(amount);
         Debug.Log("Vida!");
     }
 
-    public void IncreaseLifeSteal(float amount) {
+    public void IncreaseLifeSteal(float amount, int cost) {
+        if(MoneyManager.instance.money < cost) {
+            // diz que nao tem dinheiro
+            return;
+        }
+        MoneyManager.instance.money -= cost;
         LifeSteal += amount;
         Debug.Log("LifeSteal!");
     }
 
-    public void IncreaseImpulseForce(float amount) {
+    public void IncreaseImpulseForce(float amount, int cost) {
+        if(MoneyManager.instance.money < cost) {
+            // diz que nao tem dinheiro
+            return;
+        }
+        MoneyManager.instance.money -= cost;
         ImpulseForce += amount;
         Debug.Log("Impulso!");
     }
