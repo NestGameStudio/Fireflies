@@ -19,4 +19,4 @@ MonoBehaviour:
   rarity: 3
   effects:
   - type: 6
-    amount: 0.15
+    amount: 10
