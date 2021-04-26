@@ -54,7 +54,6 @@ public class PlayerValues : ScriptableObject
             // diz que nao tem dinheiro
             return;
         }
-        MoneyManager.instance.perderDinheiro(cost);
         CritChance += amount;
         Debug.Log("Critico!");
     }
@@ -64,7 +63,6 @@ public class PlayerValues : ScriptableObject
             // diz que nao tem dinheiro
             return;
         }
-        MoneyManager.instance.perderDinheiro(cost);
         Damage += amount;
         Debug.Log("Dano!");
     }
@@ -74,7 +72,6 @@ public class PlayerValues : ScriptableObject
             // diz que nao tem dinheiro
             return;
         }
-        MoneyManager.instance.perderDinheiro(cost);
         invincibilityTime += amount;
         Debug.Log("Invencivel!");
     }
@@ -84,7 +81,6 @@ public class PlayerValues : ScriptableObject
             // diz que nao tem dinheiro
             return;
         }
-        MoneyManager.instance.perderDinheiro(cost);
         MaxHealth += amount;
         HealthManager.instance.maisVida(amount);
         Debug.Log("Vida!");
@@ -95,7 +91,6 @@ public class PlayerValues : ScriptableObject
             // diz que nao tem dinheiro
             return;
         }
-        MoneyManager.instance.perderDinheiro(cost);
         LifeSteal += amount;
         Debug.Log("LifeSteal!");
     }
@@ -105,7 +100,6 @@ public class PlayerValues : ScriptableObject
             // diz que nao tem dinheiro
             return;
         }
-        MoneyManager.instance.perderDinheiro(cost);
         ImpulseForce += amount;
         Debug.Log("Impulso!");
     }
@@ -115,7 +109,6 @@ public class PlayerValues : ScriptableObject
             // diz que nao tem dinheiro
             return;
         }
-        MoneyManager.instance.perderDinheiro(cost);
         MaxJumpCharges += (int) amount;
         HealthManager.instance.Player.GetComponent<CollisionCheck>().Jump.chargeUI.Setup(MaxJumpCharges);
         Debug.Log("MaxPulo!");
