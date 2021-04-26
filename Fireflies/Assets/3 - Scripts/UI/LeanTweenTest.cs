@@ -4,46 +4,36 @@ using UnityEngine;
 
 public class LeanTweenTest : MonoBehaviour
 {
-    public GameObject shop_bg, text_bg, Title, Back;
-    public GameObject skill_1, skill_2, skill_3;
-    public GameObject skill_1_bg, skill_2_bg, skill_3_bg;
+    public GameObject[] Skills;
+    public GameObject[] SkillsBG;
+    public GameObject[] UI;
+
     public LeanTweenType leanTweenType;
 
-    void Start()
+    public void Animate()
     {
-        LeanTween.scale(shop_bg.GetComponent<RectTransform>(), new Vector3(0,0,1), 0f);
-        LeanTween.scale(Back.GetComponent<RectTransform>(), new Vector3(0,0,1), 0f); 
-        LeanTween.scale(Title.GetComponent<RectTransform>(), new Vector3(0,0,1), 0f);
-        LeanTween.scale(text_bg.GetComponent<RectTransform>(), new Vector3(0,0,1), 0f);
-        LeanTween.scale(skill_1.GetComponent<RectTransform>(), new Vector3(0,0,1), 0f);
-        LeanTween.scale(skill_1_bg.GetComponent<RectTransform>(), new Vector3(0,0,1), 0f);
-        LeanTween.scale(skill_2.GetComponent<RectTransform>(), new Vector3(0,0,1), 0f);
-        LeanTween.scale(skill_2_bg.GetComponent<RectTransform>(), new Vector3(0,0,1), 0f);
-        LeanTween.scale(skill_3.GetComponent<RectTransform>(), new Vector3(0,0,1), 0f);
-        LeanTween.scale(skill_3_bg.GetComponent<RectTransform>(), new Vector3(0,0,1), 0f);
-
-
-        LeanTween.scale(shop_bg.GetComponent<RectTransform>(), new Vector3(1,1,1), 0.5f).setEase(leanTweenType).setIgnoreTimeScale(true);
-        LeanTween.scale(Back.GetComponent<RectTransform>(), new Vector3(1,1,1), 0.5f).setEase(leanTweenType).setIgnoreTimeScale(true);
-        LeanTween.scale(Title.GetComponent<RectTransform>(), new Vector3(1,1,1), 0.5f).setDelay(0.1f).setEase(leanTweenType).setIgnoreTimeScale(true);
-
-        LeanTween.scale(text_bg.GetComponent<RectTransform>(), new Vector3(1,1,1), 0.5f).setDelay(0.2f).setEase(leanTweenType).setIgnoreTimeScale(true);
-
-        LeanTween.scale(skill_1.GetComponent<RectTransform>(), new Vector3(1,1,1), 0.5f).setDelay(0.3f).setEase(leanTweenType).setIgnoreTimeScale(true);
-        LeanTween.scale(skill_1_bg.GetComponent<RectTransform>(), new Vector3(1,1,1), 0.5f).setDelay(0.2f).setEase(leanTweenType).setIgnoreTimeScale(true);
-        LeanTween.scale(skill_2.GetComponent<RectTransform>(), new Vector3(1,1,1), 0.5f).setDelay(0.35f).setEase(leanTweenType).setIgnoreTimeScale(true);
-        LeanTween.scale(skill_2_bg.GetComponent<RectTransform>(), new Vector3(1,1,1), 0.5f).setDelay(0.25f).setEase(leanTweenType).setIgnoreTimeScale(true);
-        LeanTween.scale(skill_3.GetComponent<RectTransform>(), new Vector3(1,1,1), 0.5f).setDelay(0.4f).setEase(leanTweenType).setIgnoreTimeScale(true);
-        LeanTween.scale(skill_3_bg.GetComponent<RectTransform>(), new Vector3(1,1,1), 0.5f).setDelay(0.3f).setEase(leanTweenType).setIgnoreTimeScale(true);
+        for (int i = 0; i < Skills.Length; i++)
+        {
+            LeanTween.scale(Skills[i].GetComponent<RectTransform>(), new Vector3(0,0,1), 0f);
+            LeanTween.scale(Skills[i].GetComponent<RectTransform>(), new Vector3(1,1,1), 0.5f).setDelay(i/10f + 0.3f).setEase(leanTweenType).setIgnoreTimeScale(true);
+        }
+        for (int i = 0; i < SkillsBG.Length; i++)
+        {
+            LeanTween.scale(SkillsBG[i].GetComponent<RectTransform>(), new Vector3(0,0,1), 0f);
+            LeanTween.scale(SkillsBG[i].GetComponent<RectTransform>(), new Vector3(1,1,1), 0.5f).setDelay(i/10f + 0.2f).setEase(leanTweenType).setIgnoreTimeScale(true);
+        }
+        for (int i = 0; i < UI.Length; i++)
+        {
+            LeanTween.scale(UI[i].GetComponent<RectTransform>(), new Vector3(0,0,1), 0f);
+            LeanTween.scale(UI[i].GetComponent<RectTransform>(), new Vector3(1,1,1), 0.5f).setEase(leanTweenType).setIgnoreTimeScale(true);
+        } 
     }
 
-    public void skillInfo(bool isOn)
+    public void skillSelect(GameObject obj)
     {
-        switch (isOn)
-        {
-            case true:
-                break;
-        }
+        LeanTween.scale(obj.GetComponent<RectTransform>(), new Vector3(-1,1,1), 0.5f).setEase(leanTweenType).setIgnoreTimeScale(true);
+        obj.transform.GetChild(0).GetChild(1).gameObject.SetActive(true); 
+        obj.transform.GetChild(1).gameObject.SetActive(false); 
     }
 
 }
