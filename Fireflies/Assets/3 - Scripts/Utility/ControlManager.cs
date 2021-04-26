@@ -158,6 +158,23 @@ public class ControlManager : MonoBehaviour {
         }
 
     }
+    public void ExitSlowMotionMode() {
+
+        if (isOnSlowMotion) {
+
+            /*if (Setup.Instance.StartTimerAfterJump) {
+                StartTimer();
+            }*/
+
+            isOnSlowMotion = false;
+
+            EnableCursor(false);
+
+            SlingshotController.ExitSlowMotionMode();
+        }
+
+    }
+
 
     public void EnableCursor(bool enable) {
 

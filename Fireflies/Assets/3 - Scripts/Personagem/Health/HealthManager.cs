@@ -39,6 +39,7 @@ public class HealthManager : MonoBehaviour
         //guarda referência para singleton de HUD Manager
         playervalue = Setup.Instance.PlayerValue;
         hudUI = HUDManager.instance;
+        health = playervalue.MaxHealth;
         if(hudUI != null){
             hudUI.healthUI.SetupUI(playervalue.MaxHealth);
             hudUI.healthUI.SetMaxHealth(playervalue.MaxHealth);

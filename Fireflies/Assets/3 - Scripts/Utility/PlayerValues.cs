@@ -50,65 +50,38 @@ public class PlayerValues : ScriptableObject
 
 
     public void IncreaseCritChance(float amount, int cost) {
-        if(MoneyManager.instance.money < cost) {
-            // diz que nao tem dinheiro
-            return;
-        }
         CritChance += amount;
         Debug.Log("Critico!");
     }
 
     public void IncreaseDamage(float amount, int cost) {
-        if(MoneyManager.instance.money < cost) {
-            // diz que nao tem dinheiro
-            return;
-        }
         Damage += amount;
         Debug.Log("Dano!");
     }
 
     public void IncreaseInvicibility(float amount, int cost) {
-        if(MoneyManager.instance.money < cost) {
-            // diz que nao tem dinheiro
-            return;
-        }
         invincibilityTime += amount;
         Debug.Log("Invencivel!");
     }
 
     public void IncreaseMaxHealth(float amount, int cost) {
-        if(MoneyManager.instance.money < cost) {
-            // diz que nao tem dinheiro
-            return;
-        }
         MaxHealth += amount;
+        HUDManager.instance.healthUI.SetMaxHealth(MaxHealth);
         HealthManager.instance.maisVida(amount);
         Debug.Log("Vida!");
     }
 
     public void IncreaseLifeSteal(float amount, int cost) {
-        if(MoneyManager.instance.money < cost) {
-            // diz que nao tem dinheiro
-            return;
-        }
         LifeSteal += amount;
         Debug.Log("LifeSteal!");
     }
 
     public void IncreaseImpulseForce(float amount, int cost) {
-        if(MoneyManager.instance.money < cost) {
-            // diz que nao tem dinheiro
-            return;
-        }
         ImpulseForce += amount;
         Debug.Log("Impulso!");
     }
 
     public void IncreaseMaxJumpCharges(float amount, int cost) {
-        if(MoneyManager.instance.money < cost) {
-            // diz que nao tem dinheiro
-            return;
-        }
         MaxJumpCharges += (int) amount;
         HealthManager.instance.Player.GetComponent<CollisionCheck>().Jump.chargeUI.Setup(MaxJumpCharges);
         Debug.Log("MaxPulo!");
