@@ -44,6 +44,9 @@ public class EntityBarrel : Entity {
                 //Instancia partícula
                 if(rewardParticle != null) Instantiate(rewardParticle, this.transform.position, Quaternion.identity);
                 if(breakableParticle != null) Instantiate(breakableParticle, this.transform.position, Quaternion.identity);
+                if(gameObject.CompareTag("Treasure")) {
+                    other.gameObject.GetComponent<CollisionCheck>().LigaSkillUI();
+                }
 
                 Destroy(this.gameObject); //Destrói este objeto
             } 

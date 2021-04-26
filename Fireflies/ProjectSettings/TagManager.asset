@@ -23,6 +23,9 @@ TagManager:
   - Inimigo_Vulneravel
   - Trigger_Recarregavel
   - Trigger_Safe
+  - SkillPickerUI
+  - Trigger_Shop
+  - Treasure
   layers:
   - Default
   - TransparentFX

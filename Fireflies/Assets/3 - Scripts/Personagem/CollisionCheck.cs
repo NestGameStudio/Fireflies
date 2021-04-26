@@ -99,6 +99,12 @@ public class CollisionCheck : MonoBehaviour
 
             return;            
         } 
+
+        if(collision.transform.CompareTag("Treasure")) {
+            playFeedbackRecarga();
+            Jump.restoreJumpCharge(true);
+            return;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision){
@@ -116,19 +122,24 @@ public class CollisionCheck : MonoBehaviour
         }
 
         if (collision.transform.CompareTag("Trigger_Shop") && !ControlManager.Instance.SlingshotController.IsSlowMotionActive()){
-            Timer.stopTimer();
-            Time.timeScale = 0;
-            if(postProcessingVolume.profile != null){
-                postProcessingVolume.profile.TryGet<DepthOfField>(out var dph);
-                dph.active = true;
-            }
-            skillUI.SetActive(true);
-            HealthManager.instance.FreezePlayer();
-            uiShopAnimation uiShopAnimation= skillUI.GetComponent<uiShopAnimation>();
-            uiShopAnimation.Animate();
+            SkillPicker.IsShop = true;
+            LigaSkillUI();
         }
         
     }
+
+    public void LigaSkillUI() {
+        Timer.stopTimer();
+        Time.timeScale = 0;
+        if(postProcessingVolume.profile != null){
+            postProcessingVolume.profile.TryGet<DepthOfField>(out var dph);
+            dph.active = true;
+        }
+        skillUI.SetActive(true);
+        HealthManager.instance.FreezePlayer();
+        uiShopAnimation uiShopAnimation= skillUI.GetComponent<uiShopAnimation>();
+        uiShopAnimation.Animate();
+    } 
 
     private void OnTriggerExit2D(Collider2D collision){
 
@@ -225,6 +236,7 @@ public class CollisionCheck : MonoBehaviour
     public void DesligaFog() {
         postProcessingVolume.profile.TryGet<DepthOfField>(out var dph);
         dph.active = false;
+        SkillPicker.IsShop = false;
     }
 
 }

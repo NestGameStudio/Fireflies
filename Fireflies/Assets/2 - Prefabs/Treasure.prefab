@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 2753873969092703068}
   m_Layer: 0
   m_Name: Treasure
-  m_TagString: Plataforma_Recarregavel
+  m_TagString: Treasure
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

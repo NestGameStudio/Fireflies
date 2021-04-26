@@ -28,4 +28,26 @@ MonoBehaviour:
   RareWeight: 25
   EpicWeight: 15
   LegendaryWeight: 10
-  upgrades: []
+  upgrades:
+  - {fileID: 11400000, guid: a2d6b8c8d732507459a408469106ee58, type: 2}
+  - {fileID: 11400000, guid: d4cda32a0e4995845b28569a151fc650, type: 2}
+  - {fileID: 11400000, guid: 59458bfe8af486f4fa2b86fae1f5fe27, type: 2}
+  - {fileID: 11400000, guid: bec3e7f185db85746a21161eb03d1b8e, type: 2}
+  - {fileID: 11400000, guid: a5a22b0376d9f744cb8a45de2336a7a3, type: 2}
+  - {fileID: 11400000, guid: 1576797259beae3448f2fe3063a08064, type: 2}
+  - {fileID: 11400000, guid: 7b811b4d593d98e4e90181791937db43, type: 2}
+  - {fileID: 11400000, guid: 77469ed5698486f49904e78c9ff86668, type: 2}
+  - {fileID: 11400000, guid: 9ab5168f653df5d44814b1d2023b64d4, type: 2}
+  - {fileID: 11400000, guid: b0940d54197de9e4d8dfb4616dd347f2, type: 2}
+  - {fileID: 11400000, guid: 09c39582f416c1545b718a6667aff26b, type: 2}
+  - {fileID: 11400000, guid: 277e9bbe2683a63438a7c1453c37eda8, type: 2}
+  - {fileID: 11400000, guid: 557b44046181d3d4bb0e64d58c2c140b, type: 2}
+  - {fileID: 11400000, guid: 360502110ef4b08489e8ffe56977e231, type: 2}
+  - {fileID: 11400000, guid: b4c3be0e04933a940879d88a9b475572, type: 2}
+  - {fileID: 11400000, guid: d775dcf344c1cc74c953606eee6dc9c1, type: 2}
+  - {fileID: 11400000, guid: 09f3a5fc600c4084a858bb1dc24bb839, type: 2}
+  - {fileID: 11400000, guid: 5381b78b1ace8404d939600a00e47ab1, type: 2}
+  - {fileID: 11400000, guid: a0f8c911e03e5304cbef71f232dc204f, type: 2}
+  - {fileID: 11400000, guid: d0c89a4827cc9094da6fc6bc25172b93, type: 2}
+  - {fileID: 11400000, guid: c2944e2c24622ca468f8de182b5af8fd, type: 2}
+  - {fileID: 11400000, guid: eb7d8e459d9348b409edb3d785b2f8ac, type: 2}
