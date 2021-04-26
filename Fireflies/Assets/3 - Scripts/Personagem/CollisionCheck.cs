@@ -124,6 +124,8 @@ public class CollisionCheck : MonoBehaviour
             }
             skillUI.SetActive(true);
             HealthManager.instance.FreezePlayer();
+            uiShopAnimation uiShopAnimation= skillUI.GetComponent<uiShopAnimation>();
+            uiShopAnimation.Animate();
         }
         
     }
