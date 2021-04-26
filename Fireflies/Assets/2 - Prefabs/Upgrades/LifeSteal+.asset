@@ -15,8 +15,8 @@ MonoBehaviour:
   nome: Vampirism Up
   description: You receive way more health while dealing damage!
   icon: {fileID: 21300000, guid: 333e53b30e2e8354f95e385427f6d67f, type: 3}
-  cost: 50
+  cost: 403
   rarity: 2
   effects:
   - type: 7
-    amount: 0.03
+    amount: 12

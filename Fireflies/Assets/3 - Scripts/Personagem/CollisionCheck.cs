@@ -121,7 +121,7 @@ public class CollisionCheck : MonoBehaviour
             return;
         }
 
-        if (collision.transform.CompareTag("Trigger_Shop") && !ControlManager.Instance.SlingshotController.IsSlowMotionActive()){
+        if (collision.transform.CompareTag("Trigger_Shop")) {
             SkillPicker.IsShop = true;
             LigaSkillUI();
         }
@@ -129,6 +129,8 @@ public class CollisionCheck : MonoBehaviour
     }
 
     public void LigaSkillUI() {
+        ControlManager.Instance.SlingshotController.impulseVector = new Vector2(0,0);
+        ControlManager.Instance.ExitSlowMotionMode();
         Timer.stopTimer();
         Time.timeScale = 0;
         if(postProcessingVolume.profile != null){
