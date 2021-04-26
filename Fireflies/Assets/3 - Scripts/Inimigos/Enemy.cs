@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [Header("Vida")]
-    public int health = 100;
+    public float health = 100;
 
     [Header("Dano ao toque (mínimo/máximo)")]
     public Vector2 damage = new Vector2(5f, 10f);
@@ -41,15 +41,27 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
-        if (health - damage <= 0){
+        PlayerValues values = Setup.Instance.PlayerValue;
+        float dam;
+        float rnd = Random.Range(0,100);
+        if(values.CritChance >= rnd) {
+            dam = damage*2;
+        }
+        else {
+            dam = damage;
+        }
+        HealthManager.instance.maisVida(dam*values.LifeSteal);
+        if (health - dam <= 0){
             health = 0;
             Death();
         } else {
             DamageParticle();
-            health -= damage;
+            health -= dam;
         }
+
+        
     }
 
     private void Death(){

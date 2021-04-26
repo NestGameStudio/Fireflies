@@ -15,7 +15,7 @@ MonoBehaviour:
   nome: Bonus Jump
   description: 'You''ve got an extra jump! '
   icon: {fileID: 21300000, guid: 3c1c3512a65321045aaabdb51173f499, type: 3}
-  cost: 0
+  cost: 50
   rarity: 3
   effects:
   - type: 0

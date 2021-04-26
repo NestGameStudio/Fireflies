@@ -115,7 +115,7 @@ public class CollisionCheck : MonoBehaviour
             return;
         }
 
-        if (collision.transform.CompareTag("Trigger_Shop")){
+        if (collision.transform.CompareTag("Trigger_Shop") && !ControlManager.Instance.SlingshotController.IsSlowMotionActive()){
             Timer.stopTimer();
             Time.timeScale = 0;
             if(postProcessingVolume.profile != null){

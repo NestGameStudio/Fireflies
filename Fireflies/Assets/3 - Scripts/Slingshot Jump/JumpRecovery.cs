@@ -10,11 +10,12 @@ public class JumpRecovery : MonoBehaviour
     [HideInInspector]
     public bool canJump = false;     // Consegue executar o pulo
     public int jumpCharges = 0;     // Cargas de pulo atuais
-    public int maxJumpCharges = 1;  // Máximo de cargas de pulo
     public Animator playerAnim;
+    private PlayerValues values;
 
     void Start(){
-        if(chargeUI != null) chargeUI.Setup(maxJumpCharges);
+        values = Setup.Instance.PlayerValue;
+        if(chargeUI != null) chargeUI.Setup(values.MaxJumpCharges);
     }
 
     public bool CanJump() {
@@ -49,7 +50,7 @@ public class JumpRecovery : MonoBehaviour
 
     public void restoreJumpCharge(bool max){
         if(max){
-            jumpCharges = maxJumpCharges;
+            jumpCharges = values.MaxJumpCharges;
             setJump(true);
 
             chargeUI.UpdateCharges(jumpCharges);
@@ -60,8 +61,8 @@ public class JumpRecovery : MonoBehaviour
 
     public void restoreJumpCharge(){
         jumpCharges++;
-        if(jumpCharges > maxJumpCharges){
-            jumpCharges = maxJumpCharges;
+        if(jumpCharges > values.MaxJumpCharges){
+            jumpCharges = values.MaxJumpCharges;
         }
         setJump(true);
 

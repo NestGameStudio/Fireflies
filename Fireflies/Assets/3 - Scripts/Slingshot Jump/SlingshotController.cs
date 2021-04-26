@@ -210,4 +210,8 @@ public class SlingshotController : MonoBehaviour {
         jumpAudio.pitch = Random.Range(startPitch - 0.13f, startPitch + 0.13f);
         jumpAudio.PlayOneShot(jumpAudio.clip,jumpAudio.volume);
     }
+
+    public bool IsSlowMotionActive() {
+        return isOnSlowMotion;
+    }
 }

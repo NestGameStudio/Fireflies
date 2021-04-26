@@ -1277,7 +1277,6 @@ MonoBehaviour:
   chargeUI: {fileID: 1282589682}
   canJump: 0
   jumpCharges: 0
-  maxJumpCharges: 1
   playerAnim: {fileID: 2965705973359285041}
 --- !u!1 &5265457214263774240
 GameObject:
