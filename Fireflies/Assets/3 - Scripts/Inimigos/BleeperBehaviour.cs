@@ -236,7 +236,7 @@ public class BleeperBehaviour : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && Estado == estado.atingivel)
         {
-            enemy.TakeDamage(Setup.Instance.PlayerValue.Damage);
+            enemy.TakeDamage(Setup.Instance.PlayerValue.Dano);
         }
     }
 }

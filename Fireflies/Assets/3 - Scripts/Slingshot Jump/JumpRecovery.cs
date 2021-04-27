@@ -15,7 +15,7 @@ public class JumpRecovery : MonoBehaviour
 
     void Start(){
         values = Setup.Instance.PlayerValue;
-        if(chargeUI != null) chargeUI.Setup(values.MaxJumpCharges);
+        if(chargeUI != null) chargeUI.Setup(values.MaxJump);
     }
 
     public bool CanJump() {
@@ -50,7 +50,7 @@ public class JumpRecovery : MonoBehaviour
 
     public void restoreJumpCharge(bool max){
         if(max){
-            jumpCharges = values.MaxJumpCharges;
+            jumpCharges = values.MaxJump;
             setJump(true);
 
             chargeUI.UpdateCharges(jumpCharges);
@@ -61,8 +61,8 @@ public class JumpRecovery : MonoBehaviour
 
     public void restoreJumpCharge(){
         jumpCharges++;
-        if(jumpCharges > values.MaxJumpCharges){
-            jumpCharges = values.MaxJumpCharges;
+        if(jumpCharges > values.MaxJump){
+            jumpCharges = values.MaxJump;
         }
         setJump(true);
 

@@ -120,6 +120,7 @@ public class SkillPicker : MonoBehaviour
         }
         AddButtonFunction(skill.nome, skill, SkillOption,s);
         SkillOption.gameObject.GetComponent<SkillDescription>().AddDescription(skill.description);
+        SkillOption.gameObject.GetComponent<SkillDescription>().AddTitle(skill.name);
     }
 
     private void AddButtonFunction(string name, Upgrade skill, Button SkillOption,int s) {
@@ -175,6 +176,8 @@ public class SkillPicker : MonoBehaviour
         else {
             uiShopAnimation.skillSelect(SkillOption.gameObject);
         }
+        SkillOption.gameObject.GetComponent<SkillDescription>().AddDescription("");
+        SkillOption.gameObject.GetComponent<SkillDescription>().AddTitle("");
         ActiveSkill[s](skill.effects[0].amount,skill.cost);
         MoneyManager.instance.perderDinheiro(skill.cost);
         SkillOption.interactable = false;

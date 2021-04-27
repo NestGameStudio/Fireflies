@@ -10,20 +10,28 @@ public class SkillDescription : MonoBehaviour, IPointerEnterHandler, IPointerExi
 {
     [TextArea]
     private string Description;
+    private string Title;
 
     public TextMeshProUGUI DescriptionText;
+    public TextMeshProUGUI TitleText;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        DescriptionText.text = Description;  
+        DescriptionText.text = Description;
+        TitleText.text = Title;  
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         DescriptionText.text = "";
+        TitleText.text = "";
     }
 
     public void AddDescription(string desc) {
         Description = desc;
+    }
+
+    public void AddTitle(string title) {
+        Title = title;
     }
 }
