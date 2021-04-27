@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nome: Master Jumper
   description: You can jump way further!
-  icon: {fileID: 21300000, guid: 84b1005aeca4eda4082131596a61235d, type: 3}
+  icon: {fileID: 21300000, guid: 21afcdbccee0867498e308a3a5683666, type: 3}
   cost: 412
   rarity: 2
   effects:

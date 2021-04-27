@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nome: Time to Breathe
   description: You have way time before getting hit again!
-  icon: {fileID: 21300000, guid: c859c5fb71fb7fa418d8fe73e7d43ec4, type: 3}
+  icon: {fileID: 21300000, guid: 320b7848eb0658f49bfa052ea44f1b7e, type: 3}
   cost: 408
   rarity: 2
   effects:

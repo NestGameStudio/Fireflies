@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nome: Damage Up
   description: You deal more damage!
-  icon: {fileID: 21300000, guid: 30a179d483c1107449157655fe9939a1, type: 3}
+  icon: {fileID: 21300000, guid: 35a2537ce8ca1494abb9fbdb7513eb39, type: 3}
   cost: 261
   rarity: 1
   effects:
