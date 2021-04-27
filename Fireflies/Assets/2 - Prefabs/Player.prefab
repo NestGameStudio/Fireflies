@@ -2204,7 +2204,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09d71a1fd5ccb424da36f3324f32069e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealthManager: {fileID: 0}
   lookAlongVelocity: {fileID: 4951848863457775629}
   scaleByVelocity: {fileID: 4951848863457775627}
   fireParticle: {fileID: 1585373844812159063, guid: d8409e5691224414dbc3a6ae46e4a292,
