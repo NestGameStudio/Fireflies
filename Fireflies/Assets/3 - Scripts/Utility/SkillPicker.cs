@@ -19,7 +19,7 @@ public class SkillPicker : MonoBehaviour
 
     private List<Upgrade> Upgrades;
 
-    private delegate void SkillFunction(float amount,int cost);
+    private delegate void SkillFunction(float amount);
 
     private List<SkillFunction> ActiveSkill;
 
@@ -178,14 +178,14 @@ public class SkillPicker : MonoBehaviour
         }
         SkillOption.gameObject.GetComponent<SkillDescription>().AddDescription("");
         SkillOption.gameObject.GetComponent<SkillDescription>().AddTitle("");
-        ActiveSkill[s](skill.effects[0].amount,skill.cost);
+        ActiveSkill[s](skill.effects[0].amount);
         MoneyManager.instance.perderDinheiro(skill.cost);
         SkillOption.interactable = false;
     }
 
     private void DontCheckCost(Upgrade skill,int s,Button SkillOption) {
         uiShopAnimation.skillSelect(SkillOption.gameObject);
-        ActiveSkill[s](skill.effects[0].amount,skill.cost);
+        ActiveSkill[s](skill.effects[0].amount);
         gameObject.SetActive(false);
         HealthManager.instance.Player.GetComponent<CollisionCheck>().DesligaFog();
         HealthManager.instance.UnFreezePlayer();

@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
         else {
             dam = damage;
         }
-        HealthManager.instance.maisVida(dam*values.LiSteal);
+        HealthManager.instance.maisVida(dam*values.LiSteal/100);
         if (health - dam <= 0){
             health = 0;
             Death();

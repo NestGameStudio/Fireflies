@@ -36,6 +36,7 @@ public class PlayerValues : ScriptableObject
     [HideInInspector]
     public float Dano;
     [SerializeField]
+    [Range(0,100)]
     private float LifeSteal;
     [HideInInspector]
     public float LiSteal;
@@ -79,39 +80,39 @@ public class PlayerValues : ScriptableObject
     }
 
 
-    public void IncreaseCritChance(float amount, int cost) {
+    public void IncreaseCritChance(float amount) {
         CriticalChance += amount;
         Debug.Log("Critico!");
     }
 
-    public void IncreaseDamage(float amount, int cost) {
+    public void IncreaseDamage(float amount) {
         Dano += amount;
         Debug.Log("Dano!");
     }
 
-    public void IncreaseInvicibility(float amount, int cost) {
+    public void IncreaseInvicibility(float amount) {
         invinciTime += amount;
         Debug.Log("Invencivel!");
     }
 
-    public void IncreaseMaxHealth(float amount, int cost) {
+    public void IncreaseMaxHealth(float amount) {
         MaxHp += amount;
         HUDManager.instance.healthUI.SetMaxHealth(MaxHp);
         HealthManager.instance.maisVida(amount);
         Debug.Log("Vida!");
     }
 
-    public void IncreaseLifeSteal(float amount, int cost) {
+    public void IncreaseLifeSteal(float amount) {
         LiSteal += amount;
         Debug.Log("LifeSteal!");
     }
 
-    public void IncreaseImpulseForce(float amount, int cost) {
+    public void IncreaseImpulseForce(float amount) {
         ForcaImpulso += amount;
         Debug.Log("Impulso!");
     }
 
-    public void IncreaseMaxJumpCharges(float amount, int cost) {
+    public void IncreaseMaxJumpCharges(float amount) {
         MaxJump += (int) amount;
         HealthManager.instance.Player.GetComponent<CollisionCheck>().Jump.chargeUI.Setup(MaxJump);
         Debug.Log("MaxPulo!");
