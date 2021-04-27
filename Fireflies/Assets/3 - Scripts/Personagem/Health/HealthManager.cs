@@ -40,17 +40,17 @@ public class HealthManager : MonoBehaviour
         playervalue = Setup.Instance.PlayerValue;
         playervalue.InitValues();
         hudUI = HUDManager.instance;
-        health = playervalue.MaxHp;
+        health = playervalue.rMaxHealth;
         if(hudUI != null){
-            hudUI.healthUI.SetupUI(playervalue.MaxHp);
-            hudUI.healthUI.SetMaxHealth(playervalue.MaxHp);
+            hudUI.healthUI.SetupUI(playervalue.rMaxHealth);
+            hudUI.healthUI.SetMaxHealth(playervalue.rMaxHealth);
         }else{
             Debug.Log("Não há nenhum objeto com HUD Manager em cena");
         }
         //CameraZoom script
         CameraZoom = GameObject.Find("2D Cam_RogueLike").GetComponent<CameraZoom>();
         playerAnim = Player.transform.GetChild(0).GetComponent<Animator>();
-        playerAnim.SetFloat("invincibilityTime", 1/playervalue.invinciTime);
+        playerAnim.SetFloat("invincibilityTime", 1/playervalue.rInvincibilityTime);
     }
 
     //perder vida por x quantidade, definindo um minimo e maximo de dano
@@ -75,10 +75,10 @@ public class HealthManager : MonoBehaviour
     //ganhar vida por x quantidade
     public void maisVida(float quantidade)
     {
-        if(health + quantidade > playervalue.MaxHp)
+        if(health + quantidade > playervalue.rMaxHealth)
         {
             //limitar a vida pelo maximo
-            health = playervalue.MaxHp;
+            health = playervalue.rMaxHealth;
         }
         else
         {
@@ -102,7 +102,7 @@ public class HealthManager : MonoBehaviour
     {
         yield return new WaitForSeconds(DeathWaitTime);
         //Respawn.instance.RepositionPlayer();
-        health = playervalue.MaxHp;
+        health = playervalue.rMaxHealth;
         hudUI.healthUI.SetHealth(health);
         Player.gameObject.GetComponent<Rigidbody2D>().simulated = true;
         GameOverScreen();
@@ -111,7 +111,7 @@ public class HealthManager : MonoBehaviour
     private IEnumerator InvencibilidadeTimer() {
         IsInvencible = true;
         playerAnim.SetBool("invincible", IsInvencible);
-        yield return new WaitForSeconds(playervalue.invinciTime);
+        yield return new WaitForSeconds(playervalue.rInvincibilityTime);
         IsInvencible = false;
         playerAnim.SetBool("invincible", IsInvencible);
     }

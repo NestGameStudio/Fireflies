@@ -14,7 +14,7 @@ public class Looker_DetectCollision : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            looker.enemy.TakeDamage(Setup.Instance.PlayerValue.Dano);
+            looker.enemy.TakeDamage(Setup.Instance.PlayerValue.rDamage);
         }
     }
 }

@@ -195,7 +195,7 @@ public class SlingshotController : MonoBehaviour {
         rb.velocity = Vector3.zero;
 
         // Calcula o impulso
-        impulse = new Vector2(impulseVector.x, impulseVector.y) * Setup.Instance.PlayerValue.ForcaImpulso;
+        impulse = new Vector2(impulseVector.x, impulseVector.y) * Setup.Instance.PlayerValue.rImpulseForce;
         rb.AddForce(impulse, ForceMode2D.Impulse);
         Debug.Log("RBvelocity = " + rb.velocity.magnitude + " / " + "RBimpulse = " + impulse.magnitude);
         jumpAudioEvent();

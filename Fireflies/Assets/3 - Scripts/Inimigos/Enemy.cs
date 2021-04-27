@@ -46,13 +46,13 @@ public class Enemy : MonoBehaviour
         PlayerValues values = Setup.Instance.PlayerValue;
         float dam;
         float rnd = Random.Range(0,100);
-        if(values.CriticalChance >= rnd) {
+        if(values.rCritChance >= rnd) {
             dam = damage*2;
         }
         else {
             dam = damage;
         }
-        HealthManager.instance.maisVida(dam*values.LiSteal/100);
+        HealthManager.instance.maisVida(dam*values.rLifeSteal/100);
         if (health - dam <= 0){
             health = 0;
             Death();

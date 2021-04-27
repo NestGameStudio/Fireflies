@@ -10,7 +10,7 @@ public class PlayerValues : ScriptableObject
     [SerializeField]
     private float ImpulseForce = 0.78f;
     [HideInInspector]
-    public float ForcaImpulso;
+    public float rImpulseForce;
    
     [Tooltip("O tamanho máximo afeta o impulso final da Cali")]
     public float LineMaxRadius = 3.0f;
@@ -34,33 +34,33 @@ public class PlayerValues : ScriptableObject
     [SerializeField]
     private float Damage;
     [HideInInspector]
-    public float Dano;
+    public float rDamage;
     [SerializeField]
     [Range(0,100)]
     private float LifeSteal;
     [HideInInspector]
-    public float LiSteal;
+    public float rLifeSteal;
     [Range(0,100)]
     [SerializeField]
     private float CritChance;
     [HideInInspector]
-    public float CriticalChance;
+    public float rCritChance;
 
     [Header("Invenciblidade")]
     [SerializeField]
-    private float invincibilityTime;
+    private float InvincibilityTime;
     [HideInInspector]
-    public float invinciTime;
+    public float rInvincibilityTime;
     [Header("Vida")]
     [SerializeField]
     private float MaxHealth;
     [HideInInspector]
-    public float MaxHp;
+    public float rMaxHealth;
     [Header("Quantidade de Pulos")]
     [SerializeField]
     private int MaxJumpCharges;
     [HideInInspector]
-    public int MaxJump;
+    public int rMaxJumpCharges;
 
     [Header("Upgrades")]
     public int CommonWeight;
@@ -70,51 +70,52 @@ public class PlayerValues : ScriptableObject
     public List<Upgrade> upgrades;
 
     public void InitValues() {
-        ForcaImpulso = ImpulseForce;
-        Dano = Damage;
-        LiSteal = LifeSteal;
-        CriticalChance = CritChance;
-        invinciTime = invincibilityTime;
-        MaxHp = MaxHealth;
-        MaxJump = MaxJumpCharges;
+        //Reseta valores do player para referência inicial (definida em Inspector)
+        rImpulseForce = ImpulseForce;
+        rDamage = Damage;
+        rLifeSteal = LifeSteal;
+        rCritChance = CritChance;
+        rInvincibilityTime = InvincibilityTime;
+        rMaxHealth = MaxHealth;
+        rMaxJumpCharges = MaxJumpCharges;
     }
 
 
     public void IncreaseCritChance(float amount) {
-        CriticalChance += amount;
-        Debug.Log("Critico!");
+        rCritChance += amount;
+        Debug.Log("Critico! Valor adicionado: " + amount.ToString("N2") + " | Valor atual: " + rCritChance.ToString("N2"));
     }
 
     public void IncreaseDamage(float amount) {
-        Dano += amount;
-        Debug.Log("Dano!");
+        rDamage += amount;
+        Debug.Log("Dano! Valor adicionado: " + amount.ToString("N2") + " | Valor atual: " + rDamage.ToString("N2"));
     }
 
     public void IncreaseInvicibility(float amount) {
-        invinciTime += amount;
-        Debug.Log("Invencivel!");
+        rInvincibilityTime += amount;
+        Debug.Log("Invencivel! Valor adicionado: " + amount.ToString("N2") + " | Valor atual: " + rInvincibilityTime.ToString("N2"));
     }
 
     public void IncreaseMaxHealth(float amount) {
-        MaxHp += amount;
-        HUDManager.instance.healthUI.SetMaxHealth(MaxHp);
+        rMaxHealth += amount;
+        HUDManager.instance.healthUI.SetMaxHealth(rMaxHealth);
         HealthManager.instance.maisVida(amount);
-        Debug.Log("Vida!");
+        Debug.Log("Vida! Valor adicionado: " + amount.ToString("N2") + " | Valor atual: " + rMaxHealth.ToString("N2"));
     }
 
     public void IncreaseLifeSteal(float amount) {
-        LiSteal += amount;
-        Debug.Log("LifeSteal!");
+        rLifeSteal += amount;
+        Debug.Log("LifeSteal! Valor adicionado: " + amount.ToString("N2") + " | Valor atual: " + rLifeSteal.ToString("N2"));
     }
 
     public void IncreaseImpulseForce(float amount) {
-        ForcaImpulso += amount;
-        Debug.Log("Impulso!");
+        rImpulseForce += amount;
+        Debug.Log("Impulso! Valor adicionado: " + amount.ToString("N2") + " | Valor atual: " + rImpulseForce.ToString("N2"));
     }
 
     public void IncreaseMaxJumpCharges(float amount) {
-        MaxJump += (int) amount;
-        HealthManager.instance.Player.GetComponent<CollisionCheck>().Jump.chargeUI.Setup(MaxJump);
-        Debug.Log("MaxPulo!");
+        rMaxJumpCharges += (int) amount;
+        HealthManager.instance.Player.GetComponent<CollisionCheck>().Jump.chargeUI.Setup(rMaxJumpCharges);
+        Debug.Log("MaxPulo! Valor adicionado: " + amount.ToString("N2") + " | Valor atual: " + rMaxJumpCharges.ToString("N2"));
     }
 }

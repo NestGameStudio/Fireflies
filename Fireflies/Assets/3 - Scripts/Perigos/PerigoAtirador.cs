@@ -47,7 +47,7 @@ public class PerigoAtirador : MonoBehaviour
     }
 
     public void atirar(){
-        Debug.Log("Turret atira");
+        //Debug.Log("Turret atira");
 
         //atirar bala reta
         if (tipoTiro == type.reto)
