@@ -23,6 +23,8 @@ public class SkillPicker : MonoBehaviour
 
     private List<SkillFunction> ActiveSkill;
 
+    uiShopAnimation uiShopAnimation;
+
     private void OnEnable() {
         if(!IsShop) {
             Upgrades = new List<Upgrade>();
@@ -66,7 +68,7 @@ public class SkillPicker : MonoBehaviour
 
     void Start()
     {
-        
+        uiShopAnimation = GetComponent<uiShopAnimation>();
     }
 
     private void PickSkill(Button SkillOption,int s) {
@@ -159,22 +161,27 @@ public class SkillPicker : MonoBehaviour
                 break;
         }
         if(!IsShop) {
-            SkillOption.onClick.AddListener(delegate() {DontCheckCost(skill,s);});
+            SkillOption.onClick.AddListener(delegate() {DontCheckCost(skill,s,SkillOption);});
         }
         
     }
 
     private void CheckCost(Upgrade skill, Button SkillOption,int s) {
         if(MoneyManager.instance.money < skill.cost) {
-            HUDManager.instance.moneyUI.LowMoney();
+            //HUDManager.instance.moneyUI.LowMoney();
+            uiShopAnimation.noMoney(SkillOption.gameObject);
             return;
+        }
+        else {
+            uiShopAnimation.skillSelect(SkillOption.gameObject);
         }
         ActiveSkill[s](skill.effects[0].amount,skill.cost);
         MoneyManager.instance.perderDinheiro(skill.cost);
         SkillOption.interactable = false;
     }
 
-    private void DontCheckCost(Upgrade skill,int s) {
+    private void DontCheckCost(Upgrade skill,int s,Button SkillOption) {
+        uiShopAnimation.skillSelect(SkillOption.gameObject);
         ActiveSkill[s](skill.effects[0].amount,skill.cost);
         gameObject.SetActive(false);
         HealthManager.instance.Player.GetComponent<CollisionCheck>().DesligaFog();

@@ -7,6 +7,7 @@ public class uiShopAnimation : MonoBehaviour
 {
     public GameObject[] Skills;
     public GameObject[] UI;
+    public GameObject[] Blacks;
 
     public LeanTweenType leanTweenType;
     public LeanTweenType NoMoneyleanTweenType;
@@ -23,12 +24,16 @@ public class uiShopAnimation : MonoBehaviour
             LeanTween.scale(UI[i].GetComponent<RectTransform>(), new Vector3(0,0,1), 0f);
             LeanTween.scale(UI[i].GetComponent<RectTransform>(), new Vector3(1,1,1), 0.5f).setEase(leanTweenType).setIgnoreTimeScale(true);
         } 
+        for (int i = 0; i < Blacks.Length; i++)
+        {
+            Blacks[i].SetActive(false);
+        } 
     }
 
     public void skillSelect(GameObject obj)
     {
         LeanTween.scale(obj.GetComponent<RectTransform>(), new Vector3(-1,1,1), 0.5f).setEase(leanTweenType).setIgnoreTimeScale(true);
-        LeanTween.alpha(obj.transform.GetChild(2).gameObject.GetComponent<RectTransform>(), 0.5f, 0.5f).setIgnoreTimeScale(true); 
+        LeanTween.alpha(obj.transform.GetChild(2).gameObject.GetComponent<RectTransform>(), 0.1f, 0.5f).setIgnoreTimeScale(true); 
         obj.transform.GetChild(0).GetChild(1).gameObject.SetActive(true); 
         obj.transform.GetChild(1).gameObject.SetActive(false);
     }
