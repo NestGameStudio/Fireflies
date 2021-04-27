@@ -42,7 +42,7 @@ public class Trajectory : MonoBehaviour
 
         float lerpSpeed = playerSC.impulseVector.magnitude.Remap(Setup.Instance.PlayerValue.LineMinRadius, Setup.Instance.PlayerValue.LineMaxRadius, speedRemap.x, speedRemap.y);
 
-        float launchSpeed = playerSC.impulseVector.magnitude * Setup.Instance.PlayerValue.ImpulseForce * Setup.Instance.PlayerValue.ImpulseForce * lerpSpeed * Player.GetComponent<Rigidbody2D>().mass * massMultiplier;
+        float launchSpeed = playerSC.impulseVector.magnitude * Setup.Instance.PlayerValue.ForcaImpulso * Setup.Instance.PlayerValue.ForcaImpulso * lerpSpeed * Player.GetComponent<Rigidbody2D>().mass * massMultiplier;
 
         if (playerSC.impulseVector.magnitude > Setup.Instance.PlayerValue.LineMinRadius)
         {

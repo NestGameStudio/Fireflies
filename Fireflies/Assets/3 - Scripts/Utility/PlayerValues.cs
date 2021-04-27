@@ -7,8 +7,10 @@ public class PlayerValues : ScriptableObject
 {
     [Header("Pulo")]
     [Space(0.3f)]
-
-    public float ImpulseForce = 0.78f;
+    [SerializeField]
+    private float ImpulseForce = 0.78f;
+    [HideInInspector]
+    public float ForcaImpulso;
    
     [Tooltip("O tamanho máximo afeta o impulso final da Cali")]
     public float LineMaxRadius = 3.0f;
@@ -29,17 +31,35 @@ public class PlayerValues : ScriptableObject
     public float JumpDelay = 0.1f;
 
     [Header("Dano")]
-    public float Damage;
-    public float LifeSteal;
+    [SerializeField]
+    private float Damage;
+    [HideInInspector]
+    public float Dano;
+    [SerializeField]
+    private float LifeSteal;
+    [HideInInspector]
+    public float LiSteal;
     [Range(0,100)]
-    public float CritChance;
+    [SerializeField]
+    private float CritChance;
+    [HideInInspector]
+    public float CriticalChance;
 
     [Header("Invenciblidade")]
-    public float invincibilityTime;
+    [SerializeField]
+    private float invincibilityTime;
+    [HideInInspector]
+    public float invinciTime;
     [Header("Vida")]
-    public float MaxHealth;
+    [SerializeField]
+    private float MaxHealth;
+    [HideInInspector]
+    public float MaxHp;
     [Header("Quantidade de Pulos")]
-    public int MaxJumpCharges;
+    [SerializeField]
+    private int MaxJumpCharges;
+    [HideInInspector]
+    public int MaxJump;
 
     [Header("Upgrades")]
     public int CommonWeight;
@@ -48,42 +68,52 @@ public class PlayerValues : ScriptableObject
     public int LegendaryWeight;
     public List<Upgrade> upgrades;
 
+    public void InitValues() {
+        ForcaImpulso = ImpulseForce;
+        Dano = Damage;
+        LiSteal = LifeSteal;
+        CriticalChance = CritChance;
+        invinciTime = invincibilityTime;
+        MaxHp = MaxHealth;
+        MaxJump = MaxJumpCharges;
+    }
+
 
     public void IncreaseCritChance(float amount, int cost) {
-        CritChance += amount;
+        CriticalChance += amount;
         Debug.Log("Critico!");
     }
 
     public void IncreaseDamage(float amount, int cost) {
-        Damage += amount;
+        Dano += amount;
         Debug.Log("Dano!");
     }
 
     public void IncreaseInvicibility(float amount, int cost) {
-        invincibilityTime += amount;
+        invinciTime += amount;
         Debug.Log("Invencivel!");
     }
 
     public void IncreaseMaxHealth(float amount, int cost) {
-        MaxHealth += amount;
-        HUDManager.instance.healthUI.SetMaxHealth(MaxHealth);
+        MaxHp += amount;
+        HUDManager.instance.healthUI.SetMaxHealth(MaxHp);
         HealthManager.instance.maisVida(amount);
         Debug.Log("Vida!");
     }
 
     public void IncreaseLifeSteal(float amount, int cost) {
-        LifeSteal += amount;
+        LiSteal += amount;
         Debug.Log("LifeSteal!");
     }
 
     public void IncreaseImpulseForce(float amount, int cost) {
-        ImpulseForce += amount;
+        ForcaImpulso += amount;
         Debug.Log("Impulso!");
     }
 
     public void IncreaseMaxJumpCharges(float amount, int cost) {
-        MaxJumpCharges += (int) amount;
-        HealthManager.instance.Player.GetComponent<CollisionCheck>().Jump.chargeUI.Setup(MaxJumpCharges);
+        MaxJump += (int) amount;
+        HealthManager.instance.Player.GetComponent<CollisionCheck>().Jump.chargeUI.Setup(MaxJump);
         Debug.Log("MaxPulo!");
     }
 }
