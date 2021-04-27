@@ -92,6 +92,7 @@ public class HealthManager : MonoBehaviour
         StartCoroutine(DeathWait());
         CameraZoom.DeathZoomTrigger();
         DeathAnimation.DeathAnimationTrigger();
+        Player.gameObject.GetComponent<Rigidbody2D>().simulated = false;
         SaveSystem.instance.Stats.AttemptCount++;
         SaveSystem.instance.Stats.MoneyCount = MoneyManager.instance.money;
         SaveSystem.instance.Stats.RunTime = TimerManager.instance.time;

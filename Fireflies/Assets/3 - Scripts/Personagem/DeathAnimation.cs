@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DeathAnimation : MonoBehaviour
 {
-    public HealthManager HealthManager;
     public lookAlongVelocity lookAlongVelocity;
     public scaleByVelocity scaleByVelocity;
     public GameObject fireParticle;
