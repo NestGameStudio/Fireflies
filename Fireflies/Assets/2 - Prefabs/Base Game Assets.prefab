@@ -1486,6 +1486,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2543162921638103988, guid: e11f824fb02c0d8468a94a2851de9b63,
         type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2543162921638103988, guid: e11f824fb02c0d8468a94a2851de9b63,
+        type: 3}
       propertyPath: m_textInfo.lineCount
       value: 3
       objectReference: {fileID: 0}
@@ -1858,6 +1863,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.characterCount
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6142216351228836020, guid: e11f824fb02c0d8468a94a2851de9b63,
+        type: 3}
+      propertyPath: m_text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6164620687383386761, guid: e11f824fb02c0d8468a94a2851de9b63,
         type: 3}

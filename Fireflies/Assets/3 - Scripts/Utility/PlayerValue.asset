@@ -13,22 +13,22 @@ MonoBehaviour:
   m_Name: PlayerValue
   m_EditorClassIdentifier: 
   ImpulseForce: 1
-  ForcaImpulso: 1.08
+  ForcaImpulso: 1
   LineMaxRadius: 2
   LineMinRadius: 0.5
   TimeSlow: 0.2
   GamepadSensibility: 1
   JumpDelay: 0.7
   Damage: 10
-  Dano: 15
+  Dano: 10
   LifeSteal: 0
   LiSteal: 0
   CritChance: 0.1
   CriticalChance: 0.1
   invincibilityTime: 1
   invinciTime: 1
-  MaxHealth: 110
-  MaxHp: 120
+  MaxHealth: 100
+  MaxHp: 100
   MaxJumpCharges: 1
   MaxJump: 1
   CommonWeight: 80
