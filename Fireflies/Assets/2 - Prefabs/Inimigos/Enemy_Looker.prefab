@@ -168,7 +168,7 @@ MonoBehaviour:
   Eyes: {fileID: 7904883687016082558}
   closedEyes: {fileID: 2325040871667006615}
   effectObject: {fileID: 5293145122085637533}
-  Debug: 1
+  Debug: 0
   vulnerableCollider: {fileID: 589059042537950846}
   tipoDeBala: 0
   spawnTiro: {fileID: 7972164013554323924}
@@ -262,7 +262,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3813376777875982623
 Transform:
   m_ObjectHideFlags: 0
@@ -374,7 +374,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4604899060965453
 RectTransform:
   m_ObjectHideFlags: 0
@@ -463,6 +463,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4766767566103291034}
     m_Modifications:
+    - target: {fileID: 6738118354930735318, guid: ba1f57e824a9fc847acdea84df6a66ed,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8225224874721914284, guid: ba1f57e824a9fc847acdea84df6a66ed,
         type: 3}
       propertyPath: m_LocalPosition.y

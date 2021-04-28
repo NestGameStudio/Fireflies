@@ -96,7 +96,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6099539053426245269
 RectTransform:
   m_ObjectHideFlags: 0
@@ -193,7 +193,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5497405494134362347
 Transform:
   m_ObjectHideFlags: 0
@@ -289,7 +289,7 @@ MonoBehaviour:
   enemy: {fileID: 0}
   timeDisplay: {fileID: 177942200428171948}
   healthDisplay: {fileID: 5075156393056644884}
-  Debug: 1
+  Debug: 0
   Effect: 1
   effectObject: {fileID: 7859704960089466569}
   baseColors:
