@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dd329a1f35f447459b7bd0f83489a70, type: 3}
   m_Name: JumpCharge
   m_EditorClassIdentifier: 
-  nome: Bonus Jump
-  description: 'You''ve got an extra jump! '
+  nome: CARGA EXTRA
+  description: "Voc\xEA ganha CARGA DE PULO extra! (+1)"
   icon: {fileID: 21300000, guid: 7a181d09f76893a4fbeed3ab2df84d1e, type: 3}
   cost: 562
   rarity: 3

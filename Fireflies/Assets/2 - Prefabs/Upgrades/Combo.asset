@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Combo
   m_EditorClassIdentifier: 
   nome: Wombo Combo
-  description: After you bounce 3 times really fast, your next jump will deal more
-    damage and go further!
+  description: "Ap\xF3s colidir 3 vezes em um curto per\xEDodo de tempo, seu PR\xD3XIMO
+    PULO dar\xE1 mais DANO e ter\xE1 mais FOR\xC7A!"
   icon: {fileID: 21300000, guid: 50eb91d5be30d284ebaf79e4638541d0, type: 3}
   cost: 50
   rarity: 3

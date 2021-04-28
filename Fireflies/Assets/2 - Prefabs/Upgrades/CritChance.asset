@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dd329a1f35f447459b7bd0f83489a70, type: 3}
   m_Name: CritChance
   m_EditorClassIdentifier: 
-  nome: Crit% Up
-  description: You have a chance to deal critical damage!
+  nome: "IMPACTO CR\xCDTICO"
+  description: "Voc\xEA ter\xE1 UM POUCO MAIS chances de dar DANO CR\xCDTICO! (+3%)"
   icon: {fileID: 21300000, guid: 05b8327ba2d788d499e82329909484d1, type: 3}
   cost: 256
   rarity: 1
