@@ -12,29 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71909a4c40c6c0146ae3cb80f839469e, type: 3}
   m_Name: PlayerValue
   m_EditorClassIdentifier: 
-  ImpulseForce: 1
-  ForcaImpulso: 1
+  ImpulseForce: 0.8
+  rImpulseForce: 0
   LineMaxRadius: 2
   LineMinRadius: 0.5
   TimeSlow: 0.2
   GamepadSensibility: 1
   JumpDelay: 0.7
   Damage: 10
-  Dano: 10
+  rDamage: 0
   LifeSteal: 0
-  LiSteal: 0
+  rLifeSteal: 0
   CritChance: 0.1
-  CriticalChance: 0.1
-  invincibilityTime: 1
-  invinciTime: 1
+  rCritChance: 0
+  InvincibilityTime: 0.7
+  rInvincibilityTime: 0
   MaxHealth: 100
-  MaxHp: 100
+  rMaxHealth: 0
   MaxJumpCharges: 1
-  MaxJump: 1
-  CommonWeight: 80
-  RareWeight: 25
+  rMaxJumpCharges: 0
+  CommonWeight: 75
+  RareWeight: 30
   EpicWeight: 15
-  LegendaryWeight: 10
+  LegendaryWeight: 5
   upgrades:
   - {fileID: 11400000, guid: a2d6b8c8d732507459a408469106ee58, type: 2}
   - {fileID: 11400000, guid: d4cda32a0e4995845b28569a151fc650, type: 2}
