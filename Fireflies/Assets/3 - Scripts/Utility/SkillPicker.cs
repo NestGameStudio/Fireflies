@@ -72,6 +72,7 @@ public class SkillPicker : MonoBehaviour
     }
 
     private void PickSkill(Button SkillOption,int s) {
+        SkillOption.onClick.RemoveAllListeners();
         int common = Setup.Instance.PlayerValue.CommonWeight;
         int rare = Setup.Instance.PlayerValue.RareWeight;
         int epic = Setup.Instance.PlayerValue.EpicWeight;
