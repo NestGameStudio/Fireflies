@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dd329a1f35f447459b7bd0f83489a70, type: 3}
   m_Name: JumpForce
   m_EditorClassIdentifier: 
-  nome: Master Jumper
-  description: You can jump a little bit further!
+  nome: "POT\xCANCIA DE PULO"
+  description: "A sua DIST\xC2NCIA DE PULO ser\xE1 MUITO MAIOR! (+8%)"
   icon: {fileID: 21300000, guid: 84b1005aeca4eda4082131596a61235d, type: 3}
   cost: 119
   rarity: 0

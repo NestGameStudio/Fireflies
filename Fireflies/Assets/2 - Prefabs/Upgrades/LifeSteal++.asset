@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dd329a1f35f447459b7bd0f83489a70, type: 3}
   m_Name: LifeSteal++
   m_EditorClassIdentifier: 
-  nome: Vampirism Up
-  description: You receive A LOT more health while dealing damage!
+  nome: VAMPIRISMO ++
+  description: "Ao dar dano em inimigos voc\xEA RECUPERA VIDA em uma propor\xE7\xE3o
+    MUITO MAIOR! (+15% do dano causado)"
   icon: {fileID: 21300000, guid: 94b39d605e4470a4e8f6ef20c875ec28, type: 3}
   cost: 551
   rarity: 3

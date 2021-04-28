@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dd329a1f35f447459b7bd0f83489a70, type: 3}
   m_Name: Invincibility
   m_EditorClassIdentifier: 
-  nome: Time to Breathe
-  description: You have more time before getting hit again!
+  nome: TEMPO DE RESPIRO
+  description: "Seu TEMPO DE INVENCIBILIDADE ap\xF3s levar dano durar\xE1 UM POUCO
+    MAIS! (+0.2s)"
   icon: {fileID: 21300000, guid: e96014a759589ff46b4f4e76446bf4e1, type: 3}
   cost: 258
   rarity: 1
