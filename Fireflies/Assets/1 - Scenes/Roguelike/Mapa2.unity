@@ -14380,6 +14380,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3034589382289152487}
     m_Modifications:
+    - target: {fileID: 7314934700683088046, guid: cc5abe09e07f3384fbe1aa51e84f8723,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.09
+      objectReference: {fileID: 0}
     - target: {fileID: 7314934700860704506, guid: cc5abe09e07f3384fbe1aa51e84f8723,
         type: 3}
       propertyPath: m_RootOrder
@@ -14439,6 +14444,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Shop
+      objectReference: {fileID: 0}
+    - target: {fileID: 7314934701927989010, guid: cc5abe09e07f3384fbe1aa51e84f8723,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5000001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc5abe09e07f3384fbe1aa51e84f8723, type: 3}
