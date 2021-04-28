@@ -119,47 +119,47 @@ public class SkillPicker : MonoBehaviour
         else {
             SkillOption.gameObject.transform.GetChild(1).gameObject.SetActive(false);
         }
-        AddButtonFunction(skill.nome, skill, SkillOption,s);
+        AddButtonFunction(skill.effects[0].type, skill, SkillOption,s);
         SkillOption.gameObject.GetComponent<SkillDescription>().AddDescription(skill.description);
         SkillOption.gameObject.GetComponent<SkillDescription>().AddTitle(skill.name);
     }
 
-    private void AddButtonFunction(string name, Upgrade skill, Button SkillOption,int s) {
+    private void AddButtonFunction(UpgradeType type , Upgrade skill, Button SkillOption,int s) {
         PlayerValues p = Setup.Instance.PlayerValue;
         if(IsShop) {
             SkillOption.onClick.AddListener(delegate() {CheckCost(skill,SkillOption,s);});
         }
-        switch(name) {
-            case "Crit% Up":
+        switch(type) {
+            case UpgradeType.CritChance:
                 ActiveSkill.Add(p.IncreaseCritChance);
                 Debug.Log("Add Critico");
                 break;
-            case "Damage Up":
+            case UpgradeType.Damage:
                 ActiveSkill.Add(p.IncreaseDamage);
                 Debug.Log("Add Damage");
                 break;
-            case "Time to Breathe":
+            case UpgradeType.Invincibility:
                 ActiveSkill.Add(p.IncreaseInvicibility);
                 Debug.Log("Add Invencivel");
                 break;
-            case "Bonus Jump":
+            case UpgradeType.JumpCharge:
                 ActiveSkill.Add(p.IncreaseMaxJumpCharges);
                 Debug.Log("Add pulo extra");
                 break;
-            case "Master Jumper":
+            case UpgradeType.JumpForce:
                 ActiveSkill.Add(p.IncreaseImpulseForce);
                 Debug.Log("Add pulo forte");
                 break;
-            case "Vampirism Up":
+            case UpgradeType.LifeSteal:
                 ActiveSkill.Add(p.IncreaseLifeSteal);
                 Debug.Log("Add lifesteal");
                 break;
-            case "Health Up":
+            case UpgradeType.MaxHealth:
                 ActiveSkill.Add(p.IncreaseMaxHealth);
                 Debug.Log("Add Vida");
                 break;
             default:
-                Debug.Log("Deu ruim no nome");
+                Debug.Log("Deu ruim no Tipo");
                 break;
         }
         if(!IsShop) {
