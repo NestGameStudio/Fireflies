@@ -28,6 +28,7 @@ public class HUDManager : MonoBehaviour
     [Header("Stats")]
     [Space(0.3f)]
     public GameObject GameOverStats;
+    public GameObject EndStats;
     public TextMeshProUGUI AttemptText;
     public TextMeshProUGUI JumpText;
     public TextMeshProUGUI EnemiesText;

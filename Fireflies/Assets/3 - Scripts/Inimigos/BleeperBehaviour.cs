@@ -77,6 +77,9 @@ public class BleeperBehaviour : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         changeState();
+
+        Eyes.SetActive(false);
+        closedEyes.SetActive(true);
     }
 
     // Update is called once per frame
@@ -133,6 +136,8 @@ public class BleeperBehaviour : MonoBehaviour
             baseRenderer[x].color = baseColors[(int)Estado];
         }
 
+        //deixar olho feliz
+        /*
         if (Estado == estado.inatingivel)
         {
             angy.SetActive(true);
@@ -143,6 +148,7 @@ public class BleeperBehaviour : MonoBehaviour
         {
             angy.SetActive(false);
         }
+        */
 
     }
 

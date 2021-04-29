@@ -140,6 +140,10 @@ MonoBehaviour:
     type: 3}
   damageParticle: {fileID: 4972606679766911167, guid: f1e2cf87820068d49bf9a7222c3b49b3,
     type: 3}
+  critParticle: {fileID: 8339775877704933851, guid: 51165c79bd6f827429ec84a2bf737583,
+    type: 3}
+  moneyParticle: {fileID: 3209758070368945166, guid: b0ae2bcdd07804842ad49a1db99bbc2b,
+    type: 3}
   deadBody: {fileID: 6284848975730887409, guid: d8d2363a0c06f9740875a04c2ba825dd,
     type: 3}
   _col: {fileID: 5808199290941051329}

@@ -131,6 +131,17 @@ public class HealthManager : MonoBehaviour
         hudUI.TimeText.text = "Run time: " + GetConvertedTime(stats.RunTime);
     }
 
+    public void EndScreen() {
+        FreezePlayer();
+        GameStats stats = SaveSystem.instance.Stats; 
+        hudUI.EndStats.SetActive(true);
+        hudUI.JumpText.text = "Jumps performed: " + stats.JumpCount.ToString();
+        hudUI.MoneyText.text = "Money gathered:     " + stats.MoneyCount.ToString();
+        hudUI.EnemiesText.text = "Enemies defeated: " + stats.EnemiesDefeated.ToString();
+        hudUI.AttemptText.text = "Attempt #" + stats.AttemptCount.ToString();
+        hudUI.TimeText.text = "Run time: " + GetConvertedTime(stats.RunTime);
+    }
+
     private string GetConvertedTime(float time) {
         int hours = Mathf.FloorToInt(time / 3600F);
 		int minutes = Mathf.FloorToInt((time % 3600)/60);

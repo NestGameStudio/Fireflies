@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerValue
   m_EditorClassIdentifier: 
   ImpulseForce: 0.85
-  rImpulseForce: 0.97
+  rImpulseForce: 0.85
   LineMaxRadius: 2
   LineMinRadius: 0.5
   TimeSlow: 0.2
@@ -24,11 +24,11 @@ MonoBehaviour:
   LifeSteal: 0
   rLifeSteal: 0
   CritChance: 0.1
-  rCritChance: 0.1
+  rCritChance: 100
   InvincibilityTime: 0.7
   rInvincibilityTime: 0.7
   MaxHealth: 100
-  rMaxHealth: 100
+  rMaxHealth: 110
   MaxJumpCharges: 1
   rMaxJumpCharges: 1
   CommonWeight: 75

@@ -22,6 +22,8 @@ public class Enemy : MonoBehaviour
     [Header("Visual feedback")]
     public GameObject deathParticle;
     public GameObject damageParticle;
+    public GameObject critParticle;
+    public GameObject moneyParticle;
     public GameObject deadBody;
 
     [Header("BodyCollider")]
@@ -33,6 +35,7 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D _rb;
     private bool onGround = false;
     private GameObject vulneravelObject;
+    private bool critalDamage = false;
 
     void Start() {
         _rb = GetComponent<Rigidbody2D>();
@@ -48,15 +51,21 @@ public class Enemy : MonoBehaviour
         float rnd = Random.Range(0,100);
         if(values.rCritChance >= rnd) {
             dam = damage*2;
+            critalDamage = true;
         }
         else {
             dam = damage;
+            critalDamage = false;
         }
         HealthManager.instance.maisVida(dam*values.rLifeSteal/100);
         if (health - dam <= 0){
             health = 0;
             Death();
-        } else {
+        } else {  
+            if (critalDamage)
+            {
+                CritParticle();
+            }
             DamageParticle();
             health -= dam;
         }
@@ -66,6 +75,7 @@ public class Enemy : MonoBehaviour
 
     private void Death(){
         DropItem();
+        MoneyParticle();
         EnemyDeadBody();
         SaveSystem.instance.Stats.EnemiesDefeated++;
         Destroy(gameObject);
@@ -75,8 +85,16 @@ public class Enemy : MonoBehaviour
         if (damageParticle != null) Instantiate(damageParticle,gameObject.transform.position,Quaternion.identity);
     }
 
+    private void CritParticle() {
+        if (critParticle != null) Instantiate(critParticle,gameObject.transform.position,Quaternion.identity);
+    }
+
     private void EnemyDeadBody() {
         if (damageParticle != null) Instantiate(deadBody,gameObject.transform.position,Quaternion.identity);
+    }
+
+    private void MoneyParticle() {
+        if (moneyParticle != null) Instantiate(moneyParticle,gameObject.transform.position,Quaternion.identity);
     }
 
     private void DropItem() {

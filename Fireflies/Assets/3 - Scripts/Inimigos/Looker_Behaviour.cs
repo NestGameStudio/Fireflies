@@ -100,6 +100,9 @@ public class Looker_Behaviour : MonoBehaviour
         }
 
         if(spawnTiro==null) transform.Find("BulletSpawn");
+
+        Eyes.SetActive(false);
+        closedEyes.SetActive(true);
     }
 
     // Update is called once per frame

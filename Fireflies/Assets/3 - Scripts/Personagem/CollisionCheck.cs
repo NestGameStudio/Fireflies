@@ -218,6 +218,11 @@ public class CollisionCheck : MonoBehaviour
         HealthManager.instance.menosVida(damage);
     }
 
+    public void InstaDeath()
+    {
+        HealthManager.instance.EndScreen();
+    }
+
     void playFeedbackRecarga(){
         //funcao para camerashake ----------------------------> shakecam(intensidade,frequencia,tempo)
         if (CameraShake.instance != null) { CameraShake.instance.shakeCam(rb.velocity.magnitude/5,1, 0.2f); }
