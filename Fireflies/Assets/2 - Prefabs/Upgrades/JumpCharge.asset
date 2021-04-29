@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: JumpCharge
   m_EditorClassIdentifier: 
   nome: CARGA EXTRA
-  description: "Voc\xEA ganha CARGA DE PULO extra! (+1)"
+  description: "Voc\xEA ganha uma CARGA DE PULO extra!"
   icon: {fileID: 21300000, guid: 7a181d09f76893a4fbeed3ab2df84d1e, type: 3}
   cost: 562
   rarity: 3

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CritChance
   m_EditorClassIdentifier: 
   nome: "IMPACTO CR\xCDTICO"
-  description: "Voc\xEA ter\xE1 UM POUCO MAIS chances de dar DANO CR\xCDTICO! (+3%)"
+  description: "Voc\xEA ter\xE1 UM POUCO MAIS chances de dar DANO CR\xCDTICO!"
   icon: {fileID: 21300000, guid: 05b8327ba2d788d499e82329909484d1, type: 3}
   cost: 256
   rarity: 1

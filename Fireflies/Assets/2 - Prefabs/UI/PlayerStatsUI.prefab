@@ -237,46 +237,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1421578579381988930}
     m_Modifications:
-    - target: {fileID: 3667195481682071231, guid: 679e7dbb3e09da3498259c710db1407d,
-        type: 3}
-      propertyPath: alertLimitColor.a
-      value: 0.7490196
-      objectReference: {fileID: 0}
-    - target: {fileID: 3667195481682071231, guid: 679e7dbb3e09da3498259c710db1407d,
-        type: 3}
-      propertyPath: alertLimitColor.b
-      value: 0.2823529
-      objectReference: {fileID: 0}
-    - target: {fileID: 3667195481682071231, guid: 679e7dbb3e09da3498259c710db1407d,
-        type: 3}
-      propertyPath: alertLimitColor.g
-      value: 0.7492083
-      objectReference: {fileID: 0}
-    - target: {fileID: 3667195481682071231, guid: 679e7dbb3e09da3498259c710db1407d,
-        type: 3}
-      propertyPath: alertLimitColor.r
-      value: 0.9137255
-      objectReference: {fileID: 0}
-    - target: {fileID: 3667195481682071231, guid: 679e7dbb3e09da3498259c710db1407d,
-        type: 3}
-      propertyPath: dangerLimitColor.a
-      value: 0.7490196
-      objectReference: {fileID: 0}
-    - target: {fileID: 3667195481682071231, guid: 679e7dbb3e09da3498259c710db1407d,
-        type: 3}
-      propertyPath: dangerLimitColor.b
-      value: 0.33017707
-      objectReference: {fileID: 0}
-    - target: {fileID: 3667195481682071231, guid: 679e7dbb3e09da3498259c710db1407d,
-        type: 3}
-      propertyPath: dangerLimitColor.g
-      value: 0.28057137
-      objectReference: {fileID: 0}
-    - target: {fileID: 3667195481682071231, guid: 679e7dbb3e09da3498259c710db1407d,
-        type: 3}
-      propertyPath: dangerLimitColor.r
-      value: 0.9150943
-      objectReference: {fileID: 0}
     - target: {fileID: 4848437567911193848, guid: 679e7dbb3e09da3498259c710db1407d,
         type: 3}
       propertyPath: m_Pivot.x
@@ -320,7 +280,7 @@ PrefabInstance:
     - target: {fileID: 4848437567911193848, guid: 679e7dbb3e09da3498259c710db1407d,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 4848437567911193848, guid: 679e7dbb3e09da3498259c710db1407d,
         type: 3}
@@ -389,38 +349,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4848437568459004357, guid: 679e7dbb3e09da3498259c710db1407d,
         type: 3}
-      propertyPath: m_Color.a
-      value: 0.7490196
-      objectReference: {fileID: 0}
-    - target: {fileID: 4848437568459004357, guid: 679e7dbb3e09da3498259c710db1407d,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.48755175
-      objectReference: {fileID: 0}
-    - target: {fileID: 4848437568459004357, guid: 679e7dbb3e09da3498259c710db1407d,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.8490566
-      objectReference: {fileID: 0}
-    - target: {fileID: 4848437568459004357, guid: 679e7dbb3e09da3498259c710db1407d,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.40450338
-      objectReference: {fileID: 0}
-    - target: {fileID: 4848437568459004357, guid: 679e7dbb3e09da3498259c710db1407d,
-        type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4848437568459004359, guid: 679e7dbb3e09da3498259c710db1407d,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4848437568459004359, guid: 679e7dbb3e09da3498259c710db1407d,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 679e7dbb3e09da3498259c710db1407d, type: 3}
@@ -530,7 +460,7 @@ PrefabInstance:
     - target: {fileID: 478322043190356717, guid: 5fbef06c87b71c048ae84e50d36e328e,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -65
+      value: -75
       objectReference: {fileID: 0}
     - target: {fileID: 478322043190356717, guid: 5fbef06c87b71c048ae84e50d36e328e,
         type: 3}

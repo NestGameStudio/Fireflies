@@ -119,6 +119,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chargeObj: {fileID: 0}
   chargeList: []
+  activeColor: {r: 1, g: 1, b: 1, a: 1}
+  inactiveColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   offsetPadding: 10
 --- !u!1 &217061806427182329
 GameObject:

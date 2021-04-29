@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nome: VAMPIRISMO +
   description: "Ao dar dano em inimigos voc\xEA RECUPERA VIDA em uma propor\xE7\xE3o
-    MAIOR! (+12% do dano causado)"
+    M\xC9DIA!"
   icon: {fileID: 21300000, guid: 7b5d876597c21de41a30e62b6523c426, type: 3}
   cost: 403
   rarity: 2

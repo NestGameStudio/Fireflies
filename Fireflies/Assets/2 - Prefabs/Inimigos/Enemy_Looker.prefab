@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4273088131313738095
 RectTransform:
   m_ObjectHideFlags: 0
@@ -168,11 +168,11 @@ MonoBehaviour:
   Eyes: {fileID: 7904883687016082558}
   closedEyes: {fileID: 2325040871667006615}
   effectObject: {fileID: 5293145122085637533}
-  Debug: 0
+  Debug: 1
   vulnerableCollider: {fileID: 589059042537950846}
   tipoDeBala: 0
   spawnTiro: {fileID: 7972164013554323924}
-  tiroForca: 4
+  tiroForca: 5
   bulletStraight: {fileID: 7326216379624124121, guid: bce796346e5de4942bab689a4c7902d2,
     type: 3}
   bulletGuided: {fileID: 7326216379624124121, guid: 0d2d9d1d6ab50f449853ba9a844e529b,
@@ -262,7 +262,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3813376777875982623
 Transform:
   m_ObjectHideFlags: 0
@@ -374,7 +374,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4604899060965453
 RectTransform:
   m_ObjectHideFlags: 0

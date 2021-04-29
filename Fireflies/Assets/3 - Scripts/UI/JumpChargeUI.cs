@@ -14,6 +14,9 @@ public class JumpChargeUI : MonoBehaviour
 
     private int chargeCount = 0;
 
+    public Color activeColor = Color.white;
+    public Color inactiveColor = Color.gray;
+
     [Header("Debug")]
     public float offsetPadding = 10f;
 
@@ -53,9 +56,9 @@ public class JumpChargeUI : MonoBehaviour
     public void UpdateCharges(int currentCharges){
         for(int i = 0; i < chargeCount; i++){
             if(i < currentCharges){
-                chargeList[i].GetComponent<Image>().color = Color.white;
+                chargeList[i].GetComponent<Image>().color = activeColor;
             } else {
-                chargeList[i].GetComponent<Image>().color = Color.gray;
+                chargeList[i].GetComponent<Image>().color = inactiveColor;
             }
             
         }

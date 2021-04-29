@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class HealthBarUI : MonoBehaviour
 {
-    //em quantas vezes visual da barra é multiplicada para corresponder vida
-    //Ex: Com 'sizeToHealthRate = 2', vida máxima 100 indica tamanho de UI 200;
+    public TextMeshProUGUI healthText;
+    [Tooltip("em quantas vezes visual da barra é multiplicada para corresponder vida | Ex: Com 'sizeToHealthRate = 2', vida máxima 100 indica tamanho de UI 200")]
     public float sizeToHealthRate = 2f;
     private float sizeHeight;
     public float dangerLimitValue = 25f;
@@ -37,6 +38,7 @@ public class HealthBarUI : MonoBehaviour
 
     public void SetHealth(float value){
         slider.value = value;
+        healthText.text = value.ToString("N0");
 
         //State machine controller
         if (value > alertLimitValue){

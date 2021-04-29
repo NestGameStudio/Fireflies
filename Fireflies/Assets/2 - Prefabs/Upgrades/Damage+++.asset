@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Damage+++
   m_EditorClassIdentifier: 
   nome: DANO PESADO +++
-  description: "Voc\xEA dar\xE1 MUITO MAIS DANO! (+15)"
+  description: "Voc\xEA dar\xE1 MUITO MAIS DANO!"
   icon: {fileID: 21300000, guid: 2c6ed7dacd9aac94f8246535ff43b1d4, type: 3}
   cost: 551
   rarity: 3

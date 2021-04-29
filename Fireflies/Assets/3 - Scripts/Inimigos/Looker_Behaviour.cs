@@ -156,7 +156,7 @@ public class Looker_Behaviour : MonoBehaviour
 
         lookerGraphics.transform.rotation = Damp(lookerGraphics.transform.rotation, Quaternion.AngleAxis(angle - 90, Vector3.forward), 0.1f, t);
 
-        if (t > 1)
+        if (t > 0.5f)
         {
             oneCheck = true;
             isChangingRot = false;
@@ -164,6 +164,8 @@ public class Looker_Behaviour : MonoBehaviour
             if (player != null)
             {
                 atirar();
+                Invoke("atirar", 0.2f);
+                Invoke("atirar", 0.4f);
             }
         }
         else
@@ -195,7 +197,7 @@ public class Looker_Behaviour : MonoBehaviour
     {
         if (oneCheckAtirar)
         {
-            oneCheckAtirar = false;
+            //oneCheckAtirar = false;
 
             RaycastView();
 

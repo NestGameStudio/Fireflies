@@ -110,7 +110,7 @@ MonoBehaviour:
     type: 3}
   healValue: 30
   animate: 1
-  colliderTimer: 2
+  colliderTimer: 1
 --- !u!114 &7906541451844533758
 MonoBehaviour:
   m_ObjectHideFlags: 0

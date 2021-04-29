@@ -121,7 +121,7 @@ public class SkillPicker : MonoBehaviour
         }
         AddButtonFunction(skill.effects[0].type, skill, SkillOption,s);
         SkillOption.gameObject.GetComponent<SkillDescription>().AddDescription(skill.description);
-        SkillOption.gameObject.GetComponent<SkillDescription>().AddTitle(skill.name);
+        SkillOption.gameObject.GetComponent<SkillDescription>().AddTitle(skill.nome);
     }
 
     private void AddButtonFunction(UpgradeType type , Upgrade skill, Button SkillOption,int s) {
