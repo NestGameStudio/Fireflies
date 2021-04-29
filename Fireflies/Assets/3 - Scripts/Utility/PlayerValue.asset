@@ -24,11 +24,11 @@ MonoBehaviour:
   LifeSteal: 0
   rLifeSteal: 0
   CritChance: 0.1
-  rCritChance: 100
+  rCritChance: 0.1
   InvincibilityTime: 0.7
   rInvincibilityTime: 0.7
   MaxHealth: 100
-  rMaxHealth: 110
+  rMaxHealth: 100
   MaxJumpCharges: 1
   rMaxJumpCharges: 1
   CommonWeight: 75
