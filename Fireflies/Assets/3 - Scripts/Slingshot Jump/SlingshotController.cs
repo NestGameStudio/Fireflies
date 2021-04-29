@@ -35,6 +35,9 @@ public class SlingshotController : MonoBehaviour {
     public Vector2 impulse;
 
     public Trajectory trajectory;
+
+    private bool HoldingJump = false;
+    private float HoldingTime = 0;
     // ------------- Setup e checagens ------------------
     private void Start() {
         JumpControl = this.GetComponent<JumpRecovery>();
@@ -71,7 +74,18 @@ public class SlingshotController : MonoBehaviour {
                 trajectory.SimulateArc();
             }
         }
+    }
 
+    private void FixedUpdate() {
+        if(HoldingJump) {
+            Debug.Log("Alo");
+            HoldingTime += Time.fixedDeltaTime;
+            if(HoldingTime >= Setup.Instance.PlayerValue.rHoldLimit) {
+                Debug.Log("Tchau");
+                ExitSlowMotionMode();
+                HoldingTime = 0f;
+            }
+        }
     }
 
     public void EnterSlowMotionMode() {
@@ -80,6 +94,8 @@ public class SlingshotController : MonoBehaviour {
 
             Time.timeScale = Setup.Instance.PlayerValue.TimeSlow;
             Time.fixedDeltaTime = Setup.Instance.PlayerValue.TimeSlow * Time.deltaTime;    // faz com que o slowmotion não fique travado
+
+            HoldingJump = true;
 
             CenterReference();
             slingshotVisual.SlingshotVisualSetup(lineCenterPos);
@@ -107,7 +123,7 @@ public class SlingshotController : MonoBehaviour {
         // precisa do isOnSlowMotion para que não ocorra o soft lock
         if (JumpControl.CanJump() && isOnSlowMotion)
         {
-
+            HoldingJump = false;
             Time.timeScale = 1f;
             slingshotVisual.DisableSlingshotVisuals();
             slingshotVisual.SetFinalLinePosition(new Vector2(Screen.width / 2, Screen.height / 2));

@@ -158,6 +158,10 @@ public class SkillPicker : MonoBehaviour
                 ActiveSkill.Add(p.IncreaseMaxHealth);
                 Debug.Log("Add Vida");
                 break;
+            case UpgradeType.HoldLimit:
+                ActiveSkill.Add(p.IncreaseHoldLimit);
+                Debug.Log("Add HoldLimit");
+                break;
             default:
                 Debug.Log("Deu ruim no Tipo");
                 break;

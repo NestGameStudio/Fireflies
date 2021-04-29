@@ -61,6 +61,11 @@ public class PlayerValues : ScriptableObject
     private int MaxJumpCharges;
     [HideInInspector]
     public int rMaxJumpCharges;
+    [Header("Limite para segurar o Pulo")]
+    [SerializeField]
+    private float HoldLimit;
+    [HideInInspector]
+    public float rHoldLimit;
 
     [Header("Upgrades")]
     public int CommonWeight;
@@ -80,6 +85,7 @@ public class PlayerValues : ScriptableObject
         rInvincibilityTime = InvincibilityTime;
         rMaxHealth = MaxHealth;
         rMaxJumpCharges = MaxJumpCharges;
+        rHoldLimit = HoldLimit;
     }
 
     public Upgrade GetUpgradeAcquired(int i) {
@@ -131,5 +137,10 @@ public class PlayerValues : ScriptableObject
         rMaxJumpCharges += (int) amount;
         HealthManager.instance.Player.GetComponent<CollisionCheck>().Jump.chargeUI.Setup(rMaxJumpCharges);
         Debug.Log("MaxPulo! Valor adicionado: " + amount.ToString("N2") + " | Valor atual: " + rMaxJumpCharges.ToString("N2"));
+    }
+
+    public void IncreaseHoldLimit(float amount) {
+        rHoldLimit += amount;
+        Debug.Log("HoldLimit! Valor adicionado: " + amount.ToString("N2") + " | Valor atual: " + rHoldLimit.ToString("N2"));
     }
 }
