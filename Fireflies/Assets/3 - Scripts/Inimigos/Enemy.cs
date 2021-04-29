@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour
         float dam;
         float rnd = Random.Range(0,100);
         if(values.rCritChance >= rnd) {
-            dam = damage*2;
+            dam = damage*3;
             critalDamage = true;
         }
         else {
