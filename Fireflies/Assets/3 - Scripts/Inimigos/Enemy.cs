@@ -57,16 +57,17 @@ public class Enemy : MonoBehaviour
             dam = damage;
             critalDamage = false;
         }
+        if (critalDamage)
+            {
+                CritParticle();
+            }
+        DamageParticle();
         HealthManager.instance.maisVida(dam*values.rLifeSteal/100);
         if (health - dam <= 0){
             health = 0;
             Death();
         } else {  
-            if (critalDamage)
-            {
-                CritParticle();
-            }
-            DamageParticle();
+            
             health -= dam;
         }
 
