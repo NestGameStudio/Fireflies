@@ -68,9 +68,11 @@ public class PlayerValues : ScriptableObject
     public int EpicWeight;
     public int LegendaryWeight;
     public List<Upgrade> upgrades;
+    private List<Upgrade> AcquiredUpgrades;
 
     public void InitValues() {
         //Reseta valores do player para referência inicial (definida em Inspector)
+        AcquiredUpgrades = new List<Upgrade>();
         rImpulseForce = ImpulseForce;
         rDamage = Damage;
         rLifeSteal = LifeSteal;
@@ -78,6 +80,18 @@ public class PlayerValues : ScriptableObject
         rInvincibilityTime = InvincibilityTime;
         rMaxHealth = MaxHealth;
         rMaxJumpCharges = MaxJumpCharges;
+    }
+
+    public Upgrade GetUpgradeAcquired(int i) {
+        return AcquiredUpgrades[i];
+    }
+
+    public void AddUpgradeAcquired(Upgrade up) {
+        AcquiredUpgrades.Add(up);
+    }
+
+    public int GetAcquiredUpgradesSize() {
+        return AcquiredUpgrades.Count;
     }
 
 

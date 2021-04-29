@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour
 {
@@ -129,6 +130,19 @@ public class HealthManager : MonoBehaviour
         hudUI.EnemiesText.text = "Enemies defeated: " + stats.EnemiesDefeated.ToString();
         hudUI.AttemptText.text = "Attempt #" + stats.AttemptCount.ToString();
         hudUI.TimeText.text = "Run time: " + GetConvertedTime(stats.RunTime);
+        for(int i=0;i<playervalue.GetAcquiredUpgradesSize();i++) {
+            CreateNewImageUpgrade(i,hudUI.SkillList);
+        }
+    }
+
+    private void CreateNewImageUpgrade(int i, GameObject parent) {
+        GameObject g =  Instantiate(hudUI.SkillButtonPrefab);
+        g.transform.SetParent(parent.transform);
+        g.GetComponent<Button>().interactable = false;
+        g.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Image>().sprite = playervalue.GetUpgradeAcquired(i).icon;
+        g.transform.GetChild(1).gameObject.SetActive(false);
+        g.transform.GetChild(2).gameObject.SetActive(false);
+        g.transform.localScale = new Vector3(1,1,1);
     }
 
     public void EndScreen() {
@@ -143,6 +157,9 @@ public class HealthManager : MonoBehaviour
         hudUI.EnemiesTextEnd.text = "Enemies defeated: " + stats.EnemiesDefeated.ToString();
         hudUI.AttemptTextEnd.text = "Attempt #" + stats.AttemptCount.ToString();
         hudUI.TimeTextEnd.text = "Run time: " + GetConvertedTime(stats.RunTime);
+        for(int i=0;i<playervalue.GetAcquiredUpgradesSize();i++) {
+            CreateNewImageUpgrade(i,hudUI.SkillListEnd);
+        }
     }
 
     private string GetConvertedTime(float time) {

@@ -169,6 +169,7 @@ public class SkillPicker : MonoBehaviour
     }
 
     private void CheckCost(Upgrade skill, Button SkillOption,int s) {
+        PlayerValues p = Setup.Instance.PlayerValue;
         if(MoneyManager.instance.money < skill.cost) {
             //HUDManager.instance.moneyUI.LowMoney();
             uiShopAnimation.noMoney(SkillOption.gameObject);
@@ -180,13 +181,18 @@ public class SkillPicker : MonoBehaviour
         SkillOption.gameObject.GetComponent<SkillDescription>().AddDescription("");
         SkillOption.gameObject.GetComponent<SkillDescription>().AddTitle("");
         ActiveSkill[s](skill.effects[0].amount);
+        p.AddUpgradeAcquired(skill);
         MoneyManager.instance.perderDinheiro(skill.cost);
         SkillOption.interactable = false;
     }
 
     private void DontCheckCost(Upgrade skill,int s,Button SkillOption) {
+        PlayerValues p = Setup.Instance.PlayerValue;
         uiShopAnimation.skillSelect(SkillOption.gameObject);
+        SkillOption.gameObject.GetComponent<SkillDescription>().AddDescription("");
+        SkillOption.gameObject.GetComponent<SkillDescription>().AddTitle("");
         ActiveSkill[s](skill.effects[0].amount);
+        p.AddUpgradeAcquired(skill);
         gameObject.SetActive(false);
         HealthManager.instance.Player.GetComponent<CollisionCheck>().DesligaFog();
         HealthManager.instance.UnFreezePlayer();
