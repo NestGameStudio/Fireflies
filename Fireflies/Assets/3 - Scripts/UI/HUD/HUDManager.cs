@@ -29,11 +29,18 @@ public class HUDManager : MonoBehaviour
     [Space(0.3f)]
     public GameObject GameOverStats;
     public GameObject EndStats;
+    
     public TextMeshProUGUI AttemptText;
     public TextMeshProUGUI JumpText;
     public TextMeshProUGUI EnemiesText;
     public TextMeshProUGUI MoneyText;
     public TextMeshProUGUI TimeText;
+
+    public TextMeshProUGUI AttemptTextEnd;
+    public TextMeshProUGUI JumpTextEnd;
+    public TextMeshProUGUI EnemiesTextEnd;
+    public TextMeshProUGUI MoneyTextEnd;
+    public TextMeshProUGUI TimeTextEnd;
 
 
     private void Awake(){

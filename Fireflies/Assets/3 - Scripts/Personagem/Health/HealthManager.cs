@@ -120,7 +120,7 @@ public class HealthManager : MonoBehaviour
         return IsInvencible;
     }
 
-    private void GameOverScreen() {
+    public void GameOverScreen() {
         FreezePlayer();
         GameStats stats = SaveSystem.instance.Stats; 
         hudUI.GameOverStats.SetActive(true);
@@ -134,12 +134,15 @@ public class HealthManager : MonoBehaviour
     public void EndScreen() {
         FreezePlayer();
         GameStats stats = SaveSystem.instance.Stats; 
+        stats.AttemptCount++;
+        stats.MoneyCount = MoneyManager.instance.money;
+        stats.RunTime = TimerManager.instance.time;
         hudUI.EndStats.SetActive(true);
-        hudUI.JumpText.text = "Jumps performed: " + stats.JumpCount.ToString();
-        hudUI.MoneyText.text = "Money gathered:     " + stats.MoneyCount.ToString();
-        hudUI.EnemiesText.text = "Enemies defeated: " + stats.EnemiesDefeated.ToString();
-        hudUI.AttemptText.text = "Attempt #" + stats.AttemptCount.ToString();
-        hudUI.TimeText.text = "Run time: " + GetConvertedTime(stats.RunTime);
+        hudUI.JumpTextEnd.text = "Jumps performed: " + stats.JumpCount.ToString();
+        hudUI.MoneyTextEnd.text = "Money gathered:     " + stats.MoneyCount.ToString();
+        hudUI.EnemiesTextEnd.text = "Enemies defeated: " + stats.EnemiesDefeated.ToString();
+        hudUI.AttemptTextEnd.text = "Attempt #" + stats.AttemptCount.ToString();
+        hudUI.TimeTextEnd.text = "Run time: " + GetConvertedTime(stats.RunTime);
     }
 
     private string GetConvertedTime(float time) {

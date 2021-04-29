@@ -11,7 +11,7 @@ public class ChangeLevel : MonoBehaviour
         if(other.gameObject.tag == "Player") {
 
             other.gameObject.GetComponent<CircleCollider2D>().enabled = false;
-            other.gameObject.GetComponent<CollisionCheck>().InstaDeath();
+            HealthManager.instance.EndScreen();
             //LevelManagerRL.Instance.ChooseNewMap();
             //LevelManager.Instance.nextLevel();
             //nextLevel.PlayOneShot(nextLevel.clip,nextLevel.volume);
