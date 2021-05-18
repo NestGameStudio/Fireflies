@@ -6,13 +6,14 @@ public class ChangeLevel : MonoBehaviour
 {
     
 
-    private void OnTriggerEnter2D(Collider2D collision) {
+    private void OnTriggerEnter2D(Collider2D other) {
 
-        if(collision.gameObject.tag == "Player") {
+        if(other.gameObject.tag == "Player") {
 
-            collision.gameObject.GetComponent<CircleCollider2D>().enabled = false;
-            LevelManager.Instance.nextLevel();
-
+            other.gameObject.GetComponent<CircleCollider2D>().enabled = false;
+            HealthManager.instance.EndScreen();
+            //LevelManagerRL.Instance.ChooseNewMap();
+            //LevelManager.Instance.nextLevel();
             //nextLevel.PlayOneShot(nextLevel.clip,nextLevel.volume);
             //nextLevel.Play();
         }

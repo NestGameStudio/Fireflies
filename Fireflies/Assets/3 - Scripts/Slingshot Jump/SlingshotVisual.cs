@@ -10,6 +10,7 @@ public class SlingshotVisual : MonoBehaviour
     
     public GameObject arrow;            // ponta da seta
     public LineRenderer line;           // a linha
+    public LineRenderer trajectoryLine; // a linha da trajetoria
  
     // ------------- Circunferência de Impulso ------------------
     [Header("Limite de impulso")]
@@ -73,6 +74,7 @@ public class SlingshotVisual : MonoBehaviour
             
             adjustSlingshotLine();
             adjustArrowPointer();
+            adjustCircunferenceScale();
         } 
 
     }
@@ -139,6 +141,12 @@ public class SlingshotVisual : MonoBehaviour
         line.widthMultiplier = Setup.Instance.LineWidth;
         line.positionCount = 2;
         //line.enabled = true;
+
+        // Desenha a linha e ponta do impulso
+        if(Setup.Instance.ShowArrow){
+            line.enabled = true;
+            arrow.SetActive(true);
+        }
     }
 
     // ------------- Faz o update do arrow ------------------
@@ -152,6 +160,13 @@ public class SlingshotVisual : MonoBehaviour
 
         // Mantem a circunferencia parada aonde foi clicado
         circunference.transform.position = lineCenterPosition;
+    }
+
+    private void adjustCircunferenceScale() {
+
+        // Scale
+        float circunferenceDistance = Vector2.Distance(line.GetPosition(0), line.GetPosition(1));
+        circunference.transform.localScale = Vector2.Lerp(new Vector2(0,0), new Vector2(1,1), circunferenceDistance/2);
     }
 
 
@@ -184,9 +199,10 @@ public class SlingshotVisual : MonoBehaviour
         }
 
         // O cursor está dentro do limite máximo    
-        if (Vector2.Distance(lineCenterPosition, lineFinalPos) <= Setup.Instance.LineMaxRadius) {
+        if (Vector2.Distance(lineCenterPosition, lineFinalPos) <= Setup.Instance.PlayerValue.LineMaxRadius) {
 
             // Desenha a linha com a Cali como centro
+            //trajectoryLine.GetPosition((trajectoryLine.positionCount - 1)/2)
             line.SetPosition(0, PointA);
             line.SetPosition(1, PointB);
 
@@ -194,7 +210,7 @@ public class SlingshotVisual : MonoBehaviour
         // Clicou alem do raio máximo da Cali (seta no máximo e move a direção)
         } else {
 
-            float dist = Mathf.Clamp(Vector3.Distance(lineCenterPosition, lineFinalPos), 0, Setup.Instance.LineMaxRadius);
+            float dist = Mathf.Clamp(Vector3.Distance(lineCenterPosition, lineFinalPos), 0, Setup.Instance.PlayerValue.LineMaxRadius);
 
             if (Setup.Instance.InvertedSlingshot) {
 
@@ -229,12 +245,12 @@ public class SlingshotVisual : MonoBehaviour
 
     private void adjustArrowPointer() {
 
-        // Desenha a linha do impulso
-        line.enabled = true;
-
         // Ajeita a ponta da seta
-        arrow.SetActive(true);
         arrow.transform.position = line.GetPosition(0);
+
+        // Scale
+        float arrowDistance = Vector2.Distance(line.GetPosition(0), line.GetPosition(1));
+        arrow.transform.localScale = Vector2.Lerp(new Vector2(0,0), new Vector2(0.4f,0.4f), arrowDistance/2);
 
         Vector3 dir = line.GetPosition(0) - this.transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -249,11 +265,11 @@ public class SlingshotVisual : MonoBehaviour
     // ------------- Valores visuais ------------------
 
     public float GetMinLine() {
-        return Setup.Instance.LineMinRadius;
+        return Setup.Instance.PlayerValue.LineMinRadius;
     }
 
     public float GetMaxLine() {
-        return Setup.Instance.LineMaxRadius;
+        return Setup.Instance.PlayerValue.LineMaxRadius;
     }
 
     public void SetFinalLinePosition(Vector2 position) {

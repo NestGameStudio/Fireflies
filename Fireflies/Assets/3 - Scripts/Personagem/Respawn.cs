@@ -77,16 +77,21 @@ public class Respawn : MonoBehaviour
             Player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
             //resetar timer
-            TimerController.Instance.ResetTimer();
-            TimerController.Instance.PauseTimer(true);
+            if (TimerController.Instance != null)
+            {
+                TimerController.Instance.ResetTimer();
+                TimerController.Instance.PauseTimer(true);
 
-            //fazer as plataformas resetarem
-            LevelManager.Instance.resetPlats();
+            }
+            if (LevelManager.Instance != null)
+            {
+                //fazer as plataformas resetarem
+                LevelManager.Instance.resetPlats();
 
-            LevelManager.Instance.resetTimeCollectable();
+                LevelManager.Instance.resetTimeCollectable();
 
-            LevelManager.Instance.ResetarEspinhosMoveis();
-
+                LevelManager.Instance.ResetarEspinhosMoveis();
+            }
             //Player.GetComponentInChildren<TrailRenderer>().enabled = true;
         }
     }

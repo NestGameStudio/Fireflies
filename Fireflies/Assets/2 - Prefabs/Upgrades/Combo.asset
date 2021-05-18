@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd329a1f35f447459b7bd0f83489a70, type: 3}
+  m_Name: Combo
+  m_EditorClassIdentifier: 
+  nome: Wombo Combo
+  description: "Ap\xF3s colidir 3 vezes em um curto per\xEDodo de tempo, seu PR\xD3XIMO
+    PULO dar\xE1 mais DANO e ter\xE1 mais FOR\xC7A!"
+  icon: {fileID: 21300000, guid: 50eb91d5be30d284ebaf79e4638541d0, type: 3}
+  cost: 50
+  rarity: 3
+  effects:
+  - type: 8
+    amount: 0

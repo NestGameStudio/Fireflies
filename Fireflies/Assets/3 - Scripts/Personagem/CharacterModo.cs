@@ -30,8 +30,9 @@ public class CharacterModo : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void ChangeMode(modo m)
     {
+        Modo = m;
         //Aqui a cor pra cada parte da cali é colocada
         Base.color = baseColor[(int)Modo];
         Eyes.color = eyesColor[(int)Modo];

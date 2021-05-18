@@ -53,4 +53,9 @@ public class lookAlongVelocity : MonoBehaviour
     {
         return Quaternion.Lerp(source, target, 1 - Mathf.Pow(smoothing, dt));
     }
+
+    public void Reset()
+    {
+        transform.eulerAngles = Vector3.zero;
+    }
 }

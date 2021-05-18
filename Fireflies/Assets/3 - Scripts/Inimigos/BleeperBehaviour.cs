@@ -12,6 +12,8 @@ public static class ExtensionMethods
     }
 
 }
+
+[RequireComponent(typeof(Enemy))]
 public class BleeperBehaviour : MonoBehaviour
 {
     /*
@@ -19,9 +21,12 @@ public class BleeperBehaviour : MonoBehaviour
     No caso da Cali acertar o inimigo enquanto ele está Verde, ele é derrotado.
     Caso Cali acerte ele enquanto ele está Vermelho, Cali perde Vida.
     */
+    [HideInInspector]
+    public Enemy enemy;
 
     [Header("Debug Vars")]
     public Text timeDisplay;
+    public Text healthDisplay;
 
     [Header("Ativa visualizacao de debug")]
     public bool Debug = false;
@@ -34,13 +39,26 @@ public class BleeperBehaviour : MonoBehaviour
     public Color[] baseColors;
     public SpriteRenderer[] baseRenderer;
     public GameObject angy;
+    public GameObject Eyes;
+    public GameObject closedEyes;
 
     [Header("Tempo(s) ate mudar de estado")]
     public float changeTime = 1;
 
+    [Header("É afetado pelo slow motion?")]
+    public bool scaledTime = false;
+
     //variavel que guarda o changeTime logo no inicio do jogo
     private float timeBackup;
 
+    [Header("Forca de impulso ate o player")]
+    public float impulseForce = 2;
+
+    private Rigidbody2D rb;
+
+    public bool canViewPlayer = false;
+
+    public bool raycastCanViewPlayer = false;
     public enum estado
     {
         inatingivel,
@@ -49,19 +67,19 @@ public class BleeperBehaviour : MonoBehaviour
 
     [Header("Visualizacao do estado do inimigo")]
     public estado Estado;
+
     // Start is called before the first frame update
     void Start()
     {
+        enemy = GetComponent<Enemy>();
         timeBackup = changeTime;
 
-        if (Estado == estado.inatingivel)
-        {
-            gameObject.tag = "Bleeper_Invulneravel";
-        }
-        else
-        {
-            gameObject.tag = "Bleeper_Vulneravel";
-        }
+        rb = GetComponent<Rigidbody2D>();
+
+        changeState();
+
+        Eyes.SetActive(false);
+        closedEyes.SetActive(true);
     }
 
     // Update is called once per frame
@@ -69,16 +87,17 @@ public class BleeperBehaviour : MonoBehaviour
     {
         if (changeTime > 0)
         {
-            changeTime -= Time.deltaTime;
+            changeTime -= scaledTime? Time.deltaTime : Time.unscaledDeltaTime;
         }
-        else
+        else if(changeTime <= 0 )
         {
             changeState();
-
         }
 
         //mostrar tempo faltante em display
         timeDisplay.text = (Mathf.Round(changeTime*10)/10).ToString();
+        //mostrar vida em display
+        healthDisplay.text = ("HP: " + enemy.health).ToString();
 
         //mudar tamanho de objeto de efeito baseado no tempo faltante
         // min - 0.275 / max - 0.5
@@ -91,20 +110,22 @@ public class BleeperBehaviour : MonoBehaviour
         //reseta timer
         changeTime = timeBackup;
 
-        mudarCor();
-
-        //colocar tag correspondente ao estado
-        mudarTag();
-
         //alternar estado
         if (Estado == estado.inatingivel)
         {
             Estado = estado.atingivel;
+            gameObject.tag = "Inimigo_Vulneravel";
         }
         else
         {
             Estado = estado.inatingivel;
+            gameObject.tag = "Inimigo";
+
+            //se joga no player
+            forceToPlayer();
         }
+
+        mudarCor();
 
     }
     public void mudarCor()
@@ -115,30 +136,114 @@ public class BleeperBehaviour : MonoBehaviour
             baseRenderer[x].color = baseColors[(int)Estado];
         }
 
+        //deixar olho feliz
+        /*
         if (Estado == estado.inatingivel)
         {
             angy.SetActive(true);
+
+            
         }
         else
         {
             angy.SetActive(false);
         }
-
-        
+        */
 
     }
-    public void mudarTag()
+
+    public void forceToPlayer()
     {
+        RaycastView();
 
-        if (Estado == estado.inatingivel)
+        //caso esteja vendo o player
+        if (canViewPlayer && raycastCanViewPlayer)
         {
-            gameObject.tag = "Bleeper_Vulneravel";
-        }
-        else
-        {
-            gameObject.tag = "Bleeper_Invulneravel";
+            //get player
+            Vector3 playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
+
+            Vector2 forceDirection = (playerPos - gameObject.transform.position);
+
+            rb.AddForce(forceDirection.normalized * impulseForce, ForceMode2D.Impulse);
+
+            //print("se jogou");
         }
     }
 
+    //Ver se player esta dentro do raio de visao
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            //player esta dentro da visao
+            canViewPlayer = true;
+            Eyes.SetActive(true);
+            closedEyes.SetActive(false);
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            //player esta fora da visao
+            canViewPlayer = false;
+            Eyes.SetActive(false);
+            closedEyes.SetActive(true);
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.white;
+        if(canViewPlayer) {
+            Gizmos.DrawLine(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position);
+        }
+        //Gizmos.color = Color.red;
+        //Gizmos.DrawWireSphere(transform.position, 1);
+    }
+
+    //player transform cache
+    private Transform playerTransform = null;
+    void RaycastView()
+    {
+        //Length of the ray
+        float laserLength = 50f;
+        Vector2 startPosition = (Vector2)transform.position;
+        int layerMask = LayerMask.GetMask("Default", "Passable");
+
+        if(!playerTransform)
+        {
+            playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+        //get player position
+        Vector3 playerPos = playerTransform.position;
+
+        //Get the first object hit by the ray
+        RaycastHit2D hit = Physics2D.Raycast(startPosition, (playerPos - gameObject.transform.position), laserLength, layerMask, 0);
+
+        //If the collider of the object hit is not NUll
+        if (hit.collider.gameObject.CompareTag("Player"))
+        {
+            //Hit something, print the tag of the object
+            UnityEngine.Debug.Log("Hitting: " + hit.collider.tag);
+
+            //Method to draw the ray in scene for debug purpose
+            UnityEngine.Debug.DrawRay(startPosition, (playerPos - gameObject.transform.position) * laserLength, Color.green);
+            raycastCanViewPlayer = true;
+        }
+        else{
+            UnityEngine.Debug.DrawRay(startPosition, (playerPos - gameObject.transform.position) * laserLength, Color.red);
+            raycastCanViewPlayer = false;
+        }
+    }
+
+    //detect dano
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player") && Estado == estado.atingivel)
+        {
+            enemy.TakeDamage(Setup.Instance.PlayerValue.rDamage);
+        }
+    }
 }
 

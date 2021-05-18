@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class CollisionCheck : MonoBehaviour
 {
     public JumpRecovery Jump;
     public Respawn Respawn;
+    public TimerManager Timer;
+    public HurtFeedback HurtFeedback;
     public GameObject paredeParticle;
-    public GameObject deathParticle;
+    public GameObject damageParticle;
     public AudioSource colisao;
     public AudioSource Lose;
     private float startPitch;
@@ -20,6 +24,9 @@ public class CollisionCheck : MonoBehaviour
     private float currentColissionStayTimer = 0;
     private bool canRecharge = false;
 
+    public Volume postProcessingVolume;
+    public GameObject skillUI;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -29,7 +36,8 @@ public class CollisionCheck : MonoBehaviour
 
     private void Update() {
 
-        if (!Jump.CanJump()) {
+        //Trecho usado para criar delay em OnCollisionStay2D, atualmente inativo
+        /*if (!Jump.CanJump()) {
             currentColissionStayTimer += Time.unscaledDeltaTime;
 
             if(currentColissionStayTimer >= collisionStayDelay) {
@@ -38,145 +46,120 @@ public class CollisionCheck : MonoBehaviour
             }
         } else {
             canRecharge = false;
-        }
+        }*/
 
     }
 
     // Faz todos os checks que precisam de colisão
     private void OnCollisionEnter2D(Collision2D collision) {
 
-        switch (collision.transform.tag) {
-            case "Plataforma_Recarregavel":
-                Jump.setJump(true);
+        //Bateu em uma plataforma recarregável
+        if(collision.transform.CompareTag("Plataforma_Recarregavel")){
+            playAudioColisao();
+            playFeedbackRecarga();
 
-                playAudioColisao();
-                playFeedbackRecarga();
+            Jump.restoreJumpCharge(true);
 
-                break;
+            return;
+        }
 
-            case "PlatRec_Curva":
-                Jump.setJump(true);
+        //Bateu em inimigo
+        if(collision.transform.CompareTag("Inimigo")){
+            playAudioColisao();
+            playFeedbackRecarga();
 
-                playAudioColisao();
-                playFeedbackRecarga();
+            Jump.restoreJumpCharge(true);
 
-                break;
+            //toma dano de toque variável (seguindo referência de inimigo)
+            Enemy e = collision.gameObject.GetComponent<Enemy>();
+            Damage(e.damage.x, e.damage.y);
 
-            case "Plataforma_Quebravel":
+            return;
+        }
 
-                Jump.setJump(true);
+        //Bateu em área ou inimigo vulnerável
+        if(collision.transform.CompareTag("Inimigo_Vulneravel")){
+            playAudioColisao();
+            playFeedbackRecarga();
 
-                playAudioColisao();
-                playFeedbackRecarga();
-                
-                //resetMaterial(collision);
-                LevelManager.Instance.getLevelBreakPlats();
+            Jump.restoreJumpCharge(true);
 
-                //fazer com que a plataforma desapareca
-                //collision.transform.parent.gameObject.SetActive(false);
-                collision.gameObject.GetComponentInParent<Animator>().SetBool("Break",true);
+            return;
+        }
 
-                    break;
+        //Bateu em perigo
+        if(collision.transform.CompareTag("Perigo")){
+            playAudioColisao();
+            playFeedbackRecarga();
 
-            case "Plataforma_Quebravel_Fake":
+            Jump.restoreJumpCharge(true);
 
-                LevelManager.Instance.getLevelBreakPlats();
+            //toma dano padrão
+            Damage();
 
-                //fazer com que a plataforma desapareca
-                //collision.transform.parent.gameObject.SetActive(false);
-                collision.gameObject.GetComponentInParent<Animator>().SetBool("Break", true);
+            return;            
+        } 
 
-                break;
-            case "Bleeper_Invulneravel":
+        if(collision.transform.CompareTag("Treasure")) {
+            playFeedbackRecarga();
+            Jump.restoreJumpCharge(true);
+            return;
+        }
+    }
 
-                if (CameraShake.instance != null) { CameraShake.instance.shakeCam(2, 1, 0.5f); }
+    private void OnTriggerEnter2D(Collider2D collision){
+        //Entrou em área ou objeto recarregável
+        if(collision.transform.CompareTag("Trigger_Recarregavel")){
+            playFeedbackRecarga();
+            Jump.restoreJumpCharge(true);
+            return;
+        }
+        
+        //Entrou em safe zone
+        if (collision.transform.CompareTag("Trigger_Safe")){
+            Timer.stopTimer();
+            return;
+        }
 
-                playAudioLose();
-
-                //particula de morte e contador de morte
-                if (deathParticle != null)
-                    deathParticleTrigger();
-
-                Respawn.RepositionPlayer();
-                break;
-            case "Inimigo":
-
-                if (CameraShake.instance != null) { CameraShake.instance.shakeCam(2, 1, 0.5f); }
-
-                playAudioLose();
-
-                //particula de morte e contador de morte
-                if (deathParticle != null)
-                    deathParticleTrigger();
-
-                Respawn.RepositionPlayer();
-                break;
-            case "Perigo":
-
-                if (CameraShake.instance != null) { CameraShake.instance.shakeCam(2, 1, 0.5f); }
-
-                playAudioLose();
-
-                //particula de morte e contador de morte
-                if (deathParticle != null)
-                    deathParticleTrigger();
-
-                Respawn.RepositionPlayer();
-                break;
-            default:
-                break;
+        if (collision.transform.CompareTag("Trigger_Shop")) {
+            SkillPicker.IsShop = true;
+            LigaSkillUI();
         }
         
     }
 
-    private void OnCollisionStay2D(Collision2D collision) {
-        
-        if (!Jump.CanJump() && canRecharge) {
-
-            switch (collision.transform.tag) {
-                case "Plataforma_Recarregavel":
-                    Jump.setJump(true);
-
-                    playAudioColisao();
-                    playFeedbackRecarga();
-                    break;
-                case "PlatRec_Curva":
-                    Jump.setJump(true);
-
-                    playAudioColisao();
-                    playFeedbackRecarga();
-                    break;
-                case "Plataforma_Quebravel":
-                    Jump.setJump(true);
-
-                    playAudioColisao();
-                    playFeedbackRecarga();
-                    break;
-                default:
-                    break;
-            }
+    public void LigaSkillUI() {
+        ControlManager.Instance.SlingshotController.impulseVector = new Vector2(0,0);
+        ControlManager.Instance.ExitSlowMotionMode();
+        Timer.stopTimer();
+        Time.timeScale = 0;
+        if(postProcessingVolume.profile != null){
+            postProcessingVolume.profile.TryGet<DepthOfField>(out var dph);
+            dph.active = true;
         }
+        skillUI.SetActive(true);
+        HealthManager.instance.FreezePlayer();
+        uiShopAnimation uiShopAnimation= skillUI.GetComponent<uiShopAnimation>();
+        uiShopAnimation.Animate();
+    } 
 
+    private void OnTriggerExit2D(Collider2D collision){
+
+        //Saiu da safe zone
+        if (collision.transform.CompareTag("Trigger_Safe")){
+            Timer.startTimer();
+            return;
+        }
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    void damageParticleTrigger()
     {
-        if(collision.gameObject.tag == "PlatRec_Curva")
-        {
-            setCurveMaterial(collision);
-        }
-        else
-        {
-            resetMaterial(collision);
-        }
-    }
-    void deathParticleTrigger()
-    {
-        Instantiate(deathParticle,gameObject.transform.position,Quaternion.identity);
+        Instantiate(damageParticle,gameObject.transform.position,Quaternion.identity);
 
-        deathCounter.instance.addDeath();
+        //Adiciona ao contador de mortes
+        //if (deathCounter.instance != null) {deathCounter.instance.addDeath();}
     }
 
+    //Usado para deslizar em plataformas curvas
     void resetMaterial(Collider2D collision)
     {
         if (collision.gameObject.GetComponentInChildren<EdgeCollider2D>() != null)
@@ -193,9 +176,6 @@ public class CollisionCheck : MonoBehaviour
         }
         rb.sharedMaterial = playerMaterialCurva;
     }
-    private void OnCollisionExit2D(Collision2D collision) {
-        //print("sai disso");
-    }
 
     void playAudioColisao()
     {
@@ -210,17 +190,55 @@ public class CollisionCheck : MonoBehaviour
         Lose.PlayOneShot(Lose.clip, Lose.volume);
     }
 
+    void Damage(){
+        //dano padrão
+        Damage(10f);
+    }
+
+    void Damage(float min, float max){
+        float damage = Mathf.Round(Random.Range(min, max));
+        Damage(damage);
+    }
+
+    void Damage(float damage)
+    {
+        if(HealthManager.instance.IsPlayerInvencible()) return;
+
+        //particula de morte e contador de morte
+        if (damageParticle != null)
+            damageParticleTrigger();
+
+        //camera shake
+        if (CameraShake.instance != null) { CameraShake.instance.shakeCam(2, 1, 0.5f); }
+
+        //tocar audio de dano
+        playAudioLose();
+
+        //perder vida
+        HealthManager.instance.menosVida(damage);
+    }
+
     void playFeedbackRecarga(){
         //funcao para camerashake ----------------------------> shakecam(intensidade,frequencia,tempo)
-        if (CameraShake.instance != null) { CameraShake.instance.shakeCam(rb.velocity.magnitude/6,1, 0.13f); }
+        if (CameraShake.instance != null) { CameraShake.instance.shakeCam(rb.velocity.magnitude/5,1, 0.2f); }
 
         //resetMaterial(collision);
 
         //instanciar particula de colisao com a parede
-        ParticleSystem particula = Instantiate(paredeParticle,transform.position,Quaternion.identity).GetComponent<ParticleSystem>();
-        if (rb.velocity.magnitude > 10000f){
-            particula.startSpeed = rb.velocity.magnitude * 1.2f;
+        if(!Jump.canJump)
+        {
+            ParticleSystem particula = Instantiate(paredeParticle,transform.position,Quaternion.identity).GetComponent<ParticleSystem>();
+            if (rb.velocity.magnitude > 10000f)
+            {
+                particula.startSpeed = rb.velocity.magnitude * 1.2f;
+            } 
         }
+    }
+
+    public void DesligaFog() {
+        postProcessingVolume.profile.TryGet<DepthOfField>(out var dph);
+        dph.active = false;
+        SkillPicker.IsShop = false;
     }
 
 }

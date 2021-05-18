@@ -5,12 +5,17 @@ using UnityEngine;
 public class JumpRecovery : MonoBehaviour
 {
     public JumpTimeController JumpTimeController;
+    public JumpChargeUI chargeUI;
 
-    private bool canJump = false;     // Consegue executar o pulo
+    [HideInInspector]
+    public bool canJump = false;     // Consegue executar o pulo
+    public int jumpCharges = 0;     // Cargas de pulo atuais
     public Animator playerAnim;
+    private PlayerValues values;
 
-    private void Update() {
-        //print("can Jump: " + canJump); 
+    void Start(){
+        values = Setup.Instance.PlayerValue;
+        if(chargeUI != null) chargeUI.Setup(values.rMaxJumpCharges);
     }
 
     public bool CanJump() {
@@ -27,6 +32,41 @@ public class JumpRecovery : MonoBehaviour
 
         canJump = value;
         playerAnim.SetBool("canJump", value);
+    }
+
+    public void useJumpCharge(){
+
+        if(jumpCharges <= 0) return;
+
+        else {
+            jumpCharges--;
+            if(jumpCharges <= 0){
+                jumpCharges = 0;
+                setJump(false);
+            }
+            chargeUI.UpdateCharges(jumpCharges);
+        }
+    }
+
+    public void restoreJumpCharge(bool max){
+        if(max){
+            jumpCharges = values.rMaxJumpCharges;
+            setJump(true);
+
+            chargeUI.UpdateCharges(jumpCharges);
+        } else {
+            restoreJumpCharge();
+        }
+    }
+
+    public void restoreJumpCharge(){
+        jumpCharges++;
+        if(jumpCharges > values.rMaxJumpCharges){
+            jumpCharges = values.rMaxJumpCharges;
+        }
+        setJump(true);
+
+        chargeUI.UpdateCharges(jumpCharges);
     }
 
 }

@@ -18,20 +18,26 @@ public class SlingshotController : MonoBehaviour {
 
     // Variáveis da movimentação
     private bool isOnSlowMotion = false;    // Entrou no slowMotion com um clique
-    private bool canJump = true;             // Está com o pulo carregado
 
     // Direção atualizada conforme pega os valores do analógico/mouse
     [HideInInspector] public Vector2 direction;
     // o centro da linha
     private Vector2 lineCenterPos;
 
-    private Vector2 impulseVector = Vector2.zero;
+    public Vector2 impulseVector = Vector2.zero;
 
     public AudioSource jumpAudio;
     private float startPitch;
     private AudioLowPassFilter audioMusic; 
     private bool bufferingJump;
 
+    [HideInInspector]
+    public Vector2 impulse;
+
+    public Trajectory trajectory;
+
+    private bool HoldingJump = false;
+    private float HoldingTime = 0;
     // ------------- Setup e checagens ------------------
     private void Start() {
         JumpControl = this.GetComponent<JumpRecovery>();
@@ -39,10 +45,14 @@ public class SlingshotController : MonoBehaviour {
         startPitch = jumpAudio.pitch;
         
 
-        if(audioMusic == null)
+        if(audioMusic == null && GameObject.FindGameObjectWithTag("Music") != null)
         {
             audioMusic = GameObject.FindGameObjectWithTag("Music").GetComponent<AudioLowPassFilter>();
             audioMusic.enabled = false;
+        }
+
+        if(trajectory == null){
+            trajectory = transform.parent.parent.Find("Slingshot Visuals").GetComponent<Trajectory>();
         }
     }
 
@@ -58,25 +68,48 @@ public class SlingshotController : MonoBehaviour {
 
             slingshotVisual.SetFinalLinePosition(direction);
             adjustImpulse();
- 
-        }
 
+
+            if (Setup.Instance.ShowArc){
+                trajectory.SimulateArc();
+            }
+        }
     }
-   
-    // -> Slow Motion 
+
+    private void FixedUpdate() {
+        if(HoldingJump) {
+            Debug.Log("Alo");
+            HoldingTime += Time.fixedDeltaTime;
+            if(HoldingTime >= Setup.Instance.PlayerValue.rHoldLimit) {
+                Debug.Log("Tchau");
+                ExitSlowMotionMode();
+                HoldingTime = 0f;
+            }
+        }
+    }
+
     public void EnterSlowMotionMode() {
 
         if (JumpControl.CanJump()) {
 
-            Time.timeScale = Setup.Instance.TimeSlow;
-            Time.fixedDeltaTime = Setup.Instance.TimeSlow * Time.deltaTime;    // faz com que o slowmotion não fique travado
+            Time.timeScale = Setup.Instance.PlayerValue.TimeSlow;
+            Time.fixedDeltaTime = Setup.Instance.PlayerValue.TimeSlow * Time.deltaTime;    // faz com que o slowmotion não fique travado
+
+            HoldingJump = true;
 
             CenterReference();
             slingshotVisual.SlingshotVisualSetup(lineCenterPos);
 
             isOnSlowMotion = true;
 
-            audioMusic.enabled = true;
+            if (audioMusic != null)
+            {
+                audioMusic.enabled = true;
+            }
+
+            if (Setup.Instance.ShowArc){
+                trajectory.enterArc();
+            }
         }
         // Apertou o botão sem poder pular -> 'bufferiza' o pulo
         else{
@@ -88,20 +121,27 @@ public class SlingshotController : MonoBehaviour {
     public void ExitSlowMotionMode() {
 
         // precisa do isOnSlowMotion para que não ocorra o soft lock
-        if (JumpControl.CanJump() && isOnSlowMotion) {
-
+        if (JumpControl.CanJump() && isOnSlowMotion)
+        {
+            HoldingJump = false;
             Time.timeScale = 1f;
             slingshotVisual.DisableSlingshotVisuals();
             slingshotVisual.SetFinalLinePosition(new Vector2(Screen.width / 2, Screen.height / 2));
 
             //evita pulos de força extremamente baixa (game breaking)
-            if (impulseVector.magnitude > slingshotVisual.GetMinLine()) {
+            if (impulseVector.magnitude > slingshotVisual.GetMinLine())
+            {
                 Jump();
-                JumpControl.setJump(false);
+                JumpControl.useJumpCharge();
             }
 
             isOnSlowMotion = false;
-            audioMusic.enabled = false;
+            if (audioMusic != null)
+            {
+                audioMusic.enabled = false;
+            }
+
+            trajectory.exitArc();
         }
         // Soltou o botão sem estar no slowmotion
         else{
@@ -171,12 +211,13 @@ public class SlingshotController : MonoBehaviour {
         rb.velocity = Vector3.zero;
 
         // Calcula o impulso
-        Vector2 impulse = new Vector2(impulseVector.x, impulseVector.y) * Setup.Instance.ImpulseForce;
+        impulse = new Vector2(impulseVector.x, impulseVector.y) * Setup.Instance.PlayerValue.rImpulseForce;
         rb.AddForce(impulse, ForceMode2D.Impulse);
-
+        Debug.Log("RBvelocity = " + rb.velocity.magnitude + " / " + "RBimpulse = " + impulse.magnitude);
         jumpAudioEvent();
 
         impulseVector = Vector2.zero;
+        SaveSystem.instance.Stats.JumpCount++;
 
     }
 
@@ -184,5 +225,9 @@ public class SlingshotController : MonoBehaviour {
     {
         jumpAudio.pitch = Random.Range(startPitch - 0.13f, startPitch + 0.13f);
         jumpAudio.PlayOneShot(jumpAudio.clip,jumpAudio.volume);
+    }
+
+    public bool IsSlowMotionActive() {
+        return isOnSlowMotion;
     }
 }

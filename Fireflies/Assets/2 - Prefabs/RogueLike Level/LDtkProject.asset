@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64552ccf624340e5ac0c3c984ff97a21, type: 3}
+  m_Name: LDtkProject
+  m_EditorClassIdentifier: 
+  _jsonProject: {fileID: -9137991013969108190, guid: 42d5b59f5ab027540aeeecdd37bc651c,
+    type: 3}
+  _tilemapPrefab: {fileID: 7883775806120263513, guid: 1f6e98461cc4d5149aa030094e56d6c9,
+    type: 3}
+  _intGridValueColorsVisible: 0
+  _pixelsPerUnit: 16
+  _levels:
+  - {fileID: -8900196649867604931, guid: d1a6458881734cf48a28090afaa459a0, type: 3}
+  - {fileID: -8900196649867604931, guid: 00cbaa6414691d14688d070cd0fcdadd, type: 3}
+  - {fileID: -8900196649867604931, guid: d8731709d96131f48ac975c439b85b54, type: 3}
+  - {fileID: -8900196649867604931, guid: 73f6a94dd32c31f478193c4535d93b02, type: 3}
+  - {fileID: -8900196649867604931, guid: e03dccbc3cc01874999a2e66c2800e8c, type: 3}
+  - {fileID: -8900196649867604931, guid: 5eeb43c413e727c40a2d70a2cd2ec929, type: 3}
+  - {fileID: -8900196649867604931, guid: bd6c91222f88e0d48967877cedf38061, type: 3}
+  - {fileID: -8900196649867604931, guid: a244eefc68fcb4a41a273831fe540b86, type: 3}
+  - {fileID: -8900196649867604931, guid: 7c3b16931afc1c242a14a7daf8860254, type: 3}
+  - {fileID: -8900196649867604931, guid: 3421aabec1ea0be448823670b64ef64f, type: 3}
+  - {fileID: -8900196649867604931, guid: 198129df232906b4280ae8297993be8b, type: 3}
+  - {fileID: -8900196649867604931, guid: 03bb172eaed38b149b1b8da17cf00186, type: 3}
+  - {fileID: -8900196649867604931, guid: 8f9058a1793443e45af28d0c646355a4, type: 3}
+  - {fileID: -8900196649867604931, guid: 3617d8b78f380aa44b44007e6955b7ae, type: 3}
+  - {fileID: -8900196649867604931, guid: 13c692ae82351d841b2000838d5627c5, type: 3}
+  - {fileID: -8900196649867604931, guid: 833990a5b7b779346affb2c06aa81fdb, type: 3}
+  _intGridValues:
+  - {fileID: 11400000, guid: 6d6bbd660c05dc344a2e8bf77332092b, type: 2}
+  - {fileID: 11400000, guid: af84f809800494a46a5cd9aac0b05421, type: 2}
+  - {fileID: 0}
+  _entities:
+  - {fileID: 11400000, guid: bab166750b9ee794d8adb7aa435cc175, type: 2}
+  - {fileID: 11400000, guid: 6c3a21b0b7c991948ab2928555acf607, type: 2}
+  - {fileID: 11400000, guid: 16ae02c583e27454a9c8cb78f4a5f00a, type: 2}
+  - {fileID: 11400000, guid: 6d5401047f9b542409acc108f89e740f, type: 2}
+  - {fileID: 11400000, guid: fa8231c87c247af44a4b74fcb57fe336, type: 2}
+  - {fileID: 11400000, guid: 4c461033763fc0649b7d79742ca9aa36, type: 2}
+  _tilesets:
+  - {fileID: 11400000, guid: 4dcf3a0a0ff265649afd9f52096fcd9c, type: 2}
+  - {fileID: 11400000, guid: 414a8ae028d0ae04ca18e72cb24d4e3b, type: 2}

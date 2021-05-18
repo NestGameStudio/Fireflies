@@ -39,4 +39,9 @@ public class scaleByVelocity : MonoBehaviour
                 return;
         }
     }
+
+    public void Reset()
+    {
+        transform.localScale = new Vector3(1.12f, 1.12f, 1f);
+    }
 }
