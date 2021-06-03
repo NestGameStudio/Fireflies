@@ -23,8 +23,11 @@ MonoBehaviour:
     m_Url: https://packages.unity.com
     m_Scopes: []
     m_IsDefault: 1
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Roguelike
     m_Capabilities: 7
   - m_Id: scoped:package.openupm.com
     m_Name: package.openupm.com
@@ -36,7 +39,10 @@ MonoBehaviour:
     - jillejr.newtonsoft.json-for-unity
     m_IsDefault: 0
     m_Capabilities: 0
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> Roguelike
   m_UserSelectedRegistryName: 
   m_UserAddingNewScopedRegistry: 0
   m_RegistryInfoDraft:

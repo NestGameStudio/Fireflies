@@ -13,10 +13,13 @@ Material:
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   m_CustomRenderQueue: -1
   stringTagMap: {}
 =======
+=======
+>>>>>>> Roguelike
   m_CustomRenderQueue: 2000
   stringTagMap:
     RenderType: Opaque
@@ -51,7 +54,22 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+>>>>>>> Roguelike
     m_Floats:
     - _Emission: 1
     - _EmissionLM: 0
@@ -61,8 +79,11 @@ Material:
     - _Color: {r: 0, g: 0.20586912, b: 0.3134328, a: 1}
     - _Emission: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Roguelike
   m_BuildTextureStacks: []
 --- !u!114 &3085719486540674866
 MonoBehaviour:
@@ -77,4 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 4
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> Roguelike

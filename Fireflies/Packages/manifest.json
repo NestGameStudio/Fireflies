@@ -1,16 +1,22 @@
 {
   "dependencies": {
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     "com.unity.2d.animation": "3.2.5",
     "com.unity.2d.pixel-perfect": "2.0.4",
     "com.unity.2d.psdimporter": "2.1.6",
 =======
+=======
+>>>>>>> Roguelike
     "com.cammin.ldtkunity": "1.2.15",
     "com.littlebigfun.addressable-importer": "0.9.4",
     "com.unity.2d.animation": "5.0.4",
     "com.unity.2d.pixel-perfect": "4.0.1",
     "com.unity.2d.psdimporter": "4.0.2",
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> Roguelike
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.2d.spriteshape": "5.1.1",
     "com.unity.2d.tilemap": "1.0.0",
@@ -22,19 +28,25 @@
     "com.unity.inputsystem": "1.0.2",
     "com.unity.postprocessing": "3.0.1",
     "com.unity.progrids": "3.0.3-preview.6",
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     "com.unity.recorder": "2.5.2",
     "com.unity.test-framework": "1.1.19",
     "com.unity.textmeshpro": "2.0.1",
     "com.unity.timeline": "1.2.14",
 =======
+=======
+>>>>>>> Roguelike
     "com.unity.recorder": "2.5.5",
     "com.unity.render-pipelines.universal": "10.5.0",
     "com.unity.shadergraph": "10.5.0",
     "com.unity.test-framework": "1.1.24",
     "com.unity.textmeshpro": "3.0.1",
     "com.unity.timeline": "1.4.7",
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> Roguelike
     "com.unity.ugui": "1.0.0",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
