@@ -31,6 +31,8 @@ MonoBehaviour:
   rMaxHealth: 100
   MaxJumpCharges: 1
   rMaxJumpCharges: 1
+  HoldLimit: 5
+  rHoldLimit: 5
   CommonWeight: 75
   RareWeight: 30
   EpicWeight: 15
